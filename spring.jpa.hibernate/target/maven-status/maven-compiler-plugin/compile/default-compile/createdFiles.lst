@@ -1,0 +1,3 @@
+com\framework\spring\jpa\EntityManagerFactory.class
+com\framework\spring\jpa\JpaVendorAdapter.class
+com\framework\spring\jpa\TransactionManager.class
