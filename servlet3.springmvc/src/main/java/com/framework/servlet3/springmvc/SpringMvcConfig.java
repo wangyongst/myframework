@@ -1,5 +1,7 @@
 package com.framework.servlet3.springmvc;
 
+import java.util.List;
+
 import javax.servlet.Filter;
 
 import org.apache.log4j.Logger;
@@ -7,6 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -22,7 +28,6 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
 	private static final Logger logger = Logger
 			.getLogger(SpringMvcConfig.class);
-
 	@Bean
 	public ViewResolver viewResolver() {
 		logger.info("ViewResolver create!");
@@ -40,5 +45,11 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
         return characterEncodingFilter;
+    }
+	
+	@Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
     }
 }

@@ -1,9 +1,11 @@
 package com.myweb.service;
 
+import javax.servlet.http.HttpSession;
+
+import com.myweb.vo.JsonResult;
+
 public interface UserService {
 	
-	public String login(String username,String password);
-	
-	public boolean checkResult(String result);
-	
+	public JsonResult login(String username,String password,HttpSession session);
+
 }

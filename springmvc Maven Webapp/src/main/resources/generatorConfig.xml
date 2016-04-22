@@ -9,14 +9,11 @@
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/web" userId="root"
 			password="root" />
-		<!-- 生成vo对象 -->
-		<javaModelGenerator targetPackage="com.myweb.pojo"
+		<javaModelGenerator targetPackage="com.myweb.vo.mybatis"
 			targetProject="../src" />
-		<!-- 生成用于查询的Example对象 -->
-		<sqlMapGenerator targetPackage="com.myweb.dao"
+		<sqlMapGenerator targetPackage="com.myweb.dao.mybatis"
 			targetProject="../src" />
-		<!-- 生成DAO的类文件以及配置文件 -->
-		<javaClientGenerator targetPackage="com.myweb.dao"
+		<javaClientGenerator targetPackage="com.myweb.dao.mybatis"
 			targetProject="../src" type="XMLMAPPER" />
 		<!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
 		<table tableName="%">
