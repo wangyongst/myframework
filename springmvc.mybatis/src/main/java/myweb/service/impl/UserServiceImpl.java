@@ -1,18 +1,16 @@
-package com.myweb.service.impl;
-
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
+package myweb.service.impl;
 
 import com.myweb.dao.mybatis.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.myweb.service.UserService;
 import com.myweb.vo.JsonResult;
 import com.myweb.vo.mybatis.User;
 import com.myweb.vo.mybatis.UserExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Service("userService")
 @Transactional
