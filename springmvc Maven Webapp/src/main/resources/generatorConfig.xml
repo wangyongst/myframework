@@ -10,11 +10,11 @@
 			connectionURL="jdbc:mysql://localhost:3306/web" userId="root"
 			password="root" />
 		<javaModelGenerator targetPackage="com.myweb.vo.mybatis"
-			targetProject="../src" />
-		<sqlMapGenerator targetPackage="com.myweb.dao.mybatis"
-			targetProject="../src" />
+			targetProject="../java" />
+		<sqlMapGenerator targetPackage="com.myweb.dao.mybatis.xml"
+			targetProject="../java" />
 		<javaClientGenerator targetPackage="com.myweb.dao.mybatis"
-			targetProject="../src" type="XMLMAPPER" />
+			targetProject="../java" type="XMLMAPPER" />
 		<!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象 -->
 		<table tableName="%">
             <generatedKey column="id" sqlStatement="Mysql"/>
