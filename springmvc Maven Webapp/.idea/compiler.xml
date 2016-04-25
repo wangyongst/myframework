@@ -22,7 +22,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="servlet3.springmvc" />
         <module name="springmvc" />
+        <module name="springmvc.mybatis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +32,8 @@
       <module name="spring.datasource.bonecp" target="1.5" />
       <module name="spring.mybatis" target="1.5" />
       <module name="springmvc" target="1.5" />
+      <module name="springmvc.mybatis" target="1.5" />
+      <module name="springmvcmybatis" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
