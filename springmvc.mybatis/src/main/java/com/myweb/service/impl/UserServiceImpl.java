@@ -1,4 +1,4 @@
-package myweb.service.impl;
+package com.myweb.service.impl;
 
 import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.service.UserService;

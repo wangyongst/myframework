@@ -1,4 +1,4 @@
-package myweb.service;
+package com.myweb.service;
 
 import com.myweb.vo.JsonResult;
 

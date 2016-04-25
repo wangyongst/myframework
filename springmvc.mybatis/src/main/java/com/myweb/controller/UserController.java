@@ -1,4 +1,4 @@
-package myweb.controller;
+package com.myweb.controller;
 
 import com.myweb.service.UserService;
 import com.myweb.vo.JsonResult;

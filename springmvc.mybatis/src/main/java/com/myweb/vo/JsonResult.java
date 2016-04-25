@@ -1,4 +1,4 @@
-package myweb.vo;
+package com.myweb.vo;
 
 public class JsonResult {
 
