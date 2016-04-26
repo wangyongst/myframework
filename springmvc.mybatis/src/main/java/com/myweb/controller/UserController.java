@@ -36,6 +36,9 @@ public class UserController {
         if(user == null){
             return new ModelAndView("login");
         }
-        return new ModelAndView("home", userService.getMyMenus(user));
+        Map map = userService.getMyMenus(user);
+        map = userService.getUserMap(map,session);
+        map.put("title","我的首页");
+        return new ModelAndView("home", map);
     }
 }

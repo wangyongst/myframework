@@ -13,7 +13,7 @@
     <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>西宁乐缘综合养老管理平台 - 我的首页</title>
+    <title>西宁乐缘综合养老管理平台 - ${title}</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
@@ -41,11 +41,11 @@
             <ul class="user-menu">
                 <li class="dropdown pull-right">
                     <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+                            class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="user/home.do"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="user/home.do"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                        <li><a href="user/home.do"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a></li>
+                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a></li>
+                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,26 +60,28 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-我的首页"></span> 我的首页</a></li>
+        <li class="active"><a href="user/home.do"><span class="glyphicon glyphicon-dashboard"></span> 我的首页</a></li>
         <li class="parent ">
             <c:forEach var="item" items="${parent}">
-                <a href="user/home.do">
-                    <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
-                                                                                     href="#sub-item-${item.id}"
-                                                                                     class="icon pull-right"><em
-                        class="glyphicon glyphicon-s glyphicon-plus"></em></span>
-                </a>
-                <ul class="children collapse" id="sub-item-${item.id}">
-                    <c:forEach var="it" items="${children}">
-                        <c:if test="${it.parent == item.id}">
-                            <li>
-                                <a class="" href="${it.url}">
-                                    <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
-                                </a>
-                            </li>
-                        </c:if>
-                    </c:forEach>
-                </ul>
+                <c:if test="${item.parent == 0}">
+                    <a href="user/home.do">
+                        <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
+                                                                                         href="#sub-item-${item.id}"
+                                                                                         class="icon pull-right"><em
+                            class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                    </a>
+                    <ul class="children collapse" id="sub-item-${item.id}">
+                        <c:forEach var="it" items="${children}">
+                            <c:if test="${it.parent == item.id}">
+                                <li>
+                                    <a class="" href="${it.url}">
+                                        <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
+                                    </a>
+                                </li>
+                            </c:if>
+                        </c:forEach>
+                    </ul>
+                </c:if>
             </c:forEach>
         </li>
         <li role="presentation" class="divider"></li>
@@ -90,13 +92,13 @@
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">我的首页</li>
+            <li class="active">${title}</li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">我的首页</h1>
+            <h1 class="page-header">${title}</h1>
         </div>
     </div><!--/.row-->
 

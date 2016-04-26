@@ -22,6 +22,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="servlet3.springmvc" />
+        <module name="spring.mybatis" />
         <module name="springmvc" />
         <module name="springmvc.mybatis" />
       </profile>
