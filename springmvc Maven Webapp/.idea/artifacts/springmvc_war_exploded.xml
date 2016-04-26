@@ -24,12 +24,12 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.7.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.7.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.7.3" />
-          <element id="archive" name="spring.mybatis-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="spring.mybatis" />
-          </element>
+          <element id="library" level="project" name="Maven: com.framework:spring.mybatis:0.0.1-SNAPSHOT" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.2.5.RELEASE" />
