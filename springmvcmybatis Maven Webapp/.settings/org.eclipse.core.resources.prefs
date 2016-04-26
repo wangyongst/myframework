@@ -1,8 +1,0 @@
-eclipse.preferences.version=1
-encoding//src/main/resources/properties/bonecp.properties=UTF-8
-encoding//src/main/resources/properties/c3p0.properties=UTF-8
-encoding//src/main/resources/properties/hibernate.properties=UTF-8
-encoding//src/main/resources/properties/jpa.properties=UTF-8
-encoding//src/main/resources/properties/log4j.properties=UTF-8
-encoding//src/main/resources/properties/mybatis.properties=UTF-8
-encoding//src/main/src=UTF-8
