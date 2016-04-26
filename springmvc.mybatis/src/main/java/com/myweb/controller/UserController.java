@@ -36,9 +36,6 @@ public class UserController {
         if(user == null){
             return new ModelAndView("login");
         }
-        Map map = new HashMap<String, String>();
-        map.put("user", user);
-        map.put("menu",userService.getMyMenus(user,0));
-        return new ModelAndView("home", map);
+        return new ModelAndView("home", userService.getMyMenus(user));
     }
 }

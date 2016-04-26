@@ -6,11 +6,12 @@ import com.myweb.vo.mybatis.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
 	
 	public JsonResult login(String username, String password, HttpSession session);
 
-	public List<Menu> getMyMenus(User user, int parent);
+	public Map<String,Object> getMyMenus(User user);
 
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -36,15 +37,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><span>XININGLEYUAN.COM</span>西宁乐缘综合养老管理平台</a>
+            <a class="navbar-brand" href="user/home.do"><span>sss</span>sss</a>
             <ul class="user-menu">
                 <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
                             class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li><a href="user/home.do"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                        <li><a href="user/home.do"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                        <li><a href="user/home.do"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -59,53 +60,45 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-dashboard"></span> 我的首页</a></li>
+        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-我的首页"></span> 我的首页</a></li>
         <li class="parent ">
-            <a href="#">
-                <span class="glyphicon glyphicon-list"></span> 系统管理<span data-toggle="collapse" href="#sub-item-1"
-                                                                              class="icon pull-right"><em
-                    class="glyphicon glyphicon-s glyphicon-plus"></em></span>
-            </a>
-            <ul class="children collapse" id="sub-item-1">
-                <li>
-                    <a class="" href="#">
-                        <span class="glyphicon glyphicon-share-alt"></span> Sub Item 1
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="#">
-                        <span class="glyphicon glyphicon-share-alt"></span> Sub Item 2
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="#">
-                        <span class="glyphicon glyphicon-share-alt"></span> Sub Item 3
-                    </a>
-                </li>
-            </ul>
+            <c:forEach var="item" items="${parent}">
+                <a href="user/home.do">
+                    <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
+                                                                                     href="#sub-item-${item.id}"
+                                                                                     class="icon pull-right"><em
+                        class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-${item.id}">
+                    <c:forEach var="it" items="${children}">
+                        <c:if test="${it.parent == item.id}">
+                            <li>
+                                <a class="" href="${it.url}">
+                                    <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
+                                </a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+                </ul>
+            </c:forEach>
         </li>
         <li role="presentation" class="divider"></li>
-        <li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
     </ul>
-    <div class="attribution">More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> -
-        Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
-            <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="active">我的首页</li>
         </ol>
     </div><!--/.row-->
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">我的首页</h1>
         </div>
     </div><!--/.row-->
-
-    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
 
     <div class="row">
         <div class="col-xs-12 col-md-6 col-lg-3">
@@ -288,91 +281,7 @@
 
         </div><!--/.col-->
 
-        <div class="col-md-4">
 
-            <div class="panel panel-blue">
-                <div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-check"></span>To-do List</div>
-                <div class="panel-body">
-                    <ul class="todo-list">
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Make a plan for today</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Update Basecamp</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Send email to Jane</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Drink coffee</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Do some work</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                        <li class="todo-list-item">
-                            <div class="checkbox">
-                                <input type="checkbox" id="checkbox"/>
-                                <label for="checkbox">Tidy up workspace</label>
-                            </div>
-                            <div class="pull-right action-buttons">
-                                <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="#" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
-                                <a href="#" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task"/>
-							<span class="input-group-btn">
-								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
-							</span>
-                    </div>
-                </div>
-            </div>
-
-        </div><!--/.col-->
     </div><!--/.row-->
 </div>    <!--/.main-->
 
