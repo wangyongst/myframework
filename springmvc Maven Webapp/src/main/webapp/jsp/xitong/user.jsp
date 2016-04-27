@@ -49,6 +49,41 @@
         })
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $("#alert").hide();
+            $("#tianjia").click(
+                    function () {
+                        window.location.href = "user/tianjia.do";
+                    });
+            $("#xiugai").click(
+                    function () {
+                        $("#alert").show();
+                        $("#message").text("sssss");
+                        if (result.status == 1 || result.status == 2) {
+                            $("#alert").show();
+                            $("#message").text(result.message);
+                        } else {
+                            window.location.href = "user/home.do";
+                        }
+                    });
+            $("#shanchu").click(
+                    function () {
+                        $("#alert").show();
+                        $("#message").text("ssss");
+                        if (result.status == 1 || result.status == 2) {
+                            $("#alert").show();
+                            $("#message").text(result.message);
+                        } else {
+                            window.location.href = "user/home.do";
+                        }
+                    });
+            $("#closeA").click(
+                    function () {
+                        $("#alert").hide();
+                    });
+        });
+    </script>
 </head>
 
 <body>
@@ -135,6 +170,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading">${tableName}</div>
                 <div class="panel-body">
+
+                    <div class="row" id="alert">
+                        <div class="col-lg-12">
+                            <div class="alert bg-warning" role="alert">
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a id="closeA"
+                                                                                                                    class="pull-right"><span
+                                    class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="tianjia">添加用户</button>
+                    <button class="btn btn-primary" id="xiugai">修改用户</button>
+                    <button class="btn btn-primary" id="shanchu">删除用户</button>
+
+
+
                     <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
                            data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
@@ -144,10 +196,10 @@
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
                                 <c:if test="${item.columnName == 'id'}">
-                                <th data-field="id" data-sortable="true">ID</th>
+                                    <th data-field="id" data-sortable="true">ID</th>
                                 </c:if>
                                 <c:if test="${item.columnName != 'id'}">
-                                <th data-field="${item.columnName}" data-sortable="true">${item.chinese}</th>
+                                    <th data-field="${item.columnName}" data-sortable="true">${item.chinese}</th>
                                 </c:if>
                             </c:forEach>
                         </tr>

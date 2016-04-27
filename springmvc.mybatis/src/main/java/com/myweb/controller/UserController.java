@@ -32,8 +32,7 @@ public class UserController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        Map map = userService.getMyMenus(user);
+        Map map = userService.getMyMenus(session);
         map = userService.getUserMap(map,session);
         map.put("title","我的首页");
         return new ModelAndView("home", map);

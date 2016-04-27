@@ -29,13 +29,10 @@ public class XiTongController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView user(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return new ModelAndView("login");
-        }
-        Map map = userService.getMyMenus(user);
+        Map map = userService.getMyMenus(session);
         map.put("title", "用户管理");
         map = userService.getUserMap(map, session);
+        map.put("tableName","用户信息表");
         map = userService.getColumnsNameMap("user", map, session);
         return new ModelAndView("xitong/user", map);
     }
@@ -48,13 +45,10 @@ public class XiTongController {
 
     @RequestMapping(value = "/renyuan", method = RequestMethod.GET)
     public ModelAndView renyuan(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return new ModelAndView("login");
-        }
-        Map map = userService.getMyMenus(user);
+        Map map = userService.getMyMenus(session);
         map.put("title", "人员管理");
         map = userService.getUserMap(map, session);
+        map.put("tableName", "人员信息表");
         map = userService.getColumnsNameMap("renyuan", map, session);
         return new ModelAndView("xitong/renyuan", map);
     }

@@ -22,25 +22,20 @@ public class JianKangController {
     @RequestMapping(value = "/caiji", method = RequestMethod.GET)
     public ModelAndView caiji(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
-            return new ModelAndView("login");
-        }
-        Map map = userService.getMyMenus(user);
+        Map map = userService.getMyMenus(session);
         map.put("title","数据采集");
         map = userService.getUserMap(map,session);
+        map.put("tableName", "人员信息表");
         map = userService.getColumnsNameMap("renyuan", map, session);
         return new ModelAndView("jiankang/caiji", map);
     }
 
     @RequestMapping(value = "/qushi", method = RequestMethod.GET)
     public ModelAndView qushi(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if(user == null){
-            return new ModelAndView("login");
-        }
-        Map map = userService.getMyMenus(user);
+        Map map = userService.getMyMenus(session);
         map.put("title","健康趋势");
         map = userService.getUserMap(map,session);
+        map.put("tableName", "人员信息表");
         map = userService.getColumnsNameMap("renyuan", map, session);
         return new ModelAndView("jiankang/qushi",  map );
     }

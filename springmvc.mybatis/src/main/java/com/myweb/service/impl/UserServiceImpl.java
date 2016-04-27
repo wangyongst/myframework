@@ -49,9 +49,8 @@ public class UserServiceImpl implements UserService {
         return json;
     }
 
-    public Map<String, Object> getMyMenus(User user) {
+    public Map<String, Object> getMyMenus(HttpSession session) {
         Map map = new HashMap<String, String>();
-        map.put("user", user);
         map.put("parent", menuMapper.selectByExample(null));
         MenuExample children = new MenuExample();
         children.createCriteria().andParentNotEqualTo(0);
@@ -79,7 +78,6 @@ public class UserServiceImpl implements UserService {
         TableinfoExample example = new TableinfoExample();
         example.createCriteria().andTableNameEqualTo(tableName);
         List<Tableinfo> list = tableinfoMapper.selectByExample(example);
-        map.put("tableName","用户信息表");
         map.put("tableColumns",list);
         return map;
     }

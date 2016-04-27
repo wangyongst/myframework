@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public JsonResult login(String username, String password, HttpSession session);
 
-	public Map<String,Object> getMyMenus(User user);
+	public Map<String,Object> getMyMenus(HttpSession session);
 
 	public Map<String,Object> getUserMap(Map<String,Object> map,HttpSession session);
 
