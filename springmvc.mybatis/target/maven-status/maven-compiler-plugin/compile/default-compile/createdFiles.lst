@@ -11,6 +11,7 @@ com\myweb\vo\mybatis\UserExample$Criterion.class
 com\myweb\service\XiTongService.class
 com\myweb\vo\mybatis\Ry2sxExample$Criterion.class
 com\myweb\vo\mybatis\Ry2sxExample$GeneratedCriteria.class
+com\myweb\controller\XiTongController.class
 com\myweb\vo\mybatis\RenyuanExample$Criterion.class
 com\myweb\vo\mybatis\Ry2sxExample.class
 com\myweb\vo\mybatis\CaijiExample$Criterion.class
@@ -42,6 +43,7 @@ com\myweb\dao\mybatis\UserMapper.class
 com\myweb\dao\mybatis\MenuMapper.class
 com\myweb\vo\mybatis\User2menu.class
 com\myweb\vo\mybatis\Ry2sx.class
+com\myweb\controller\JianKangController.class
 com\myweb\service\impl\UserServiceImpl.class
 com\myweb\vo\mybatis\UserExample.class
 com\myweb\vo\mybatis\TableinfoExample.class

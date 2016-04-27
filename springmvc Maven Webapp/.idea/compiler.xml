@@ -23,17 +23,18 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="servlet3.springmvc" />
+        <module name="spring.datasource.bonecp" />
+        <module name="spring.mybatis" />
         <module name="springmvc" />
         <module name="springmvc.mybatis" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="servlet3.springmvc" target="1.5" />
-      <module name="spring.datasource.bonecp" target="1.5" />
-      <module name="spring.mybatis" target="1.5" />
-      <module name="springmvc" target="1.5" />
-      <module name="springmvc.mybatis" target="1.5" />
-      <module name="springmvcmybatis" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="servlet3.springmvc" target="1.8" />
+      <module name="spring.datasource.bonecp" target="1.8" />
+      <module name="spring.mybatis" target="1.8" />
+      <module name="springmvc" target="1.8" />
+      <module name="springmvc.mybatis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

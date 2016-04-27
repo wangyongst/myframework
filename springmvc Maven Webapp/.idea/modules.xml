@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" filepath="$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../spring.datasource.bonecp/spring.datasource.bonecp.iml" filepath="$PROJECT_DIR$/../spring.datasource.bonecp/spring.datasource.bonecp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../spring.mybatis/spring.mybatis.iml" filepath="$PROJECT_DIR$/../spring.mybatis/spring.mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/springmvc.iml" filepath="$PROJECT_DIR$/springmvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" filepath="$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" />
     </modules>

@@ -14,6 +14,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../springmvc.mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/../servlet3.springmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring.datasource.bonecp/pom.xml" />
       </list>
     </option>
   </component>
@@ -27,7 +29,7 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
 </project>

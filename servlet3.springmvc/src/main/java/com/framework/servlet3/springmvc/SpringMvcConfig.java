@@ -1,5 +1,6 @@
 package com.framework.servlet3.springmvc;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -46,10 +47,11 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         characterEncodingFilter.setForceEncoding(true);
         return characterEncodingFilter;
     }
-	
+
 	@Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
-    }
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		logger.info("ConfigureMessageConverters create!");
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()	.indentOutput(true);
+		converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+	}
 }

@@ -33,9 +33,6 @@ public class UserController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user == null){
-            return new ModelAndView("login");
-        }
         Map map = userService.getMyMenus(user);
         map = userService.getUserMap(map,session);
         map.put("title","我的首页");
