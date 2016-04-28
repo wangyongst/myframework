@@ -49,27 +49,15 @@
     <script type="text/javascript">
         $(function () {
             $("#alert").hide();
-            $("#tianjia").click(
+            $('#myModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.text().trim(); // Extract info from data-* attributes
+                var modal = $(this);
+                modal.find('.modal-title').text(recipient + '信息')
+            });
+            $("#saveData").click(
                     function () {
-                        window.location.href = "user/tianjia.do";
-                    });
-            $("#xiugai").click(
-                    function () {
-                        if (result.status == 1 || result.status == 2) {
-                            $("#alert").show();
-                            $("#message").text(result.message);
-                        } else {
-                            window.location.href = "user/home.do";
-                        }
-                    });
-            $("#shanchu").click(
-                    function () {
-                        if (result.status == 1 || result.status == 2) {
-                            $("#alert").show();
-                            $("#message").text(result.message);
-                        } else {
-                            window.location.href = "user/home.do";
-                        }
+                        $('#myModal').modal('toggle');
                     });
             $("#closeA").click(
                     function () {
@@ -168,17 +156,21 @@
                     <div class="row" id="alert">
                         <div class="col-lg-12">
                             <div class="alert bg-warning" role="alert">
-                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a id="closeA"
-                                                                                                                    class="pull-right"><span
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a
+                                    id="closeA"
+                                    class="pull-right"><span
                                     class="glyphicon glyphicon-remove"></span></a>
                             </div>
                         </div>
                     </div>
 
 
-                    <button class="btn btn-primary" id="tianjia">添加人员</button>
-                    <button class="btn btn-primary" id="xiugai">修改人员</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">注册人员</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">修改人员
+                    </button>
                     <button class="btn btn-primary" id="shanchu">删除人员</button>
+
+
                     <table data-toggle="table" data-url="xitong/allRenyuans.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
                            data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
@@ -197,6 +189,41 @@
                         </tr>
                         </thead>
                     </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <c:forEach var="item" items="${tableColumns}">
+                                                <c:if test="${item.columnName == 'id'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label">${item.chinese}</label>
+                                                    <input type="text" class="form-control" id="${item.columnName}">
+                                                </c:if>
+                                                <c:if test="${item.columnName != 'id'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label">${item.chinese}</label>
+                                                    <input type="text" class="form-control" id="${item.columnName}">
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="saveData">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

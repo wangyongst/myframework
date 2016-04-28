@@ -13,4 +13,16 @@ public interface XiTongService {
 	public List<User> getAllUsers(HttpSession session);
 
 	public List<Renyuan> getAllRenyuans(HttpSession session);
+
+	public JsonResult getRenyuan(HttpSession session,Renyuan renyuan);
+
+	public JsonResult getUser(HttpSession session,User user);
+
+	public JsonResult editRenyuan(HttpSession session,Renyuan renyuan);
+
+	public JsonResult editUser(HttpSession session,User user);
+
+	public JsonResult deleteRenyuan(HttpSession session,Renyuan renyuan);
+
+	public JsonResult deleteUser(HttpSession session,User user);
 }

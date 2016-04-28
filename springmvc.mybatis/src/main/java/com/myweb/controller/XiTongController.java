@@ -32,7 +32,7 @@ public class XiTongController {
         Map map = userService.getMyMenus(session);
         map.put("title", "用户管理");
         map = userService.getUserMap(map, session);
-        map.put("tableName","用户信息表");
+        map.put("tableName", "用户信息表");
         map = userService.getColumnsNameMap("user", map, session);
         return new ModelAndView("xitong/user", map);
     }
@@ -57,5 +57,25 @@ public class XiTongController {
     @RequestMapping(value = "/allRenyuans", method = RequestMethod.GET)
     public List<Renyuan> allRenyuans(HttpSession session) {
         return xiTongService.getAllRenyuans(session);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
+    public JsonResult userEdit(HttpSession session, Integer id, String name, String username, String password) {
+        User user = new User();
+        user.setName(name);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setId(id);
+        return xiTongService.editUser(session, user);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    public JsonResult userDelete(HttpSession session, Integer id) {
+        User user = new User();
+        user.setId(id);
+        return xiTongService.editUser(session, user);
     }
 }

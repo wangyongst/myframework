@@ -48,40 +48,59 @@
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
     </script>
-
     <script type="text/javascript">
         $(function () {
-            $("#alert").hide();
-            $("#tianjia").click(
+            $("#alertA").hide();
+            $("#alertB").hide();
+            $('#myModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.text().trim(); // Extract info from data-* attributes
+                var modal = $(this);
+                modal.find('.modal-title').text(recipient + '信息');
+                if (recipient.indexOf("注册") != -1) {
+                    $('#idLabel').hide();
+                    $('#id').hide();
+                    <c:forEach var="item" items="${tableColumns}">
+                    $("#${item.columnName}").val("");
+                    $("#${item.columnName}").attr("placeholder", "请输入用户的${item.chinese}");
+                    </c:forEach>
+                } else {
+                    $('#id').show();
+                    $('#idLabel').show();
+                    <c:forEach var="item" items="${tableColumns}">
+                    $("#${item.columnName}").val("11");
+                    $("#${item.columnName}").attr("placeholder", "本用户的${item.chinese}未填写");
+                    </c:forEach>
+                }
+            });
+            $("#saveData").click(
                     function () {
-                        window.location.href = "user/tianjia.do";
-                    });
-            $("#xiugai").click(
-                    function () {
-                        $("#alert").show();
-                        $("#message").text("sssss");
-                        if (result.status == 1 || result.status == 2) {
-                            $("#alert").show();
-                            $("#message").text(result.message);
-                        } else {
-                            window.location.href = "user/home.do";
-                        }
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/user/edit.do",
+                            data: $('#userForm').serialize(),
+                            dataType: "json",
+                            success: function (result) {
+                                $("#alertB").show();
+                                $("#messageB").text("sssssssss");
+                            }
+                        });
+                        // $('#myModal').modal('toggle');
                     });
             $("#shanchu").click(
                     function () {
-                        $("#alert").show();
-                        $("#message").text("ssss");
-                        if (result.status == 1 || result.status == 2) {
-                            $("#alert").show();
-                            $("#message").text(result.message);
-                        } else {
-                            window.location.href = "user/home.do";
-                        }
+                        $("#alertA").show();
                     });
             $("#closeA").click(
                     function () {
-                        $("#alert").hide();
+                        $("#alertA").hide();
                     });
+            $("#closeB").click(
+                    function () {
+                        $("#alertB").hide();
+                    });
+
         });
     </script>
 </head>
@@ -171,25 +190,28 @@
                 <div class="panel-heading">${tableName}</div>
                 <div class="panel-body">
 
-                    <div class="row" id="alert">
+                    <div class="row" id="alertA">
                         <div class="col-lg-12">
                             <div class="alert bg-warning" role="alert">
-                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a id="closeA"
-                                                                                                                    class="pull-right"><span
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
+                                    id="closeA"
+                                    class="pull-right"><span
                                     class="glyphicon glyphicon-remove"></span></a>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" id="tianjia">添加用户</button>
-                    <button class="btn btn-primary" id="xiugai">修改用户</button>
-                    <button class="btn btn-primary" id="shanchu">删除用户</button>
 
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">注册用户
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">修改用户
+                    </button>
+                    <button class="btn btn-primary" id="shanchu">删除用户</button>
 
 
                     <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
-                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                            data-sort-order="desc">
                         <thead>
                         <tr>
@@ -205,6 +227,59 @@
                         </tr>
                         </thead>
                     </table>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="userForm">
+                                        <div class="form-group">
+                                            <c:forEach var="item" items="${tableColumns}">
+                                                <c:if test="${item.columnName == 'id'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label" id="idLabel">${item.chinese}</label>
+                                                    <input type="text" class="form-control" id="${item.columnName}"
+                                                           disabled="disabled" name="${item.columnName}">
+                                                </c:if>
+                                                <c:if test="${item.columnName != 'id'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label">${item.chinese}</label>
+                                                    <input type="text" class="form-control" id="${item.columnName}"
+                                                           name="${item.columnName}">
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="row" id="alertB">
+                                    <div class="col-lg-12">
+                                        <div class="alert bg-warning" role="alert">
+                                            <span class="glyphicon glyphicon-warning-sign"></span> <span
+                                                id="messageB"></span><a
+                                                id="closeB"
+                                                class="pull-right"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="saveData">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal -->
+
+
                 </div>
             </div>
         </div>
