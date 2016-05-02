@@ -3,7 +3,7 @@ package com.myweb.controller;
 import com.myweb.service.UserService;
 import com.myweb.service.XiTongService;
 import com.myweb.vo.Result;
-import com.myweb.vo.mybatis.Renyuan;
+import com.myweb.vo.mybatis.Laoren;
 import com.myweb.vo.mybatis.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,9 @@ public class XiTongController {
         map.put("title", "用户管理");
         map = userService.getUserMap(map, session);
         map.put("tableName", "用户信息表");
-        map = userService.getColumnsNameMap("user", map, session);
+        List<String> exclude = new ArrayList<String>();
+        exclude.add("createuser");
+        map = userService.getColumnsNameMap("user", map, session, exclude,null);
         return new ModelAndView("xitong/user", map);
     }
 
@@ -43,20 +46,22 @@ public class XiTongController {
         return xiTongService.getAllUsers(session);
     }
 
-    @RequestMapping(value = "/renyuan", method = RequestMethod.GET)
-    public ModelAndView renyuan(HttpSession session) {
+    @RequestMapping(value = "/laoren", method = RequestMethod.GET)
+    public ModelAndView laoren(HttpSession session) {
         Map map = userService.getMyMenus(session);
-        map.put("title", "人员管理");
+        map.put("title", "老人管理");
         map = userService.getUserMap(map, session);
-        map.put("tableName", "人员信息表");
-        map = userService.getColumnsNameMap("renyuan", map, session);
-        return new ModelAndView("xitong/renyuan", map);
+        map.put("tableName", "老人信息表");
+        List<String> exclude = new ArrayList<String>();
+        exclude.add("createuser");
+        map = userService.getColumnsNameMap("laoren", map, session, exclude,null);
+        return new ModelAndView("xitong/laoren", map);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/allRenyuans", method = RequestMethod.GET)
-    public List<Renyuan> allRenyuans(HttpSession session) {
-        return xiTongService.getAllRenyuans(session);
+    @RequestMapping(value = "/allLaorens", method = RequestMethod.GET)
+    public List<Laoren> allLaorens(HttpSession session) {
+        return xiTongService.getAllLaorens(session);
     }
 
     @ResponseBody
@@ -66,9 +71,9 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/renyuan/edit", method = RequestMethod.POST)
-    public Result renyuanEdit(HttpSession session, String ids, @ModelAttribute Renyuan renyuan) {
-        return xiTongService.editRenyuan(session, renyuan);
+    @RequestMapping(value = "/laoren/edit", method = RequestMethod.POST)
+    public Result laorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
+        return xiTongService.editLaoren(session, laoren);
     }
 
     @ResponseBody
@@ -78,9 +83,9 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/renyuan/get", method = RequestMethod.POST)
-    public Result renyuanGet(HttpSession session, String ids) {
-        return xiTongService.getRenyuan(session, ids);
+    @RequestMapping(value = "/laoren/get", method = RequestMethod.POST)
+    public Result laorenGet(HttpSession session, String ids) {
+        return xiTongService.getLaoren(session, ids);
     }
 
     @ResponseBody
@@ -90,8 +95,8 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/renyuan/delete", method = RequestMethod.POST)
-    public Result renyuanDelete(HttpSession session, String ids) {
-        return xiTongService.deleteRenyuan(session, ids);
+    @RequestMapping(value = "/laoren/delete", method = RequestMethod.POST)
+    public Result laorenDelete(HttpSession session, String ids) {
+        return xiTongService.deleteLaoren(session, ids);
     }
 }

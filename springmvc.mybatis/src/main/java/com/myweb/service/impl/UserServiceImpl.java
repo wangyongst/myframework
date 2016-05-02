@@ -6,6 +6,7 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.service.UserService;
 import com.myweb.vo.Result;
 import com.myweb.vo.mybatis.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,11 +75,19 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
-    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session) {
+    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,List<String> exclude,String formColumns) {
         TableinfoExample example = new TableinfoExample();
-        example.createCriteria().andTableNameEqualTo(tableName);
+        TableinfoExample.Criteria criteria = example.createCriteria();
+        criteria.andTableNameEqualTo(tableName);
+        for(String ex: exclude){
+            criteria.andColumnNameNotEqualTo(ex);
+        }
         List<Tableinfo> list = tableinfoMapper.selectByExample(example);
-        map.put("tableColumns",list);
+        if(StringUtils.isBlank(formColumns)) {
+            map.put("tableColumns", list);
+        }else{
+            map.put(formColumns,list);
+        }
         return map;
     }
 }

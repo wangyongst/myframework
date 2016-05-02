@@ -1,6 +1,7 @@
 package com.framework.servlet3.springmvc;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 
@@ -47,7 +48,7 @@ public class LoginFilter implements Filter {
         String url = request.getRequestURI();
         logger.info("LoginFilter URL is:"+url);
         for (String nf : nofilters) {
-            if (url != null && !url.equals("") && url.contains(nf)) {
+            if (StringUtils.isNotBlank(url) && url.contains(nf)) {
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }

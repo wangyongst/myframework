@@ -58,21 +58,22 @@
                             type: "POST",
                             cache: "false",
                             url: "xitong/user/edit.do",
-                            data: $('#userForm').serialize() + "&id="+$('#id').val(),
+                            data: $('#userForm').serialize() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
+                                $("#alertB div div").attr("class","alert bg-danger");
                                 $("#alertB").show();
-                                $("#messageB").text("操作失败，请联系管理员！");
+                                $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
                             },
                             success: function (result) {
-                                if(result.status == 1){
+                                if (result.status == 1) {
                                     $('#myModal').modal('toggle');
                                     $("#alertB").hide();
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                     $("button[name='refresh']").click();
                                     //debugger;
-                                }else {
+                                } else {
                                     $("#alertB").show();
                                     $("#messageB").text(result.message);
                                 }
@@ -311,14 +312,18 @@
                                                 <c:if test="${item.columnName == 'id'}">
                                                     <label for="${item.columnName}"
                                                            class="control-label" id="idLabel">${item.chinese}</label>
-                                                    <input type="text" class="form-control" id="${item.columnName}"
+                                                    <input type="${item.type}" class="form-control"
+                                                           id="${item.columnName}"
                                                            disabled="disabled" name="${item.columnName}">
                                                 </c:if>
                                                 <c:if test="${item.columnName != 'id'}">
-                                                    <label for="${item.columnName}"
-                                                           class="control-label">${item.chinese}</label>
-                                                    <input type="text" class="form-control" id="${item.columnName}"
-                                                           name="${item.columnName}">
+                                                    <c:if test="${item.columnName != 'createusername' && item.columnName != 'createtime'}">
+                                                        <label for="${item.columnName}"
+                                                               class="control-label">${item.chinese}</label>
+                                                        <input type="${item.type}" class="form-control"
+                                                               id="${item.columnName}"
+                                                               name="${item.columnName}">
+                                                    </c:if>
                                                 </c:if>
                                             </c:forEach>
                                         </div>

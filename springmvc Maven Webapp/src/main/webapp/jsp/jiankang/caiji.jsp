@@ -17,12 +17,14 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -46,6 +48,102 @@
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
     </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#alertA").hide();
+            $("#alertB").hide();
+            $("#saveData").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "jiankang/caiji/edit.do",
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val(),
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertB div div").attr("class", "alert bg-danger");
+                                $("#alertB").show();
+                                $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                            },
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    $('#myModal').modal('toggle');
+                                    $("#alertB").hide();
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                    $("button[name='refresh']").click();
+                                    //debugger;
+                                } else {
+                                    $("#alertB").show();
+                                    $("#messageB").text(result.message);
+                                }
+                            }
+                        });
+                    });
+            function select() {
+                var ids = "";
+                $("input[name=toolbar1]").each(function () {
+                    if ($(this).context.checked) {
+                        var index = $("table input:checkbox").index(this);
+                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
+                        ids += "," + val;
+                    }
+                });
+                return ids;
+            }
+
+            function showModal(caiji,laorenid, type) {
+                $('#id').hide();
+                $('#idLabel').hide();
+                $('#myModal').find('.modal-title').text('采集老人健康数据');
+                <c:forEach var="item" items="${formColumns}">
+                if (caiji != null) {
+                    $("#${item.columnName}").val(laoren.${item.columnName});
+                } else {
+                    $("#${item.columnName}").val("");
+                }
+                $("#laorenid").val(laorenid);
+                $("#${item.columnName}").attr("placeholder", "请输入老人的${item.chinese}");
+                </c:forEach>
+                $('#myModal').modal('toggle');
+                $("#alertB").hide();
+            }
+
+
+            $("#caiji").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "jiankang/caiji/get.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    showModal(result.data, result.message,1);
+                                } else {
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                }
+                            }
+                        });
+                    });
+
+            $("#closeA").click(
+                    function () {
+                        $("#alertA").hide();
+                    });
+            $("#closeB").click(
+                    function () {
+                        $("#alertB").hide();
+                    });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -65,9 +163,12 @@
                     <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
                             class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a></li>
-                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a></li>
-                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a></li>
+                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a>
+                        </li>
+                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a>
+                        </li>
+                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -129,10 +230,25 @@
             <div class="panel panel-default">
                 <div class="panel-heading">${tableName}</div>
                 <div class="panel-body">
-                    <table data-toggle="table" data-url="xitong/allRenyuans.do" data-show-refresh="true"
+
+                    <div class="row" id="alertA">
+                        <div class="col-lg-12">
+                            <div class="alert bg-warning" role="alert">
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
+                                    id="closeA"
+                                    class="pull-right"><span
+                                    class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
+
+                    <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
-                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
-                           data-sort-order="desc">
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
+                           data-sort-order="desc" id="laorenTable">
                         <thead>
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
@@ -147,11 +263,75 @@
                         </tr>
                         </thead>
                     </table>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form">
+                                        <div class="form-group">
+                                            <c:forEach var="item" items="${formColumns}">
+                                                <c:if test="${item.columnName == 'id'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label" id="idLabel">${item.chinese}</label>
+                                                    <input type="${item.type}" class="form-control"
+                                                           id="${item.columnName}"
+                                                           disabled="disabled" name="${item.columnName}">
+                                                </c:if>
+                                                <c:if test="${item.columnName == 'laorenid'}">
+                                                    <label for="${item.columnName}"
+                                                           class="control-label" id="laorenidLabel">${item.chinese}</label>
+                                                    <input type="${item.type}" class="form-control"
+                                                           id="${item.columnName}"
+                                                           disabled="disabled" name="${item.columnName}">
+                                                </c:if>
+                                                <c:if test="${item.columnName != 'id' && item.columnName != 'laorenid'}">
+                                                    <c:if test="${item.columnName != 'createusername' && item.columnName != 'createtime'}">
+                                                        <label for="${item.columnName}"
+                                                               class="control-label">${item.chinese}</label>
+                                                        <input type="${item.type}" class="form-control"
+                                                               id="${item.columnName}"
+                                                               name="${item.columnName}">
+                                                    </c:if>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="row" id="alertB">
+                                    <div class="col-lg-12">
+                                        <div class="alert bg-warning" role="alert">
+                                            <span class="glyphicon glyphicon-warning-sign"></span> <span
+                                                id="messageB"></span><a
+                                                id="closeB"
+                                                class="pull-right"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary" id="saveData">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Modal -->
+
+
                 </div>
             </div>
         </div>
     </div><!--/.row-->
-</div>    <!--/.main-->
+</div><!--/.main-->
 </body>
 
 </html>
