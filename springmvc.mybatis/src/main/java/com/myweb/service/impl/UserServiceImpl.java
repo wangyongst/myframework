@@ -4,7 +4,7 @@ import com.myweb.dao.mybatis.MenuMapper;
 import com.myweb.dao.mybatis.TableinfoMapper;
 import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.service.UserService;
-import com.myweb.vo.JsonResult;
+import com.myweb.vo.Result;
 import com.myweb.vo.mybatis.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,25 +28,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TableinfoMapper tableinfoMapper;
 
-    public JsonResult login(String username, String password,
-                            HttpSession session) {
+    public Result login(String username, String password,
+                        HttpSession session) {
 
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(username)
                 .andPasswordEqualTo(password);
         List<User> userList = userMapper.selectByExample(example);
-        JsonResult json = new JsonResult();
+        Result result = new Result();
         if (userList.size() == 0) {
-            json.setStatus(1);
-            json.setMessage("用户名或密码错误，请重新检查您的输入！");
+            result.setStatus(1);
+            result.setMessage("用户名或密码错误，请重新检查您的输入！");
         } else if (userList.size() > 1) {
-            json.setStatus(2);
-            json.setMessage("有多个相同用户，请发送邮件到：331527770@qq.com联系管理员！");
+            result.setStatus(2);
+            result.setMessage("有多个相同用户，请发送邮件到：331527770@qq.com联系管理员！");
         } else {
-            json.setStatus(0);
+            result.setStatus(0);
             session.setAttribute("user", userList.get(0));
         }
-        return json;
+        return result;
     }
 
     public Map<String, Object> getMyMenus(HttpSession session) {

@@ -52,45 +52,101 @@
         $(function () {
             $("#alertA").hide();
             $("#alertB").hide();
-            $('#myModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var recipient = button.text().trim(); // Extract info from data-* attributes
-                var modal = $(this);
-                modal.find('.modal-title').text(recipient + '信息');
-                if (recipient.indexOf("注册") != -1) {
-                    $('#idLabel').hide();
-                    $('#id').hide();
-                    <c:forEach var="item" items="${tableColumns}">
-                    $("#${item.columnName}").val("");
-                    $("#${item.columnName}").attr("placeholder", "请输入用户的${item.chinese}");
-                    </c:forEach>
-                } else {
-                    $('#id').show();
-                    $('#idLabel').show();
-                    <c:forEach var="item" items="${tableColumns}">
-                    $("#${item.columnName}").val("11");
-                    $("#${item.columnName}").attr("placeholder", "本用户的${item.chinese}未填写");
-                    </c:forEach>
-                }
-            });
             $("#saveData").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
                             url: "xitong/user/edit.do",
-                            data: $('#userForm').serialize(),
+                            data: $('#userForm').serialize() + "&id="+$('#id').val(),
                             dataType: "json",
                             success: function (result) {
-                                $("#alertB").show();
-                                $("#messageB").text("sssssssss");
+                                if(result.status == 1){
+                                    $('#myModal').modal('toggle');
+                                    $("#alertB").hide();
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                    $("button[name='refresh']").click();
+                                    //debugger;
+                                }else {
+                                    $("#alertB").show();
+                                    $("#messageB").text(result.message);
+                                }
                             }
                         });
-                        // $('#myModal').modal('toggle');
+                    });
+            function select() {
+                var ids = "";
+                $("input[name=toolbar1]").each(function () {
+                    if ($(this).context.checked) {
+                        var index = $("table input:checkbox").index(this);
+                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
+                        ids += "," + val;
+                    }
+                });
+                return ids;
+            }
+
+            function showModal(user, type) {
+                if (type == 1) {
+                    $('#id').show();
+                    $('#idLabel').show();
+                    $('#myModal').find('.modal-title').text('修改用户信息');
+                } else {
+                    $('#id').hide();
+                    $('#idLabel').hide();
+                    $('#myModal').find('.modal-title').text('注册用户信息');
+                }
+                <c:forEach var="item" items="${tableColumns}">
+                if (user != null) {
+                    $("#${item.columnName}").val(user.${item.columnName});
+                } else {
+                    $("#${item.columnName}").val("");
+                }
+                $("#${item.columnName}").attr("placeholder", "请输入用户的${item.chinese}");
+                </c:forEach>
+                $('#myModal').modal('toggle');
+                $("#alertB").hide();
+            }
+
+
+            $("#zhuce").click(
+                    function () {
+                        showModal(null, 0);
+                    });
+            $("#xiugai").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/user/get.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    showModal(result.data, 1);
+                                } else {
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                }
+
+                            }
+                        });
                     });
             $("#shanchu").click(
                     function () {
-                        $("#alertA").show();
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/user/delete.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            success: function (result) {
+                                $("#alertA").show();
+                                $("#messageA").text(result.message);
+                                $("button[name='refresh']").click();
+                            }
+                        });
                     });
             $("#closeA").click(
                     function () {
@@ -202,17 +258,15 @@
                     </div>
 
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">注册用户
-                    </button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">修改用户
-                    </button>
-                    <button class="btn btn-primary" id="shanchu">删除用户</button>
+                    <button type="button" class="btn btn-primary" id="zhuce">注册用户</button>
+                    <button type="button" class="btn btn-primary" id="xiugai">修改用户</button>
+                    <button type="button" class="btn btn-primary" id="shanchu">删除用户</button>
 
 
                     <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
                            data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                           data-sort-order="desc">
+                           data-sort-order="desc" id="userTable">
                         <thead>
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>

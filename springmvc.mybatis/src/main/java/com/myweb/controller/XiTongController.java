@@ -2,14 +2,14 @@ package com.myweb.controller;
 
 import com.myweb.service.UserService;
 import com.myweb.service.XiTongService;
-import com.myweb.vo.JsonResult;
+import com.myweb.vo.Result;
 import com.myweb.vo.mybatis.Renyuan;
 import com.myweb.vo.mybatis.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,23 +59,39 @@ public class XiTongController {
         return xiTongService.getAllRenyuans(session);
     }
 
-
     @ResponseBody
     @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-    public JsonResult userEdit(HttpSession session, Integer id, String name, String username, String password) {
-        User user = new User();
-        user.setName(name);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setId(id);
+    public Result userEdit(HttpSession session, String ids, @ModelAttribute User user) {
         return xiTongService.editUser(session, user);
     }
 
     @ResponseBody
+    @RequestMapping(value = "/renyuan/edit", method = RequestMethod.POST)
+    public Result renyuanEdit(HttpSession session, String ids, @ModelAttribute Renyuan renyuan) {
+        return xiTongService.editRenyuan(session, renyuan);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user/get", method = RequestMethod.POST)
+    public Result userGet(HttpSession session, String ids) {
+        return xiTongService.getUser(session, ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/renyuan/get", method = RequestMethod.POST)
+    public Result renyuanGet(HttpSession session, String ids) {
+        return xiTongService.getRenyuan(session, ids);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
-    public JsonResult userDelete(HttpSession session, Integer id) {
-        User user = new User();
-        user.setId(id);
-        return xiTongService.editUser(session, user);
+    public Result userDelete(HttpSession session, String ids) {
+        return xiTongService.deleteUser(session, ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/renyuan/delete", method = RequestMethod.POST)
+    public Result renyuanDelete(HttpSession session, String ids) {
+        return xiTongService.deleteRenyuan(session, ids);
     }
 }

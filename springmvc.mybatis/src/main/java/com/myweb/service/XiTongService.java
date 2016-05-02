@@ -1,12 +1,11 @@
 package com.myweb.service;
 
-import com.myweb.vo.JsonResult;
+import com.myweb.vo.Result;
 import com.myweb.vo.mybatis.Renyuan;
 import com.myweb.vo.mybatis.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 public interface XiTongService {
 
@@ -14,15 +13,15 @@ public interface XiTongService {
 
 	public List<Renyuan> getAllRenyuans(HttpSession session);
 
-	public JsonResult getRenyuan(HttpSession session,Renyuan renyuan);
+	public Result getRenyuan(HttpSession session, String ids);
 
-	public JsonResult getUser(HttpSession session,User user);
+	public Result getUser(HttpSession session, String ids);
 
-	public JsonResult editRenyuan(HttpSession session,Renyuan renyuan);
+	public Result editRenyuan(HttpSession session, Renyuan renyuan);
 
-	public JsonResult editUser(HttpSession session,User user);
+	public Result editUser(HttpSession session, User user);
 
-	public JsonResult deleteRenyuan(HttpSession session,Renyuan renyuan);
+	public Result deleteRenyuan(HttpSession session, String ids);
 
-	public JsonResult deleteUser(HttpSession session,User user);
+	public Result deleteUser(HttpSession session, String ids);
 }
