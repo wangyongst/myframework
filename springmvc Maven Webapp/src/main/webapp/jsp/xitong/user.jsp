@@ -60,6 +60,10 @@
                             url: "xitong/user/edit.do",
                             data: $('#userForm').serialize() + "&id="+$('#id').val(),
                             dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertB").show();
+                                $("#messageB").text("操作失败，请联系管理员！");
+                            },
                             success: function (result) {
                                 if(result.status == 1){
                                     $('#myModal').modal('toggle');
@@ -122,6 +126,10 @@
                             url: "xitong/user/get.do",
                             data: {ids: select()},
                             dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
                             success: function (result) {
                                 if (result.status == 1) {
                                     showModal(result.data, 1);
@@ -141,6 +149,10 @@
                             url: "xitong/user/delete.do",
                             data: {ids: select()},
                             dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
                             success: function (result) {
                                 $("#alertA").show();
                                 $("#messageA").text(result.message);

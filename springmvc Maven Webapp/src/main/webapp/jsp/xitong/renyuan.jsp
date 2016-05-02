@@ -17,12 +17,14 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -48,21 +50,113 @@
     </script>
     <script type="text/javascript">
         $(function () {
-            $("#alert").hide();
-            $('#myModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var recipient = button.text().trim(); // Extract info from data-* attributes
-                var modal = $(this);
-                modal.find('.modal-title').text(recipient + '信息')
-            });
+            $("#alertA").hide();
+            $("#alertB").hide();
             $("#saveData").click(
                     function () {
-                        $('#myModal').modal('toggle');
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/renyuan/edit.do",
+                            data: $('#renyuanForm').serialize() + "&id="+$('#id').val(),
+                            dataType: "json",
+                            success: function (result) {
+                                if(result.status == 1){
+                                    $('#myModal').modal('toggle');
+                                    $("#alertB").hide();
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                    $("button[name='refresh']").click();
+                                    //debugger;
+                                }else {
+                                    $("#alertB").show();
+                                    $("#messageB").text(result.message);
+                                }
+                            }
+                        });
+                    });
+            function select() {
+                var ids = "";
+                $("input[name=toolbar1]").each(function () {
+                    if ($(this).context.checked) {
+                        var index = $("table input:checkbox").index(this);
+                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
+                        ids += "," + val;
+                    }
+                });
+                return ids;
+            }
+
+            function showModal(renyuan, type) {
+                if (type == 1) {
+                    $('#id').show();
+                    $('#idLabel').show();
+                    $('#myModal').find('.modal-title').text('修改用户信息');
+                } else {
+                    $('#id').hide();
+                    $('#idLabel').hide();
+                    $('#myModal').find('.modal-title').text('注册用户信息');
+                }
+                <c:forEach var="item" items="${tableColumns}">
+                if (renyuan != null) {
+                    $("#${item.columnName}").val(renyuan.${item.columnName});
+                } else {
+                    $("#${item.columnName}").val("");
+                }
+                $("#${item.columnName}").attr("placeholder", "请输入人员的${item.chinese}");
+                </c:forEach>
+                $('#myModal').modal('toggle');
+                $("#alertB").hide();
+            }
+
+
+            $("#zhuce").click(
+                    function () {
+                        showModal(null, 0);
+                    });
+            $("#xiugai").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/renyuan/get.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    showModal(result.data, 1);
+                                } else {
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                }
+
+                            }
+                        });
+                    });
+            $("#shanchu").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/renyuan/delete.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            success: function (result) {
+                                $("#alertA").show();
+                                $("#messageA").text(result.message);
+                                $("button[name='refresh']").click();
+                            }
+                        });
                     });
             $("#closeA").click(
                     function () {
-                        $("#alert").hide();
+                        $("#alertA").hide();
                     });
+            $("#closeB").click(
+                    function () {
+                        $("#alertB").hide();
+                    });
+
         });
     </script>
 </head>
@@ -152,11 +246,10 @@
                 <div class="panel-heading">${tableName}</div>
                 <div class="panel-body">
 
-
-                    <div class="row" id="alert">
+                    <div class="row" id="alertA">
                         <div class="col-lg-12">
                             <div class="alert bg-warning" role="alert">
-                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
                                     id="closeA"
                                     class="pull-right"><span
                                     class="glyphicon glyphicon-remove"></span></a>
@@ -165,16 +258,15 @@
                     </div>
 
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">注册人员</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">修改人员
-                    </button>
-                    <button class="btn btn-primary" id="shanchu">删除人员</button>
+                    <button type="button" class="btn btn-primary" id="zhuce">注册人员</button>
+                    <button type="button" class="btn btn-primary" id="xiugai">修改人员</button>
+                    <button type="button" class="btn btn-primary" id="shanchu">删除人员</button>
 
 
                     <table data-toggle="table" data-url="xitong/allRenyuans.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
-                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
-                           data-sort-order="desc">
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
+                           data-sort-order="desc" id="renyuanTable">
                         <thead>
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
@@ -190,6 +282,7 @@
                         </thead>
                     </table>
 
+
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -200,35 +293,52 @@
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form id="renyuanForm">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${tableColumns}">
                                                 <c:if test="${item.columnName == 'id'}">
                                                     <label for="${item.columnName}"
-                                                           class="control-label">${item.chinese}</label>
-                                                    <input type="text" class="form-control" id="${item.columnName}">
+                                                           class="control-label" id="idLabel">${item.chinese}</label>
+                                                    <input type="text" class="form-control" id="${item.columnName}"
+                                                           disabled="disabled" name="${item.columnName}">
                                                 </c:if>
                                                 <c:if test="${item.columnName != 'id'}">
                                                     <label for="${item.columnName}"
                                                            class="control-label">${item.chinese}</label>
-                                                    <input type="text" class="form-control" id="${item.columnName}">
+                                                    <input type="text" class="form-control" id="${item.columnName}"
+                                                           name="${item.columnName}">
                                                 </c:if>
                                             </c:forEach>
                                         </div>
                                     </form>
                                 </div>
+
+                                <div class="row" id="alertB">
+                                    <div class="col-lg-12">
+                                        <div class="alert bg-warning" role="alert">
+                                            <span class="glyphicon glyphicon-warning-sign"></span> <span
+                                                id="messageB"></span><a
+                                                id="closeB"
+                                                class="pull-right"><span
+                                                class="glyphicon glyphicon-remove"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                     <button type="button" class="btn btn-primary" id="saveData">保存</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- Modal -->
+
+
                 </div>
             </div>
         </div>
     </div><!--/.row-->
-</div>    <!--/.main-->
+</div><!--/.main-->
 </body>
 
 </html>
