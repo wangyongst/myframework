@@ -2,50 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5b95fa-3cb8-44d7-bc59-54923938530e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/xitong/laoren.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/util/DateUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_framework_servlet3_springmvc_0_0_1_SNAPSHOT.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/CaijiMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/MenuMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/RenyuanMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/Ry2sxMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/ShuxingMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/TableinfoMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/User2menuMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/dao/mybatis/UserMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Caiji.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/CaijiExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Menu.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/MenuExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Renyuan.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/RenyuanExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Ry2sx.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Ry2sxExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Shuxing.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/ShuxingExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/Tableinfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/TableinfoExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/User.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/User2menu.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/User2menuExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/vo/mybatis/UserExample.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/CaijiMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/MenuMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/RenyuanMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/Ry2sxMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/ShuxingMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/TableinfoMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/User2menuMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/resources/com/myweb/dao/mybatis/xml/UserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/RenyuanMapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/RenyuanMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/Renyuan.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/RenyuanExample$Criteria.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/RenyuanExample$Criterion.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/RenyuanExample$GeneratedCriteria.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/RenyuanExample.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/SpringMvcConfig.class" afterPath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/SpringMvcConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/WebInitializer.class" afterPath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/WebInitializer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/servlet3.springmvc-0.0.1-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../servlet3.springmvc/target/servlet3.springmvc-0.0.1-SNAPSHOT.jar" />
@@ -93,26 +51,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/UserExample.class" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/vo/mybatis/UserExample.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/springmvc.mybatis-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/springmvc.mybatis-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/test-classes/com/framework/AppTest.class" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/test-classes/com/framework/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/pom.xml" afterPath="$PROJECT_DIR$/../servlet3.springmvc/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" afterPath="$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/src/main/java/com/framework/servlet3/springmvc/LoginFilter.java" afterPath="$PROJECT_DIR$/../servlet3.springmvc/src/main/java/com/framework/servlet3/springmvc/LoginFilter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/../servlet3.springmvc/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/springmvc_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/springmvc_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/springmvc.iml" afterPath="$PROJECT_DIR$/springmvc.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/jiankang/qushi.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/jiankang/qushi.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/xitong/user.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/xitong/user.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/controller/JianKangController.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/controller/JianKangController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/controller/XiTongController.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/controller/XiTongController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/UserService.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/UserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/XiTongService.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/XiTongService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/XiTongServiceImpl.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/XiTongServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/CaijiMapper.xml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/CaijiMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/MenuMapper.xml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/MenuMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/Ry2sxMapper.xml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/xml/Ry2sxMapper.xml" />
@@ -124,7 +65,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/TEST-com.framework.AppTest.xml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/TEST-com.framework.AppTest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/com.framework.AppTest.txt" afterPath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/com.framework.AppTest.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/webapp/jsp/xitong/renyuan.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/jiankang/caiji.jsp" />
     </list>
     <list id="b9d31a81-9f54-44c1-846c-2727f93ea5f4" name="Rejected commit: Default" comment="wangyong" />
     <ignored path="springmvc.iws" />
@@ -146,6 +86,19 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -176,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="web.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c4ba46c-d1d6-48f0-9dee-6e87108ee35d/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -261,7 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../springmvcmybatis Maven Webapp/pom.xml" />
         <option value="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/myweb/vo/mybatis/Caiji.java" />
         <option value="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/myweb/dao/mybatis/CaijiMapper.java" />
         <option value="$PROJECT_DIR$/../springmvc.mybatis/src/main/mybatisCreate/generatorConfig.xml" />
@@ -312,6 +264,7 @@
         <option value="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/JianKangService.java" />
         <option value="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/JianKangServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/jiankang/caiji.jsp" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6c4ba46c-d1d6-48f0-9dee-6e87108ee35d/console.sql" />
       </list>
     </option>
   </component>
@@ -729,11 +682,12 @@
     <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../servlet3.springmvc" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -1473,7 +1427,7 @@
       <workItem from="1461807331751" duration="23859000" />
       <workItem from="1462168024309" duration="11444000" />
       <workItem from="1462182902502" duration="10542000" />
-      <workItem from="1462194970245" duration="14674000" />
+      <workItem from="1462194970245" duration="15461000" />
     </task>
     <task id="LOCAL-00001" summary="wangyong">
       <created>1461577716422</created>
@@ -1545,7 +1499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462194040982</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="wangyong">
+      <created>1462210245718</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1462210245718</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1557,7 +1518,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122001000" />
+    <option name="totallyTimeSpent" value="122788000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1573,29 +1534,30 @@
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5426439" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.36886993" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13646056" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4225352" sideWeight="0.7302772" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.6183369" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5178765" sideWeight="0.6183369" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.413113" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.5426439" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.36886993" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13646056" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32394367" sideWeight="0.45309168" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33152762" sideWeight="0.69402987" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45612136" sideWeight="0.47228146" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.45735607" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26012793" sideWeight="0.8212351" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18429486" sideWeight="0.5056543" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1375948" sideWeight="0.491453" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26012793" sideWeight="0.1787649" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4225352" sideWeight="0.7302772" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1632,7 +1594,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../spring.mybatis/src/main/resources/properties/mybatis.properties" />
     <entry file="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/4.0.0-b01/javax.servlet-api-4.0.0-b01.jar!/javax/servlet/FilterRegistration.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -2004,6 +1965,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/jiankang/caiji.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -2012,10 +1981,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c4ba46c-d1d6-48f0-9dee-6e87108ee35d/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
           <folding />
         </state>
       </provider>
