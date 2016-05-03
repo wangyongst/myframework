@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-05-03 01:20:22
+Date: 2016-05-03 22:52:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,7 @@ DROP TABLE IF EXISTS `caiji`;
 CREATE TABLE `caiji` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `laorenid` int(11) DEFAULT NULL,
+  `laorenname` varchar(255) DEFAULT NULL,
   `gaoya` int(11) DEFAULT NULL,
   `diya` int(11) DEFAULT NULL,
   `xuetang` decimal(10,2) DEFAULT NULL,
@@ -33,19 +34,12 @@ CREATE TABLE `caiji` (
   `createusername` varchar(255) DEFAULT NULL,
   `createtime` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of caiji
 -- ----------------------------
-INSERT INTO `caiji` VALUES ('1', null, '44', '24', '2.36', '44', '54', '44.00', '2016-05-20T00:00', null, null, null);
-INSERT INTO `caiji` VALUES ('2', '2', '1', '1', '1.00', '1', '1', '1.00', null, '1', null, null);
-INSERT INTO `caiji` VALUES ('3', '2', '1', '1', '1.00', '1', '1', '1.00', null, '1', null, null);
-INSERT INTO `caiji` VALUES ('4', '2', '1', '1', '1.00', '1', '1', '1.00', null, '1', null, null);
-INSERT INTO `caiji` VALUES ('5', '2', '111', '11', '11.00', '11', '11', '1111.00', null, '1', null, null);
-INSERT INTO `caiji` VALUES ('6', '2', '0', '0', '0.00', '0', '0', '0.00', null, '1', null, null);
-INSERT INTO `caiji` VALUES ('7', '2', '454', '121', '4.36', '232', '132', '25.00', '2016-05-28T15:15', '5', '系统管理员', '2016-05-03 01:16:56');
-INSERT INTO `caiji` VALUES ('8', '1', '2', '12', '12.00', '12', '12', '12.00', '', '5', '系统管理员', '2016-05-03 01:18:01');
+INSERT INTO `caiji` VALUES ('14', '1', '李小明', '4', '4', '4.00', '4', '4', '4.00', '2016-05-19T12:15', '5', '系统管理员', '2016-05-03 22:45:16');
 
 -- ----------------------------
 -- Table structure for laoren
@@ -66,13 +60,12 @@ CREATE TABLE `laoren` (
   `createtime` varchar(255) DEFAULT NULL,
   `createusername` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of laoren
 -- ----------------------------
 INSERT INTO `laoren` VALUES ('1', '李小明', '女', '50', '回族', '1968年1月2日', '620125489658754589', '华中路', '09865485458', '18765489845', '1', '2016年4月4日', null);
-INSERT INTO `laoren` VALUES ('2', '李正华', '男', '89', '汉族', '1912年2月1日', '622012191202014458', '青海省西宁市城东区海西路一号院1140号2单元605室', '07550126458', '18119568878', '1', '2016年4月4日', null);
 
 -- ----------------------------
 -- Table structure for menu
@@ -83,20 +76,21 @@ CREATE TABLE `menu` (
   `name` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `parent` int(11) DEFAULT '0',
+  `shunxu` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('1', '系统管理', '', '0');
-INSERT INTO `menu` VALUES ('2', '用户管理', 'xitong/user.do', '1');
-INSERT INTO `menu` VALUES ('3', '老人管理', 'xitong/laoren.do', '1');
-INSERT INTO `menu` VALUES ('4', '健康养老', null, '0');
-INSERT INTO `menu` VALUES ('5', '健康数据采集', 'jiankang/caiji.do', '4');
-INSERT INTO `menu` VALUES ('6', '健康趋势', 'jiankang/qushi.do', '4');
-INSERT INTO `menu` VALUES ('7', '居家养老', '', '0');
-INSERT INTO `menu` VALUES ('8', '健康数据管理', 'jiankang/shuju.do', '4');
+INSERT INTO `menu` VALUES ('1', '系统管理', '', '0', '1');
+INSERT INTO `menu` VALUES ('2', '用户管理', 'xitong/user.do', '1', '1');
+INSERT INTO `menu` VALUES ('3', '老人管理', 'xitong/laoren.do', '1', '2');
+INSERT INTO `menu` VALUES ('4', '健康养老', null, '0', '2');
+INSERT INTO `menu` VALUES ('5', '健康数据采集', 'jiankang/caiji.do', '4', '1');
+INSERT INTO `menu` VALUES ('6', '健康趋势', 'jiankang/qushi.do', '4', '3');
+INSERT INTO `menu` VALUES ('7', '居家养老', '', '0', '3');
+INSERT INTO `menu` VALUES ('8', '健康数据管理', 'jiankang/shuju.do', '4', '2');
 
 -- ----------------------------
 -- Table structure for ry2sx
@@ -149,48 +143,50 @@ INSERT INTO `shuxing` VALUES ('15', '病史', '其它');
 DROP TABLE IF EXISTS `tableinfo`;
 CREATE TABLE `tableinfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `table_name` varchar(255) DEFAULT NULL,
-  `column_name` varchar(255) DEFAULT NULL,
+  `tablename` varchar(255) DEFAULT NULL,
+  `columnname` varchar(255) DEFAULT NULL,
   `chinese` varchar(255) DEFAULT NULL,
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT 'text',
+  `shunxu` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tableinfo
 -- ----------------------------
-INSERT INTO `tableinfo` VALUES ('1', 'user', 'id', 'ID', 'number');
-INSERT INTO `tableinfo` VALUES ('2', 'user', 'name', '姓名', 'text');
-INSERT INTO `tableinfo` VALUES ('3', 'user', 'username', '用户名', 'text');
-INSERT INTO `tableinfo` VALUES ('4', 'user', 'password', '密码', 'text');
-INSERT INTO `tableinfo` VALUES ('5', 'laoren', 'id', 'ID', 'number');
-INSERT INTO `tableinfo` VALUES ('6', 'laoren', 'name', '姓名', 'text');
-INSERT INTO `tableinfo` VALUES ('7', 'laoren', 'sex', '性别', 'text');
-INSERT INTO `tableinfo` VALUES ('8', 'laoren', 'age', '年龄', 'number');
-INSERT INTO `tableinfo` VALUES ('9', 'laoren', 'nation', '民族', 'text');
-INSERT INTO `tableinfo` VALUES ('10', 'laoren', 'birthday', '出生日期', 'date');
-INSERT INTO `tableinfo` VALUES ('11', 'laoren', 'idnumber', '身份证号', 'text');
-INSERT INTO `tableinfo` VALUES ('12', 'laoren', 'address', '地址', 'text');
-INSERT INTO `tableinfo` VALUES ('13', 'laoren', 'phone', '电话', 'text');
-INSERT INTO `tableinfo` VALUES ('14', 'laoren', 'mobile', '手机', 'text');
-INSERT INTO `tableinfo` VALUES ('15', 'laoren', 'createuser', '创建人', 'number');
-INSERT INTO `tableinfo` VALUES ('16', 'laoren', 'createtime', '注册时间', 'datetime');
-INSERT INTO `tableinfo` VALUES ('17', 'caiji', 'id', 'ID', 'number');
-INSERT INTO `tableinfo` VALUES ('18', 'caiji', 'laorenid', '老人ID', 'number');
-INSERT INTO `tableinfo` VALUES ('19', 'caiji', 'gaoya', '高压', 'number');
-INSERT INTO `tableinfo` VALUES ('20', 'caiji', 'diya', '低压', 'number');
-INSERT INTO `tableinfo` VALUES ('21', 'caiji', 'xuetang', '血糖', 'number');
-INSERT INTO `tableinfo` VALUES ('22', 'caiji', 'maibo', '脉博', 'number');
-INSERT INTO `tableinfo` VALUES ('23', 'caiji', 'xueyang', '血氧', 'number');
-INSERT INTO `tableinfo` VALUES ('24', 'caiji', 'tizhong', '体重', 'number');
-INSERT INTO `tableinfo` VALUES ('25', 'caiji', 'time', '测量时间', 'datetime-local');
-INSERT INTO `tableinfo` VALUES ('27', 'caiji', 'createuser', '创建人', 'number');
-INSERT INTO `tableinfo` VALUES ('28', 'user', 'createuser', '创建人', 'number');
-INSERT INTO `tableinfo` VALUES ('29', 'user', 'createusername', '创建人姓名', 'text');
-INSERT INTO `tableinfo` VALUES ('30', 'laoren', 'createusername', '创建人姓名', 'text');
-INSERT INTO `tableinfo` VALUES ('31', 'user', 'createtime', '创建时间', 'datetime-local');
-INSERT INTO `tableinfo` VALUES ('32', 'caiji', 'createusername', '创建人姓名', 'text');
-INSERT INTO `tableinfo` VALUES ('33', 'caiji', 'createtime', '创建时间', 'text');
+INSERT INTO `tableinfo` VALUES ('1', 'user', 'id', 'ID', 'number', null);
+INSERT INTO `tableinfo` VALUES ('2', 'user', 'name', '姓名', 'text', null);
+INSERT INTO `tableinfo` VALUES ('3', 'user', 'username', '用户名', 'text', null);
+INSERT INTO `tableinfo` VALUES ('4', 'user', 'password', '密码', 'text', null);
+INSERT INTO `tableinfo` VALUES ('5', 'laoren', 'id', 'ID', 'number', null);
+INSERT INTO `tableinfo` VALUES ('6', 'laoren', 'name', '姓名', 'text', null);
+INSERT INTO `tableinfo` VALUES ('7', 'laoren', 'sex', '性别', 'text', null);
+INSERT INTO `tableinfo` VALUES ('8', 'laoren', 'age', '年龄', 'number', null);
+INSERT INTO `tableinfo` VALUES ('9', 'laoren', 'nation', '民族', 'text', null);
+INSERT INTO `tableinfo` VALUES ('10', 'laoren', 'birthday', '出生日期', 'date', null);
+INSERT INTO `tableinfo` VALUES ('11', 'laoren', 'idnumber', '身份证号', 'text', null);
+INSERT INTO `tableinfo` VALUES ('12', 'laoren', 'address', '地址', 'text', null);
+INSERT INTO `tableinfo` VALUES ('13', 'laoren', 'phone', '电话', 'text', null);
+INSERT INTO `tableinfo` VALUES ('14', 'laoren', 'mobile', '手机', 'text', null);
+INSERT INTO `tableinfo` VALUES ('15', 'laoren', 'createuser', '创建人', 'number', null);
+INSERT INTO `tableinfo` VALUES ('16', 'laoren', 'createtime', '注册时间', 'datetime', null);
+INSERT INTO `tableinfo` VALUES ('17', 'caiji', 'id', 'ID', 'number', '1');
+INSERT INTO `tableinfo` VALUES ('18', 'caiji', 'laorenid', '老人ID', 'number', '2');
+INSERT INTO `tableinfo` VALUES ('19', 'caiji', 'gaoya', '高压', 'number', '4');
+INSERT INTO `tableinfo` VALUES ('20', 'caiji', 'diya', '低压', 'number', '5');
+INSERT INTO `tableinfo` VALUES ('21', 'caiji', 'xuetang', '血糖', 'number', '6');
+INSERT INTO `tableinfo` VALUES ('22', 'caiji', 'maibo', '脉博', 'number', '7');
+INSERT INTO `tableinfo` VALUES ('23', 'caiji', 'xueyang', '血氧', 'number', '8');
+INSERT INTO `tableinfo` VALUES ('24', 'caiji', 'tizhong', '体重', 'number', '9');
+INSERT INTO `tableinfo` VALUES ('25', 'caiji', 'time', '测量时间', 'datetime-local', '10');
+INSERT INTO `tableinfo` VALUES ('27', 'caiji', 'createuser', '创建人', 'number', '11');
+INSERT INTO `tableinfo` VALUES ('28', 'user', 'createuser', '创建人', 'number', null);
+INSERT INTO `tableinfo` VALUES ('29', 'user', 'createusername', '创建人姓名', 'text', null);
+INSERT INTO `tableinfo` VALUES ('30', 'laoren', 'createusername', '创建人姓名', 'text', null);
+INSERT INTO `tableinfo` VALUES ('31', 'user', 'createtime', '创建时间', 'datetime-local', null);
+INSERT INTO `tableinfo` VALUES ('32', 'caiji', 'createusername', '创建人姓名', 'text', '12');
+INSERT INTO `tableinfo` VALUES ('33', 'caiji', 'createtime', '创建时间', 'text', '13');
+INSERT INTO `tableinfo` VALUES ('34', 'caiji', 'laorenname', '老人姓名', 'text', '3');
 
 -- ----------------------------
 -- Table structure for user
@@ -205,7 +201,7 @@ CREATE TABLE `user` (
   `createusername` varchar(255) DEFAULT NULL,
   `createtime` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
