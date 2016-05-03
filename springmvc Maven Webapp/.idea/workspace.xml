@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5b95fa-3cb8-44d7-bc59-54923938530e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/jianKangServiceImpl.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/impl/jianKangServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/jianKangService.java" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/java/com/myweb/service/jianKangService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql" afterPath="$PROJECT_DIR$/../springmvc.mybatis/src/main/tools/web.sql" />
     </list>
     <list id="b9d31a81-9f54-44c1-846c-2727f93ea5f4" name="Rejected commit: Default" comment="wangyong" />
     <ignored path="springmvc.iws" />
@@ -1400,7 +1398,7 @@
       <workItem from="1462168024309" duration="11444000" />
       <workItem from="1462182902502" duration="10542000" />
       <workItem from="1462194970245" duration="15492000" />
-      <workItem from="1462280060916" duration="7118000" />
+      <workItem from="1462280060916" duration="7139000" />
     </task>
     <task id="LOCAL-00001" summary="wangyong">
       <created>1461577716422</created>
@@ -1500,7 +1498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462287146743</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="wangyong">
+      <created>1462287194656</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1462287194656</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1512,7 +1517,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129937000" />
+    <option name="totallyTimeSpent" value="129958000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
