@@ -140,11 +140,11 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <c:if test="${item.columnName == 'id'}">
+                                <c:if test="${item.columnname == 'id'}">
                                     <th data-field="id" data-sortable="true">ID</th>
                                 </c:if>
-                                <c:if test="${item.columnName != 'id'}">
-                                    <th data-field="${item.columnName}" data-sortable="true">${item.chinese}</th>
+                                <c:if test="${item.columnname != 'id'}">
+                                    <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                                 </c:if>
                             </c:forEach>
                         </tr>

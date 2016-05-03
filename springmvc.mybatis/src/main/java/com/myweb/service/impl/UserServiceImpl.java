@@ -52,9 +52,12 @@ public class UserServiceImpl implements UserService {
 
     public Map<String, Object> getMyMenus(HttpSession session) {
         Map map = new HashMap<String, String>();
-        map.put("parent", menuMapper.selectByExample(null));
+        MenuExample parent = new MenuExample();
+        parent.setOrderByClause("shunxu");
+        map.put("parent", menuMapper.selectByExample(parent));
         MenuExample children = new MenuExample();
         children.createCriteria().andParentNotEqualTo(0);
+        children.setOrderByClause("shunxu");
         map.put("children", menuMapper.selectByExample(children));
         return map;
     }
@@ -78,9 +81,10 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,List<String> exclude,String formColumns) {
         TableinfoExample example = new TableinfoExample();
         TableinfoExample.Criteria criteria = example.createCriteria();
-        criteria.andTableNameEqualTo(tableName);
+        criteria.andTablenameEqualTo(tableName);
+        example.setOrderByClause("shunxu");
         for(String ex: exclude){
-            criteria.andColumnNameNotEqualTo(ex);
+            criteria.andColumnnameNotEqualTo(ex);
         }
         List<Tableinfo> list = tableinfoMapper.selectByExample(example);
         if(StringUtils.isBlank(formColumns)) {

@@ -51,19 +51,44 @@ public class JianKangController {
         map.put("tableName", "老人信息表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("laoren", map, session, exclude, null);
+        map = userService.getColumnsNameMap("caiji", map, session, exclude, null);
         return new ModelAndView("jiankang/qushi", map);
+    }
+
+
+    @RequestMapping(value = "/shuju", method = RequestMethod.GET)
+    public ModelAndView shuju(HttpSession session) {
+        Map map = userService.getMyMenus(session);
+        map.put("title", "健康数据管理");
+        map = userService.getUserMap(map, session);
+        map.put("tableName", "健康数据表");
+        List<String> exclude = new ArrayList<String>();
+        exclude.add("createuser");
+        map = userService.getColumnsNameMap("caiji", map, session, exclude, null);
+        return new ModelAndView("jiankang/shuju", map);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/allCaijis", method = RequestMethod.GET)
+    public List<Caiji> allCaijis(HttpSession session) {
+        return jianKangService.getAllCaijis(session);
     }
 
     @ResponseBody
     @RequestMapping(value = "/caiji/get", method = RequestMethod.POST)
-    public Result laorenGet(HttpSession session, String ids) {
-        return jianKangService.getCaiji(session, ids);
+    public Result laorenGet(HttpSession session, String ids, String idType) {
+        return jianKangService.getCaiji(session, ids, idType);
     }
 
     @ResponseBody
     @RequestMapping(value = "/caiji/edit", method = RequestMethod.POST)
     public Result laorenEdit(HttpSession session, String ids, @ModelAttribute Caiji caiji) {
-        return jianKangService.editCaiji(session,caiji);
+        return jianKangService.editCaiji(session, caiji);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/caiji/delete", method = RequestMethod.POST)
+    public Result caijiDelete(HttpSession session, String ids) {
+        return jianKangService.deleteCaiji(session, ids);
     }
 }

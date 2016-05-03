@@ -57,11 +57,11 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/edit.do",
-                            data: $('#laorenForm').serialize() + "&id=" + $('#id').val(),
+                            url: "jiankang/caiji/edit.do",
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val()+ "&laorenname=" + $('#laorenname').val() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
-                                $("#alertB div div").attr("class","alert bg-danger");
+                                $("#alertB div div").attr("class", "alert bg-danger");
                                 $("#alertB").show();
                                 $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
                             },
@@ -92,19 +92,13 @@
                 return ids;
             }
 
-            function showModal(laoren, type) {
-                if (type == 1) {
-                    $('#id').show();
-                    $('#idLabel').show();
-                    $('#myModal').find('.modal-title').text('修改信息');
-                } else {
-                    $('#id').hide();
-                    $('#idLabel').hide();
-                    $('#myModal').find('.modal-title').text('注册用户信息');
-                }
+            function showModal(caiji,type) {
+                $('#id').hide();
+                $('#idLabel').hide();
+                $('#myModal').find('.modal-title').text('管理老人健康数据');
                 <c:forEach var="item" items="${tableColumns}">
-                if (laoren != null) {
-                    $("#${item.columnname}").val(laoren.${item.columnname});
+                if (caiji != null) {
+                    $("#${item.columnname}").val(caiji.${item.columnname});
                 } else {
                     $("#${item.columnname}").val("");
                 }
@@ -115,17 +109,13 @@
             }
 
 
-            $("#zhuce").click(
-                    function () {
-                        showModal(null, 0);
-                    });
             $("#xiugai").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/get.do",
-                            data: {ids: select()},
+                            url: "jiankang/caiji/get.do",
+                            data: {ids: select(),idType:"caijiid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -147,7 +137,7 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/delete.do",
+                            url: "jiankang/caiji/delete.do",
                             data: {ids: select()},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
@@ -161,6 +151,7 @@
                             }
                         });
                     });
+
             $("#closeA").click(
                     function () {
                         $("#alertA").hide();
@@ -271,12 +262,10 @@
                     </div>
 
 
-                    <button type="button" class="btn btn-primary" id="zhuce">注册老人</button>
-                    <button type="button" class="btn btn-primary" id="xiugai">修改老人</button>
-                    <button type="button" class="btn btn-primary" id="shanchu">删除老人</button>
+                    <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
+                    <button type="button" class="btn btn-primary" id="shanchu">删除数据</button>
 
-
-                    <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
+                    <table data-toggle="table" data-url="jiankang/allCaijis.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
                            data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                            data-sort-order="desc" id="laorenTable">
@@ -306,7 +295,7 @@
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="laorenForm">
+                                    <form id="form">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${tableColumns}">
                                                 <c:if test="${item.columnname == 'id'}">
@@ -316,7 +305,15 @@
                                                            id="${item.columnname}"
                                                            disabled="disabled" name="${item.columnname}">
                                                 </c:if>
-                                                <c:if test="${item.columnname != 'id'}">
+                                                <c:if test="${item.columnname == 'laorenid' || item.columnname == 'laorenname'}">
+                                                    <label for="${item.columnname}"
+                                                           class="control-label"
+                                                           id="${item.columnname}Label">${item.chinese}</label>
+                                                    <input type="${item.type}" class="form-control"
+                                                           id="${item.columnname}"
+                                                           disabled="disabled" name="${item.columnname}">
+                                                </c:if>
+                                                <c:if test="${item.columnname != 'id' && item.columnname != 'laorenid' && item.columnname != 'laorenname'}">
                                                     <c:if test="${item.columnname != 'createusername' && item.columnname != 'createtime'}">
                                                         <label for="${item.columnname}"
                                                                class="control-label">${item.chinese}</label>

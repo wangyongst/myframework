@@ -58,7 +58,7 @@
                             type: "POST",
                             cache: "false",
                             url: "jiankang/caiji/edit.do",
-                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val(),
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val()+ "&laorenname=" + $('#laorenname').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -92,18 +92,17 @@
                 return ids;
             }
 
-            function showModal(caiji,laorenid, type) {
+            function showModal(caiji,type) {
                 $('#id').hide();
                 $('#idLabel').hide();
                 $('#myModal').find('.modal-title').text('采集老人健康数据');
                 <c:forEach var="item" items="${formColumns}">
                 if (caiji != null) {
-                    $("#${item.columnName}").val(laoren.${item.columnName});
+                    $("#${item.columnname}").val(caiji.${item.columnname});
                 } else {
-                    $("#${item.columnName}").val("");
+                    $("#${item.columnname}").val("");
                 }
-                $("#laorenid").val(laorenid);
-                $("#${item.columnName}").attr("placeholder", "请输入老人的${item.chinese}");
+                $("#${item.columnname}").attr("placeholder", "请输入老人的${item.chinese}");
                 </c:forEach>
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
@@ -116,7 +115,7 @@
                             type: "POST",
                             cache: "false",
                             url: "jiankang/caiji/get.do",
-                            data: {ids: select()},
+                            data: {ids: select(),idType:"laorenid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -124,7 +123,7 @@
                             },
                             success: function (result) {
                                 if (result.status == 1) {
-                                    showModal(result.data, result.message,1);
+                                    showModal(result.data, 1);
                                 } else {
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
@@ -253,11 +252,11 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <c:if test="${item.columnName == 'id'}">
+                                <c:if test="${item.columnname == 'id'}">
                                     <th data-field="id" data-sortable="true">ID</th>
                                 </c:if>
-                                <c:if test="${item.columnName != 'id'}">
-                                    <th data-field="${item.columnName}" data-sortable="true">${item.chinese}</th>
+                                <c:if test="${item.columnname != 'id'}">
+                                    <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                                 </c:if>
                             </c:forEach>
                         </tr>
@@ -278,27 +277,28 @@
                                     <form id="form">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${formColumns}">
-                                                <c:if test="${item.columnName == 'id'}">
-                                                    <label for="${item.columnName}"
+                                                <c:if test="${item.columnname == 'id'}">
+                                                    <label for="${item.columnname}"
                                                            class="control-label" id="idLabel">${item.chinese}</label>
                                                     <input type="${item.type}" class="form-control"
-                                                           id="${item.columnName}"
-                                                           disabled="disabled" name="${item.columnName}">
+                                                           id="${item.columnname}"
+                                                           disabled="disabled" name="${item.columnname}">
                                                 </c:if>
-                                                <c:if test="${item.columnName == 'laorenid'}">
-                                                    <label for="${item.columnName}"
-                                                           class="control-label" id="laorenidLabel">${item.chinese}</label>
+                                                <c:if test="${item.columnname == 'laorenid' || item.columnname == 'laorenname'}">
+                                                    <label for="${item.columnname}"
+                                                           class="control-label"
+                                                           id="${item.columnname}Label">${item.chinese}</label>
                                                     <input type="${item.type}" class="form-control"
-                                                           id="${item.columnName}"
-                                                           disabled="disabled" name="${item.columnName}">
+                                                           id="${item.columnname}"
+                                                           disabled="disabled" name="${item.columnname}">
                                                 </c:if>
-                                                <c:if test="${item.columnName != 'id' && item.columnName != 'laorenid'}">
-                                                    <c:if test="${item.columnName != 'createusername' && item.columnName != 'createtime'}">
-                                                        <label for="${item.columnName}"
+                                                <c:if test="${item.columnname != 'id' && item.columnname != 'laorenid' && item.columnname != 'laorenname'}">
+                                                    <c:if test="${item.columnname != 'createusername' && item.columnname != 'createtime'}">
+                                                        <label for="${item.columnname}"
                                                                class="control-label">${item.chinese}</label>
                                                         <input type="${item.type}" class="form-control"
-                                                               id="${item.columnName}"
-                                                               name="${item.columnName}">
+                                                               id="${item.columnname}"
+                                                               name="${item.columnname}">
                                                     </c:if>
                                                 </c:if>
                                             </c:forEach>
