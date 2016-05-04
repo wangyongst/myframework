@@ -28,10 +28,12 @@ com\myweb\service\UserService.class
 com\myweb\vo\mybatis\Laoren.class
 com\myweb\vo\mybatis\User2menuExample.class
 com\myweb\vo\mybatis\LaorenExample$Criteria.class
+com\myweb\service\impl\JianKangServiceImpl.class
 com\myweb\service\impl\XiTongServiceImpl.class
 com\myweb\vo\mybatis\ShuxingExample$Criterion.class
 com\myweb\vo\mybatis\User.class
 com\myweb\dao\mybatis\CaijiMapper.class
+com\myweb\service\JianKangService.class
 com\myweb\vo\mybatis\Tableinfo.class
 com\myweb\vo\Result.class
 com\myweb\vo\mybatis\Ry2sxExample$Criteria.class

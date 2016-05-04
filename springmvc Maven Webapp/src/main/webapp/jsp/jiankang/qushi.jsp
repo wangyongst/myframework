@@ -17,12 +17,14 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/chart.min.js"></script>
@@ -45,6 +47,51 @@
         $(window).on('resize', function () {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#alertA").hide();
+            function select() {
+                var ids = "";
+                $("input[name=toolbar1]").each(function () {
+                    if ($(this).context.checked) {
+                        var index = $("table input:checkbox").index(this);
+                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
+                        ids += "," + val;
+                    }
+                });
+                return ids;
+            }
+            $("#chakan").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "jiankang/caiji/get.do",
+                            data: {ids: select(), idType: "laorenid"},
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    window.location.href="jiankang/qushi/shuju.do?&laorenid="+result.data.laorenid;
+                                } else {
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                }
+                            }
+                        });
+                    });
+
+            $("#closeA").click(
+                    function () {
+                        $("#alertA").hide();
+                    });
+
+
+        });
     </script>
 </head>
 
@@ -132,10 +179,25 @@
             <div class="panel panel-default">
                 <div class="panel-heading">${tableName}</div>
                 <div class="panel-body">
+
+                    <div class="row" id="alertA">
+                        <div class="col-lg-12">
+                            <div class="alert bg-warning" role="alert">
+                                <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
+                                    id="closeA"
+                                    class="pull-right"><span
+                                    class="glyphicon glyphicon-remove"></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary" id="chakan">查看健康趋势</button>
+
                     <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
-                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name"
-                           data-sort-order="desc">
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
+                           data-sort-order="desc" id="laorenTable">
                         <thead>
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
@@ -154,7 +216,7 @@
             </div>
         </div>
     </div><!--/.row-->
-</div>    <!--/.main-->
+</div><!--/.main-->
 </body>
 
 </html>
