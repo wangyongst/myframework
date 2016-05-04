@@ -6,19 +6,15 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.service.JianKangService;
 import com.myweb.util.DateUtils;
 import com.myweb.vo.Result;
-import com.myweb.vo.mybatis.Caiji;
-import com.myweb.vo.mybatis.Laoren;
-import com.myweb.vo.mybatis.User;
-import com.myweb.vo.mybatis.UserExample;
+import com.myweb.vo.mybatis.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("jianKangService")
 @Transactional
@@ -85,8 +81,13 @@ public class JianKangServiceImpl implements JianKangService {
     }
 
     @Override
-    public List<Caiji> getAllCaijis(HttpSession session) {
-        return caijiMapper.selectByExample(null);
+    public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji) {
+        CaijiExample example = new CaijiExample();
+        CaijiExample.Criteria criteria = example.createCriteria();
+        if (caiji.getLaorenid() != null) {
+            criteria.andLaorenidEqualTo(caiji.getLaorenid());
+        }
+        return caijiMapper.selectByExample(example);
     }
 
     @Override
