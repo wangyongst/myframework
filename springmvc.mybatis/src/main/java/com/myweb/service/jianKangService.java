@@ -14,7 +14,7 @@ public interface JianKangService {
 
     public Result editCaiji(HttpSession session, Caiji caiji);
 
-    public List<Caiji> getAllCaijis(HttpSession session);
+    public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji);
 
     public Result deleteCaiji(HttpSession session, String ids);
 }
