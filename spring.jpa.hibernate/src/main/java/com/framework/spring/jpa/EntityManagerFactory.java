@@ -59,7 +59,7 @@ public class EntityManagerFactory {
 		logger.info("EntityManagerFactory create!");
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setDataSource(dataSource);
-		entityManagerFactory.setPackagesToScan();
+		entityManagerFactory.setPackagesToScan(packagesToScan);
 		entityManagerFactory.setPersistenceProvider(new HibernatePersistenceProvider());
 		entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
 		entityManagerFactory.setJpaDialect(new HibernateJpaDialect());
