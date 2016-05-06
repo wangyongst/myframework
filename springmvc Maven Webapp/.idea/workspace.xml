@@ -2,81 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a5b95fa-3cb8-44d7-bc59-54923938530e" name="Default" comment="wangyong">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/properties/bonecp.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/properties/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/properties/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/properties/mybatis.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/classes/properties/bonecp.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/classes/properties/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/classes/properties/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/classes/properties/mybatis.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/aopalliance-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/bonecp-0.8.0.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/guava-15.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/jackson-annotations-2.7.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/jackson-core-2.7.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/jackson-databind-2.7.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/javax.servlet-api-4.0.0-b01.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/jsp-api-2.2.1-b03.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/log4j-1.2.17.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/mybatis-3.3.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/servlet3.springmvc-0.0.1-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/slf4j-api-1.7.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-aop-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-beans-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-context-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-core-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-expression-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-jdbc-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-tx-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-web-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring-webmvc-4.2.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring.datasource.bonecp-0.0.1-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/spring.mybatis-0.0.1-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/lib/springmvc.mybatis-1.0-SNAPSHOT.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/WEB-INF/web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/charts.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap-table.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap-theme.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/datepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/datepicker3.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/css/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/forms.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/bootstrap-datepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/bootstrap-table.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/chart-data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/chart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/easypiechart-data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/easypiechart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/html5shiv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/jquery-1.11.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/js/respond.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/jsp/home.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/jsp/login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/panels.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/tables.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/tables/data1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/tables/data2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/springmvc/widgets.html" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../spring.datasource.c3p0/spring.datasource.c3p0.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__c3p0_c3p0_0_9_1_2.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/SpringMvcConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/classes/com/framework/servlet3/springmvc/WebInitializer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../servlet3.springmvc/target/servlet3.springmvc-0.0.1-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.datasource.bonecp/target/classes/com/framework/spring/datasource/bonecp/BONECPDataSource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.datasource.bonecp/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.datasource.bonecp/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.datasource.c3p0/target/classes/META-INF/maven/com.framework/spring.datasource.c3p0/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.datasource.c3p0/target/spring.datasource.c3p0-0.0.1-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/classes/META-INF/maven/com.framework/spring.jpa.hibernate/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/classes/com/framework/spring/jpa/EntityManagerFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/classes/com/framework/spring/jpa/JpaVendorAdapter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/classes/com/framework/spring/jpa/TransactionManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/spring.jpa.hibernate-0.0.1-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/surefire-reports/TEST-com.framework.spring.servlet3.AppTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/target/surefire-reports/com.framework.spring.servlet3.AppTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/classes/com/framework/spring/mybatis/MapperScanner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/classes/com/framework/spring/mybatis/SessionFactory.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/classes/com/framework/spring/mybatis/TransactionManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/spring.mybatis-0.0.1-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/surefire-reports/TEST-com.framework.spring.mybatis.AppTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/surefire-reports/com.framework.spring.mybatis.AppTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spring.mybatis/target/test-classes/com/framework/spring/mybatis/AppTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_framework_servlet3_springmvc_0_0_1_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_framework_spring_datasource_bonecp_0_0_1_SNAPSHOT.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_framework_spring_mybatis_0_0_1_SNAPSHOT.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/controller/UserController.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/CaijiMapper.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/classes/com/myweb/dao/mybatis/MenuMapper.class" afterPath="" />
@@ -131,7 +93,18 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/TEST-com.framework.AppTest.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/surefire-reports/com.framework.AppTest.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../springmvc.mybatis/target/test-classes/com/framework/AppTest.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" afterPath="$PROJECT_DIR$/../servlet3.springmvc/servlet3.springmvc.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../spring.datasource.bonecp/spring.datasource.bonecp.iml" afterPath="$PROJECT_DIR$/../spring.datasource.bonecp/spring.datasource.bonecp.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../spring.jpa.hibernate/spring.jpa.hibernate.iml" afterPath="$PROJECT_DIR$/../spring.jpa.hibernate/spring.jpa.hibernate.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../spring.mybatis/spring.mybatis.iml" afterPath="$PROJECT_DIR$/../spring.mybatis/spring.mybatis.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/springmvc_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/springmvc_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/springmvc.iml" afterPath="$PROJECT_DIR$/springmvc.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" afterPath="$PROJECT_DIR$/../springmvc.mybatis/springmvc.mybatis.iml" />
     </list>
     <list id="b9d31a81-9f54-44c1-846c-2727f93ea5f4" name="Rejected commit: Default" comment="wangyong" />
     <ignored path="springmvc.iws" />
@@ -143,6 +116,8 @@
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="$PROJECT_DIR$/../springmvcmybatis Maven Webapp/target/" />
     <ignored path="$PROJECT_DIR$/../springmvc.mybatis/target/" />
+    <ignored path="$PROJECT_DIR$/../spring.datasource.c3p0/target/" />
+    <ignored path="$PROJECT_DIR$/../spring.jpa.hibernate/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +163,49 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3097">
               <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1005#1006#0" expanded="false" />
+                <element signature="e#1061#1062#0" expanded="false" />
+                <element signature="e#1308#1309#0" expanded="false" />
+                <element signature="e#1358#1359#0" expanded="false" />
+                <element signature="e#1587#1588#0" expanded="false" />
+                <element signature="e#1623#1624#0" expanded="false" />
+                <element signature="e#1861#1862#0" expanded="false" />
+                <element signature="e#1901#1902#0" expanded="false" />
+                <element signature="e#2125#2126#0" expanded="false" />
+                <element signature="e#2156#2157#0" expanded="false" />
+                <element signature="e#2392#2393#0" expanded="false" />
+                <element signature="e#2427#2428#0" expanded="false" />
+                <element signature="e#2657#2658#0" expanded="false" />
+                <element signature="e#2699#2700#0" expanded="false" />
+                <element signature="e#4511#4512#0" expanded="false" />
+                <element signature="e#4561#4562#0" expanded="false" />
+                <element signature="e#4612#4613#0" expanded="false" />
+                <element signature="e#4651#4652#0" expanded="false" />
+                <element signature="e#4699#4700#0" expanded="false" />
+                <element signature="e#4738#4739#0" expanded="false" />
+                <element signature="e#12264#12265#0" expanded="false" />
+                <element signature="e#12295#12296#0" expanded="false" />
+                <element signature="e#12851#12852#0" expanded="false" />
+                <element signature="e#12891#12892#0" expanded="false" />
+                <element signature="e#12927#12928#0" expanded="false" />
+                <element signature="e#12963#12964#0" expanded="false" />
+                <element signature="e#13005#13006#0" expanded="false" />
+                <element signature="e#13047#13048#0" expanded="false" />
+                <element signature="e#13085#13086#0" expanded="false" />
+                <element signature="e#13123#13124#0" expanded="false" />
+                <element signature="e#13165#13166#0" expanded="false" />
+                <element signature="e#13207#13208#0" expanded="false" />
+                <element signature="e#13250#13251#0" expanded="false" />
+                <element signature="e#13293#13294#0" expanded="false" />
+                <element signature="e#13333#13334#0" expanded="false" />
+                <element signature="e#13373#13374#0" expanded="false" />
+                <element signature="e#13415#13416#0" expanded="false" />
+                <element signature="e#13457#13458#0" expanded="false" />
+                <element signature="e#14099#14100#0" expanded="false" />
+                <element signature="e#14151#14152#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -228,7 +245,20 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
               <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-              <folding />
+              <folding>
+                <element signature="e#980#981#0" expanded="false" />
+                <element signature="e#1005#1006#0" expanded="false" />
+                <element signature="e#1287#1288#0" expanded="false" />
+                <element signature="e#1315#1316#0" expanded="false" />
+                <element signature="e#1595#1596#0" expanded="false" />
+                <element signature="e#1622#1623#0" expanded="false" />
+                <element signature="e#1913#1914#0" expanded="false" />
+                <element signature="e#1945#1946#0" expanded="false" />
+                <element signature="e#2225#2226#0" expanded="false" />
+                <element signature="e#2252#2253#0" expanded="false" />
+                <element signature="e#2543#2544#0" expanded="false" />
+                <element signature="e#2575#2576#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -362,11 +392,6 @@
         <option name="userSettingsFile" value="E:\apache-maven-3.3.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -411,6 +436,116 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="springmvc Maven Webapp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.servlet3" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.mybatis" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.mybatis" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.datasource.c3p0" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.datasource.c3p0" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.datasource.bonecp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring.datasource.bonecp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="servlet3.springmvc" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="servlet3.springmvc" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -506,64 +641,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="springmvc Maven Webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="properties" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -576,7 +653,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../springmvc.mybatis/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RecentsManager">
@@ -1319,7 +1396,7 @@
       <workItem from="1462194970245" duration="15461000" />
       <workItem from="1462326136985" duration="17198000" />
       <workItem from="1462552815022" duration="31000" />
-      <workItem from="1462552870897" duration="116000" />
+      <workItem from="1462552870897" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="wangyong">
       <created>1461577716422</created>
@@ -1405,7 +1482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462512573618</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="wangyong">
+      <created>1462553001618</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1462553001618</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1417,7 +1501,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140538000" />
+    <option name="totallyTimeSpent" value="140722000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1439,9 +1523,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37378114" sideWeight="0.22916667" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.36886993" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13006397" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46908316" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3225108" sideWeight="0.45309168" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3300866" sideWeight="0.6912393" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33044422" sideWeight="0.6912393" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45612136" sideWeight="0.47228146" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.45735607" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1912,12 +1996,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>springmvc</last-edited>
+          <last-edited>spring.mybatis</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
