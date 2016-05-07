@@ -6,6 +6,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
     <file type="web" url="file://$PROJECT_DIR$/../springmvcmybatis Maven Webapp" />
+    <file type="web" url="file://$PROJECT_DIR$/../web.xnly Maven Webapp" />
     <type id="Spring" />
   </component>
   <component name="MavenProjectsManager">
@@ -15,8 +16,11 @@
         <option value="$PROJECT_DIR$/../servlet3.springmvc/pom.xml" />
         <option value="$PROJECT_DIR$/../spring.datasource.bonecp/pom.xml" />
         <option value="$PROJECT_DIR$/../spring.datasource.c3p0/pom.xml" />
-        <option value="$PROJECT_DIR$/../spring.jpa.hibernate/pom.xml" />
         <option value="$PROJECT_DIR$/../spring.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../servlet3.springmvc.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../spring.jpa.hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/../web.xnly Maven Webapp/pom.xml" />
+        <option value="$PROJECT_DIR$/../persistence.mybatis/pom.xml" />
       </list>
     </option>
   </component>
