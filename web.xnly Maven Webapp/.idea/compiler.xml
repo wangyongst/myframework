@@ -22,29 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="servlet3.springmvc" />
-        <module name="servlet3.springmvc.mybatis" />
-        <module name="spring.datasource.bonecp" />
-        <module name="spring.datasource.c3p0" />
-        <module name="spring.jpa.hibernate" />
-        <module name="spring.mybatis" />
-        <module name="springmvc" />
-        <module name="springmvc.mybatis" />
         <module name="web.xnly" />
-        <module name="xnly" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="servlet3.springmvc" target="1.5" />
-      <module name="servlet3.springmvc.mybatis" target="1.8" />
-      <module name="spring.datasource.bonecp" target="1.8" />
-      <module name="spring.datasource.c3p0" target="1.8" />
-      <module name="spring.jpa.hibernate" target="1.8" />
-      <module name="spring.mybatis" target="1.8" />
-      <module name="springmvc" target="1.8" />
-      <module name="springmvc.mybatis" target="1.8" />
+    <bytecodeTargetLevel>
       <module name="web.xnly" target="1.8" />
-      <module name="xnly" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

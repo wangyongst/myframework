@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="xnly:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="xnly.war">
-      <element id="artifact" artifact-name="xnly:war exploded" />
-    </root>
-  </artifact>
-</component>
