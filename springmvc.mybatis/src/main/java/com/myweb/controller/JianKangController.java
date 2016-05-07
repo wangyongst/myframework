@@ -39,8 +39,8 @@ public class JianKangController {
         map.put("tableName", "老人信息表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("laoren", map, session, exclude, null);
-        map = userService.getColumnsNameMap("caiji", map, session, exclude, "formColumns");
+        map = userService.getColumnsNameMap("laoren", map, session, null);
+        map = userService.getColumnsNameMap("caiji", map, session, "formColumns");
         return new ModelAndView("jiankang/caiji", map);
     }
 
@@ -52,7 +52,7 @@ public class JianKangController {
         map.put("tableName", "老人信息表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("laoren", map, session, exclude, null);
+        map = userService.getColumnsNameMap("laoren", map, session, null);
         return new ModelAndView("jiankang/qushi", map);
     }
 
@@ -65,7 +65,7 @@ public class JianKangController {
         map.put("tableName", "健康数据表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("caiji", map, session, exclude, null);
+        map = userService.getColumnsNameMap("caiji", map, session, null);
 
         return new ModelAndView("jiankang/shuju", map);
     }
@@ -78,7 +78,7 @@ public class JianKangController {
         map.put("tableName", "健康数据表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("caiji", map, session, exclude, null);
+        map = userService.getColumnsNameMap("caiji", map, session, null);
         map.put("laorenid", laorenid);
         return new ModelAndView("jiankang/qushishuju", map);
     }

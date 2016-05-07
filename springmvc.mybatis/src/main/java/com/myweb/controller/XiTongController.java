@@ -36,7 +36,7 @@ public class XiTongController {
         map.put("tableName", "用户信息表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("user", map, session, exclude,null);
+        map = userService.getColumnsNameMap("user", map, session, null);
         return new ModelAndView("xitong/user", map);
     }
 
@@ -54,7 +54,7 @@ public class XiTongController {
         map.put("tableName", "老人信息表");
         List<String> exclude = new ArrayList<String>();
         exclude.add("createuser");
-        map = userService.getColumnsNameMap("laoren", map, session, exclude,null);
+        map = userService.getColumnsNameMap("laoren", map, session, null);
         return new ModelAndView("xitong/laoren", map);
     }
 

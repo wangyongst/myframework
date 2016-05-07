@@ -78,19 +78,19 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
-    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,List<String> exclude,String formColumns) {
-        TableinfoExample example = new TableinfoExample();
-        TableinfoExample.Criteria criteria = example.createCriteria();
-        criteria.andTablenameEqualTo(tableName);
-        example.setOrderByClause("shunxu");
-        for(String ex: exclude){
-            criteria.andColumnnameNotEqualTo(ex);
-        }
-        List<Tableinfo> list = tableinfoMapper.selectByExample(example);
+    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,String formColumns) {
         if(StringUtils.isBlank(formColumns)) {
-            map.put("tableColumns", list);
-        }else{
-            map.put(formColumns,list);
+            TableinfoExample tableExample = new TableinfoExample();
+            tableExample.createCriteria().andTablenameEqualTo(tableName).andTabletypeNotEqualTo("none");
+            tableExample.or(tableExample.createCriteria().andTablenameEqualTo(tableName).andTabletypeIsNull());
+            tableExample.setOrderByClause("shunxu");
+            map.put("tableColumns", tableinfoMapper.selectByExample(tableExample));
+        }else if(StringUtils.isNotBlank(formColumns)){
+            TableinfoExample tableExample = new TableinfoExample();
+            tableExample.createCriteria().andTablenameEqualTo(tableName).andInputtypeNotEqualTo("none");
+            tableExample.or(tableExample.createCriteria().andTablenameEqualTo(tableName).andTabletypeIsNull());
+            tableExample.setOrderByClause("shunxu");
+            map.put(formColumns, tableinfoMapper.selectByExample(tableExample));
         }
         return map;
     }

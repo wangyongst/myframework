@@ -61,7 +61,7 @@
                             data: $('#userForm').serialize() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
-                                $("#alertB div div").attr("class","alert bg-danger");
+                                $("#alertB div div").attr("class", "alert bg-danger");
                                 $("#alertB").show();
                                 $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
                             },
@@ -312,18 +312,16 @@
                                                 <c:if test="${item.columnname == 'id'}">
                                                     <label for="${item.columnname}"
                                                            class="control-label" id="idLabel">${item.chinese}</label>
-                                                    <input type="${item.type}" class="form-control"
+                                                    <input type="${item.inputtype}" class="form-control"
                                                            id="${item.columnname}"
                                                            disabled="disabled" name="${item.columnname}">
                                                 </c:if>
                                                 <c:if test="${item.columnname != 'id'}">
-                                                    <c:if test="${item.columnname != 'createusername' && item.columnname != 'createtime'}">
-                                                        <label for="${item.columnname}"
-                                                               class="control-label">${item.chinese}</label>
-                                                        <input type="${item.type}" class="form-control"
-                                                               id="${item.columnname}"
-                                                               name="${item.columnname}">
-                                                    </c:if>
+                                                    <label for="${item.columnname}"
+                                                           class="control-label">${item.chinese}</label>
+                                                    <input type="${item.inputtype}" class="form-control"
+                                                           id="${item.columnname}"
+                                                           name="${item.columnna me}">
                                                 </c:if>
                                             </c:forEach>
                                         </div>
