@@ -176,7 +176,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="user/home.do"><span>sss</span>sss</a>
+            <a class="navbar-brand" href="user/home.do"><span>XININGLEYUAN.COM</span>西宁乐缘综合养老管理平台</a>
             <ul class="user-menu">
                 <li class="dropdown pull-right">
                     <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span

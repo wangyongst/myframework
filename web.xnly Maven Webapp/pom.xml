@@ -11,24 +11,6 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.framework</groupId>
-            <artifactId>boot.servlet3.springmvc.mybatis</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
-        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -40,6 +22,12 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.2.1-b03</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.myweb</groupId>
+            <artifactId>java.mybatis.xnly</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
