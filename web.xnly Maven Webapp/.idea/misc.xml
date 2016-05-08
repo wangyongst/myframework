@@ -49,14 +49,18 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/../persistence.mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/../boot.servlet3.springmvc.mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/../pom.xml" />
         <option value="$PROJECT_DIR$/../service.xnly/pom.xml" />
-        <option value="$PROJECT_DIR$/../datasource.bonecp/pom.xml" />
         <option value="$PROJECT_DIR$/../service.mybatis.xnly/pom.xml" />
-        <option value="$PROJECT_DIR$/../boot.servlet3.mybatis/pom.xml" />
         <option value="$PROJECT_DIR$/../persistence.jpa.hibernate/pom.xml" />
+        <option value="$PROJECT_DIR$/../java.mybatis.xnly/pom.xml" />
+        <option value="$PROJECT_DIR$/../persistence.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../boot.servlet3.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../boot.servlet3/pom.xml" />
+        <option value="$PROJECT_DIR$/../datasource.bonecp/pom.xml" />
+        <option value="$PROJECT_DIR$/../datasource.c3p0/pom.xml" />
+        <option value="$PROJECT_DIR$/../java.jpa.xnly/pom.xml" />
       </list>
     </option>
   </component>

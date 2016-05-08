@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.framework</groupId>
     <artifactId>web.xnly</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>web.xnly Maven Webapp</name>
@@ -25,7 +25,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.myweb</groupId>
+            <groupId>com.framework</groupId>
             <artifactId>java.mybatis.xnly</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

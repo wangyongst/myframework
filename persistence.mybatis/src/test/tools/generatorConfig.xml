@@ -9,7 +9,7 @@
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/web" userId="root"
 			password="root" />
-		<javaModelGenerator targetPackage="com.myweb.vo.mybatis"
+		<javaModelGenerator targetPackage="com.myweb.pojo.mybatis"
 			targetProject="../../main/java" />
 		<sqlMapGenerator targetPackage="com.myweb.dao.mybatis.xml"
 			targetProject="../../main/resources" />

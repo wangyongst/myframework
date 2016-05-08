@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.framework</groupId>
-    <artifactId>boot.servlet3.mybatis</artifactId>
+    <artifactId>boot.servlet3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>boot.servlet3.springmvc.mybatis</name>
+    <name>boot.servlet3</name>
     <url>http://maven.apache.org</url>
 
     <properties>
