@@ -79,7 +79,7 @@ public class JianKangController {
     public List<Caiji> allCaijis(HttpSession session, String laorenid) {
         Caiji caiji = new Caiji();
         if (StringUtils.isNotBlank(laorenid)) {
-            caiji.setId(Integer.parseInt(laorenid));
+            caiji.setLaorenid(Integer.parseInt(laorenid));
         }
         return jianKangService.getAllCaijis(session, caiji);
     }
@@ -92,7 +92,8 @@ public class JianKangController {
 
     @ResponseBody
     @RequestMapping(value = "/caiji/edit", method = RequestMethod.POST)
-    public Result caijiEdit(HttpSession session, String ids, @ModelAttribute Caiji caiji) {
+    public Result caijiEdit(HttpSession session, String ids, String laorennameR,@ModelAttribute Caiji caiji) {
+        caiji.setLaorenname(laorennameR);
         return jianKangService.editCaiji(session, caiji);
     }
 

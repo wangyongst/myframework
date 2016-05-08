@@ -58,7 +58,7 @@
                             type: "POST",
                             cache: "false",
                             url: "jiankang/caiji/edit.do",
-                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorenname=" + $('#laorenname').val() + "&id=" + $('#id').val(),
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -72,7 +72,7 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                     $("button[name='refresh']").click();
-                                    //debugger;
+//debugger;
                                 } else {
                                     $("#alertB").show();
                                     $("#messageB").text(result.message);
@@ -95,8 +95,14 @@
             function showModal(caiji, type) {
                 $('#idInput').hide();
                 $('#idLabel').hide();
+                $('#laorenidInput').attr("readonly", "readonly");
+                $('#laorennameInput').attr("readonly", "readonly");
                 $('#myModal').find('.modal-title').text('管理老人健康数据');
-                <c:forEach var="item" items="${tableColumns}">
+                <c:forEach var="item" items="${formColumns}">
+                <c:if test="${item.modaldisable == 'disable'}">
+                $("#${item.columnname}Label").hide();
+                $("#${item.columnname}Input").hide();
+                </c:if>
                 if (caiji != null) {
                     $("#${item.columnname}Input").val(caiji.${item.columnname});
                 } else {
@@ -273,10 +279,7 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <c:if test="${item.columnname == 'id'}">
-                                    <th data-field="id" data-sortable="true">ID</th>
-                                </c:if>
-                                <c:if test="${item.columnname != 'id'}">
+                                <c:if test="${item.tabledisable != 'disable'}">
                                     <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                                 </c:if>
                             </c:forEach>
@@ -298,13 +301,11 @@
                                     <form id="form">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${tableColumns}">
-
                                                 <label for="${item.columnname}"
                                                        class="control-label"
                                                        id="${item.columnname}Label">${item.chinese}</label>
                                                 <input type="${item.type}" class="form-control"
-                                                       id="${item.columnname}Input"
-                                                       name="${item.columnname}">
+                                                       id="${item.columnname}Input" name="${item.columnname}">
 
                                             </c:forEach>
                                         </div>

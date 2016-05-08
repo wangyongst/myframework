@@ -116,8 +116,16 @@
                 return ids;
             }
 
+            function isSelect() {
+                if(select() == ""){
+                    $("#alertA").show();
+                    $("#messageA").text("请选择两条以上记录，以形成健康趋势图！");
+                }
+            }
+
             $("#xueya").click(
                     function () {
+                        isSelect();
                         var time = new Array();
                         var gaoya = new Array();
                         var diya = new Array();
@@ -135,6 +143,7 @@
 
             $("#xueyang").click(
                     function () {
+                        isSelect();
                         var time = new Array();
                         var xueyang = new Array();
                         $("input[name=toolbar1]").each(function () {
@@ -150,6 +159,7 @@
 
             $("#tizhaong").click(
                     function () {
+                        isSelect();
                         var time = new Array();
                         var tizhaong = new Array();
                         $("input[name=toolbar1]").each(function () {
@@ -165,9 +175,9 @@
 
             $("#xuetang").click(
                     function () {
+                        isSelect();
                         var time = new Array();
-                        var gaoya = new Array();
-                        var diya = new Array();
+                        var xuetang = new Array();
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
@@ -181,6 +191,7 @@
 
             $("#maibo").click(
                     function () {
+                        isSelect();
                         var time = new Array();
                         var maibo = new Array();
                         $("input[name=toolbar1]").each(function () {
@@ -314,7 +325,9 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                <c:if test="${item.tabledisable != 'disable'}">
+                                    <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                </c:if>
                             </c:forEach>
                         </tr>
                         </thead>

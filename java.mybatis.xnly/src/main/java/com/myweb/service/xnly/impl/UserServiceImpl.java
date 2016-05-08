@@ -51,6 +51,12 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public Result logout(HttpSession session) {
+        session.removeAttribute("user");
+        return null;
+    }
+
     public Map<String, Object> getMyMenus(HttpSession session) {
         Map map = new HashMap<String, String>();
         MenuExample parent = new MenuExample();

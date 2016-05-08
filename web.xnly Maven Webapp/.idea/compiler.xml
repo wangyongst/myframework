@@ -33,6 +33,7 @@
         <module name="persistence.mybatis" />
         <module name="service.mybatis.xnly" />
         <module name="service.xnly" />
+        <module name="web.xnly" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

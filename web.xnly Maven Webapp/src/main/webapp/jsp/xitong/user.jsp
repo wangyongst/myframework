@@ -93,16 +93,21 @@
             }
 
             function showModal(user, type) {
+                $('#idInput').hide();
+                $('#idLabel').hide();
                 if (type == 1) {
-                    $('#idInput').show();
                     $('#idLabel').show();
+                    $('#idInput').show();
+                    $('#idInput').attr("readonly", "readonly");
                     $('#myModal').find('.modal-title').text('修改用户信息');
                 } else {
-                    $('#idInput').hide();
-                    $('#idLabel').hide();
                     $('#myModal').find('.modal-title').text('注册用户信息');
                 }
                 <c:forEach var="item" items="${tableColumns}">
+                <c:if test="${item.modaldisable == 'disable'}">
+                $("#${item.columnname}Label").hide();
+                $("#${item.columnname}Input").hide();
+                </c:if>
                 if (user != null) {
                     $("#${item.columnname}Input").val(user.${item.columnname});
                 } else {
@@ -284,7 +289,9 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                <c:if test="${item.tabledisable != 'disable'}">
+                                    <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                </c:if>
                             </c:forEach>
                         </tr>
                         </thead>
@@ -304,22 +311,11 @@
                                     <form id="userForm">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${formColumns}">
-                                                <c:if test="${item.type == 'disabled'}">
-                                                    <label for="${item.columnname}Input"
-                                                           class="control-label"
-                                                           id="${item.columnname}Label">${item.chinese}</label>
-                                                    <input type="${item.type}" class="form-control"
-                                                           id="${item.columnname}Input"
-                                                           disabled="disabled" name="${item.columnname}">
-                                                </c:if>
-                                                <c:if test="${item.type != 'disabled'}">
-                                                    <label for="${item.columnname}"
-                                                           class="control-label"
-                                                           id="${item.columnname}Label">${item.chinese}</label>
-                                                    <input type="${item.type}" class="form-control"
-                                                           id="${item.columnname}Input"
-                                                           name="${item.columnname}">
-                                                </c:if>
+                                                <label for="${item.columnname}"
+                                                       class="control-label"
+                                                       id="${item.columnname}Label">${item.chinese}</label>
+                                                <input type="${item.type}" class="form-control"
+                                                       id="${item.columnname}Input" name="${item.columnname}">
                                             </c:forEach>
                                         </div>
                                     </form>

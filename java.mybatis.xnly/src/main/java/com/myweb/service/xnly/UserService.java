@@ -10,6 +10,8 @@ public interface UserService {
 	
 	public Result login(String username, String password, HttpSession session);
 
+	public Result logout(HttpSession session);
+
 	public Map<String,Object> getMyMenus(HttpSession session);
 
 	public Map<String,Object> getUserMap(Map<String,Object> map,HttpSession session);

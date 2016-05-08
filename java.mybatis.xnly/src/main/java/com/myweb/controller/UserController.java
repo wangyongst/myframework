@@ -27,6 +27,12 @@ public class UserController {
         return userService.login(username, password, session);
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpSession session) {
+        userService.logout(session);
+        return new ModelAndView("login");
+    }
+
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {

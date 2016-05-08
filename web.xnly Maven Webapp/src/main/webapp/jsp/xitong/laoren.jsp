@@ -58,10 +58,10 @@
                             type: "POST",
                             cache: "false",
                             url: "xitong/laoren/edit.do",
-                            data: $('#laorenForm').serialize() + "&id=" + $('#id').val(),
+                            data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
-                                $("#alertB div div").attr("class","alert bg-danger");
+                                $("#alertB div div").attr("class", "alert bg-danger");
                                 $("#alertB").show();
                                 $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
                             },
@@ -93,16 +93,22 @@
             }
 
             function showModal(laoren, type) {
+                $('#idLabel').hide();
+                $('#idInput').hide();
                 if (type == 1) {
-                    $('#idInput').show();
                     $('#idLabel').show();
+                    $('#idInput').show();
+                    $('#idInput').attr("readonly", "readonly");
                     $('#myModal').find('.modal-title').text('修改信息');
                 } else {
-                    $('#id').hide();
-                    $('#idLabel').hide();
+
                     $('#myModal').find('.modal-title').text('注册用户信息');
                 }
-                <c:forEach var="item" items="${tableColumns}">
+                <c:forEach var="item" items="${formColumns}">
+                <c:if test="${item.modaldisable == 'disable'}">
+                $("#${item.columnname}Label").hide();
+                $("#${item.columnname}Input").hide();
+                </c:if>
                 if (laoren != null) {
                     $("#${item.columnname}Input").val(laoren.${item.columnname});
                 } else {
@@ -284,7 +290,9 @@
                         <tr>
                             <th data-field="state" data-checkbox="true"></th>
                             <c:forEach var="item" items="${tableColumns}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                <c:if test="${item.tabledisable != 'disable'}">
+                                    <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                                </c:if>
                             </c:forEach>
                         </tr>
                         </thead>
@@ -301,25 +309,14 @@
                                     <h4 class="modal-title" id="myModalLabel"></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="userForm">
+                                    <form id="laorenForm">
                                         <div class="form-group">
                                             <c:forEach var="item" items="${formColumns}">
-                                                <c:if test="${item.type == 'disabled'}">
-                                                    <label for="${item.columnname}Input"
-                                                           class="control-label"
-                                                           id="${item.columnname}Label">${item.chinese}</label>
-                                                    <input type="${item.type}" class="form-control"
-                                                           id="${item.columnname}Input"
-                                                           disabled="disabled" name="${item.columnname}">
-                                                </c:if>
-                                                <c:if test="${item.type != 'disabled'}">
-                                                    <label for="${item.columnname}"
-                                                           class="control-label"
-                                                           id="${item.columnname}Label">${item.chinese}</label>
-                                                    <input type="${item.type}" class="form-control"
-                                                           id="${item.columnname}Input"
-                                                           name="${item.columnname}">
-                                                </c:if>
+                                                <label for="${item.columnname}"
+                                                       class="control-label"
+                                                       id="${item.columnname}Label">${item.chinese}</label>
+                                                <input type="${item.type}" class="form-control"
+                                                       id="${item.columnname}Input" name="${item.columnname}"/>
                                             </c:forEach>
                                         </div>
                                     </form>
