@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.myweb.pojo.Laoren" table="laoren" schema="web">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="age">
+            <column name="age" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="nation">
+            <column name="nation" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="birthday">
+            <column name="birthday" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="idnumber">
+            <column name="idnumber" sql-type="varchar(18)" length="18" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="phone" sql-type="varchar(11)" length="11" not-null="true"/>
+        </property>
+        <property name="mobile">
+            <column name="mobile" sql-type="varchar(11)" length="11" not-null="true"/>
+        </property>
+        <property name="createuser">
+            <column name="createuser" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="createtime">
+            <column name="createtime" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="createusername">
+            <column name="createusername" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

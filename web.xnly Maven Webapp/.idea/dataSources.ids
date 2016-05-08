@@ -14,7 +14,7 @@
       <table id="5" parent="1" name="shuxing"/>
       <table id="6" parent="1" name="tableinfo"/>
       <table id="7" parent="1" name="user"/>
-      <table id="8" parent="1" name="user2menu"/>
+      <table id="8" parent="1" name="usertomenu"/>
       <column id="9" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
@@ -205,25 +205,55 @@
       <column id="65" parent="7" name="shuxingrolename">
         <data-type>varchar(255)</data-type>
       </column>
-      <key id="66" parent="7" name="PRIMARY">
+      <index id="66" parent="7" name="shuxingroleid">
+        <columns>shuxingroleid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="67" parent="7" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="67" parent="8" name="id">
+      <foreign-key id="68" parent="7" name="user_ibfk_1">
+        <columns>shuxingroleid</columns>
+        <ref-key>~.shuxing.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="69" parent="8" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
-      <column id="68" parent="8" name="shuxingid">
+      <column id="70" parent="8" name="shuxingid">
         <data-type>int(11)</data-type>
       </column>
-      <column id="69" parent="8" name="menuid">
+      <column id="71" parent="8" name="menuid">
         <data-type>int(11)</data-type>
       </column>
-      <key id="70" parent="8" name="PRIMARY">
+      <index id="72" parent="8" name="menuid">
+        <columns>menuid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="73" parent="8" name="shuxingid">
+        <columns>shuxingid</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="74" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
+      <foreign-key id="75" parent="8" name="usertomenu_ibfk_2">
+        <columns>menuid</columns>
+        <ref-key>~.menu.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="76" parent="8" name="usertomenu_ibfk_3">
+        <columns>shuxingid</columns>
+        <ref-key>~.shuxing.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
     </database-model>
   </data-source>
 </component>

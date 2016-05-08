@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.myweb.pojo.Caiji" table="caiji" schema="web">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="laorenid">
+            <column name="laorenid" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="laorenname">
+            <column name="laorenname" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="gaoya">
+            <column name="gaoya" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="diya">
+            <column name="diya" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="xuetang">
+            <column name="xuetang" sql-type="decimal(10,2)" precision="10" scale="2" not-null="true"/>
+        </property>
+        <property name="maibo">
+            <column name="maibo" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="xueyang">
+            <column name="xueyang" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="tizhong">
+            <column name="tizhong" sql-type="decimal(10,2)" precision="10" scale="2" not-null="true"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="createuser">
+            <column name="createuser" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="createusername">
+            <column name="createusername" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="createtime">
+            <column name="createtime" sql-type="varchar(255)" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

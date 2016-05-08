@@ -34,7 +34,7 @@
 
         <dependency>
             <groupId>com.framework</groupId>
-            <artifactId>boot.servlet3.mybatis</artifactId>
+            <artifactId>boot.servlet3</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
