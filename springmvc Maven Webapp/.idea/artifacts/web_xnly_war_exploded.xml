@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="web.xnly:war exploded">
+    <output-path>$PROJECT_DIR$/../../web.xnly Maven Webapp/target/web</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="web.xnly" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2.1-b03" />
+          <element id="library" level="project" name="Maven: com.framework:java.mybatis.xnly:0.0.1-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.framework:boot.servlet3:0.0.1-SNAPSHOT" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../web.xnly Maven Webapp/target/web/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="web.xnly/web/Web" />
+    </root>
+  </artifact>
+</component>
