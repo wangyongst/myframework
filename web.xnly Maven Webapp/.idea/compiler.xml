@@ -22,35 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="boot.servlet3" />
-        <module name="boot.servlet3.springmvc.mybatis" />
-        <module name="datasource.bonecp" />
-        <module name="datasource.c3p0" />
-        <module name="java.jpa.hibernate.xnly" />
-        <module name="java.jpa.xnly" />
-        <module name="java.mybatis.xnly" />
-        <module name="persistence.jpa.hibernate" />
-        <module name="persistence.mybatis" />
-        <module name="service.mybatis.xnly" />
-        <module name="service.xnly" />
         <module name="web.xnly" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="boot.servlet3" target="1.8" />
-      <module name="boot.servlet3.mybatis" target="1.8" />
-      <module name="boot.servlet3.springmvc.mybatis" target="1.8" />
-      <module name="datasource.bonecp" target="1.8" />
-      <module name="datasource.c3p0" target="1.8" />
-      <module name="java.jpa.hibernate.xnly" target="1.8" />
-      <module name="java.jpa.xnly" target="1.8" />
-      <module name="java.mybatis.xnly" target="1.8" />
-      <module name="persistence.jpa.hibernate" target="1.8" />
-      <module name="persistence.mybatis" target="1.8" />
-      <module name="service.mybatis.xnly" target="1.8" />
-      <module name="service.xnly" target="1.8" />
       <module name="web.xnly" target="1.8" />
-      <module name="xnly.service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
