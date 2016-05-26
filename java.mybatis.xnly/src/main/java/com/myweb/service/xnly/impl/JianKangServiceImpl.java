@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Service("jianKangService")
-@Transactional
+
 public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
