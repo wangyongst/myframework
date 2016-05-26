@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../boot.servlet3/boot.servlet3.iml" filepath="$PROJECT_DIR$/../boot.servlet3/boot.servlet3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../datasource.bonecp/datasource.bonecp.iml" filepath="$PROJECT_DIR$/../datasource.bonecp/datasource.bonecp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../java.mybatis.xnly/java.mybatis.xnly.iml" filepath="$PROJECT_DIR$/../java.mybatis.xnly/java.mybatis.xnly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../persistence.mybatis/persistence.mybatis.iml" filepath="$PROJECT_DIR$/../persistence.mybatis/persistence.mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/web.xnly.iml" filepath="$PROJECT_DIR$/web.xnly.iml" />
     </modules>
   </component>

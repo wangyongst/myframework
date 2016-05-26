@@ -7,6 +7,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../datasource.bonecp/pom.xml" />
+        <option value="$PROJECT_DIR$/../boot.servlet3/pom.xml" />
+        <option value="$PROJECT_DIR$/../persistence.mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/../java.mybatis.xnly/pom.xml" />
       </list>
     </option>
   </component>
