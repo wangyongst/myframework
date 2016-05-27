@@ -23,7 +23,6 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = { "com.framework", "com.myweb" })
 @EnableWebMvc
-@EnableTransactionManagement
 @Order(4)
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
