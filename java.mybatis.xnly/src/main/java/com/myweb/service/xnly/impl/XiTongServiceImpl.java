@@ -11,13 +11,15 @@ import com.myweb.pojo.mybatis.UserExample;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service("xiTongService")
-@Transactional
+@Transactional(value = "myTM",readOnly=true)
 public class XiTongServiceImpl implements XiTongService {
 
     @Autowired
@@ -71,6 +73,7 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result editLaoren(HttpSession session, Laoren laoren) {
         Result result = new Result();
         int count = 0;
@@ -93,6 +96,7 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result editUser(HttpSession session, User user) {
         Result result = new Result();
         int count = 0;
@@ -128,6 +132,7 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result deleteLaoren(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -147,7 +152,7 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result deleteUser(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {

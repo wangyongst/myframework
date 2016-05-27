@@ -4,10 +4,12 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Service;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -22,10 +24,10 @@ import java.util.List;
 @ComponentScan(basePackages = { "com.framework", "com.myweb" })
 @EnableWebMvc
 @Order(4)
-public class SpringMvcConfig extends WebMvcConfigurerAdapter {
+public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	private static final Logger logger = Logger
-			.getLogger(SpringMvcConfig.class);
+			.getLogger(SpringConfig.class);
 	@Bean
 	public ViewResolver viewResolver() {
 		logger.info("ViewResolver create!");

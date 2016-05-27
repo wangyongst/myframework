@@ -30,7 +30,7 @@ public class WebInitializer implements WebApplicationInitializer {
                 EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "*.do", "*.jsp");
 
         AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
-        webContext.register(SpringMvcConfig.class);
+        webContext.register(SpringConfig.class);
         Dynamic dynamic = servletContext.addServlet("dispatcher",
                 new DispatcherServlet(webContext));
         dynamic.addMapping("*.do");

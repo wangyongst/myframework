@@ -14,13 +14,15 @@ import com.myweb.pojo.mybatis.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Service("jianKangService")
-@Transactional
+@Transactional(value = "myTM",readOnly=true)
 public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
@@ -61,6 +63,7 @@ public class JianKangServiceImpl implements JianKangService {
     }
 
     @Override
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result editCaiji(HttpSession session, Caiji caiji) {
         Result result = new Result();
         int count = 0;
@@ -94,6 +97,7 @@ public class JianKangServiceImpl implements JianKangService {
     }
 
     @Override
+    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result deleteCaiji(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {

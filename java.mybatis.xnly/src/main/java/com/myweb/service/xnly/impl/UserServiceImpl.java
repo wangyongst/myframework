@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("userService")
-@Transactional
+@Transactional(value = "myTM",readOnly=true)
 public class UserServiceImpl implements UserService {
 
     @Autowired
