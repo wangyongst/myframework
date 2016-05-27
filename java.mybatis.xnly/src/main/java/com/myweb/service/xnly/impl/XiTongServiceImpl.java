@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service("xiTongService")
-
+@Transactional
 public class XiTongServiceImpl implements XiTongService {
 
     @Autowired
