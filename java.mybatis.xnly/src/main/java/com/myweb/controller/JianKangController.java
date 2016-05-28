@@ -92,8 +92,7 @@ public class JianKangController {
 
     @ResponseBody
     @RequestMapping(value = "/caiji/edit", method = RequestMethod.POST)
-    public Result caijiEdit(HttpSession session, String ids, String laorennameR,@ModelAttribute Caiji caiji) {
-        caiji.setLaorenname(laorennameR);
+    public Result caijiEdit(HttpSession session,@ModelAttribute Caiji caiji) {
         return jianKangService.editCaiji(session, caiji);
     }
 
