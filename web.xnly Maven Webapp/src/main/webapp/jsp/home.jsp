@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <!DOCTYPE html>
 <html>
@@ -32,20 +30,22 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#sidebar-collapse">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="user/home.do"><span>XININGLEYUAN.COM</span>西宁乐缘综合养老管理平台</a>
+            <a class="navbar-brand" href="user/home.do"><span>XININGLEYUAN.COM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>西宁乐缘综合养老管理平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后台管理中心</a>
             <ul class="user-menu">
                 <li class="dropdown pull-right">
-                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
+                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a></li>
-                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a></li>
-                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a></li>
+                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a>
+                        </li>
+                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a>
+                        </li>
+                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -65,10 +65,8 @@
             <c:forEach var="item" items="${parent}">
                 <c:if test="${item.parent == 0}">
                     <a data-toggle="collapse" href="#sub-item-${item.id}">
-                        <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
-                                                                                         href="#sub-item-${item.id}"
-                                                                                         class="icon pull-right"><em
-                            class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                        <span class="glyphicon glyphicon-list"></span> ${item.name}
+                        <span data-toggle="collapse" href="#sub-item-${item.id}" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
                     </a>
                     <ul class="children collapse" id="sub-item-${item.id}">
                         <c:forEach var="it" items="${children}">
@@ -89,7 +87,7 @@
 </div><!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <iframe src="http://localhost:8080/web/jsp/home2.jsp" width="100%" frameborder="0" scrolling="no" id="test" onload="this.height=100"></iframe>
+    <iframe src="jiankang/caiji.do" width="100%" frameborder="0" scrolling="no" id="right" onload="this.height=100"></iframe>
 </div>    <!--/.main-->
 
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -100,25 +98,22 @@
 <script src="js/easypiechart-data.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
 <script>
-    $('#calendar').datepicker({});
 
-
-
-    function reinitIframe(){
-        var iframe = document.getElementById("test");
-        try{
+    function reinitIframe() {
+        var iframe = document.getElementById("right");
+        try {
             var bHeight = iframe.contentWindow.document.body.scrollHeight;
             var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
             var height = Math.max(bHeight, dHeight);
             iframe.height = height;
             console.log(height);
-        }catch (ex){}
+        } catch (ex) {
+        }
     }
 
     window.setInterval("reinitIframe()", 200);
 
     !function ($) {
-
 
         $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
             $(this).find('em:first').toggleClass("glyphicon-minus");
