@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,18 +33,18 @@ public class JianKangController {
     @RequestMapping(value = "/caiji", method = RequestMethod.GET)
     public ModelAndView caiji(HttpSession session) {
         User user = (User) session.getAttribute("user");
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "健康数据采集");
         map = userService.getUserMap(map, session);
         map.put("tableName", "老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
-        map = userService.getColumnsNameMap("caiji", map, session,"formColumns");
+        map = userService.getColumnsNameMap("caiji", map, session, "formColumns");
         return new ModelAndView("jiankang/caiji", map);
     }
 
     @RequestMapping(value = "/qushi", method = RequestMethod.GET)
     public ModelAndView qushi(HttpSession session) {
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "健康趋势");
         map = userService.getUserMap(map, session);
         map.put("tableName", "老人信息表");
@@ -54,7 +55,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/shuju", method = RequestMethod.GET)
     public ModelAndView shuju(HttpSession session) {
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "健康数据管理");
         map = userService.getUserMap(map, session);
         map.put("tableName", "健康数据表");
@@ -65,7 +66,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/qushi/shuju", method = RequestMethod.GET)
     public ModelAndView qushiShuju(HttpSession session, String laorenid) {
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "健康数据趋势");
         map = userService.getUserMap(map, session);
         map.put("tableName", "健康数据表");
@@ -92,7 +93,7 @@ public class JianKangController {
 
     @ResponseBody
     @RequestMapping(value = "/caiji/edit", method = RequestMethod.POST)
-    public Result caijiEdit(HttpSession session,@ModelAttribute Caiji caiji) {
+    public Result caijiEdit(HttpSession session, @ModelAttribute Caiji caiji) {
         return jianKangService.editCaiji(session, caiji);
     }
 

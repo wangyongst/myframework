@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView user(HttpSession session) {
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "用户管理");
         map = userService.getUserMap(map, session);
         map.put("tableName", "用户信息表");
@@ -46,7 +47,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/laoren", method = RequestMethod.GET)
     public ModelAndView laoren(HttpSession session) {
-        Map map = userService.getMyMenus(session);
+        Map map = new HashMap<String, String>();
         map.put("title", "老人管理");
         map = userService.getUserMap(map, session);
         map.put("tableName", "老人信息表");

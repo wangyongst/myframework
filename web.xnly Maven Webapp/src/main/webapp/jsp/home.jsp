@@ -38,7 +38,8 @@
             <a class="navbar-brand" href="user/home.do"><span>XININGLEYUAN.COM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>西宁乐缘综合养老管理平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后台管理中心</a>
             <ul class="user-menu">
                 <li class="dropdown pull-right">
-                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
+                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
+                            class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a>
                         </li>
@@ -65,14 +66,16 @@
             <c:forEach var="item" items="${parent}">
                 <c:if test="${item.parent == 0}">
                     <a data-toggle="collapse" href="#sub-item-${item.id}">
-                        <span class="glyphicon glyphicon-list"></span> ${item.name}
-                        <span data-toggle="collapse" href="#sub-item-${item.id}" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                        <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
+                                                                                         href="#sub-item-${item.id}"
+                                                                                         class="icon pull-right"><em
+                            class="glyphicon glyphicon-s glyphicon-plus"></em></span>
                     </a>
                     <ul class="children collapse" id="sub-item-${item.id}">
                         <c:forEach var="it" items="${children}">
                             <c:if test="${it.parent == item.id}">
                                 <li>
-                                    <a class="" href="${it.url}">
+                                    <a class="" href="javascript:void(0);" onclick="getRight('${it.url}');">
                                         <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
                                     </a>
                                 </li>
@@ -86,9 +89,9 @@
     </ul>
 </div><!--/.sidebar-->
 
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-    <iframe src="jiankang/caiji.do" width="100%" frameborder="0" scrolling="no" id="right" onload="this.height=100"></iframe>
-</div>    <!--/.main-->
+<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="./jsp/default_home.jsp" width="100%"
+        frameborder="0" scrolling="no" id="right" onload="this.height=100"></iframe>
+<!--/.main-->
 
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -110,12 +113,17 @@
         } catch (ex) {
         }
     }
+    ;
 
     window.setInterval("reinitIframe()", 200);
 
-    !function ($) {
+    function getRight(url) {
+        var iframe = document.getElementById("right").src = url;
+    }
+    ;
 
-        $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+    !function ($) {
+        $(document).on("click", "ul.nav li.parent > a", function () {
             $(this).find('em:first').toggleClass("glyphicon-minus");
         });
         $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
