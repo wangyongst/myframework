@@ -35,7 +35,7 @@ public class JianKangServiceImpl implements JianKangService {
     private CaijiMapper caijiMapper;
 
 
-    @Override
+
     public Result getCaiji(HttpSession session, String ids, String idType) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -62,7 +62,7 @@ public class JianKangServiceImpl implements JianKangService {
         return result;
     }
 
-    @Override
+
     @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result editCaiji(HttpSession session, Caiji caiji) {
         Result result = new Result();
@@ -86,7 +86,7 @@ public class JianKangServiceImpl implements JianKangService {
         return result;
     }
 
-    @Override
+
     public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji) {
         CaijiExample example = new CaijiExample();
         CaijiExample.Criteria criteria = example.createCriteria();
@@ -96,7 +96,7 @@ public class JianKangServiceImpl implements JianKangService {
         return caijiMapper.selectByExample(example);
     }
 
-    @Override
+
     @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
     public Result deleteCaiji(HttpSession session, String ids) {
         Result result = new Result();

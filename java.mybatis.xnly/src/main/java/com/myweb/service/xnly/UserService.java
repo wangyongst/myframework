@@ -3,7 +3,6 @@ package com.myweb.service.xnly;
 import com.myweb.vo.Result;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {

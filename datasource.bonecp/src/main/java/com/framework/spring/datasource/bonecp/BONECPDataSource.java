@@ -1,8 +1,8 @@
 package com.framework.spring.datasource.bonecp;
 
-import java.beans.PropertyVetoException;
-
-import org.apache.log4j.Logger;
+import com.jolbox.bonecp.BoneCPDataSource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,14 +10,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.annotation.Order;
 
-import com.jolbox.bonecp.BoneCPDataSource;
+import java.beans.PropertyVetoException;
 
 @Configuration
 @PropertySource({ "classpath:/properties/bonecp.properties" })
 @Order(2)
 public class BONECPDataSource {
-	private static final Logger logger = Logger
-			.getLogger(BONECPDataSource.class);
+	private static final Logger logger = LogManager.getLogger(BONECPDataSource.class);
 
 	@Value("${datasource.driverClass}")
 	private String driverClass;

@@ -2,8 +2,8 @@ package com.framework.boot.servlet3.mybatis;
 
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class LoginFilter implements Filter {
 
-    private static final Logger logger = Logger.getLogger(LoginFilter.class);
+    private static final Logger logger = LogManager.getLogger(LoginFilter.class);
 
     private FilterConfig filterConfig;
 

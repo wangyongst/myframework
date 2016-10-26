@@ -1,21 +1,22 @@
 package com.framework.persistence.mybatis;
 
-import java.io.InputStream;
-import java.util.Properties;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
 
+import java.io.InputStream;
+import java.util.Properties;
+
 @Configuration
 @PropertySource({ "classpath:/properties/mybatis.properties" })
 @Order(3)
 public class MapperScanner {
 
-	private static final Logger logger = Logger.getLogger(MapperScanner.class);
+	private static final Logger logger = LogManager.getLogger(MapperScanner.class);
 
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer() throws Exception {

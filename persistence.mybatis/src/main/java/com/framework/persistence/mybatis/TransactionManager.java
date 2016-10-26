@@ -1,8 +1,7 @@
 package com.framework.persistence.mybatis;
 
-import javax.sql.DataSource;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -11,12 +10,14 @@ import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableTransactionManagement
 @Order(3)
 public class TransactionManager {
 
-	private static final Logger logger = Logger.getLogger(TransactionManager.class);
+	private static final Logger logger = LogManager.getLogger(TransactionManager.class);
 	
 	@Autowired
 	@Qualifier("myDS")

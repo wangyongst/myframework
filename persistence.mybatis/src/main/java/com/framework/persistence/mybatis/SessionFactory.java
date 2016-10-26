@@ -1,8 +1,7 @@
 package com.framework.persistence.mybatis;
 
-import javax.sql.DataSource;
-
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,12 +14,14 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import javax.sql.DataSource;
+
 @Configuration
 @PropertySource({ "classpath:/properties/mybatis.properties" })
 @Order(3)
 public class SessionFactory {
 
-	private static final Logger logger = Logger.getLogger(SessionFactory.class);
+	private static final Logger logger = LogManager.getLogger(SessionFactory.class);
 
 	@Autowired
 	@Qualifier("myDS")
