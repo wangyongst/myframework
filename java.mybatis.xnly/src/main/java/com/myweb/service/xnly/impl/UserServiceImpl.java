@@ -6,7 +6,6 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.UserService;
 import com.myweb.vo.Result;
-import com.myweb.pojo.mybatis.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("userService")
-@Transactional(value = "myTM",readOnly=true)
+@Transactional(value = "myTM", readOnly = true)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,6 +29,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TableinfoMapper tableinfoMapper;
 
+    @Override
     public Result login(String username, String password,
                         HttpSession session) {
 
@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
     public Map<String, Object> getMyMenus(HttpSession session) {
         Map map = new HashMap<String, String>();
         MenuExample parent = new MenuExample();
@@ -69,24 +70,26 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
+    @Override
     public Map<String, Object> getUserMap(Map<String, Object> map, HttpSession session) {
         Menu profile = new Menu();
         profile.setName("个人信息");
         profile.setUrl("user/profile.do");
-        map.put("profile",profile);
+        map.put("profile", profile);
         Menu settings = new Menu();
         settings.setName("账号设置");
         settings.setUrl("user/settings.do");
-        map.put("settings",settings);
+        map.put("settings", settings);
         Menu logout = new Menu();
         logout.setName("退出登录");
         logout.setUrl("user/logout.do");
-        map.put("logout",logout);
+        map.put("logout", logout);
         return map;
     }
 
-    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,String columns) {
-        if(StringUtils.isNotBlank(columns)){
+    @Override
+    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session, String columns) {
+        if (StringUtils.isNotBlank(columns)) {
             TableinfoExample tableinfoExample = new TableinfoExample();
             tableinfoExample.createCriteria().andTablenameEqualTo(tableName);
             tableinfoExample.setOrderByClause("shunxu");

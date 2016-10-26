@@ -10,7 +10,6 @@ import com.myweb.pojo.mybatis.User;
 import com.myweb.service.xnly.JianKangService;
 import com.myweb.util.DateUtils;
 import com.myweb.vo.Result;
-import com.myweb.pojo.mybatis.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.List;
 
 @Service("jianKangService")
-@Transactional(value = "myTM",readOnly=true)
+@Transactional(value = "myTM", readOnly = true)
 public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
@@ -35,7 +34,7 @@ public class JianKangServiceImpl implements JianKangService {
     private CaijiMapper caijiMapper;
 
 
-
+    @Override
     public Result getCaiji(HttpSession session, String ids, String idType) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -62,8 +61,8 @@ public class JianKangServiceImpl implements JianKangService {
         return result;
     }
 
-
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editCaiji(HttpSession session, Caiji caiji) {
         Result result = new Result();
         int count = 0;
@@ -86,7 +85,7 @@ public class JianKangServiceImpl implements JianKangService {
         return result;
     }
 
-
+    @Override
     public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji) {
         CaijiExample example = new CaijiExample();
         CaijiExample.Criteria criteria = example.createCriteria();
@@ -96,8 +95,8 @@ public class JianKangServiceImpl implements JianKangService {
         return caijiMapper.selectByExample(example);
     }
 
-
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteCaiji(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {

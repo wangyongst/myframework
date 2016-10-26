@@ -24,15 +24,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.7</version>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
+			<groupId>apache-log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.9</version>
+			<version>1.2.15</version>
 		</dependency>
 
 		<dependency>

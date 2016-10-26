@@ -22,16 +22,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="datasource.bonecp" />
         <module name="java.mybatis.xnly" />
-        <module name="persistence.mybatis" />
         <module name="web.xnly" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="boot.servlet3" target="1.5" />
       <module name="datasource.bonecp" target="1.5" />
-      <module name="java.mybatis.xnly" target="1.5" />
+      <module name="java.mybatis.xnly" target="1.6" />
       <module name="persistence.mybatis" target="1.5" />
       <module name="web.xnly" target="1.5" />
     </bytecodeTargetLevel>

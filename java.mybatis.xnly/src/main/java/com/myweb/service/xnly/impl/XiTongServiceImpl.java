@@ -2,12 +2,12 @@ package com.myweb.service.xnly.impl;
 
 import com.myweb.dao.mybatis.LaorenMapper;
 import com.myweb.dao.mybatis.UserMapper;
-import com.myweb.service.xnly.XiTongService;
-import com.myweb.util.DateUtils;
-import com.myweb.vo.Result;
 import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
 import com.myweb.pojo.mybatis.UserExample;
+import com.myweb.service.xnly.XiTongService;
+import com.myweb.util.DateUtils;
+import com.myweb.vo.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service("xiTongService")
-@Transactional(value = "myTM",readOnly=true)
+@Transactional(value = "myTM", readOnly = true)
 public class XiTongServiceImpl implements XiTongService {
 
     @Autowired
@@ -28,15 +28,17 @@ public class XiTongServiceImpl implements XiTongService {
     @Autowired
     private LaorenMapper laorenMapper;
 
-
+    @Override
     public List<User> getAllUsers(HttpSession session) {
         return userMapper.selectByExample(null);
     }
 
+    @Override
     public List<Laoren> getAllLaorens(HttpSession session) {
         return laorenMapper.selectByExample(null);
     }
 
+    @Override
     public Result getLaoren(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -73,7 +75,8 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editLaoren(HttpSession session, Laoren laoren) {
         Result result = new Result();
         int count = 0;
@@ -96,7 +99,8 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editUser(HttpSession session, User user) {
         Result result = new Result();
         int count = 0;
@@ -132,7 +136,8 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteLaoren(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -152,7 +157,8 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-    @Transactional(value = "myTM",propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=false)
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteUser(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
