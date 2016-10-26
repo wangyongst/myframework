@@ -137,7 +137,7 @@
         <li class="parent ">
             <c:forEach var="item" items="${parent}">
                 <c:if test="${item.parent == 0}">
-                    <a href="user/home.do">
+                    <a data-toggle="collapse" href="#sub-item-${item.id}">
                         <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
                                                                                          href="#sub-item-${item.id}"
                                                                                          class="icon pull-right"><em
