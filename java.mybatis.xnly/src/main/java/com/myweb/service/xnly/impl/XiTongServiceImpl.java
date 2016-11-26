@@ -1,10 +1,9 @@
 package com.myweb.service.xnly.impl;
 
+import com.myweb.dao.mybatis.JiashuMapper;
 import com.myweb.dao.mybatis.LaorenMapper;
 import com.myweb.dao.mybatis.UserMapper;
-import com.myweb.pojo.mybatis.Laoren;
-import com.myweb.pojo.mybatis.User;
-import com.myweb.pojo.mybatis.UserExample;
+import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
 import com.myweb.vo.Result;
@@ -28,6 +27,9 @@ public class XiTongServiceImpl implements XiTongService {
     @Autowired
     private LaorenMapper laorenMapper;
 
+    @Autowired
+    private JiashuMapper jiashuMapper;
+
     @Override
     public List<User> getAllUsers(HttpSession session) {
         return userMapper.selectByExample(null);
@@ -36,6 +38,70 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public List<Laoren> getAllLaorens(HttpSession session) {
         return laorenMapper.selectByExample(null);
+    }
+
+    @Override
+    public List<Jiashu> getAllJiashus(HttpSession session) {
+        return jiashuMapper.selectByExample(null);
+    }
+
+    @Override
+    public Result editJiashu(HttpSession session, Jiashu jiashu) {
+        Result result = new Result();
+        int count = 0;
+        if (jiashu.getId() != null && jiashu.getId() != 0) {
+            count = jiashuMapper.updateByPrimaryKeySelective(jiashu);
+        } else {
+            User create = (User) session.getAttribute("user");
+            jiashu.setCreateuser(create.getId());
+            jiashu.setCreateusername(create.getName());
+            jiashu.setCreatetime(DateUtils.getCurrentTimeSecond());
+            count = jiashuMapper.insert(jiashu);
+        }
+        if (count != 0) {
+            result.setStatus(1);
+            result.setMessage("你已成功保存一条记录！");
+            return result;
+        }
+        result.setStatus(2);
+        result.setMessage("保存失败，请联系管理员！");
+        return result;
+    }
+
+    @Override
+    public Result deleteJiashu(HttpSession session, String ids) {
+        Result result = new Result();
+        if (StringUtils.isBlank(ids)) {
+            result.setStatus(0);
+            result.setMessage("请先选择一条记录！");
+        } else {
+            String[] ida = ids.split(",");
+            if (ida.length == 2) {
+                result.setStatus(1);
+                result.setData(jiashuMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
+                result.setMessage("您删除了一条记录！");
+            } else {
+                result.setStatus(3);
+                result.setMessage("您选择了多条记录，请选择一条记录！");
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Laoren> getRuhuLaorens(HttpSession session) {
+        LaorenExample example = new LaorenExample();
+        LaorenExample.Criteria criteria = example.createCriteria();
+        criteria.andTypeEqualTo(1);
+        return laorenMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Laoren> getNoRuhuLaorens(HttpSession session) {
+        LaorenExample example = new LaorenExample();
+        LaorenExample.Criteria criteria = example.createCriteria();
+        criteria.andTypeIsNull();
+        return laorenMapper.selectByExample(example);
     }
 
     @Override
@@ -99,6 +165,34 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result editRuhuLaoren(HttpSession session, Laoren laoren) {
+        Result result = new Result();
+        int count = 0;
+        laoren.setType(1);
+        if (laoren.getId() != null && laoren.getId() != 0) {
+            count = laorenMapper.updateByPrimaryKey(laoren);
+        } else {
+            User create = (User) session.getAttribute("user");
+            laoren.setCreateuser(create.getId());
+            laoren.setCreateusername(create.getName());
+            laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
+            count = laorenMapper.insert(laoren);
+        }
+        if (count != 0) {
+            result.setStatus(1);
+            result.setMessage("你已成功保存一条记录！");
+            return result;
+        }
+        result.setStatus(2);
+        result.setMessage("保存失败，请联系管理员！");
+        return result;
+    }
+
+
+
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editUser(HttpSession session, User user) {
@@ -149,6 +243,34 @@ public class XiTongServiceImpl implements XiTongService {
                 result.setStatus(1);
                 result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
                 result.setMessage("您删除了一条记录！");
+            } else {
+                result.setStatus(3);
+                result.setMessage("您选择了多条记录，请选择一条记录！");
+            }
+        }
+        return result;
+    }
+
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result changeLaoren(HttpSession session, String ids) {
+        Result result = new Result();
+        if (StringUtils.isBlank(ids)) {
+            result.setStatus(0);
+            result.setMessage("请先选择一条记录！");
+        } else {
+            String[] ida = ids.split(",");
+            if (ida.length == 2) {
+                result.setStatus(1);
+                Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
+                if(laoren.getType() == null){
+                    laoren.setType(1);
+                }else{
+                    laoren.setType(null);
+                }
+                result.setData(laorenMapper.updateByPrimaryKey(laoren));
+                result.setMessage("您移动了一条记录！");
             } else {
                 result.setStatus(3);
                 result.setMessage("您选择了多条记录，请选择一条记录！");

@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service("jianKangService")
@@ -66,6 +67,9 @@ public class JianKangServiceImpl implements JianKangService {
     public Result editCaiji(HttpSession session, Caiji caiji) {
         Result result = new Result();
         int count = 0;
+        if(caiji.getShengao() != null && caiji.getTizhong() != null){
+             caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue()/Math.pow(new Float(caiji.getShengao())/100,2)));
+        }
         if (caiji.getId() != null && caiji.getId() != 0) {
             count = caijiMapper.updateByPrimaryKeySelective(caiji);
         } else {

@@ -57,7 +57,7 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/edit.do",
+                            url: "xitong/laoren/ruhuEdit.do",
                             data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
@@ -121,44 +121,10 @@
             }
 
 
-            function showJiashuModal(jiashu, type) {
-                $('#idLabel').hide();
-                $('#idInput').hide();
-                if (type == 1) {
-                    $('#idLabel').show();
-                    $('#idInput').show();
-                    $('#idInput').attr("readonly", "readonly");
-                    $('#jiashuModal').find('.modal-title').text('修改信息');
-                } else {
-
-                    $('#jiashuModal').find('.modal-title').text('注册用户信息');
-                }
-                <c:forEach var="item" items="${jiashuColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
-                if (jiashu != null) {
-                    $("#${item.columnname}Input").val(jiashu.${item.columnname});
-                } else {
-                    $("#${item.columnname}Input").val("");
-                }
-                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-                </c:forEach>
-                $('#jiashuModal').modal('toggle');
-                $("#alertB2").hide();
-            }
-
             $("#zhuce").click(
                     function () {
                         showModal(null, 0);
                     });
-
-            $("#jiashu").click(
-                    function () {
-                        showJiashuModal(null, 0);
-                    });
-
             $("#xiugai").click(
                     function () {
                         $.ajax({
@@ -266,9 +232,10 @@
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除老人信息</button>
                 <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
-                <button type="button" class="btn btn-primary" id="change">移入低收入老人组</button>
+                <button type="button" class="btn btn-primary" id="change">移出低收入老人组</button>
 
-                <table data-toggle="table" data-url="xitong/noRuhuLaorens.do" data-show-refresh="true"
+
+                <table data-toggle="table" data-url="xitong/ruhuLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="userTable">
@@ -323,50 +290,6 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="jiashuModal" tabindex="-1" role="dialog" aria-labelledby="jiashuModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="jiashuModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="jiashuForm">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}"/>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB2">
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB2"></span><a
-                                            id="closeB2"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData2">保存</button>
                             </div>
                         </div>
                     </div>

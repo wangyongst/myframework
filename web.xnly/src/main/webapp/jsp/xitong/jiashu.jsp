@@ -33,21 +33,6 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
-    <script>
-        !function ($) {
-            $(document).on("click", "ul.nav li.parent > a", function () {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-
-        $(window).on('resize', function () {
-            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function () {
-            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
-    </script>
     <script type="text/javascript">
         $(function () {
             $("#alertA").hide();
@@ -57,8 +42,8 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/edit.do",
-                            data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
+                            url: "xitong/jiashu/edit.do",
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -72,7 +57,7 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                     $("button[name='refresh']").click();
-                                    //debugger;
+//debugger;
                                 } else {
                                     $("#alertB").show();
                                     $("#messageB").text(result.message);
@@ -92,80 +77,36 @@
                 return ids;
             }
 
-            function showModal(laoren, type) {
-                $('#idLabel').hide();
+            function showModal(caiji, type) {
                 $('#idInput').hide();
-                if (type == 1) {
-                    $('#idLabel').show();
-                    $('#idInput').show();
-                    $('#idInput').attr("readonly", "readonly");
-                    $('#myModal').find('.modal-title').text('修改信息');
-                } else {
-
-                    $('#myModal').find('.modal-title').text('注册用户信息');
-                }
+                $('#idLabel').hide();
+                $('#laorenidInput').attr("readonly", "readonly");
+                $('#laorennameInput').attr("readonly", "readonly");
+                $('#myModal').find('.modal-title').text('管理老人家属信息');
                 <c:forEach var="item" items="${formColumns}">
                 <c:if test="${item.modaldisable == 'disable'}">
                 $("#${item.columnname}Label").hide();
                 $("#${item.columnname}Input").hide();
                 </c:if>
-                if (laoren != null) {
-                    $("#${item.columnname}Input").val(laoren.${item.columnname});
+                if (caiji != null) {
+                    $("#${item.columnname}Input").val(caiji.${item.columnname});
                 } else {
                     $("#${item.columnname}Input").val("");
                 }
-                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
+                $("#${item.columnname}Input").attr("placeholder", "请输入老人家属的${item.chinese}");
                 </c:forEach>
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
             }
 
 
-            function showJiashuModal(jiashu, type) {
-                $('#idLabel').hide();
-                $('#idInput').hide();
-                if (type == 1) {
-                    $('#idLabel').show();
-                    $('#idInput').show();
-                    $('#idInput').attr("readonly", "readonly");
-                    $('#jiashuModal').find('.modal-title').text('修改信息');
-                } else {
-
-                    $('#jiashuModal').find('.modal-title').text('注册用户信息');
-                }
-                <c:forEach var="item" items="${jiashuColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
-                if (jiashu != null) {
-                    $("#${item.columnname}Input").val(jiashu.${item.columnname});
-                } else {
-                    $("#${item.columnname}Input").val("");
-                }
-                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-                </c:forEach>
-                $('#jiashuModal').modal('toggle');
-                $("#alertB2").hide();
-            }
-
-            $("#zhuce").click(
-                    function () {
-                        showModal(null, 0);
-                    });
-
-            $("#jiashu").click(
-                    function () {
-                        showJiashuModal(null, 0);
-                    });
-
             $("#xiugai").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/get.do",
-                            data: {ids: select()},
+                            url: "xitong/jiashu/get.do",
+                            data: {ids: select(), idType: "caijiid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -187,27 +128,7 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/delete.do",
-                            data: {ids: select()},
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertA").show();
-                                $("#messageA").text("操作失败，请联系管理员！");
-                            },
-                            success: function (result) {
-                                $("#alertA").show();
-                                $("#messageA").text(result.message);
-                                $("button[name='refresh']").click();
-                            }
-                        });
-                    });
-
-            $("#change").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "xitong/laoren/change.do",
+                            url: "xitong/jiashu/delete.do",
                             data: {ids: select()},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
@@ -262,16 +183,13 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="zhuce">注册老人信息</button>
-                <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
-                <button type="button" class="btn btn-primary" id="shanchu">删除老人信息</button>
-                <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
-                <button type="button" class="btn btn-primary" id="change">移入低收入老人组</button>
+                <button type="button" class="btn btn-primary" id="xiugai">修改家属信息</button>
+                <button type="button" class="btn btn-primary" id="shanchu">删除家属信息</button>
 
-                <table data-toggle="table" data-url="xitong/noRuhuLaorens.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/alljiashus.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="userTable">
+                       data-sort-order="desc" id="laorenTable">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -295,14 +213,15 @@
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                                <form id="laorenForm">
+                                <form id="form">
                                     <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
+                                        <c:forEach var="item" items="${tableColumns}">
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
                                             <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}"/>
+                                                   id="${item.columnname}Input" name="${item.columnname}">
+
                                         </c:forEach>
                                     </div>
                                 </form>
@@ -323,50 +242,6 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="jiashuModal" tabindex="-1" role="dialog" aria-labelledby="jiashuModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="jiashuModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="jiashuForm">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}"/>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB2">
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB2"></span><a
-                                            id="closeB2"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData2">保存</button>
                             </div>
                         </div>
                     </div>
