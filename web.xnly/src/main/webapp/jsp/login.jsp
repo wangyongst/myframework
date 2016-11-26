@@ -50,7 +50,7 @@
                                     $("#alert").show();
                                     $("#message").text(result.message);
                                 } else {
-                                    window.location.href = "user/home.do";
+                                    window.location.href = "<%=basePath%>user/home.do";
                                 }
                             }
                         });
