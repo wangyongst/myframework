@@ -24,6 +24,19 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+        $(function () {
+            $('#calendar').datepicker({});
+        });
+    </script>
+
 </head>
 
 <body style="padding-top:0px">
@@ -33,12 +46,6 @@
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">Widgets</li>
     </ol>
-</div><!--/.row-->
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Widgets</h1>
-    </div>
 </div><!--/.row-->
 
 <div class="row">
@@ -304,16 +311,6 @@
     </div><!--/.col-->
 </div><!--/.row-->
 
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/chart.min.js"></script>
-<script src="js/chart-data.js"></script>
-<script src="js/easypiechart.js"></script>
-<script src="js/easypiechart-data.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script>
-    $('#calendar').datepicker({});
-</script>
 </body>
 
 </html>

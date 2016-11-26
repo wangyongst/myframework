@@ -43,7 +43,7 @@
                             type: "POST",
                             cache: "false",
                             url: "jiankang/caiji/edit.do",
-                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val() + "&id=" + $('#id').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -57,7 +57,7 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                     $("button[name='refresh']").click();
-                                    //debugger;
+//debugger;
                                 } else {
                                     $("#alertB").show();
                                     $("#messageB").text(result.message);
@@ -82,7 +82,7 @@
                 $('#idLabel').hide();
                 $('#laorenidInput').attr("readonly", "readonly");
                 $('#laorennameInput').attr("readonly", "readonly");
-                $('#myModal').find('.modal-title').text('采集老人健康数据');
+                $('#myModal').find('.modal-title').text('管理老人健康数据');
                 <c:forEach var="item" items="${formColumns}">
                 <c:if test="${item.modaldisable == 'disable'}">
                 $("#${item.columnname}Label").hide();
@@ -100,13 +100,13 @@
             }
 
 
-            $("#caiji").click(
+            $("#xiugai").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
                             url: "jiankang/caiji/get.do",
-                            data: {ids: select(), idType: "laorenid"},
+                            data: {ids: select(), idType: "caijiid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -119,6 +119,26 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                 }
+
+                            }
+                        });
+                    });
+            $("#shanchu").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "jiankang/caiji/delete.do",
+                            data: {ids: select()},
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
+                            success: function (result) {
+                                $("#alertA").show();
+                                $("#messageA").text(result.message);
+                                $("button[name='refresh']").click();
                             }
                         });
                     });
@@ -137,17 +157,12 @@
 </head>
 
 <body style="padding-top:0px">
+
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
-</div><!--/.row-->
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">${title}</h1>
-    </div>
 </div><!--/.row-->
 
 <div class="row">
@@ -168,9 +183,10 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
+                <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
+                <button type="button" class="btn btn-primary" id="shanchu">删除数据</button>
 
-                <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="jiankang/allCaijis.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="laorenTable">
@@ -199,12 +215,13 @@
                             <div class="modal-body">
                                 <form id="form">
                                     <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
+                                        <c:forEach var="item" items="${tableColumns}">
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
                                             <input type="${item.type}" class="form-control"
                                                    id="${item.columnname}Input" name="${item.columnname}">
+
                                         </c:forEach>
                                     </div>
                                 </form>

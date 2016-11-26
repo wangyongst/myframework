@@ -22,6 +22,51 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/chart-data.js"></script>
+    <script src="js/easypiechart.js"></script>
+    <script src="js/easypiechart-data.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script>
+
+        function reinitIframe() {
+            var iframe = document.getElementById("right");
+            try {
+                var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                var height = Math.max(bHeight, dHeight);
+                iframe.height = height;
+                console.log(height);
+            } catch (ex) {
+            }
+        }
+        ;
+
+        window.setInterval("reinitIframe()", 200);
+
+        function getRight(url) {
+            var iframe = document.getElementById("right").src = url;
+        }
+        ;
+
+        !function ($) {
+            $(document).on("click", "ul.nav li.parent > a", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+
 </head>
 
 <body>
@@ -93,49 +138,6 @@
         frameborder="0" scrolling="no" id="right" onload="this.height=100"></iframe>
 <!--/.main-->
 
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/chart.min.js"></script>
-<script src="js/chart-data.js"></script>
-<script src="js/easypiechart.js"></script>
-<script src="js/easypiechart-data.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script>
-
-    function reinitIframe() {
-        var iframe = document.getElementById("right");
-        try {
-            var bHeight = iframe.contentWindow.document.body.scrollHeight;
-            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-            var height = Math.max(bHeight, dHeight);
-            iframe.height = height;
-            console.log(height);
-        } catch (ex) {
-        }
-    }
-    ;
-
-    window.setInterval("reinitIframe()", 200);
-
-    function getRight(url) {
-        var iframe = document.getElementById("right").src = url;
-    }
-    ;
-
-    !function ($) {
-        $(document).on("click", "ul.nav li.parent > a", function () {
-            $(this).find('em:first').toggleClass("glyphicon-minus");
-        });
-        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-    }(window.jQuery);
-
-    $(window).on('resize', function () {
-        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-    })
-    $(window).on('resize', function () {
-        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-    })
-</script>
 </body>
 
 </html>

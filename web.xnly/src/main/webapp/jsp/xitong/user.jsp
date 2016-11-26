@@ -42,8 +42,8 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "jiankang/caiji/edit.do",
-                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val() + "&id=" + $('#id').val(),
+                            url: "xitong/user/edit.do",
+                            data: $('#userForm').serialize() + "&id=" + $('#idInput').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -57,7 +57,7 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                     $("button[name='refresh']").click();
-//debugger;
+                                    //debugger;
                                 } else {
                                     $("#alertB").show();
                                     $("#messageB").text(result.message);
@@ -77,36 +77,45 @@
                 return ids;
             }
 
-            function showModal(caiji, type) {
+            function showModal(user, type) {
                 $('#idInput').hide();
                 $('#idLabel').hide();
-                $('#laorenidInput').attr("readonly", "readonly");
-                $('#laorennameInput').attr("readonly", "readonly");
-                $('#myModal').find('.modal-title').text('管理老人健康数据');
-                <c:forEach var="item" items="${formColumns}">
+                if (type == 1) {
+                    $('#idLabel').show();
+                    $('#idInput').show();
+                    $('#idInput').attr("readonly", "readonly");
+                    $('#myModal').find('.modal-title').text('修改用户信息');
+                } else {
+                    $('#myModal').find('.modal-title').text('注册用户信息');
+                }
+                <c:forEach var="item" items="${tableColumns}">
                 <c:if test="${item.modaldisable == 'disable'}">
                 $("#${item.columnname}Label").hide();
                 $("#${item.columnname}Input").hide();
                 </c:if>
-                if (caiji != null) {
-                    $("#${item.columnname}Input").val(caiji.${item.columnname});
+                if (user != null) {
+                    $("#${item.columnname}Input").val(user.${item.columnname});
                 } else {
                     $("#${item.columnname}Input").val("");
                 }
-                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
+                $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
                 </c:forEach>
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
             }
 
 
+            $("#zhuce").click(
+                    function () {
+                        showModal(null, 0);
+                    });
             $("#xiugai").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "jiankang/caiji/get.do",
-                            data: {ids: select(), idType: "caijiid"},
+                            url: "xitong/user/get.do",
+                            data: {ids: select()},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -128,7 +137,7 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "jiankang/caiji/delete.do",
+                            url: "xitong/user/delete.do",
                             data: {ids: select()},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
@@ -142,7 +151,6 @@
                             }
                         });
                     });
-
             $("#closeA").click(
                     function () {
                         $("#alertA").hide();
@@ -157,18 +165,11 @@
 </head>
 
 <body style="padding-top:0px">
-
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
-</div><!--/.row-->
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">${title}</h1>
-    </div>
 </div><!--/.row-->
 
 <div class="row">
@@ -189,13 +190,15 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
-                <button type="button" class="btn btn-primary" id="shanchu">删除数据</button>
+                <button type="button" class="btn btn-primary" id="zhuce">注册用户</button>
+                <button type="button" class="btn btn-primary" id="xiugai">修改用户</button>
+                <button type="button" class="btn btn-primary" id="shanchu">删除用户</button>
 
-                <table data-toggle="table" data-url="jiankang/allCaijis.do" data-show-refresh="true"
+
+                <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="laorenTable">
+                       data-sort-order="desc" id="userTable">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -219,15 +222,14 @@
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                                <form id="form">
+                                <form id="userForm">
                                     <div class="form-group">
-                                        <c:forEach var="item" items="${tableColumns}">
+                                        <c:forEach var="item" items="${formColumns}">
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
                                             <input type="${item.type}" class="form-control"
                                                    id="${item.columnname}Input" name="${item.columnname}">
-
                                         </c:forEach>
                                     </div>
                                 </form>

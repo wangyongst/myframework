@@ -42,8 +42,8 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/user/edit.do",
-                            data: $('#userForm').serialize() + "&id=" + $('#idInput').val(),
+                            url: "jiankang/caiji/edit.do",
+                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertB div div").attr("class", "alert bg-danger");
@@ -77,45 +77,36 @@
                 return ids;
             }
 
-            function showModal(user, type) {
+            function showModal(caiji, type) {
                 $('#idInput').hide();
                 $('#idLabel').hide();
-                if (type == 1) {
-                    $('#idLabel').show();
-                    $('#idInput').show();
-                    $('#idInput').attr("readonly", "readonly");
-                    $('#myModal').find('.modal-title').text('修改用户信息');
-                } else {
-                    $('#myModal').find('.modal-title').text('注册用户信息');
-                }
-                <c:forEach var="item" items="${tableColumns}">
+                $('#laorenidInput').attr("readonly", "readonly");
+                $('#laorennameInput').attr("readonly", "readonly");
+                $('#myModal').find('.modal-title').text('采集老人健康数据');
+                <c:forEach var="item" items="${formColumns}">
                 <c:if test="${item.modaldisable == 'disable'}">
                 $("#${item.columnname}Label").hide();
                 $("#${item.columnname}Input").hide();
                 </c:if>
-                if (user != null) {
-                    $("#${item.columnname}Input").val(user.${item.columnname});
+                if (caiji != null) {
+                    $("#${item.columnname}Input").val(caiji.${item.columnname});
                 } else {
                     $("#${item.columnname}Input").val("");
                 }
-                $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
+                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
                 </c:forEach>
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
             }
 
 
-            $("#zhuce").click(
-                    function () {
-                        showModal(null, 0);
-                    });
-            $("#xiugai").click(
+            $("#caiji").click(
                     function () {
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/user/get.do",
-                            data: {ids: select()},
+                            url: "jiankang/caiji/get.do",
+                            data: {ids: select(), idType: "laorenid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -128,29 +119,10 @@
                                     $("#alertA").show();
                                     $("#messageA").text(result.message);
                                 }
+                            }
+                        });
+                    });
 
-                            }
-                        });
-                    });
-            $("#shanchu").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "xitong/user/delete.do",
-                            data: {ids: select()},
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertA").show();
-                                $("#messageA").text("操作失败，请联系管理员！");
-                            },
-                            success: function (result) {
-                                $("#alertA").show();
-                                $("#messageA").text(result.message);
-                                $("button[name='refresh']").click();
-                            }
-                        });
-                    });
             $("#closeA").click(
                     function () {
                         $("#alertA").hide();
@@ -174,12 +146,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">${title}</h1>
-    </div>
-</div><!--/.row-->
-
-<div class="row">
-    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
@@ -196,15 +162,12 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="zhuce">注册用户</button>
-                <button type="button" class="btn btn-primary" id="xiugai">修改用户</button>
-                <button type="button" class="btn btn-primary" id="shanchu">删除用户</button>
+                <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
 
-
-                <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="userTable">
+                       data-sort-order="desc" id="laorenTable">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -228,7 +191,7 @@
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
                             <div class="modal-body">
-                                <form id="userForm">
+                                <form id="form">
                                     <div class="form-group">
                                         <c:forEach var="item" items="${formColumns}">
                                             <label for="${item.columnname}"
