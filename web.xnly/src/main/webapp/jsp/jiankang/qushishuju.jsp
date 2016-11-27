@@ -117,9 +117,9 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                gaoya.push($("table").find("tr").eq(index).find("td").eq(4).text() + "");
-                                diya.push($("table").find("tr").eq(index).find("td").eq(5).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                gaoya.push($("table").find("tr").eq(index).find("td").eq(3).text() + "");
+                                diya.push($("table").find("tr").eq(index).find("td").eq(4).text() + "");
                             }
                         });
                         $("#linechartitle").text("血压趋势图");
@@ -134,8 +134,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                xueyang.push($("table").find("tr").eq(index).find("td").eq(8).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                xueyang.push($("table").find("tr").eq(index).find("td").eq(7).text() + "");
                             }
                         });
                         $("#linechartitle").text("血氧趋势图");
@@ -150,8 +150,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                tizhaong.push($("table").find("tr").eq(index).find("td").eq(9).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                tizhaong.push($("table").find("tr").eq(index).find("td").eq(8).text() + "");
                             }
                         });
                         $("#linechartitle").text("体重趋势图");
@@ -166,8 +166,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                xuetang.push($("table").find("tr").eq(index).find("td").eq(6).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                xuetang.push($("table").find("tr").eq(index).find("td").eq(5).text() + "");
                             }
                         });
                         $("#linechartitle").text("血糖趋势图");
@@ -182,8 +182,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                maibo.push($("table").find("tr").eq(index).find("td").eq(7).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                maibo.push($("table").find("tr").eq(index).find("td").eq(6).text() + "");
                             }
                         });
                         $("#linechartitle").text("脉博趋势图");
@@ -198,8 +198,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                shenggao.push($("table").find("tr").eq(index).find("td").eq(10).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                shenggao.push($("table").find("tr").eq(index).find("td").eq(9).text() + "");
                             }
                         });
                         $("#linechartitle").text("身高趋势图");
@@ -214,8 +214,8 @@
                         $("input[name=toolbar1]").each(function () {
                             if ($(this).context.checked) {
                                 var index = $("table input:checkbox").index(this);
-                                time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                                bmi.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                time.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
+                                bmi.push($("table").find("tr").eq(index).find("td").eq(10).text() + "");
                             }
                         });
                         $("#linechartitle").text("趋势图");
