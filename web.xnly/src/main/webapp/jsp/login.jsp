@@ -14,7 +14,7 @@
     <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Forms</title>
+    <title>西宁乐缘综合养老管理平台-登录</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">

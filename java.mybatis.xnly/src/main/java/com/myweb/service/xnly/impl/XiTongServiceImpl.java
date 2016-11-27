@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service("xiTongService")
@@ -46,6 +47,7 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editJiashu(HttpSession session, Jiashu jiashu) {
         Result result = new Result();
         int count = 0;
@@ -69,6 +71,7 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteJiashu(HttpSession session, String ids) {
         Result result = new Result();
         if (StringUtils.isBlank(ids)) {
@@ -162,6 +165,33 @@ public class XiTongServiceImpl implements XiTongService {
         }
         result.setStatus(2);
         result.setMessage("保存失败，请联系管理员！");
+        return result;
+    }
+
+    @Override
+    public Result getJiashu(HttpSession session, String ids, String idType) {
+        Result result = new Result();
+        if (StringUtils.isBlank(ids)) {
+            result.setStatus(0);
+            result.setMessage("请先选择一条记录！");
+        } else {
+            String[] ida = ids.split(",");
+            if (ida.length == 2) {
+                result.setStatus(1);
+                Jiashu jiashu = new Jiashu();
+                Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
+                if (idType.equals("laorenid")) {
+                    jiashu.setLaorenid(laoren.getId());
+                    jiashu.setLaorenname(laoren.getName());
+                } else if (idType.equals("jiashuid")) {
+                    jiashu = jiashuMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
+                }
+                result.setData(jiashu);
+            } else {
+                result.setStatus(3);
+                result.setMessage("您选择了多条记录，请选择一条记录！");
+            }
+        }
         return result;
     }
 

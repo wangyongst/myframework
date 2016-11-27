@@ -80,6 +80,36 @@
                             }
                         });
                     });
+
+            $("#saveJiashuData").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/jiashu/edit.do",
+                            data: $('#jiashuForm').serialize() + "&laorenid=" + $('#JSlaorenid').val() + "&laorennameR=" + $('#JSlaorenname').val(),
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertC div div").attr("class", "alert bg-danger");
+                                $("#alertC").show();
+                                $("#messageC").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                            },
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    $('#jiashuModal').modal('toggle');
+                                    $("#alertC").hide();
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                    $("button[name='refresh']").click();
+                                    //debugger;
+                                } else {
+                                    $("#alertC").show();
+                                    $("#messageC").text(result.message);
+                                }
+                            }
+                        });
+                    });
+
             function select() {
                 var ids = "";
                 $("input[name=toolbar1]").each(function () {
@@ -120,11 +150,57 @@
                 $("#alertB").hide();
             }
 
+            function showJiashuModal(jiashu, type) {
+                $('#JSidInput').hide();
+                $('#JSidLabel').hide();
+                $('#JSlaorenidInput').attr("readonly", "readonly");
+                $('#JSlaorennameInput').attr("readonly", "readonly");
+                $('#jiashuModal').find('.modal-title').text('添加老人家属信息');
+                <c:forEach var="item" items="${jiashuColumns}">
+                <c:if test="${item.modaldisable == 'disable'}">
+                $("#JS${item.columnname}Label").hide();
+                $("#JS${item.columnname}Input").hide();
+                </c:if>
+                if (jiashu != null) {
+                    $("#JS${item.columnname}Input").val(jiashu.${item.columnname});
+                } else {
+                    $("#JS${item.columnname}Input").val("");
+                }
+                $("#JS${item.columnname}Input").attr("placeholder", "请输入老人家属的${item.chinese}");
+                </c:forEach>
+                $('#jiashuModal').modal('toggle');
+                $("#alertC").hide();
+            }
 
             $("#zhuce").click(
                     function () {
                         showModal(null, 0);
                     });
+
+            $("#jiashu").click(
+                    function () {
+                        $.ajax({
+                            type: "POST",
+                            cache: "false",
+                            url: "xitong/jiashu/get.do",
+                            data: {ids: select(), idType: "laorenid"},
+                            dataType: "json",
+                            error: function () {//请求失败时调用函数。
+                                $("#alertA").show();
+                                $("#messageA").text("操作失败，请联系管理员！");
+                            },
+                            success: function (result) {
+                                if (result.status == 1) {
+                                    showJiashuModal(result.data, 1);
+                                } else {
+                                    $("#alertA").show();
+                                    $("#messageA").text(result.message);
+                                }
+
+                            }
+                        });
+                    });
+
             $("#xiugai").click(
                     function () {
                         $.ajax({
@@ -195,6 +271,11 @@
             $("#closeB").click(
                     function () {
                         $("#alertB").hide();
+                    });
+
+            $("#closeC").click(
+                    function () {
+                        $("#alertC").hide();
                     });
 
         });
@@ -295,6 +376,49 @@
                     </div>
                 </div><!-- Modal -->
 
+
+                <!-- Modal -->
+                <div class="modal fade" id="jiashuModal" tabindex="2" role="dialog" aria-labelledby="jiashuModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="jiashuModalLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="jiashuForm">
+                                    <div class="form-group">
+                                        <c:forEach var="item" items="${jiashuColumns}">
+                                            <label for="${item.columnname}"
+                                                   class="control-label"
+                                                   id="JS${item.columnname}Label">${item.chinese}</label>
+                                            <input type="${item.type}" class="form-control"
+                                                   id="JS${item.columnname}Input" name="${item.columnname}"/>
+                                        </c:forEach>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="row" id="alertC">
+                                <div class="col-lg-12">
+                                    <div class="alert bg-warning" role="alert">
+                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
+                                            id="messageC"></span><a
+                                            id="closeC"
+                                            class="pull-right"><span
+                                            class="glyphicon glyphicon-remove"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="saveJiashuData">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Modal -->
 
             </div>
         </div>

@@ -77,7 +77,7 @@
                 return ids;
             }
 
-            function showModal(caiji, type) {
+            function showModal(jiashu, type) {
                 $('#idInput').hide();
                 $('#idLabel').hide();
                 $('#laorenidInput').attr("readonly", "readonly");
@@ -88,8 +88,8 @@
                 $("#${item.columnname}Label").hide();
                 $("#${item.columnname}Input").hide();
                 </c:if>
-                if (caiji != null) {
-                    $("#${item.columnname}Input").val(caiji.${item.columnname});
+                if (jiashu != null) {
+                    $("#${item.columnname}Input").val(jiashu.${item.columnname});
                 } else {
                     $("#${item.columnname}Input").val("");
                 }
@@ -106,7 +106,7 @@
                             type: "POST",
                             cache: "false",
                             url: "xitong/jiashu/get.do",
-                            data: {ids: select(), idType: "caijiid"},
+                            data: {ids: select(), idType: "jiashuid"},
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
                                 $("#alertA").show();
@@ -183,10 +183,10 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="xiugai">修改家属信息</button>
-                <button type="button" class="btn btn-primary" id="shanchu">删除家属信息</button>
+                <button type="button" class="btn btn-primary" id="xiugai">修改老人家属</button>
+                <button type="button" class="btn btn-primary" id="shanchu">删除老人家属</button>
 
-                <table data-toggle="table" data-url="xitong/alljiashus.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/allJiashus.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="laorenTable">

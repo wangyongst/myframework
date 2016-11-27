@@ -25,6 +25,8 @@ public interface XiTongService {
 
 	public Result deleteJiashu(HttpSession session, String ids);
 
+	public Result getJiashu(HttpSession session, String ids, String idType);
+
 	public Result getLaoren(HttpSession session, String ids);
 
 	public Result getUser(HttpSession session, String ids);

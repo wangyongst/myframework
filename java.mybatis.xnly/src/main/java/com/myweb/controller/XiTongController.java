@@ -71,6 +71,13 @@ public class XiTongController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/jiashu/get", method = RequestMethod.POST)
+    public Result jiashuGet(HttpSession session, String ids, String idType) {
+        return xiTongService.getJiashu(session, ids, idType);
+    }
+
+
+    @ResponseBody
     @RequestMapping(value = "/jiashu/edit", method = RequestMethod.POST)
     public Result jiashuEdit(HttpSession session, String ids, @ModelAttribute Jiashu jiashu) {
         return xiTongService.editJiashu(session, jiashu);
@@ -154,6 +161,12 @@ public class XiTongController {
     @RequestMapping(value = "/laoren/delete", method = RequestMethod.POST)
     public Result laorenDelete(HttpSession session, String ids) {
         return xiTongService.deleteLaoren(session, ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/jiashu/delete", method = RequestMethod.POST)
+    public Result jiashuDelete(HttpSession session, String ids) {
+        return xiTongService.deleteJiashu(session, ids);
     }
 
     @ResponseBody
