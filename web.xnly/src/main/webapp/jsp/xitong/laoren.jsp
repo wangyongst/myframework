@@ -315,7 +315,7 @@
                 <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
                 <button type="button" class="btn btn-primary" id="change">移入低收入老人组</button>
 
-                <table data-toggle="table" data-url="xitong/noRuhuLaorens.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/otherLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="userTable">

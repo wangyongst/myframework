@@ -85,8 +85,8 @@ public class XiTongController {
 
 
 
-    @RequestMapping(value = "/ruhuLaoren", method = RequestMethod.GET)
-    public ModelAndView ruhuLaoren(HttpSession session) {
+    @RequestMapping(value = "/dSRLaoren", method = RequestMethod.GET)
+    public ModelAndView dSRLaoren(HttpSession session) {
         Map map = new HashMap<String, String>();
         map.put("title", "低收入老人管理");
         map = userService.getUserMap(map, session);
@@ -94,7 +94,7 @@ public class XiTongController {
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         map = userService.getColumnsNameMap("laoren", map, session, "formColumns");
         map = userService.getColumnsNameMap("jiashu", map, session, "jiashuColumns");
-        return new ModelAndView("xitong/ruhuLaoren", map);
+        return new ModelAndView("xitong/dSRLaoren", map);
     }
 
     @ResponseBody
@@ -110,15 +110,15 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/ruhuLaorens", method = RequestMethod.GET)
-    public List<Laoren> ruhuLaorens(HttpSession session) {
-        return xiTongService.getRuhuLaorens(session);
+    @RequestMapping(value = "/dSRLaorens", method = RequestMethod.GET)
+    public List<Laoren> dSRLaorens(HttpSession session) {
+        return xiTongService.getDSRLaorens(session);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/noRuhuLaorens", method = RequestMethod.GET)
-    public List<Laoren> noRuhuLaorens(HttpSession session) {
-        return xiTongService.getNoRuhuLaorens(session);
+    @RequestMapping(value = "/otherLaorens", method = RequestMethod.GET)
+    public List<Laoren> otherLaorens(HttpSession session) {
+        return xiTongService.getOtherLaorens(session);
     }
 
     @ResponseBody
@@ -134,9 +134,9 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/ruhuEdit", method = RequestMethod.POST)
-    public Result ruhuLaorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
-        return xiTongService.editRuhuLaoren(session, laoren);
+    @RequestMapping(value = "/laoren/dSREdit", method = RequestMethod.POST)
+    public Result dSRLaorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
+        return xiTongService.editDSRLaoren(session, laoren);
     }
 
     @ResponseBody

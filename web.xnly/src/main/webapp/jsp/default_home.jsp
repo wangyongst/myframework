@@ -206,7 +206,7 @@
 
             <div class="panel-footer">
                 <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-md"
+                    <input id="btn-input1" type="text" class="form-control input-md"
                            placeholder="Type your message here..."/>
 							<span class="input-group-btn">
 								<button class="btn btn-success btn-md" id="btn-chat">Send</button>
@@ -232,7 +232,7 @@
                 <ul class="todo-list">
                     <li class="todo-list-item">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkbox"/>
+                            <input type="checkbox" id="checkbox1"/>
                             <label for="checkbox">Make a plan for today</label>
                         </div>
                         <div class="pull-right action-buttons">
@@ -243,7 +243,7 @@
                     </li>
                     <li class="todo-list-item">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkbox"/>
+                            <input type="checkbox" id="checkbox2"/>
                             <label for="checkbox">Update Basecamp</label>
                         </div>
                         <div class="pull-right action-buttons">
@@ -254,7 +254,7 @@
                     </li>
                     <li class="todo-list-item">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkbox"/>
+                            <input type="checkbox" id="checkbox3"/>
                             <label for="checkbox">Send email to Jane</label>
                         </div>
                         <div class="pull-right action-buttons">
@@ -265,7 +265,7 @@
                     </li>
                     <li class="todo-list-item">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkbox"/>
+                            <input type="checkbox" id="checkbox4"/>
                             <label for="checkbox">Drink coffee</label>
                         </div>
                         <div class="pull-right action-buttons">
@@ -276,7 +276,7 @@
                     </li>
                     <li class="todo-list-item">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkbox"/>
+                            <input type="checkbox" id="checkbox5"/>
                             <label for="checkbox">Do some work</label>
                         </div>
                         <div class="pull-right action-buttons">

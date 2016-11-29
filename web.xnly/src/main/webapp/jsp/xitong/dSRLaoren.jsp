@@ -57,7 +57,7 @@
                         $.ajax({
                             type: "POST",
                             cache: "false",
-                            url: "xitong/laoren/ruhuEdit.do",
+                            url: "xitong/laoren/dSREdit.do",
                             data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
                             dataType: "json",
                             error: function () {//请求失败时调用函数。
@@ -316,7 +316,7 @@
                 <button type="button" class="btn btn-primary" id="change">移出低收入老人组</button>
 
 
-                <table data-toggle="table" data-url="xitong/ruhuLaorens.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/dSRLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="userTable">

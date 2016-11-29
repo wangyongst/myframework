@@ -92,7 +92,7 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
-    public List<Laoren> getRuhuLaorens(HttpSession session) {
+    public List<Laoren> getDSRLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
         LaorenExample.Criteria criteria = example.createCriteria();
         criteria.andTypeEqualTo(1);
@@ -100,7 +100,7 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
-    public List<Laoren> getNoRuhuLaorens(HttpSession session) {
+    public List<Laoren> getOtherLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
         LaorenExample.Criteria criteria = example.createCriteria();
         criteria.andTypeIsNull();
@@ -198,7 +198,7 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editRuhuLaoren(HttpSession session, Laoren laoren) {
+    public Result editDSRLaoren(HttpSession session, Laoren laoren) {
         Result result = new Result();
         int count = 0;
         laoren.setType(1);

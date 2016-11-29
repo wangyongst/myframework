@@ -135,7 +135,7 @@
 </div><!--/.sidebar-->
 
 <iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="./jsp/default_home.jsp" width="100%"
-        frameborder="0" scrolling="no" id="right" onload="this.height=100"></iframe>
+        frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->
 
 </body>

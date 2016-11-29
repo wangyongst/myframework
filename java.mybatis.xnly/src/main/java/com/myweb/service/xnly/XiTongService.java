@@ -13,9 +13,9 @@ public interface XiTongService {
 
 	public List<User> getAllUsers(HttpSession session);
 
-	public List<Laoren> getRuhuLaorens(HttpSession session);
+	public List<Laoren> getDSRLaorens(HttpSession session);
 
-	public List<Laoren> getNoRuhuLaorens(HttpSession session);
+	public List<Laoren> getOtherLaorens(HttpSession session);
 
 	public List<Laoren> getAllLaorens(HttpSession session);
 
@@ -33,7 +33,7 @@ public interface XiTongService {
 
 	public Result editLaoren(HttpSession session, Laoren laoren);
 
-	public Result editRuhuLaoren(HttpSession session, Laoren laoren);
+	public Result editDSRLaoren(HttpSession session, Laoren laoren);
 
 	public Result editUser(HttpSession session, User user);
 
