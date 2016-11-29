@@ -100,6 +100,14 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
+    public List<Laoren> getYMJLaorens(HttpSession session) {
+        LaorenExample example = new LaorenExample();
+        LaorenExample.Criteria criteria = example.createCriteria();
+        criteria.andTypeEqualTo(2);
+        return laorenMapper.selectByExample(example);
+    }
+
+    @Override
     public List<Laoren> getOtherLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
         LaorenExample.Criteria criteria = example.createCriteria();
@@ -202,6 +210,32 @@ public class XiTongServiceImpl implements XiTongService {
         Result result = new Result();
         int count = 0;
         laoren.setType(1);
+        if (laoren.getId() != null && laoren.getId() != 0) {
+            count = laorenMapper.updateByPrimaryKey(laoren);
+        } else {
+            User create = (User) session.getAttribute("user");
+            laoren.setCreateuser(create.getId());
+            laoren.setCreateusername(create.getName());
+            laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
+            count = laorenMapper.insert(laoren);
+        }
+        if (count != 0) {
+            result.setStatus(1);
+            result.setMessage("你已成功保存一条记录！");
+            return result;
+        }
+        result.setStatus(2);
+        result.setMessage("保存失败，请联系管理员！");
+        return result;
+    }
+
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result editYMJLaoren(HttpSession session, Laoren laoren) {
+        Result result = new Result();
+        int count = 0;
+        laoren.setType(2);
         if (laoren.getId() != null && laoren.getId() != 0) {
             count = laorenMapper.updateByPrimaryKey(laoren);
         } else {

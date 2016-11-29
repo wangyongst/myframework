@@ -97,6 +97,19 @@ public class XiTongController {
         return new ModelAndView("xitong/dSRLaoren", map);
     }
 
+    @RequestMapping(value = "/yMJLaoren", method = RequestMethod.GET)
+    public ModelAndView yMjLaoren(HttpSession session) {
+        Map map = new HashMap<String, String>();
+        map.put("title", "饮马街街道老人管理");
+        map = userService.getUserMap(map, session);
+        map.put("tableName", "饮马街街道老人信息表");
+        map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
+        map = userService.getColumnsNameMap("laoren", map, session, "formColumns");
+        map = userService.getColumnsNameMap("jiashu", map, session, "jiashuColumns");
+        return new ModelAndView("xitong/yMJLaoren", map);
+    }
+
+
     @ResponseBody
     @RequestMapping(value = "/allJiashus", method = RequestMethod.GET)
     public List<Jiashu> allJiashus(HttpSession session) {
@@ -116,6 +129,12 @@ public class XiTongController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/yMJLaorens", method = RequestMethod.GET)
+    public List<Laoren> yMJLaorens(HttpSession session) {
+        return xiTongService.getYMJLaorens(session);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/otherLaorens", method = RequestMethod.GET)
     public List<Laoren> otherLaorens(HttpSession session) {
         return xiTongService.getOtherLaorens(session);
@@ -131,6 +150,12 @@ public class XiTongController {
     @RequestMapping(value = "/laoren/edit", method = RequestMethod.POST)
     public Result laorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
         return xiTongService.editLaoren(session, laoren);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/laoren/yMJEdit", method = RequestMethod.POST)
+    public Result yMjLaorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
+        return xiTongService.editYMJLaoren(session, laoren);
     }
 
     @ResponseBody
