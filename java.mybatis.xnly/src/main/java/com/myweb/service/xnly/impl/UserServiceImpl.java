@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     private TableinfoMapper tableinfoMapper;
 
     @Override
-    public Result login(String username, String password, HttpSession session) {
+    public Result login(HttpSession session, String username, String password) {
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(username)
                 .andPasswordEqualTo(password);
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getUserMap(Map<String, Object> map, HttpSession session) {
+    public Map<String, Object> getUserMap(HttpSession session, Map<String, Object> map) {
         Menu profile = new Menu();
         profile.setName("个人信息");
         profile.setUrl("user/profile.do");
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session, String columns) {
+    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns) {
         if (StringUtils.isNotBlank(columns)) {
             TableinfoExample tableinfoExample = new TableinfoExample();
             tableinfoExample.createCriteria().andTablenameEqualTo(tableName);
@@ -97,11 +97,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getTitleMap(HttpSession session, String title, String tableName) {
+    public Map<String, Object> getTitleMap(HttpSession session, String title, String tableTitle) {
         Map map = new HashMap<String, String>();
         map.put("title", title);
-        map = this.getUserMap(map, session);
-        map.put("tableName", tableName);
+        map = this.getUserMap(session,map);
+        map.put("tableName", tableTitle);
         return map;
     }
 }

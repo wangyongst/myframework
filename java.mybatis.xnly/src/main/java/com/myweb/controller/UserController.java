@@ -24,7 +24,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public Result login(@RequestParam("username") String username,
                         @RequestParam("password") String password, HttpSession session) {
-        return userService.login(username, password, session);
+        return userService.login(session,username, password);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -37,7 +37,7 @@ public class UserController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map =  userService.getMyMenus(session);
-        map = userService.getUserMap(map, session);
+        map = userService.getUserMap(session,map);
         map.put("title", "我的首页");
         return new ModelAndView("home", map);
     }
