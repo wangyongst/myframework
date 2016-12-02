@@ -147,15 +147,18 @@
                 }
                 $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
                 </c:forEach>
-                if(laoren != null && laoren.bingshi !=null){
+                if (laoren != null && laoren.bingshi != null) {
                     var bin = laoren.bingshi.split(",");
-                        for(var x in bin){
-                            $("#bingshiCheckbox input[name=bingshi]").each(function(){ //遍历table里的全部checkbox
-                                if($(this).val() == bin[x]) { //如果被选中
-                                    $(this).prop("checked", true);
-                                }
-                            });
-                        }
+                    for (var x in bin) {
+                        $("#bingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
+                            if ($(this).val() == bin[x]) { //如果被选中
+                                $(this).prop("checked", true);
+                            }
+                        });
+                    }
+                }
+                if (laoren != null && laoren.sex != null) {
+                    $("#sexSelect").val(laoren.sex);
                 }
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
@@ -359,11 +362,24 @@
                                                         <c:when test="${item.columnname == 'bingshi'}">
                                                             <div class="checkbox" id="${item.columnname}Checkbox">
                                                                 <c:forEach var="itemb" items="${bingshi}">
-                                                                <label>
-                                                                    <input name = "${item.columnname}" type="checkbox" value="${itemb.name}">${itemb.name}
-                                                                </label>
+                                                                    <label>
+                                                                        <input name="${item.columnname}" type="checkbox" value="${itemb.name}">${itemb.name}
+                                                                    </label>
                                                                 </c:forEach>
                                                             </div>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:when test="${item.type == 'select'}">
+                                                    <c:choose>
+                                                        <c:when test="${item.columnname == 'sex'}">
+                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
+                                                                <c:forEach var="itemb" items="${sex}">
+                                                                    <label>
+                                                                        <option>${itemb.name}</option>
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </select>
                                                         </c:when>
                                                     </c:choose>
                                                 </c:when>

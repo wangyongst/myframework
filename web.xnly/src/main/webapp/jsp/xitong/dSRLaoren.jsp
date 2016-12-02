@@ -157,6 +157,9 @@
                         });
                     }
                 }
+                if (laoren != null && laoren.sex != null) {
+                    $("#sexSelect").val(laoren.sex);
+                }
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
             }
@@ -367,6 +370,19 @@
                                                                     </label>
                                                                 </c:forEach>
                                                             </div>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:when test="${item.type == 'select'}">
+                                                    <c:choose>
+                                                        <c:when test="${item.columnname == 'sex'}">
+                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
+                                                                <c:forEach var="itemb" items="${sex}">
+                                                                    <label>
+                                                                        <option>${itemb.name}</option>
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </select>
                                                         </c:when>
                                                     </c:choose>
                                                 </c:when>

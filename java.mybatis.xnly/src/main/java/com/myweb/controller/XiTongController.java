@@ -31,8 +31,8 @@ public class XiTongController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView user(HttpSession session) {
         Map map = userService.getTitleMap(session, "用户管理", "用户信息表");
-        map = userService.getColumnsNameMap(session, map, "user", "tableColumns",true);
-        map = userService.getColumnsNameMap(session, map, "user", "formColumns",false);
+        map = userService.getColumnsNameMap(session, map, "user", "tableColumns", true);
+        map = userService.getColumnsNameMap(session, map, "user", "formColumns", false);
         return new ModelAndView("xitong/user", map);
     }
 
@@ -45,10 +45,11 @@ public class XiTongController {
     @RequestMapping(value = "/laoren", method = RequestMethod.GET)
     public ModelAndView laoren(HttpSession session) {
         Map map = userService.getTitleMap(session, "老人管理", "老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns",true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns",false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns",false);
+        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
+        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
+        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
         return new ModelAndView("xitong/laoren", map);
     }
 
@@ -56,8 +57,8 @@ public class XiTongController {
     @RequestMapping(value = "/jiashu", method = RequestMethod.GET)
     public ModelAndView jiashu(HttpSession session) {
         Map map = userService.getTitleMap(session, "老人家属管理", "老人家属信息表");
-        map = userService.getColumnsNameMap(session, map, "jiashu", "tableColumns",true);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "formColumns",false);
+        map = userService.getColumnsNameMap(session, map, "jiashu", "tableColumns", true);
+        map = userService.getColumnsNameMap(session, map, "jiashu", "formColumns", false);
         return new ModelAndView("xitong/jiashu", map);
     }
 
@@ -78,20 +79,22 @@ public class XiTongController {
     @RequestMapping(value = "/dSRLaoren", method = RequestMethod.GET)
     public ModelAndView dSRLaoren(HttpSession session) {
         Map map = userService.getTitleMap(session, "低收入老人管理", "低收入老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns",true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns",false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns",false);
+        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
+        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
+        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
         return new ModelAndView("xitong/dSRLaoren", map);
     }
 
     @RequestMapping(value = "/yMJLaoren", method = RequestMethod.GET)
     public ModelAndView yMjLaoren(HttpSession session) {
         Map map = userService.getTitleMap(session, "饮马街街道老人管理", "饮马街街道老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns",true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns",false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns",false);
+        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
+        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
+        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
         return new ModelAndView("xitong/yMJLaoren", map);
     }
 
