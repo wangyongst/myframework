@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ page isELIgnored="false"%>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
@@ -28,7 +28,6 @@
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#alert").hide();
             $("#login").click(
                     function () {
                         var name = $('input[name="email"]').val();
@@ -68,12 +67,10 @@
 
 <body>
 
-<div class="row" id="alert">
+<div class="row" id="alert" hidden>
     <div class="col-lg-12">
         <div class="alert bg-warning" role="alert">
-            <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a id="closeA"
-                                                                                                class="pull-right"><span
-                class="glyphicon glyphicon-remove"></span></a>
+            <span class="glyphicon glyphicon-warning-sign"></span> <span id="message"></span><a id="closeA" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
         </div>
     </div>
 </div>

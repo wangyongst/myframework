@@ -1,18 +1,16 @@
 package com.myweb.service.xnly.impl;
 
-import com.myweb.dao.mybatis.MenuMapper;
-import com.myweb.dao.mybatis.ShuxingMapper;
-import com.myweb.dao.mybatis.TableinfoMapper;
-import com.myweb.dao.mybatis.UserMapper;
+import com.myweb.dao.mybatis.*;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.UserService;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +30,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ShuxingMapper shuxingMapper;
+
+
+    @Autowired
+    private Role2menuMapper Role2menuMapper;
+
 
     @Override
     public Result login(HttpSession session, String username, String password) {
@@ -63,11 +66,23 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> getMyMenus(HttpSession session) {
         Map map = new HashMap<String, String>();
         MenuExample parent = new MenuExample();
-        parent.setOrderByClause("shunxu");
-        map.put("parent", menuMapper.selectByExample(parent));
         MenuExample children = new MenuExample();
+        User user = (User) session.getAttribute("user");
         children.createCriteria().andParentNotEqualTo(0);
+        parent.setOrderByClause("shunxu");
         children.setOrderByClause("shunxu");
+        if (!user.getUsername().equals("super")) {
+            Role2menuExample u2mExapmle = new Role2menuExample();
+            u2mExapmle.createCriteria().andRoleEqualTo(user.getRole());
+            List<Role2menu> u2mList = Role2menuMapper.selectByExample(u2mExapmle);
+            List<Integer> value = new ArrayList<Integer>();
+            for (Role2menu u2m : u2mList) {
+                value.add(u2m.getMenuid());
+            }
+            parent.createCriteria().andIdIn(value);
+            parent.createCriteria().andIdIn(value);
+        }
+        map.put("parent", menuMapper.selectByExample(parent));
         map.put("children", menuMapper.selectByExample(children));
         return map;
     }
@@ -90,12 +105,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns,boolean isTable) {
+    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean isTable) {
         if (StringUtils.isNotBlank(columns)) {
             TableinfoExample tableinfoExample = new TableinfoExample();
-            if(isTable) {
+            if (isTable) {
                 tableinfoExample.createCriteria().andTablenameEqualTo(tableName).andTabledisableIsNull();
-            }else{
+            } else {
                 tableinfoExample.createCriteria().andTablenameEqualTo(tableName).andModaldisableIsNull();
             }
             tableinfoExample.setOrderByClause("shunxu");
@@ -105,10 +120,9 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
     @Override
-    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName,String type) {
-        if (StringUtils.isNotBlank(columnName)&& StringUtils.isNotBlank(type)) {
+    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName, String type) {
+        if (StringUtils.isNotBlank(columnName) && StringUtils.isNotBlank(type)) {
             ShuxingExample shuxingExample = new ShuxingExample();
             shuxingExample.createCriteria().andTypeEqualTo(type);
             shuxingExample.setOrderByClause("shunxu");
@@ -121,7 +135,7 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> getTitleMap(HttpSession session, String title, String tableTitle) {
         Map map = new HashMap<String, String>();
         map.put("title", title);
-        map = this.getUserMap(session,map);
+        map = this.getUserMap(session, map);
         map.put("tableName", tableTitle);
         return map;
     }

@@ -1,6 +1,6 @@
 package com.myweb.service.xnly;
 
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import com.myweb.pojo.mybatis.Caiji;
 
 import javax.servlet.http.HttpSession;

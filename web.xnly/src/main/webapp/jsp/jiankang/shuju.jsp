@@ -35,8 +35,6 @@
     <script src="js/bootstrap-table.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#alertA").hide();
-            $("#alertB").hide();
             $("#saveData").click(
                     function () {
                         $.ajax({
@@ -167,7 +165,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA">
+                <div class="row" id="alertA" hidden>
                     <div class="col-lg-12">
                         <div class="alert bg-warning" role="alert">
                             <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
@@ -209,7 +207,7 @@
                             <div class="modal-body">
                                 <form id="form">
                                     <div class="form-group">
-                                        <c:forEach var="item" items="${tableColumns}">
+                                        <c:forEach var="item" items="${formColumns}">
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
@@ -221,7 +219,7 @@
                                 </form>
                             </div>
 
-                            <div class="row" id="alertB">
+                            <div class="row" id="alertB" hidden>
                                 <div class="col-lg-12">
                                     <div class="alert bg-warning" role="alert">
                                         <span class="glyphicon glyphicon-warning-sign"></span> <span

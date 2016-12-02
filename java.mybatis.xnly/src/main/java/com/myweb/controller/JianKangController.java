@@ -4,7 +4,7 @@ package com.myweb.controller;
 import com.myweb.pojo.mybatis.Caiji;
 import com.myweb.service.xnly.JianKangService;
 import com.myweb.service.xnly.UserService;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

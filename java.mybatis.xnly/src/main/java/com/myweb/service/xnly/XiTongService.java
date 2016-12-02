@@ -2,7 +2,7 @@ package com.myweb.service.xnly;
 
 
 import com.myweb.pojo.mybatis.Jiashu;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
 

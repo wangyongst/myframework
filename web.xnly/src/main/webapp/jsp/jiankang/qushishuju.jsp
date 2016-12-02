@@ -246,7 +246,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA">
+                <div class="row" id="alertA" hidden>
                     <div class="col-lg-12">
                         <div class="alert bg-warning" role="alert">
                             <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a

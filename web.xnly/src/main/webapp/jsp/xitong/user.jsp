@@ -33,130 +33,18 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $("#alertA").hide();
-            $("#alertB").hide();
-            $("#saveData").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "xitong/user/edit.do",
-                            data: $('#userForm').serialize() + "&id=" + $('#idInput').val(),
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertB div div").attr("class", "alert bg-danger");
-                                $("#alertB").show();
-                                $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
-                            },
-                            success: function (result) {
-                                if (result.status == 1) {
-                                    $('#myModal').modal('toggle');
-                                    $("#alertB").hide();
-                                    $("#alertA").show();
-                                    $("#messageA").text(result.message);
-                                    $("button[name='refresh']").click();
-                                    //debugger;
-                                } else {
-                                    $("#alertB").show();
-                                    $("#messageB").text(result.message);
-                                }
-                            }
-                        });
-                    });
-            function select() {
-                var ids = "";
-                $("input[name=toolbar1]").each(function () {
-                    if ($(this).context.checked) {
-                        var index = $("table input:checkbox").index(this);
-                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                        ids += "," + val;
-                    }
-                });
-                return ids;
+        function showModalData(user) {
+            <c:forEach var="item" items="${formColumns}">
+            if (user != null) {
+                $("#${item.columnname}Input").val(user.${item.columnname});
+            } else {
+                $("#${item.columnname}Input").val("");
             }
-
-            function showModal(user, type) {
-                $('#idInput').hide();
-                $('#idLabel').hide();
-                if (type == 1) {
-                    $('#idLabel').show();
-                    $('#idInput').show();
-                    $('#idInput').attr("readonly", "readonly");
-                    $('#myModal').find('.modal-title').text('修改用户信息');
-                } else {
-                    $('#myModal').find('.modal-title').text('注册用户信息');
-                }
-                <c:forEach var="item" items="${tableColumns}">
-                if (user != null) {
-                    $("#${item.columnname}Input").val(user.${item.columnname});
-                } else {
-                    $("#${item.columnname}Input").val("");
-                }
-                $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
-                </c:forEach>
-                $('#myModal').modal('toggle');
-                $("#alertB").hide();
-            }
-
-
-            $("#zhuce").click(
-                    function () {
-                        showModal(null, 0);
-                    });
-            $("#xiugai").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "xitong/user/get.do",
-                            data: {ids: select()},
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertA").show();
-                                $("#messageA").text("操作失败，请联系管理员！");
-                            },
-                            success: function (result) {
-                                if (result.status == 1) {
-                                    showModal(result.data, 1);
-                                } else {
-                                    $("#alertA").show();
-                                    $("#messageA").text(result.message);
-                                }
-
-                            }
-                        });
-                    });
-            $("#shanchu").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "xitong/user/delete.do",
-                            data: {ids: select()},
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertA").show();
-                                $("#messageA").text("操作失败，请联系管理员！");
-                            },
-                            success: function (result) {
-                                $("#alertA").show();
-                                $("#messageA").text(result.message);
-                                $("button[name='refresh']").click();
-                            }
-                        });
-                    });
-            $("#closeA").click(
-                    function () {
-                        $("#alertA").hide();
-                    });
-            $("#closeB").click(
-                    function () {
-                        $("#alertB").hide();
-                    });
-
-        });
+            $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
+            </c:forEach>
+        }
     </script>
 </head>
 
@@ -174,7 +62,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA">
+                <div class="row" id="alertA" hidden>
                     <div class="col-lg-12">
                         <div class="alert bg-warning" role="alert">
                             <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
@@ -222,14 +110,30 @@
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}">
+                                            <c:choose>
+                                                <c:when test="${item.type == 'select'}">
+                                                    <c:choose>
+                                                        <c:when test="${item.columnname == 'role'}">
+                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
+                                                                <c:forEach var="itemb" items="${role}">
+                                                                    <label>
+                                                                        <option>${itemb.name}</option>
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </div>
                                 </form>
                             </div>
 
-                            <div class="row" id="alertB">
+                            <div class="row" id="alertB" hidden>
                                 <div class="col-lg-12">
                                     <div class="alert bg-warning" role="alert">
                                         <span class="glyphicon glyphicon-warning-sign"></span> <span

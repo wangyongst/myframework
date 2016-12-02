@@ -7,7 +7,7 @@ import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.ServiceUtils;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service("xiTongService")
@@ -34,7 +33,9 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     public List<User> getAllUsers(HttpSession session) {
-        return userMapper.selectByExample(null);
+        UserExample userExapmle = new UserExample();
+        userExapmle.createCriteria().andUsernameNotEqualTo("super");
+        return userMapper.selectByExample(userExapmle);
     }
 
     @Override
@@ -75,7 +76,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteJiashu(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(jiashuMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
             result.setMessage("您删除了一条记录！");
         }
@@ -85,31 +86,28 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public List<Laoren> getDSRLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
-        LaorenExample.Criteria criteria = example.createCriteria();
-        criteria.andTypeEqualTo(1);
+        example.createCriteria().andTypeEqualTo(1);
         return laorenMapper.selectByExample(example);
     }
 
     @Override
     public List<Laoren> getYMJLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
-        LaorenExample.Criteria criteria = example.createCriteria();
-        criteria.andTypeEqualTo(2);
+        example.createCriteria().andTypeEqualTo(2);
         return laorenMapper.selectByExample(example);
     }
 
     @Override
     public List<Laoren> getOtherLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
-        LaorenExample.Criteria criteria = example.createCriteria();
-        criteria.andTypeIsNull();
+        example.createCriteria().andTypeIsNull();
         return laorenMapper.selectByExample(example);
     }
 
     @Override
     public Result getLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
         }
         return result;
@@ -117,7 +115,7 @@ public class XiTongServiceImpl implements XiTongService {
 
     public Result getUser(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(userMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
         }
         return result;
@@ -150,7 +148,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public Result getJiashu(HttpSession session, String ids, String idType) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             Jiashu jiashu = new Jiashu();
             Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
             if (idType.equals("laorenid")) {
@@ -239,7 +237,7 @@ public class XiTongServiceImpl implements XiTongService {
                 return result;
             } else {
                 User create = (User) session.getAttribute("user");
-                user.setCreateuser(create.getId());
+                user.setCreateuserid(create.getId());
                 user.setCreateusername(create.getName());
                 user.setCreatetime(DateUtils.getCurrentTimeSecond());
                 count = userMapper.insert(user);
@@ -259,7 +257,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
             result.setMessage("您删除了一条记录！");
         }
@@ -271,7 +269,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result changeLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
             if(laoren.getType() == null){
                 laoren.setType(1);
@@ -288,7 +286,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteUser(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOne(result, ids)) {
+        if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(userMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
             result.setMessage("您删除了一条记录！");
         }

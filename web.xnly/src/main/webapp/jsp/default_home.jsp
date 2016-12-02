@@ -170,7 +170,7 @@
                     </li>
                     <li class="right clearfix">
 								<span class="chat-img pull-right">
-									<img src="http://placehold.it/80/dde0e6/5f6468" alt="User Avatar"
+									<img src="" alt="User Avatar"
                                          class="img-circle"/>
 								</span>
                         <div class="chat-body clearfix">

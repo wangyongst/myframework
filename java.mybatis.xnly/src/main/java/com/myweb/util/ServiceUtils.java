@@ -1,9 +1,6 @@
 package com.myweb.util;
 
-import com.myweb.vo.Result;
 import org.apache.commons.lang3.StringUtils;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * Created by BHWL on 2016-11-30.
@@ -17,7 +14,7 @@ public class ServiceUtils {
     //3，选择了多条记录
     //4，保存条件己存在
 
-    public static boolean isOnlyOne(Result result,String ids){
+    public static boolean isLegalIds(Result result,String ids){
         if (StringUtils.isBlank(ids)) {
             result.setStatus(0);
             result.setMessage("请先选择一条记录！");

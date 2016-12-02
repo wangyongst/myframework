@@ -1,4 +1,4 @@
-package com.myweb.vo;
+package com.myweb.util;
 
 public class Result {
 

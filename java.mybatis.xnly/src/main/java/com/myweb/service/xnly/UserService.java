@@ -1,6 +1,6 @@
 package com.myweb.service.xnly;
 
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;

@@ -5,7 +5,7 @@ import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
 import com.myweb.service.xnly.UserService;
 import com.myweb.service.xnly.XiTongService;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +33,7 @@ public class XiTongController {
         Map map = userService.getTitleMap(session, "用户管理", "用户信息表");
         map = userService.getColumnsNameMap(session, map, "user", "tableColumns", true);
         map = userService.getColumnsNameMap(session, map, "user", "formColumns", false);
+        map = userService.getColumnsShuxingMap(session, map, "role", "role");
         return new ModelAndView("xitong/user", map);
     }
 
@@ -50,6 +51,8 @@ public class XiTongController {
         map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
         map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
+        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
+        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
         return new ModelAndView("xitong/laoren", map);
     }
 
@@ -59,6 +62,7 @@ public class XiTongController {
         Map map = userService.getTitleMap(session, "老人家属管理", "老人家属信息表");
         map = userService.getColumnsNameMap(session, map, "jiashu", "tableColumns", true);
         map = userService.getColumnsNameMap(session, map, "jiashu", "formColumns", false);
+        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
         return new ModelAndView("xitong/jiashu", map);
     }
 
@@ -84,6 +88,8 @@ public class XiTongController {
         map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
         map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
+        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
+        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
         return new ModelAndView("xitong/dSRLaoren", map);
     }
 
@@ -95,6 +101,8 @@ public class XiTongController {
         map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
         map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
         map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
+        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
+        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
         return new ModelAndView("xitong/yMJLaoren", map);
     }
 

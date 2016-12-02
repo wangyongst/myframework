@@ -1,7 +1,7 @@
 package com.myweb.controller;
 
 import com.myweb.service.xnly.UserService;
-import com.myweb.vo.Result;
+import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
