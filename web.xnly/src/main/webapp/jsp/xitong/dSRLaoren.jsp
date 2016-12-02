@@ -125,6 +125,11 @@
             function showModal(laoren, type) {
                 $('#idLabel').hide();
                 $('#idInput').hide();
+                $('#idLabel').hide();
+                $('#idInput').hide();
+                $("#bingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
+                    $(this).prop("checked", false);
+                })
                 if (type == 1) {
                     $('#idLabel').show();
                     $('#idInput').show();
@@ -135,10 +140,6 @@
                     $('#myModal').find('.modal-title').text('注册用户信息');
                 }
                 <c:forEach var="item" items="${formColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
                 if (laoren != null) {
                     $("#${item.columnname}Input").val(laoren.${item.columnname});
                 } else {
@@ -146,6 +147,16 @@
                 }
                 $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
                 </c:forEach>
+                if(laoren != null && laoren.bingshi !=null){
+                    var bin = laoren.bingshi.split(",");
+                    for(var x in bin){
+                        $("#bingshiCheckbox input[name=bingshi]").each(function(){ //遍历table里的全部checkbox
+                            if($(this).val() == bin[x]) { //如果被选中
+                                $(this).prop("checked", true);
+                            }
+                        });
+                    }
+                }
                 $('#myModal').modal('toggle');
                 $("#alertB").hide();
             }
@@ -157,10 +168,6 @@
                 $('#JSlaorennameInput').attr("readonly", "readonly");
                 $('#jiashuModal').find('.modal-title').text('添加老人家属信息');
                 <c:forEach var="item" items="${jiashuColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#JS${item.columnname}Label").hide();
-                $("#JS${item.columnname}Input").hide();
-                </c:if>
                 if (jiashu != null) {
                     $("#JS${item.columnname}Input").val(jiashu.${item.columnname});
                 } else {
@@ -349,8 +356,24 @@
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}"/>
+                                            <c:choose>
+                                                <c:when test="${item.type == 'checkbox'}">
+                                                    <c:choose>
+                                                        <c:when test="${item.columnname == 'bingshi'}">
+                                                            <div class="checkbox" id="${item.columnname}Checkbox">
+                                                                <c:forEach var="itemb" items="${bingshi}">
+                                                                    <label>
+                                                                        <input name="${item.columnname}" type="checkbox" value="${itemb.name}">${itemb.name}
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </div>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </div>
                                 </form>

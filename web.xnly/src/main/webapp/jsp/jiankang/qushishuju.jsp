@@ -275,9 +275,7 @@
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
                         <c:forEach var="item" items="${tableColumns}">
-                            <c:if test="${item.tabledisable != 'disable'}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
-                            </c:if>
+                            <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                         </c:forEach>
                     </tr>
                     </thead>

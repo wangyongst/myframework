@@ -1,6 +1,7 @@
 package com.myweb.service.xnly.impl;
 
 import com.myweb.dao.mybatis.MenuMapper;
+import com.myweb.dao.mybatis.ShuxingMapper;
 import com.myweb.dao.mybatis.TableinfoMapper;
 import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.pojo.mybatis.*;
@@ -28,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private TableinfoMapper tableinfoMapper;
+
+    @Autowired
+    private ShuxingMapper shuxingMapper;
 
     @Override
     public Result login(HttpSession session, String username, String password) {
@@ -86,12 +90,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns) {
+    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns,boolean isTable) {
         if (StringUtils.isNotBlank(columns)) {
             TableinfoExample tableinfoExample = new TableinfoExample();
-            tableinfoExample.createCriteria().andTablenameEqualTo(tableName);
+            if(isTable) {
+                tableinfoExample.createCriteria().andTablenameEqualTo(tableName).andTabledisableIsNull();
+            }else{
+                tableinfoExample.createCriteria().andTablenameEqualTo(tableName).andModaldisableIsNull();
+            }
             tableinfoExample.setOrderByClause("shunxu");
             map.put(columns, tableinfoMapper.selectByExample(tableinfoExample));
+        }
+        return map;
+    }
+
+
+
+    @Override
+    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName,String type) {
+        if (StringUtils.isNotBlank(columnName)&& StringUtils.isNotBlank(type)) {
+            ShuxingExample shuxingExample = new ShuxingExample();
+            shuxingExample.createCriteria().andTypeEqualTo(type);
+            shuxingExample.setOrderByClause("shunxu");
+            map.put(columnName, shuxingMapper.selectByExample(shuxingExample));
         }
         return map;
     }

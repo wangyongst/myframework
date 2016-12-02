@@ -84,10 +84,6 @@
                 $('#laorennameInput').attr("readonly", "readonly");
                 $('#myModal').find('.modal-title').text('采集老人健康数据');
                 <c:forEach var="item" items="${formColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
                 if (caiji != null) {
                     $("#${item.columnname}Input").val(caiji.${item.columnname});
                 } else {
@@ -172,9 +168,7 @@
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
                         <c:forEach var="item" items="${tableColumns}">
-                            <c:if test="${item.tabledisable != 'disable'}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
-                            </c:if>
+                            <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                         </c:forEach>
                     </tr>
                     </thead>

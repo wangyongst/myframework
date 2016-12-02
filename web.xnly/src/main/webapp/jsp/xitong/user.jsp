@@ -89,10 +89,6 @@
                     $('#myModal').find('.modal-title').text('注册用户信息');
                 }
                 <c:forEach var="item" items="${tableColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
                 if (user != null) {
                     $("#${item.columnname}Input").val(user.${item.columnname});
                 } else {
@@ -203,9 +199,7 @@
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
                         <c:forEach var="item" items="${tableColumns}">
-                            <c:if test="${item.tabledisable != 'disable'}">
-                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
-                            </c:if>
+                            <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
                         </c:forEach>
                     </tr>
                     </thead>

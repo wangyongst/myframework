@@ -84,10 +84,6 @@
                 $('#laorennameInput').attr("readonly", "readonly");
                 $('#myModal').find('.modal-title').text('管理老人家属信息');
                 <c:forEach var="item" items="${formColumns}">
-                <c:if test="${item.modaldisable == 'disable'}">
-                $("#${item.columnname}Label").hide();
-                $("#${item.columnname}Input").hide();
-                </c:if>
                 if (jiashu != null) {
                     $("#${item.columnname}Input").val(jiashu.${item.columnname});
                 } else {
