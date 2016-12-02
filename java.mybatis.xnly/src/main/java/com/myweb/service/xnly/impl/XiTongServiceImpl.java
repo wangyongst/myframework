@@ -6,6 +6,7 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
+import com.myweb.util.ServiceUtils;
 import com.myweb.vo.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,19 +75,9 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteJiashu(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(jiashuMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
-                result.setMessage("您删除了一条记录！");
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(jiashuMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
+            result.setMessage("您删除了一条记录！");
         }
         return result;
     }
@@ -118,36 +109,16 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public Result getLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1])));
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
         }
         return result;
     }
 
     public Result getUser(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(userMapper.selectByPrimaryKey(Integer.parseInt(ida[1])));
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(userMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
         }
         return result;
     }
@@ -179,26 +150,16 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public Result getJiashu(HttpSession session, String ids, String idType) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                Jiashu jiashu = new Jiashu();
-                Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
-                if (idType.equals("laorenid")) {
-                    jiashu.setLaorenid(laoren.getId());
-                    jiashu.setLaorenname(laoren.getName());
-                } else if (idType.equals("jiashuid")) {
-                    jiashu = jiashuMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
-                }
-                result.setData(jiashu);
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            Jiashu jiashu = new Jiashu();
+            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
+            if (idType.equals("laorenid")) {
+                jiashu.setLaorenid(laoren.getId());
+                jiashu.setLaorenname(laoren.getName());
+            } else if (idType.equals("jiashuid")) {
+                jiashu = jiashuMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
             }
+            result.setData(jiashu);
         }
         return result;
     }
@@ -298,19 +259,9 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
-                result.setMessage("您删除了一条记录！");
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
+            result.setMessage("您删除了一条记录！");
         }
         return result;
     }
@@ -320,25 +271,15 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result changeLaoren(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
-                if(laoren.getType() == null){
-                    laoren.setType(1);
-                }else{
-                    laoren.setType(null);
-                }
-                result.setData(laorenMapper.updateByPrimaryKey(laoren));
-                result.setMessage("您移动了一条记录！");
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
+            if(laoren.getType() == null){
+                laoren.setType(1);
+            }else{
+                laoren.setType(null);
             }
+            result.setData(laorenMapper.updateByPrimaryKey(laoren));
+            result.setMessage("您移动了一条记录！");
         }
         return result;
     }
@@ -347,21 +288,10 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteUser(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(userMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
-                result.setMessage("您删除了一条记录！");
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(userMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
+            result.setMessage("您删除了一条记录！");
         }
         return result;
     }
-
 }

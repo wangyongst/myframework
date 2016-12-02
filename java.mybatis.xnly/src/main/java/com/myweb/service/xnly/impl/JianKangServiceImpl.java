@@ -9,6 +9,7 @@ import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
 import com.myweb.service.xnly.JianKangService;
 import com.myweb.util.DateUtils;
+import com.myweb.util.ServiceUtils;
 import com.myweb.vo.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,26 +39,16 @@ public class JianKangServiceImpl implements JianKangService {
     @Override
     public Result getCaiji(HttpSession session, String ids, String idType) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                Caiji caiji = new Caiji();
-                Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
-                if (idType.equals("laorenid")) {
-                    caiji.setLaorenid(laoren.getId());
-                    caiji.setLaorenname(laoren.getName());
-                } else if (idType.equals("caijiid")) {
-                    caiji = caijiMapper.selectByPrimaryKey(Integer.parseInt(ida[1]));
-                }
-                result.setData(caiji);
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
+            Caiji caiji = new Caiji();
+            if (idType.equals("laorenid")) {
+                caiji.setLaorenid(laoren.getId());
+                caiji.setLaorenname(laoren.getName());
+            } else if (idType.equals("caijiid")) {
+                caiji = caijiMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
             }
+            result.setData(caiji);
         }
         return result;
     }
@@ -67,8 +58,8 @@ public class JianKangServiceImpl implements JianKangService {
     public Result editCaiji(HttpSession session, Caiji caiji) {
         Result result = new Result();
         int count = 0;
-        if(caiji.getShengao() != null && caiji.getTizhong() != null){
-             caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue()/Math.pow(new Float(caiji.getShengao())/100,2)));
+        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
+            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
         }
         if (caiji.getId() != null && caiji.getId() != 0) {
             count = caijiMapper.updateByPrimaryKeySelective(caiji);
@@ -103,19 +94,9 @@ public class JianKangServiceImpl implements JianKangService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteCaiji(HttpSession session, String ids) {
         Result result = new Result();
-        if (StringUtils.isBlank(ids)) {
-            result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
-        } else {
-            String[] ida = ids.split(",");
-            if (ida.length == 2) {
-                result.setStatus(1);
-                result.setData(caijiMapper.deleteByPrimaryKey(Integer.parseInt(ida[1])));
-                result.setMessage("您删除了一条记录！");
-            } else {
-                result.setStatus(3);
-                result.setMessage("您选择了多条记录，请选择一条记录！");
-            }
+        if (ServiceUtils.isOnlyOne(result, ids)) {
+            result.setData(caijiMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
+            result.setMessage("您删除了一条记录！");
         }
         return result;
     }

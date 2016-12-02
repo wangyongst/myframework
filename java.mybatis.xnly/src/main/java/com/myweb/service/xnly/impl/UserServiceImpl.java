@@ -30,9 +30,7 @@ public class UserServiceImpl implements UserService {
     private TableinfoMapper tableinfoMapper;
 
     @Override
-    public Result login(String username, String password,
-                        HttpSession session) {
-
+    public Result login(String username, String password, HttpSession session) {
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(username)
                 .andPasswordEqualTo(password);
@@ -95,6 +93,15 @@ public class UserServiceImpl implements UserService {
             tableinfoExample.setOrderByClause("shunxu");
             map.put(columns, tableinfoMapper.selectByExample(tableinfoExample));
         }
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getTitleMap(HttpSession session, String title, String tableName) {
+        Map map = new HashMap<String, String>();
+        map.put("title", title);
+        map = this.getUserMap(map, session);
+        map.put("tableName", tableName);
         return map;
     }
 }

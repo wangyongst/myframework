@@ -32,11 +32,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/caiji", method = RequestMethod.GET)
     public ModelAndView caiji(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        Map map = new HashMap<String, String>();
-        map.put("title", "健康数据采集");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "老人信息表");
+        Map map = userService.getTitleMap(session,"健康数据采集","老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         map = userService.getColumnsNameMap("caiji", map, session, "formColumns");
         return new ModelAndView("jiankang/caiji", map);
@@ -44,10 +40,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/qushi", method = RequestMethod.GET)
     public ModelAndView qushi(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "健康趋势");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "老人信息表");
+        Map map = userService.getTitleMap(session,"健康趋势","老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         return new ModelAndView("jiankang/qushi", map);
     }
@@ -55,10 +48,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/shuju", method = RequestMethod.GET)
     public ModelAndView shuju(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "健康数据管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "健康数据表");
+        Map map = userService.getTitleMap(session,"健康数据管理","健康数据表");
         map = userService.getColumnsNameMap("caiji", map, session, "tableColumns");
         map = userService.getColumnsNameMap("caiji", map, session, "formColumns");
         return new ModelAndView("jiankang/shuju", map);
@@ -66,10 +56,7 @@ public class JianKangController {
 
     @RequestMapping(value = "/qushi/shuju", method = RequestMethod.GET)
     public ModelAndView qushiShuju(HttpSession session, String laorenid) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "健康数据趋势");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "健康数据表");
+        Map map = userService.getTitleMap(session,"健康数据趋势","健康数据表");
         map = userService.getColumnsNameMap("caiji", map, session, "tableColumns");
         map.put("laorenid", laorenid);
         return new ModelAndView("jiankang/qushishuju", map);

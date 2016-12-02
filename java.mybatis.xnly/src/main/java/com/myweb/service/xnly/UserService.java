@@ -17,4 +17,6 @@ public interface UserService {
 
 	public Map<String, Object> getColumnsNameMap(String tableName, Map<String, Object> map, HttpSession session,String columns);
 
+	public Map<String, Object> getTitleMap(HttpSession session,String title,String tableName);
+
 }

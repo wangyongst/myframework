@@ -31,10 +31,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ModelAndView user(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "用户管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "用户信息表");
+        Map map = userService.getTitleMap(session,"用户管理","用户信息表");
         map = userService.getColumnsNameMap("user", map, session, "tableColumns");
         map = userService.getColumnsNameMap("user", map, session, "formColumns");
         return new ModelAndView("xitong/user", map);
@@ -48,10 +45,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/laoren", method = RequestMethod.GET)
     public ModelAndView laoren(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "老人管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "老人信息表");
+        Map map = userService.getTitleMap(session,"老人管理","老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         map = userService.getColumnsNameMap("laoren", map, session, "formColumns");
         map = userService.getColumnsNameMap("jiashu", map, session, "jiashuColumns");
@@ -61,10 +55,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/jiashu", method = RequestMethod.GET)
     public ModelAndView jiashu(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "老人家属管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "老人家属信息表");
+        Map map = userService.getTitleMap(session,"老人家属管理","老人家属信息表");
         map = userService.getColumnsNameMap("jiashu", map, session, "tableColumns");
         map = userService.getColumnsNameMap("jiashu", map, session, "formColumns");
         return new ModelAndView("xitong/jiashu", map);
@@ -87,10 +78,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/dSRLaoren", method = RequestMethod.GET)
     public ModelAndView dSRLaoren(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "低收入老人管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "低收入老人信息表");
+        Map map = userService.getTitleMap(session,"低收入老人管理","低收入老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         map = userService.getColumnsNameMap("laoren", map, session, "formColumns");
         map = userService.getColumnsNameMap("jiashu", map, session, "jiashuColumns");
@@ -99,10 +87,7 @@ public class XiTongController {
 
     @RequestMapping(value = "/yMJLaoren", method = RequestMethod.GET)
     public ModelAndView yMjLaoren(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map.put("title", "饮马街街道老人管理");
-        map = userService.getUserMap(map, session);
-        map.put("tableName", "饮马街街道老人信息表");
+        Map map = userService.getTitleMap(session,"饮马街街道老人管理","饮马街街道老人信息表");
         map = userService.getColumnsNameMap("laoren", map, session, "tableColumns");
         map = userService.getColumnsNameMap("laoren", map, session, "formColumns");
         map = userService.getColumnsNameMap("jiashu", map, session, "jiashuColumns");
