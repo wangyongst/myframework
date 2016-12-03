@@ -69,6 +69,7 @@
                 <button type="button" class="btn btn-primary" id="xuetang">血糖趋势</button>
                 <button type="button" class="btn btn-primary" id="shenggao">身高趋势</button>
                 <button type="button" class="btn btn-primary" id="bmi">BMI趋势</button>
+                <button type="button" class="btn btn-primary" id="huxi">呼吸趋势</button>
 
                 <table data-toggle="table" data-url="jiankang/allCaijis.do?laorenid=${laorenid}"
                        data-show-refresh="true"

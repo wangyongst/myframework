@@ -29,7 +29,7 @@ $(function () {
                 },
                 success: function (result) {
                     if (result.status == 1) {
-                        window.location.href = "<%=basePath%>jiankang/qushi/shuju.do?&laorenid=" + result.data.laorenid;
+                        gotojsp("jiankang/qushi/shuju.do?&laorenid=" + result.data.laorenid);
                     } else {
                         $("#alertA").show();
                         $("#messageA").text(result.message);

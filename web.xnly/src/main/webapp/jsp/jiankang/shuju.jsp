@@ -46,6 +46,10 @@
             </c:forEach>
         }
 
+        function gotojsp(url) {
+
+        }
+
     </script>
 </head>
 
