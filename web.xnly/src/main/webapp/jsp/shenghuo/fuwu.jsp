@@ -33,16 +33,16 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
-    <script src="js/jiankang/shuju.js"></script>
+    <script src="js/shenghuo/fuwu.js"></script>
     <script type="text/javascript">
-        function showModalData(caiji) {
+        function showModalData(fuwu) {
             <c:forEach var="item" items="${formColumns}">
-            if (caiji != null) {
-                $("#${item.columnname}Input").val(caiji.${item.columnname});
+            if (fuwu != null) {
+                $("#${item.columnname}Input").val(fuwu.${item.columnname});
             } else {
                 $("#${item.columnname}Input").val("");
             }
-            $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
+            $("#${item.columnname}Input").attr("placeholder", "请输入老人服务/需求的${item.chinese}");
             </c:forEach>
         }
 
@@ -50,7 +50,6 @@
 </head>
 
 <body style="padding-top:0px">
-
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -76,10 +75,9 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
-                <button type="button" class="btn btn-primary" id="shanchu">删除数据</button>
+                <button type="button" class="btn btn-primary" id="fuwu">服务记录/需求登记</button>
 
-                <table data-toggle="table" data-url="jiankang/allCaijis.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
                        data-sort-order="desc" id="laorenTable">
@@ -110,9 +108,33 @@
                                             <label for="${item.columnname}"
                                                    class="control-label"
                                                    id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}">
-
+                                            <c:choose>
+                                                <c:when test="${item.type == 'select'}">
+                                                    <c:choose>
+                                                        <c:when test="${item.columnname == 'xiangmu'}">
+                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
+                                                                <c:forEach var="itemb" items="${xiangmu}">
+                                                                    <label>
+                                                                        <option>${itemb.name}</option>
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </c:when>
+                                                        <c:when test="${item.columnname == 'fuwutype'}">
+                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
+                                                                <c:forEach var="itemb" items="${fuwutype}">
+                                                                    <label>
+                                                                        <option>${itemb.name}</option>
+                                                                    </label>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </div>
                                 </form>

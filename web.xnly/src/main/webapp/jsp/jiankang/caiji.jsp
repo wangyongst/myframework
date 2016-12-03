@@ -33,102 +33,19 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/jiankang/caiji.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $("#alertA").hide();
-            $("#alertB").hide();
-            $("#saveData").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "jiankang/caiji/edit.do",
-                            data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertB div div").attr("class", "alert bg-danger");
-                                $("#alertB").show();
-                                $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
-                            },
-                            success: function (result) {
-                                if (result.status == 1) {
-                                    $('#myModal').modal('toggle');
-                                    $("#alertB").hide();
-                                    $("#alertA").show();
-                                    $("#messageA").text(result.message);
-                                    $("button[name='refresh']").click();
-                                    //debugger;
-                                } else {
-                                    $("#alertB").show();
-                                    $("#messageB").text(result.message);
-                                }
-                            }
-                        });
-                    });
-            function select() {
-                var ids = "";
-                $("input[name=toolbar1]").each(function () {
-                    if ($(this).context.checked) {
-                        var index = $("table input:checkbox").index(this);
-                        val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                        ids += "," + val;
-                    }
-                });
-                return ids;
+        function showModalData(caiji) {
+            <c:forEach var="item" items="${formColumns}">
+            if (caiji != null) {
+                $("#${item.columnname}Input").val(caiji.${item.columnname});
+            } else {
+                $("#${item.columnname}Input").val("");
             }
+            $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
+            </c:forEach>
+        }
 
-            function showModal(caiji, type) {
-                $('#idInput').hide();
-                $('#idLabel').hide();
-                $('#laorenidInput').attr("readonly", "readonly");
-                $('#laorennameInput').attr("readonly", "readonly");
-                $('#myModal').find('.modal-title').text('采集老人健康数据');
-                <c:forEach var="item" items="${formColumns}">
-                if (caiji != null) {
-                    $("#${item.columnname}Input").val(caiji.${item.columnname});
-                } else {
-                    $("#${item.columnname}Input").val("");
-                }
-                $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-                </c:forEach>
-                $('#myModal').modal('toggle');
-                $("#alertB").hide();
-            }
-
-
-            $("#caiji").click(
-                    function () {
-                        $.ajax({
-                            type: "POST",
-                            cache: "false",
-                            url: "jiankang/caiji/get.do",
-                            data: {ids: select(), idType: "laorenid"},
-                            dataType: "json",
-                            error: function () {//请求失败时调用函数。
-                                $("#alertA").show();
-                                $("#messageA").text("操作失败，请联系管理员！");
-                            },
-                            success: function (result) {
-                                if (result.status == 1) {
-                                    showModal(result.data, 1);
-                                } else {
-                                    $("#alertA").show();
-                                    $("#messageA").text(result.message);
-                                }
-                            }
-                        });
-                    });
-
-            $("#closeA").click(
-                    function () {
-                        $("#alertA").hide();
-                    });
-            $("#closeB").click(
-                    function () {
-                        $("#alertB").hide();
-                    });
-
-        });
     </script>
 </head>
 
