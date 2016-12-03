@@ -4,6 +4,27 @@
 $(function () {
     $("#alertA").hide();
 
+
+    function getIndex(column){
+        var col = $('table tr:first').find("th").length;
+        for(var i = 0; i < col ; i++){
+            if( $('table tr:first').find("th").eq(i).text().indexOf(column) != -1) {
+                return i;
+            }
+        }
+    }
+
+    function getValues(column){
+        var values = new Array();
+        $("input[name=toolbar1]").each(function () {
+            if ($(this).context.checked) {
+                var index = $("table input:checkbox").index(this);
+                values.push($("table").find("tr").eq(index).find("td").eq(getIndex(column)).text() + "");
+            }
+        });
+        return values;
+    }
+
     function myLineChart(mychartid, mylineChartData) {
         var chart1 = document.getElementById(mychartid).getContext("2d");
         window.myLine = new Chart(chart1).Line(mylineChartData, {
@@ -78,131 +99,57 @@ $(function () {
     $("#xueya").click(
         function () {
             isSelect();
-            var time = new Array();
-            var gaoya = new Array();
-            var diya = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    gaoya.push($("table").find("tr").eq(index).find("td").eq(3).text() + "");
-                    diya.push($("table").find("tr").eq(index).find("td").eq(4).text() + "");
-                }
-            });
             $("#linechartitle").text("血压趋势图");
-            myLineChart("line-chart", create2LineChartData(time, gaoya, diya))
+            myLineChart("line-chart", create2LineChartData(getValues("测量时间"), getValues("高压"), getValues("低压")));
         });
 
     $("#xueyang").click(
         function () {
             isSelect();
-            var time = new Array();
-            var xueyang = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    xueyang.push($("table").find("tr").eq(index).find("td").eq(7).text() + "");
-                }
-            });
             $("#linechartitle").text("血氧趋势图");
-            myLineChart("line-chart", create1LineChartData(time, xueyang))
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("血氧")));
         });
 
     $("#tizhaong").click(
         function () {
             isSelect();
-            var time = new Array();
-            var tizhaong = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    tizhaong.push($("table").find("tr").eq(index).find("td").eq(8).text() + "");
-                }
-            });
             $("#linechartitle").text("体重趋势图");
-            myLineChart("line-chart", create1LineChartData(time, tizhaong))
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("体重")));
         });
 
     $("#xuetang").click(
         function () {
             isSelect();
-            var time = new Array();
-            var xuetang = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    xuetang.push($("table").find("tr").eq(index).find("td").eq(5).text() + "");
-                }
-            });
             $("#linechartitle").text("血糖趋势图");
-            myLineChart("line-chart", create1LineChartData(time, xuetang))
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("血糖")));
         });
 
     $("#maibo").click(
         function () {
             isSelect();
-            var time = new Array();
-            var maibo = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    maibo.push($("table").find("tr").eq(index).find("td").eq(6).text() + "");
-                }
-            });
             $("#linechartitle").text("脉博趋势图");
-            myLineChart("line-chart", create1LineChartData(time, maibo))
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("脉博")));
         });
 
     $("#shenggao").click(
         function () {
             isSelect();
-            var time = new Array();
-            var shenggao = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    shenggao.push($("table").find("tr").eq(index).find("td").eq(9).text() + "");
-                }
-            });
             $("#linechartitle").text("身高趋势图");
-            myLineChart("line-chart", create1LineChartData(time, shenggao))
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("身高")));
         });
 
     $("#bmi").click(
         function () {
-            isSelect();
-            var time = new Array();
-            var bmi = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    bmi.push($("table").find("tr").eq(index).find("td").eq(10).text() + "");
-                }
-            });
-            $("#linechartitle").text("趋势图");
-            myLineChart("line-chart", create1LineChartData(time, bmi))
+            isSelect();            
+            $("#linechartitle").text("BMI趋势图");
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("BMI")));
         });
 
     $("#huxi").click(
         function () {
             isSelect();
-            var time = new Array();
-            var bmi = new Array();
-            $("input[name=toolbar1]").each(function () {
-                if ($(this).context.checked) {
-                    var index = $("table input:checkbox").index(this);
-                    time.push($("table").find("tr").eq(index).find("td").eq(12).text() + "");
-                    bmi.push($("table").find("tr").eq(index).find("td").eq(11).text() + "");
-                }
-            });
-            $("#linechartitle").text("趋势图");
-            myLineChart("line-chart", create1LineChartData(time, bmi))
+            $("#linechartitle").text("呼吸趋势图");
+            myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("呼吸")));
         });
 
 

@@ -68,9 +68,8 @@ public class UserServiceImpl implements UserService {
         MenuExample parent = new MenuExample();
         MenuExample children = new MenuExample();
         User user = (User) session.getAttribute("user");
-        children.createCriteria().andParentNotEqualTo(0);
-        parent.setOrderByClause("shunxu");
-        children.setOrderByClause("shunxu");
+        MenuExample.Criteria parentCriteria = parent.createCriteria();
+        MenuExample.Criteria childrenCriteria = children.createCriteria();
         if (!user.getUsername().equals("super")) {
             Role2menuExample u2mExapmle = new Role2menuExample();
             u2mExapmle.createCriteria().andRoleEqualTo(user.getRole());
@@ -79,9 +78,13 @@ public class UserServiceImpl implements UserService {
             for (Role2menu u2m : u2mList) {
                 value.add(u2m.getMenuid());
             }
-            parent.createCriteria().andIdIn(value);
-            parent.createCriteria().andIdIn(value);
+            parentCriteria.andIdIn(value);
+            childrenCriteria.andIdIn(value);
         }
+        parentCriteria.andParentEqualTo(0);
+        childrenCriteria.andParentNotEqualTo(0);
+        parent.setOrderByClause("shunxu");
+        children.setOrderByClause("shunxu");
         map.put("parent", menuMapper.selectByExample(parent));
         map.put("children", menuMapper.selectByExample(children));
         return map;

@@ -1,7 +1,7 @@
 /**
  * Created by wangy on 2016-12-02.
  */
-$(function () {
+$(function () {    
     $("#alertA").hide();
     function select() {
         var ids = "";

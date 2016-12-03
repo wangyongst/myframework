@@ -109,25 +109,23 @@
         <li class="active"><a href="user/home.do"><span class="glyphicon glyphicon-dashboard"></span> 我的首页</a></li>
         <li class="parent ">
             <c:forEach var="item" items="${parent}">
-                <c:if test="${item.parent == 0}">
-                    <a data-toggle="collapse" href="#sub-item-${item.id}">
-                        <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
-                                                                                         href="#sub-item-${item.id}"
-                                                                                         class="icon pull-right"><em
-                            class="glyphicon glyphicon-s glyphicon-plus"></em></span>
-                    </a>
-                    <ul class="children collapse" id="sub-item-${item.id}">
-                        <c:forEach var="it" items="${children}">
-                            <c:if test="${it.parent == item.id}">
-                                <li>
-                                    <a class="" href="javascript:void(0);" onclick="getRight('${it.url}');">
-                                        <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
-                                    </a>
-                                </li>
-                            </c:if>
-                        </c:forEach>
-                    </ul>
-                </c:if>
+                <a data-toggle="collapse" href="#sub-item-${item.id}">
+                    <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
+                                                                                     href="#sub-item-${item.id}"
+                                                                                     class="icon pull-right"><em
+                        class="glyphicon glyphicon-s glyphicon-plus"></em></span>
+                </a>
+                <ul class="children collapse" id="sub-item-${item.id}">
+                    <c:forEach var="it" items="${children}">
+                        <c:if test="${it.parent == item.id}">
+                            <li>
+                                <a class="" href="javascript:void(0);" onclick="getRight('${it.url}');">
+                                    <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
+                                </a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+                </ul>
             </c:forEach>
         </li>
         <li role="presentation" class="divider"></li>
@@ -137,6 +135,75 @@
 <iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="./jsp/default_home.jsp" width="100%"
         frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->
+
+
+"↵
+<thead>↵
+<tr>
+    <th class="bs-checkbox " style="width: 36px; ">
+        <div class="th-inner "><input name="btSelectAll" type="checkbox"></div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">ID</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">老人姓名</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">高压(mmHg)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">低压(mmHg)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">血糖(mmol/L)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">脉博(次/分钟)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">血氧(%)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">体重(KG)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">身高(CM)</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">BMI</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">呼吸（次/分钟）</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">测量时间</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">创建人姓名</div>
+        <div class="fht-cell"></div>
+    </th>
+    <th style="">
+        <div class="th-inner sortable">创建时间</div>
+        <div class="fht-cell"></div>
+    </th>
+</tr>
+↵
+</thead>
+
 
 </body>
 
