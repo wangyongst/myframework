@@ -13,6 +13,8 @@ public interface UserService {
 
     public Map<String, Object> getMyMenus(HttpSession session);
 
+    public Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map);
+
     public Map<String, Object> getUserMap(HttpSession session, Map<String, Object> map);
 
     public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean isTable);

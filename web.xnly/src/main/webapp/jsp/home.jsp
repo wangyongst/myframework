@@ -132,78 +132,9 @@
     </ul>
 </div><!--/.sidebar-->
 
-<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="./jsp/default_home.jsp" width="100%"
+<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="<%=basePath%>user/myhome.do" width="100%"
         frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->
-
-
-"↵
-<thead>↵
-<tr>
-    <th class="bs-checkbox " style="width: 36px; ">
-        <div class="th-inner "><input name="btSelectAll" type="checkbox"></div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">ID</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">老人姓名</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">高压(mmHg)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">低压(mmHg)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">血糖(mmol/L)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">脉博(次/分钟)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">血氧(%)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">体重(KG)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">身高(CM)</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">BMI</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">呼吸（次/分钟）</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">测量时间</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">创建人姓名</div>
-        <div class="fht-cell"></div>
-    </th>
-    <th style="">
-        <div class="th-inner sortable">创建时间</div>
-        <div class="fht-cell"></div>
-    </th>
-</tr>
-↵
-</thead>
-
 
 </body>
 

@@ -31,10 +31,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ShuxingMapper shuxingMapper;
 
+    @Autowired
+    private Role2menuMapper role2menuMapper;
 
     @Autowired
-    private Role2menuMapper Role2menuMapper;
+    private LaorenMapper laorenMapper;
 
+    @Autowired
+    private CaijiMapper caijiMapper;
+
+    @Autowired
+    private FuwuMapper fuwuMapper;
 
     @Override
     public Result login(HttpSession session, String username, String password) {
@@ -73,7 +80,7 @@ public class UserServiceImpl implements UserService {
         if (!user.getUsername().equals("super")) {
             Role2menuExample u2mExapmle = new Role2menuExample();
             u2mExapmle.createCriteria().andRoleEqualTo(user.getRole());
-            List<Role2menu> u2mList = Role2menuMapper.selectByExample(u2mExapmle);
+            List<Role2menu> u2mList = role2menuMapper.selectByExample(u2mExapmle);
             List<Integer> value = new ArrayList<Integer>();
             for (Role2menu u2m : u2mList) {
                 value.add(u2m.getMenuid());
@@ -87,6 +94,19 @@ public class UserServiceImpl implements UserService {
         children.setOrderByClause("shunxu");
         map.put("parent", menuMapper.selectByExample(parent));
         map.put("children", menuMapper.selectByExample(children));
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map) {
+        map.put("totalLaoren",laorenMapper.countByExample(null));
+        map.put("totalCaiji",caijiMapper.countByExample(null));
+        FuwuExample fje = new FuwuExample();
+        fje.createCriteria().andFuwutypeEqualTo("服务记录");
+        map.put("totalFuwuJilu",fuwuMapper.countByExample(fje));
+        FuwuExample fjx = new FuwuExample();
+        fjx.createCriteria().andFuwutypeEqualTo("服务记录");
+        map.put("totalFuwuXuqiu",fuwuMapper.countByExample(fjx));
         return map;
     }
 
@@ -138,7 +158,6 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> getTitleMap(HttpSession session, String title, String tableTitle) {
         Map map = new HashMap<String, String>();
         map.put("title", title);
-        map = this.getUserMap(session, map);
         map.put("tableName", tableTitle);
         return map;
     }

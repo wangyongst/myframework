@@ -44,7 +44,7 @@
 <div class="row">
     <ol class="breadcrumb">
         <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-        <li class="active">Widgets</li>
+        <li class="active">${title}</li>
     </ol>
 </div><!--/.row-->
 
@@ -56,8 +56,8 @@
                     <em class="glyphicon glyphicon-shopping-cart glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">120</div>
-                    <div class="text-muted">New Orders</div>
+                    <div class="large">${totalFuwuJilu}次</div>
+                    <div class="text-muted">服务记录数</div>
                 </div>
             </div>
         </div>
@@ -69,8 +69,8 @@
                     <em class="glyphicon glyphicon-comment glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">52</div>
-                    <div class="text-muted">Comments</div>
+                    <div class="large">${totalFuwuXuqiu}次</div>
+                    <div class="text-muted">服务需求征集数</div>
                 </div>
             </div>
         </div>
@@ -82,8 +82,8 @@
                     <em class="glyphicon glyphicon-user glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">24</div>
-                    <div class="text-muted">New Users</div>
+                    <div class="large">${totalLaoren}人</div>
+                    <div class="text-muted">老年人总数</div>
                 </div>
             </div>
         </div>
@@ -95,8 +95,8 @@
                     <em class="glyphicon glyphicon-stats glyphicon-l"></em>
                 </div>
                 <div class="col-sm-9 col-lg-7 widget-right">
-                    <div class="large">25.2k</div>
-                    <div class="text-muted">Visitors</div>
+                    <div class="large">${totalCaiji}条</div>
+                    <div class="text-muted">健康管理数据量</div>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -38,7 +39,14 @@ public class UserController {
     public ModelAndView home(HttpSession session) {
         Map map =  userService.getMyMenus(session);
         map = userService.getUserMap(session,map);
-        map.put("title", "我的首页");
         return new ModelAndView("home", map);
+    }
+
+    @RequestMapping(value = "/myhome", method = RequestMethod.GET)
+    public ModelAndView myhome(HttpSession session) {
+        Map map =  new HashMap();
+        map.put("title", "我的首页");
+        map = userService.getMyHome(session,map);
+        return new ModelAndView("default_home", map);
     }
 }
