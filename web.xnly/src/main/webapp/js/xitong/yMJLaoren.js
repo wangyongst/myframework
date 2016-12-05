@@ -16,6 +16,10 @@ $(window).on('resize', function () {
     if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 })
 $(function () {
+    
+    makeAlert($("#alertA"));
+    makeAlert($("#alertB"));
+
     $("#saveData").click(
         function () {
             $.ajax({

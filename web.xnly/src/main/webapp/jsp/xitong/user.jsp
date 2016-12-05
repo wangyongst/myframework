@@ -14,26 +14,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>西宁乐缘综合养老管理平台 - ${title}</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/chart.min.js"></script>
-    <script src="js/chart-data.js"></script>
-    <script src="js/easypiechart.js"></script>
-    <script src="js/easypiechart-data.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/bootstrap-table.js"></script>
     <script src="js/myJS.js"></script>
+
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
         function showModalData(user) {
@@ -63,16 +45,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA" hidden>
-                    <div class="col-lg-12">
-                        <div class="alert bg-warning" role="alert">
-                            <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
-                                id="closeA"
-                                class="pull-right"><span
-                                class="glyphicon glyphicon-remove"></span></a>
-                        </div>
-                    </div>
-                </div>
+                <div id="alertA" hidden></div>
 
 
                 <button type="button" class="btn btn-primary" id="zhuce">注册用户</button>
@@ -93,10 +66,6 @@
                     </tr>
                     </thead>
                 </table>
-
-
-                <div class="modal-dialog" role="document"><div class="modal-content" role="document"><div class="modal-header" role="document"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button><h4 class="modal-title">采集老人健康数据</h4></div><div class="modal-body" role="document"><form id="form"><div class="row" id="alertB" hidden="hidden" style="display: none;"><label for="id" class="control-label" id="idLabel" style="display: none;">ID</label><input type="number" class="form-control" id="id" input'="" name="id"><label for="laorenid" class="control-label" id="laorenidLabel">老人ID</label><input type="number" class="form-control" id="laorenid" input'="" name="laorenid"><label for="laorenname" class="control-label" id="laorennameLabel">老人姓名</label><input type="text" class="form-control" id="laorenname" input'="" name="laorenname"><label for="gaoya" class="control-label" id="gaoyaLabel">高压(mmHg)</label><input type="number" class="form-control" id="gaoya" input'="" name="gaoya"><label for="diya" class="control-label" id="diyaLabel">低压(mmHg)</label><input type="number" class="form-control" id="diya" input'="" name="diya"><label for="xuetang" class="control-label" id="xuetangLabel">血糖(mmol/L)</label><input type="number" class="form-control" id="xuetang" input'="" name="xuetang"><label for="maibo" class="control-label" id="maiboLabel">脉博(次/分钟)</label><input type="number" class="form-control" id="maibo" input'="" name="maibo"><label for="xueyang" class="control-label" id="xueyangLabel">血氧(%)</label><input type="number" class="form-control" id="xueyang" input'="" name="xueyang"><label for="tizhong" class="control-label" id="tizhongLabel">体重(KG)</label><input type="number" class="form-control" id="tizhong" input'="" name="tizhong"><label for="shengao" class="control-label" id="shengaoLabel">身高(CM)</label><input type="number" class="form-control" id="shengao" input'="" name="shengao"><label for="huxi" class="control-label" id="huxiLabel">呼吸（次/分钟）</label><input type="number" class="form-control" id="huxi" input'="" name="huxi"><label for="time" class="control-label" id="timeLabel">测量时间</label><input type="datetime-local" class="form-control" id="time" input'="" name="time"></div></form></div><div class="modal-content" role="document"><button type="button" class="btn btn-default" data-dismiss="modal"></button><button type="button" class="btn btn-primary" id="saveData"></button></div><div class="modal-content" role="document"></div></div></div>
-
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

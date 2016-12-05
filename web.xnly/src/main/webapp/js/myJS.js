@@ -1,6 +1,22 @@
 /**
  * Created by BHWL on 2016-12-05.
  */
+document.write("<link href='css/bootstrap.min.css' rel='stylesheet'>");
+document.write(" <link href='css/datepicker3.css' rel='stylesheet'>");
+document.write("<link href='css/bootstrap-table.css' rel='stylesheet'>");
+document.write(" <link href='css/styles.css' rel='stylesheet'>");
+
+document.write("<script src='js/html5shiv.min.js'></script>");
+document.write("<script src='js/respond.min.js'></script>");
+
+document.write("<script src='js/jquery-1.11.1.min.js'></script>");
+document.write("<script src='js/bootstrap.min.js'></script>");
+document.write("<script src='js/chart.min.js'></script>");
+document.write("<script src='js/chart-data.js'></script>");
+document.write("<script src='js/easypiechart.js'></script>");
+document.write("<script src='js/easypiechart-data.js'></script>");
+document.write("<script src='js/bootstrap-datepicker.js'></script>");
+document.write("<script src='js/bootstrap-table.js'></script>");
 
 function select() {
     var ids = "";
@@ -14,20 +30,20 @@ function select() {
     return ids;
 }
 
-function showAlert(alert,level,message) {//请求失败时调用函数。
-    if(level == 'danger') {
+function showAlert(alert, level, message) {
+    if (level == 'danger') {
         $(alert).find("div div").attr("class", "alert bg-danger");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-exclamation-sign");
         $(alert).find("div div span").eq(1).text("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
-    }else if(level == 'warning'){
+    } else if (level == 'warning') {
         $(alert).find("div div").attr("class", "alert bg-warning");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-warning-sign");
         $(alert).find("div div span").eq(1).text(message);
-    }else if(level == 'success'){
+    } else if (level == 'success') {
         $(alert).find("div div").attr("class", "alert bg-success");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-check");
         $(alert).find("div div span").eq(1).text(message);
-    }else{
+    } else {
         $(alert).find("div div").attr("class", "alert bg-primary");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-info-sign");
         $(alert).find("div div span").eq(1).text(message);
@@ -57,7 +73,7 @@ function makeModalForm(modal, type, columnname, chinese) {
     $(modal).find("div div div").eq(1).find("form div").append("<input type='" + type + "' class='form-control' id='" + columnname + "Input' name='" + columnname + "'>");
 };
 
-function makeModal(modal,formId,alertId,saveId) {
+function makeModal(modal, formId, alertId, saveId) {
     $(modal).attr("class", "modal fade");
     $(modal).attr("tabindex", "-1");
     $(modal).attr("role", "dialog");
@@ -72,29 +88,29 @@ function makeModal(modal,formId,alertId,saveId) {
     $(modal).find("div div div").eq(3).attr("class", "modal-footer");
 
     $(modal).find(".modal-header").append("<button><span></span></button>");
-    $(modal).find(".modal-header").find("button").attr("type","button");
-    $(modal).find(".modal-header").find("button").attr("class","close");
-    $(modal).find(".modal-header").find("button").attr("data-dismiss","modal");
-    $(modal).find(".modal-header").find("button").attr("aria-label","Close");
-    $(modal).find(".modal-header").find("button span").attr("aria-hidden","true");
+    $(modal).find(".modal-header").find("button").attr("type", "button");
+    $(modal).find(".modal-header").find("button").attr("class", "close");
+    $(modal).find(".modal-header").find("button").attr("data-dismiss", "modal");
+    $(modal).find(".modal-header").find("button").attr("aria-label", "Close");
+    $(modal).find(".modal-header").find("button span").attr("aria-hidden", "true");
     $(modal).find(".modal-header").find("button span").text("X");
     $(modal).find(".modal-header").append("<h4></h4>");
-    $(modal).find(".modal-header").find("h4").attr("class","modal-title");
+    $(modal).find(".modal-header").find("h4").attr("class", "modal-title");
 
     $(modal).find(".modal-body").append("<form><div></div></form>");
-    $(modal).find(".modal-body").find("form").attr("id",formId);
-    $(modal).find(".modal-body").find("form div").attr("class","form-group");
+    $(modal).find(".modal-body").find("form").attr("id", formId);
+    $(modal).find(".modal-body").find("form div").attr("class", "form-group");
 
-    $("#"+alertId).attr("class", "row");
-    $("#"+alertId).attr("hidden", true);
+    $("#" + alertId).attr("class", "row");
+    $("#" + alertId).attr("hidden", true);
 
     $(modal).find(".modal-footer").append("<button></button><button></button>");
-    $(modal).find(".modal-footer").find("button").eq(0).attr("type","button");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("type","button");
-    $(modal).find(".modal-footer").find("button").eq(0).attr("class","btn btn-default");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("class","btn btn-primary");
-    $(modal).find(".modal-footer").find("button").eq(0).attr("data-dismiss","modal");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("id",saveId);
+    $(modal).find(".modal-footer").find("button").eq(0).attr("type", "button");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("type", "button");
+    $(modal).find(".modal-footer").find("button").eq(0).attr("class", "btn btn-default");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");
+    $(modal).find(".modal-footer").find("button").eq(0).attr("data-dismiss", "modal");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("id", saveId);
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
 };

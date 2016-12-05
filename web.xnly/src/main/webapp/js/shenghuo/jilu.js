@@ -2,6 +2,8 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
+    makeAlert($("#alertA"));
+    makeAlert($("#alertB"));
     $("#saveData").click(
         function () {
             $.ajax({

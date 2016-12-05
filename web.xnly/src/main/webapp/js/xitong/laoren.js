@@ -17,6 +17,9 @@ $(window).on('resize', function () {
 })
 
 $(function () {
+    makeAlert($("#alertA"));
+    makeAlert($("#alertB"));
+    
     $("#saveData").click(
         function () {
             $.ajax({
@@ -178,20 +181,6 @@ $(function () {
                 }
             });
         });
-
-    $("#closeA").click(
-        function () {
-            $("#alertA").hide();
-        });
-    $("#closeB").click(
-        function () {
-            $("#alertB").hide();
-        });
-    $("#closeC").click(
-        function () {
-            $("#alertC").hide();
-        });
-
 });
 
 function showModal(laoren, type) {

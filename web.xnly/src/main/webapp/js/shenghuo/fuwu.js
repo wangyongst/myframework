@@ -2,8 +2,9 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    $("#alertA").hide();
-    $("#alertB").hide();
+    makeAlert($("#alertA"));
+    makeAlert($("#alertB"));
+    
     $("#saveData").click(
         function () {
             $.ajax({

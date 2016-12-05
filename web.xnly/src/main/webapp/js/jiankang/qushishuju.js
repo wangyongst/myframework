@@ -2,8 +2,7 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    $("#alertA").hide();
-
+    makeAlert($("#alertA"));
 
     function getIndex(column){
         var col = $('table tr:first').find("th").length;

@@ -1,8 +1,9 @@
 /**
  * Created by wangy on 2016-12-02.
  */
-$(function () {    
-    $("#alertA").hide();
+$(function () {
+    makeAlert($("#alertA"));
+  
     function select() {
         var ids = "";
         $("input[name=toolbar1]").each(function () {

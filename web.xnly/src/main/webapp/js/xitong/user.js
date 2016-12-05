@@ -2,8 +2,9 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    $("#alertA").hide();
-    $("#alertB").hide();
+    makeAlert($("#alertA"));
+    makeAlert($("#alertB"));    
+    
     $("#saveData").click(
         function () {
             $.ajax({
@@ -109,14 +110,6 @@ $(function () {
                     $("button[name='refresh']").click();
                 }
             });
-        });
-    $("#closeA").click(
-        function () {
-            $("#alertA").hide();
-        });
-    $("#closeB").click(
-        function () {
-            $("#alertB").hide();
-        });
+        });   
 
 });
