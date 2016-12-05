@@ -38,7 +38,6 @@
     <script type="text/javascript">
         function showMyModalData(caiji) {
             <c:forEach var="item" items="${formColumns}">
-            makeModalForm($("#myModal"),"${item.type}","${item.columnname}","${item.chinese}");
             if (caiji != null) {
                 $("#${item.columnname}Input").val(caiji.${item.columnname});
             } else {
@@ -47,7 +46,11 @@
             $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
             </c:forEach>
         }
-
+        function makeMyModal() {
+            <c:forEach var="item" items="${formColumns}">
+            makeModalForm($("#myModal"),"${item.type}","${item.columnname}","${item.chinese}");
+            </c:forEach>
+        }
     </script>
 </head>
 

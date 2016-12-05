@@ -83,4 +83,6 @@ function makeModal(modal,formId,alertId,saveId) {
     $(modal).find(".modal-footer").find("button").eq(1).attr("id",saveId);
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
+
+    makeMyModal();
 };
