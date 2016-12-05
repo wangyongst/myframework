@@ -33,6 +33,7 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/myJS.js"></script>
     <script src="js/xitong/jiashu.js"></script>
     <script type="text/javascript">
         function showModalData(jiashu) {
@@ -65,8 +66,8 @@
 
                 <div class="row" id="alertA" hidden>
                     <div class="col-lg-12">
-                        <div class="alert bg-warning" role="alert">
-                            <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
+                        <div role="alert">
+                            <span></span> <span></span><a
                                 id="closeA"
                                 class="pull-right"><span
                                 class="glyphicon glyphicon-remove"></span></a>
@@ -80,8 +81,8 @@
 
                 <table data-toggle="table" data-url="xitong/allJiashus.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="laorenTable">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                       data-sort-order="desc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -134,9 +135,8 @@
 
                             <div class="row" id="alertB" hidden>
                                 <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB"></span><a
+                                    <div role="alert">
+                                        <span></span> <span></span><a
                                             id="closeB"
                                             class="pull-right"><span
                                             class="glyphicon glyphicon-remove"></span></a>

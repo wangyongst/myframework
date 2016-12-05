@@ -33,6 +33,7 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/myJS.js"></script>
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
         function showModalData(user) {
@@ -81,8 +82,8 @@
 
                 <table data-toggle="table" data-url="xitong/allUsers.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="userTable">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                       data-sort-order="desc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -92,6 +93,9 @@
                     </tr>
                     </thead>
                 </table>
+
+
+                <div class="modal-dialog" role="document"><div class="modal-content" role="document"><div class="modal-header" role="document"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button><h4 class="modal-title">采集老人健康数据</h4></div><div class="modal-body" role="document"><form id="form"><div class="row" id="alertB" hidden="hidden" style="display: none;"><label for="id" class="control-label" id="idLabel" style="display: none;">ID</label><input type="number" class="form-control" id="id" input'="" name="id"><label for="laorenid" class="control-label" id="laorenidLabel">老人ID</label><input type="number" class="form-control" id="laorenid" input'="" name="laorenid"><label for="laorenname" class="control-label" id="laorennameLabel">老人姓名</label><input type="text" class="form-control" id="laorenname" input'="" name="laorenname"><label for="gaoya" class="control-label" id="gaoyaLabel">高压(mmHg)</label><input type="number" class="form-control" id="gaoya" input'="" name="gaoya"><label for="diya" class="control-label" id="diyaLabel">低压(mmHg)</label><input type="number" class="form-control" id="diya" input'="" name="diya"><label for="xuetang" class="control-label" id="xuetangLabel">血糖(mmol/L)</label><input type="number" class="form-control" id="xuetang" input'="" name="xuetang"><label for="maibo" class="control-label" id="maiboLabel">脉博(次/分钟)</label><input type="number" class="form-control" id="maibo" input'="" name="maibo"><label for="xueyang" class="control-label" id="xueyangLabel">血氧(%)</label><input type="number" class="form-control" id="xueyang" input'="" name="xueyang"><label for="tizhong" class="control-label" id="tizhongLabel">体重(KG)</label><input type="number" class="form-control" id="tizhong" input'="" name="tizhong"><label for="shengao" class="control-label" id="shengaoLabel">身高(CM)</label><input type="number" class="form-control" id="shengao" input'="" name="shengao"><label for="huxi" class="control-label" id="huxiLabel">呼吸（次/分钟）</label><input type="number" class="form-control" id="huxi" input'="" name="huxi"><label for="time" class="control-label" id="timeLabel">测量时间</label><input type="datetime-local" class="form-control" id="time" input'="" name="time"></div></form></div><div class="modal-content" role="document"><button type="button" class="btn btn-default" data-dismiss="modal"></button><button type="button" class="btn btn-primary" id="saveData"></button></div><div class="modal-content" role="document"></div></div></div>
 
 
                 <!-- Modal -->

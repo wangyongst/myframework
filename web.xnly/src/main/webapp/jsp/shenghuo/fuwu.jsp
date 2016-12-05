@@ -33,6 +33,7 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/myJS.js"></script>
     <script src="js/shenghuo/fuwu.js"></script>
     <script type="text/javascript">
         function showModalData(fuwu) {
@@ -79,8 +80,8 @@
 
                 <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="laorenTable">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                       data-sort-order="desc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>

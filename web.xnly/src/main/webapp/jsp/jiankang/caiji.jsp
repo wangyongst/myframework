@@ -33,10 +33,12 @@
     <script src="js/easypiechart-data.js"></script>
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap-table.js"></script>
+    <script src="js/myJS.js"></script>
     <script src="js/jiankang/caiji.js"></script>
     <script type="text/javascript">
-        function showModalData(caiji) {
+        function showMyModalData(caiji) {
             <c:forEach var="item" items="${formColumns}">
+            makeModalForm($("#myModal"),"${item.type}","${item.columnname}","${item.chinese}");
             if (caiji != null) {
                 $("#${item.columnname}Input").val(caiji.${item.columnname});
             } else {
@@ -63,24 +65,14 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA" hidden>
-                    <div class="col-lg-12">
-                        <div class="alert bg-warning" role="alert">
-                            <span class="glyphicon glyphicon-warning-sign"></span> <span id="messageA"></span><a
-                                id="closeA"
-                                class="pull-right"><span
-                                class="glyphicon glyphicon-remove"></span></a>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="row" id="alertA" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
 
                 <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="laorenTable">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                       data-sort-order="desc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
@@ -93,47 +85,7 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="form">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}">
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB" hidden>
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB"></span><a
-                                            id="closeB"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
+                <div id="myModal" ></div><!-- Modal -->
 
 
             </div>

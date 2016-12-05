@@ -96,8 +96,8 @@
 
                 <table data-toggle="table" data-url="xitong/yMJLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="${tableColumns}"
-                       data-sort-order="desc" id="userTable">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                       data-sort-order="desc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>

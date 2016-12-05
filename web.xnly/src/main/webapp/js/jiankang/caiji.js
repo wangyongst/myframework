@@ -2,8 +2,13 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    $("#alertA").hide();
-    $("#alertB").hide();
+    
+    makeAlert($("#alertA"));
+    
+    makeAlert($("#alertB"));
+
+    makeModal($("#myModal"),"form","alertB","saveData");
+
     $("#saveData").click(
         function () {
             $.ajax({
@@ -13,25 +18,21 @@ $(function () {
                 data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertB div div").attr("class", "alert bg-danger");
-                    $("#alertB").show();
-                    $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                    showAlert($("#alertB"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         $('#myModal').modal('toggle');
                         $("#alertB").hide();
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "success", result.message);
                         $("button[name='refresh']").click();
-                        //debugger;
                     } else {
-                        $("#alertB").show();
-                        $("#messageB").text(result.message);
+                        showAlert($("#alertB"), "warning", result.message);
                     }
                 }
             });
         });
+    
     function select() {
         var ids = "";
         $("input[name=toolbar1]").each(function () {
@@ -45,12 +46,12 @@ $(function () {
     }
 
     function showModal(caiji, type) {
-        showModalData(caiji);
+        showMyModalData(caiji);
         $('#idInput').hide();
         $('#idLabel').hide();
         $('#laorenidInput').attr("readonly", "readonly");
         $('#laorennameInput').attr("readonly", "readonly");
-        $('#myModal').find('.modal-title').text('采集老人健康数据');    
+        $('#myModal').find('.modal-title').text('采集老人健康数据');
         $('#myModal').modal('toggle');
         $("#alertB").hide();
     }
@@ -65,27 +66,26 @@ $(function () {
                 data: {ids: select(), idType: "laorenid"},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         showModal(result.data, 1);
                     } else {
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "warning", result.message);
                     }
                 }
             });
         });
 
-    $("#closeA").click(
+    $("#alertA").find("div div a").click(
         function () {
-            $("#alertA").hide();
+            hideAlert($(this))
         });
-    $("#closeB").click(
+
+    $("#alertB").find("div div a").click(
         function () {
-            $("#alertB").hide();
+            hideAlert($(this))
         });
 
 });
