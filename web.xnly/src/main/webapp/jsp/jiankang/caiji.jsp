@@ -36,19 +36,19 @@
     <script src="js/myJS.js"></script>
     <script src="js/jiankang/caiji.js"></script>
     <script type="text/javascript">
-        function showMyModalData(caiji) {
+        function showMyModalData(data) {
             <c:forEach var="item" items="${formColumns}">
-            if (caiji != null) {
-                $("#${item.columnname}Input").val(caiji.${item.columnname});
+            if (data != null) {
+                $("#${item.columnname}Input").val(data.${item.columnname});
             } else {
                 $("#${item.columnname}Input").val("");
             }
             $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
             </c:forEach>
         }
-        function makeMyModal() {
+        function makeMyModal(modal) {
             <c:forEach var="item" items="${formColumns}">
-            makeModalForm($("#myModal"),"${item.type}","${item.columnname}","${item.chinese}");
+            makeModalForm(modal, "${item.type}", "${item.columnname}", "${item.chinese}");
             </c:forEach>
         }
     </script>
@@ -68,28 +68,27 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div class="row" id="alertA" hidden></div>
+                <div id="alertA" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
 
-                <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
-                       data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
-                       data-sort-order="desc">
-                    <thead>
-                    <tr>
-                        <th data-field="state" data-checkbox="true"></th>
-                        <c:forEach var="item" items="${tableColumns}">
-                            <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
-                        </c:forEach>
-                    </tr>
-                    </thead>
-                </table>
-
-
+                <div>
+                    <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
+                           data-show-toggle="true" data-show-columns="true" data-search="true"
+                           data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
+                           data-sort-order="desc">
+                        <thead>
+                        <tr>
+                            <th data-field="state" data-checkbox="true"></th>
+                            <c:forEach var="item" items="${tableColumns}">
+                                <th data-field="${item.columnname}" data-sortable="true">${item.chinese}</th>
+                            </c:forEach>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
                 <!-- Modal -->
-                <div id="myModal" ></div><!-- Modal -->
-
+                <div id="myModal"></div><!-- Modal -->
 
             </div>
         </div>

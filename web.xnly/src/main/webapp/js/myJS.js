@@ -2,6 +2,18 @@
  * Created by BHWL on 2016-12-05.
  */
 
+function select() {
+    var ids = "";
+    $("input[name=toolbar1]").each(function () {
+        if ($(this).context.checked) {
+            var index = $("table input:checkbox").index(this);
+            val = $("table").find("tr").eq(index).find("td").eq(1).text();
+            ids += "," + val;
+        }
+    });
+    return ids;
+}
+
 function showAlert(alert,level,message) {//请求失败时调用函数。
     if(level == 'danger') {
         $(alert).find("div div").attr("class", "alert bg-danger");
@@ -34,6 +46,10 @@ function makeAlert(alert) {
     $(alert).find("div div a").attr("class", "pull-right");
     $(alert).find("div div a").attr("style", "cursor:pointer");
     $(alert).find("div div a span").attr("class", "glyphicon glyphicon-remove");
+    $(alert).find("div div a").click(
+        function () {
+            hideAlert($(this))
+        });
 };
 
 function makeModalForm(modal, type, columnname, chinese) {
@@ -54,8 +70,6 @@ function makeModal(modal,formId,alertId,saveId) {
     $(modal).find("div div div").eq(1).attr("class", "modal-body");
     $(modal).find("div div div").eq(2).attr("id", alertId);
     $(modal).find("div div div").eq(3).attr("class", "modal-footer");
-
-
 
     $(modal).find(".modal-header").append("<button><span></span></button>");
     $(modal).find(".modal-header").find("button").attr("type","button");
@@ -83,6 +97,4 @@ function makeModal(modal,formId,alertId,saveId) {
     $(modal).find(".modal-footer").find("button").eq(1).attr("id",saveId);
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
-
-    makeMyModal();
 };

@@ -4,10 +4,10 @@
 $(function () {
     
     makeAlert($("#alertA"));
-    
     makeAlert($("#alertB"));
 
     makeModal($("#myModal"),"form","alertB","saveData");
+    makeMyModal($("#myModal"));
 
     $("#saveData").click(
         function () {
@@ -31,22 +31,10 @@ $(function () {
                     }
                 }
             });
-        });
-    
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
-            }
-        });
-        return ids;
-    }
+        });   
 
     function showModal(caiji, type) {
-        showMyModalData(caiji);
+        showMyModalData(caiji,"请输入老人的");
         $('#idInput').hide();
         $('#idLabel').hide();
         $('#laorenidInput').attr("readonly", "readonly");
@@ -77,15 +65,4 @@ $(function () {
                 }
             });
         });
-
-    $("#alertA").find("div div a").click(
-        function () {
-            hideAlert($(this))
-        });
-
-    $("#alertB").find("div div a").click(
-        function () {
-            hideAlert($(this))
-        });
-
 });
