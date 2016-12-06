@@ -1,8 +1,10 @@
 package com.myweb.service.xnly;
 
+import com.myweb.pojo.mybatis.Shuxing;
 import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -21,6 +23,8 @@ public interface UserService {
 
     public Map<String, Object> getTitleMap(HttpSession session, String title, String tableTitle);
 
-    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName,String type);
+    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName,String name);
+
+    public Result getColumnsShuxingList(HttpSession session, String name);
 
 }

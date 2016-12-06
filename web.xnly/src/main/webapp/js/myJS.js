@@ -52,14 +52,71 @@ function makeAlert(alert) {
         });
 };
 
-function makeModalForm(modal,type, columnname, chinese) {
-    $(modal).find(".form-group").append("<label for='" + columnname + "'class='control-label'id='" + columnname + "Label'>" + chinese + "</label>");
-    $(modal).find(".form-group").append("<input type='input' class='form-control' id='" + columnname + "Input' name='" + columnname + "'>");
+function makeModalForm(modal, type, id, name, chinese) {
+    if (type == "select") {
+        makeModalFormSelect(modal, id, name, chinese)
+    } else if (type == "checkbox") {
+        makeModalFormCheckbox(modal, id, name, chinese)
+    } else {
+        makeModalFormInupt(modal, type, id, name, chinese);
+    }
 };
 
-function makeModal(modal, formId, alertId, saveId) {
+function makeModalFormInupt(modal, type, id, name, chinese) {
+    if (id == null) {
+        id = name;
+    }
+    $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
+    $(modal).find(".form-group").append("<input type='" + type + "' class='form-control' id='" + id + "Input' name='" + name + "'>");
+};
+
+function makeModalFormSelect(modal, id, name, chinese) {
+    if (id == null) {
+        id = name;
+    }
+    $(modal).find(".form-group").append("<label for='" + id + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
+    $(modal).find(".form-group").append("<select class='form-control' id='" + id + "Select' name='" + name + "'></select >");
+    $.ajax({
+        type: "GET",
+        cache: "true",
+        url: "user/getColumns.do",
+        data: "name=" + name,
+        dataType: "json",
+        success: function (result) {
+            if (result.status == 1) {
+                result.data.forEach(function (e) {
+                    $("#" + id + "Select").append("<option>" + e.chinesename + "</option>");
+                })
+            }
+        }
+    });
+};
+
+function makeModalFormCheckbox(modal, id, name, chinese) {
+    if (id == null) {
+        id = name;
+    }
+    $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + name + "Label'>" + chinese + "</label>");
+    $(modal).find(".form-group").append("<div class='checkbox' id='" + id + "Checkbox'></div >");
+    $.ajax({
+        type: "GET",
+        cache: "true",
+        url: "user/getColumns.do",
+        data: "name=" + name,
+        dataType: "json",
+        success: function (result) {
+            if (result.status == 1) {
+                result.data.forEach(function (e) {
+                    $("#" + id + "Checkbox").append("<label><input name='" + name + "' type='checkbox' value='" + e.chinesename + "'>" + e.chinesename + "</label>");
+                })
+            }
+        }
+    });
+};
+
+function makeModal(modal, formId, alertId, saveId, index) {
     $(modal).attr("class", "modal fade");
-    $(modal).attr("tabindex", "-1");
+    $(modal).attr("tabindex", index);
     $(modal).attr("role", "dialog");
     $(modal).attr("aria-labelledby", "ModalLabelEditByYong");
     $(modal).append("<div><div><div></div><div></div><div></div><div></div></div></div>");

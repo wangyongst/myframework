@@ -144,14 +144,27 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName, String type) {
-        if (StringUtils.isNotBlank(columnName) && StringUtils.isNotBlank(type)) {
+    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName, String name) {
+        if (StringUtils.isNotBlank(columnName) && StringUtils.isNotBlank(name)) {
             ShuxingExample shuxingExample = new ShuxingExample();
-            shuxingExample.createCriteria().andTypeEqualTo(type);
+            shuxingExample.createCriteria().andNameEqualTo(name);
             shuxingExample.setOrderByClause("shunxu");
             map.put(columnName, shuxingMapper.selectByExample(shuxingExample));
         }
         return map;
+    }
+
+    @Override
+    public Result getColumnsShuxingList(HttpSession session,String name) {
+        Result result = new Result();
+        if (StringUtils.isNotBlank(name)) {
+            ShuxingExample shuxingExample = new ShuxingExample();
+            shuxingExample.createCriteria().andNameEqualTo(name);
+            shuxingExample.setOrderByClause("shunxu");
+            result.setStatus(1);
+            result.setData(shuxingMapper.selectByExample(shuxingExample));
+        }
+        return result;
     }
 
     @Override

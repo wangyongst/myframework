@@ -5,7 +5,12 @@
 
 $(function () {
     makeAlert($("#alertA"));
-    makeAlert($("#alertB"));
+
+    makeModal($("#myModal"),"laorenForm","alertB","saveData","1");
+    makeMyModal($("#myModal"));
+
+    makeModal($("#jiashuModal"),"jiashuForm","alertC","saveJiashuData","2");
+    makeJiashuModal($("#jiashuModal"));
     
     $("#saveData").click(
         function () {
@@ -16,21 +21,15 @@ $(function () {
                 data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertB div div").attr("class", "alert bg-danger");
-                    $("#alertB").show();
-                    $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                    showAlert($("#alertB"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         $('#myModal').modal('toggle');
-                        $("#alertB").hide();
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "success",result.message);
                         $("button[name='refresh']").click();
-                        //debugger;
                     } else {
-                        $("#alertB").show();
-                        $("#messageB").text(result.message);
+                        showAlert($("#alertB"), "warning",result.message);
                     }
                 }
             });
@@ -42,44 +41,26 @@ $(function () {
                 type: "POST",
                 cache: "false",
                 url: "xitong/jiashu/edit.do",
-                data: $('#jiashuForm').serialize() + "&laorenid=" + $('#JSlaorenid').val() + "&laorennameR=" + $('#JSlaorenname').val(),
+                data: $('#jiashuForm').serialize(),
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertC div div").attr("class", "alert bg-danger");
-                    $("#alertC").show();
-                    $("#messageC").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                    showAlert($("#alertC"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         $('#jiashuModal').modal('toggle');
-                        $("#alertC").hide();
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "success",result.message);
                         $("button[name='refresh']").click();
-                        //debugger;
                     } else {
-                        $("#alertC").show();
-                        $("#messageC").text(result.message);
+                        showAlert($("#alertC"), "warning",result.message);
                     }
                 }
             });
         });
 
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
-            }
-        });
-        return ids;
-    }
-
     $("#zhuce").click(
         function () {
-            showModal(null, 0);
+            showMyModal(null, 0);
         });
 
     $("#jiashu").click(
@@ -91,15 +72,13 @@ $(function () {
                 data: {ids: select(), idType: "laorenid"},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         showJiashuModal(result.data, 1);
                     } else {
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "warning",result.message);
                     }
 
                 }
@@ -115,20 +94,19 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
-                        showModal(result.data, 1);
+                        showMyModal(result.data, 1);
                     } else {
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "warning",result.message);
                     }
 
                 }
             });
         });
+
     $("#shanchu").click(
         function () {
             $.ajax({
@@ -138,13 +116,15 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
-                    $("#alertA").show();
-                    $("#messageA").text(result.message);
-                    $("button[name='refresh']").click();
+                    if (result.status == 1) {
+                        showAlert($("#alertA"), "success",result.message);
+                        $("button[name='refresh']").click();
+                    } else {
+                        showAlert($("#alertA"), "warning",result.message);
+                    }
                 }
             });
         });
@@ -158,22 +138,22 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
-                    $("#alertA").show();
-                    $("#messageA").text(result.message);
-                    $("button[name='refresh']").click();
+                    if (result.status == 1) {
+                        showAlert($("#alertA"), "success",result.message);
+                        $("button[name='refresh']").click();
+                    } else {
+                        showAlert($("#alertA"), "warning",result.message);
+                    }
                 }
             });
         });
 });
 
-function showModal(laoren, type) {
-    showModalData(laoren);
-    $('#idLabel').hide();
-    $('#idInput').hide();
+function showMyModal(laoren, type) {
+    showMyModalData(laoren);
     $('#idLabel').hide();
     $('#idInput').hide();
     $("#bingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
@@ -204,9 +184,7 @@ function showModal(laoren, type) {
         $("#nationSelect").val(laoren.nation);
     }
     $('#myModal').modal('toggle');
-    $("#alertB").hide();
 }
-
 
 function showJiashuModal(jiashu, type) {
     showJiashuModalData(jiashu);
@@ -216,5 +194,4 @@ function showJiashuModal(jiashu, type) {
     $('#JSlaorennameInput').attr("readonly", "readonly");
     $('#jiashuModal').find('.modal-title').text('添加老人家属信息');
     $('#jiashuModal').modal('toggle');
-    $("#alertC").hide();
 }

@@ -49,4 +49,10 @@ public class UserController {
         map = userService.getMyHome(session,map);
         return new ModelAndView("default_home", map);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/getColumns", method = RequestMethod.GET)
+    public Result getColumns(@RequestParam("name") String name, HttpSession session) {
+        return userService.getColumnsShuxingList(session,name);
+    }
 }
