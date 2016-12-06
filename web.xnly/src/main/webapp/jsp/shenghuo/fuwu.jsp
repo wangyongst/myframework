@@ -1,21 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>西宁乐缘综合养老管理平台 - ${title}</title>
-    <script src="js/myJS.js"></script>
-
+    <%@ include file="/jsp/base.jsp"%>
     <script src="js/shenghuo/fuwu.js"></script>
     <script type="text/javascript">
         function showModalData(fuwu) {

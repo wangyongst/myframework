@@ -7,7 +7,7 @@ $(function () {
     makeAlert($("#alertB"));
 
     makeModal($("#myModal"),"form","alertB","saveData");
-    makeMyModal($("#myModal"));
+    makeMyModal($("#myModal"),$("#form"));
 
     $("#saveData").click(
         function () {

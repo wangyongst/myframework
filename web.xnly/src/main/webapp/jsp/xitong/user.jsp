@@ -1,21 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="<%=basePath%>">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>西宁乐缘综合养老管理平台 - ${title}</title>
-    <script src="js/myJS.js"></script>
-
+    <%@ include file="/jsp/base.jsp"%>
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
         function showModalData(user) {
@@ -106,17 +93,7 @@
                                 </form>
                             </div>
 
-                            <div class="row" id="alertB" hidden>
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB"></span><a
-                                            id="closeB"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="alertB" hidden></div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
