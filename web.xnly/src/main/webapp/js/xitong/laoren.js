@@ -14,6 +14,7 @@ $(function () {
     
     $("#saveData").click(
         function () {
+            var test = window.location.href;
             $.ajax({
                 type: "POST",
                 cache: "false",
@@ -129,13 +130,55 @@ $(function () {
             });
         });
 
-    $("#change").click(
+    $("#toYMJ").click(
+        function () {
+            $.ajax({
+                type: "POST",
+                cache: "false",
+                url: "xitong/laoren/change.do",
+                data: {ids: select(),type:2},
+                dataType: "json",
+                error: function () {//请求失败时调用函数。
+                    showAlert($("#alertA"), "danger");
+                },
+                success: function (result) {
+                    if (result.status == 1) {
+                        showAlert($("#alertA"), "success",result.message);
+                        $("button[name='refresh']").click();
+                    } else {
+                        showAlert($("#alertA"), "warning",result.message);
+                    }
+                }
+            });
+        });
+    $("#toOther").click(
         function () {
             $.ajax({
                 type: "POST",
                 cache: "false",
                 url: "xitong/laoren/change.do",
                 data: {ids: select()},
+                dataType: "json",
+                error: function () {//请求失败时调用函数。
+                    showAlert($("#alertA"), "danger");
+                },
+                success: function (result) {
+                    if (result.status == 1) {
+                        showAlert($("#alertA"), "success",result.message);
+                        $("button[name='refresh']").click();
+                    } else {
+                        showAlert($("#alertA"), "warning",result.message);
+                    }
+                }
+            });
+        });
+    $("#toDSR").click(
+        function () {
+            $.ajax({
+                type: "POST",
+                cache: "false",
+                url: "xitong/laoren/change.do",
+                data: {ids: select(),type:1},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
                     showAlert($("#alertA"), "danger");

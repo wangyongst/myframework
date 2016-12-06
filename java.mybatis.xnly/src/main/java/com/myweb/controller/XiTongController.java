@@ -193,7 +193,7 @@ public class XiTongController {
 
     @ResponseBody
     @RequestMapping(value = "/laoren/change", method = RequestMethod.POST)
-    public Result laorenChange(HttpSession session, String ids) {
-        return xiTongService.changeLaoren(session, ids);
+    public Result laorenChange(HttpSession session, String ids,int type) {
+        return xiTongService.changeLaoren(session, ids,type);
     }
 }

@@ -6,8 +6,8 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
-import com.myweb.util.ServiceUtils;
 import com.myweb.util.Result;
+import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -215,7 +215,6 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
 
-
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result editUser(HttpSession session, User user) {
@@ -267,15 +266,11 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result changeLaoren(HttpSession session, String ids) {
+    public Result changeLaoren(HttpSession session, String ids, int type) {
         Result result = new Result();
         if (ServiceUtils.isLegalIds(result, ids)) {
             Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            if(laoren.getType() == null){
-                laoren.setType(1);
-            }else{
-                laoren.setType(null);
-            }
+            laoren.setType(type);
             result.setData(laorenMapper.updateByPrimaryKey(laoren));
             result.setMessage("您移动了一条记录！");
         }

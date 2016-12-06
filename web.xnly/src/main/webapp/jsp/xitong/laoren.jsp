@@ -63,7 +63,8 @@
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除老人信息</button>
                 <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
-                <button type="button" class="btn btn-primary" id="change">移入低收入老人组</button>
+                <button type="button" class="btn btn-primary" id="toYMJ">移入饮马街老人组</button>
+                <button type="button" class="btn btn-primary" id="toDSR">移入低收入老人组</button>
 
                 <table data-toggle="table" data-url="xitong/otherLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
@@ -78,20 +79,19 @@
                     </tr>
                     </thead>
                 </table>
-
-
-                <!-- Modal -->
-                <div id="myModal"></div><!-- Modal -->
-
-
-                <!-- Modal -->
-                <div id="jiashuModal"></div><!-- Modal -->
-
-
             </div>
         </div>
+
     </div>
+
 </div><!--/.row-->
+
+<!-- Modal -->
+<div id="myModal"></div><!-- Modal -->
+
+
+<!-- Modal -->
+<div id="jiashuModal"></div><!-- Modal -->
 
 </body>
 

@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
-    <script src="js/xitong/dSRLaoren.js"></script>
+    <%@ include file="/jsp/base.jsp" %>
+    <script src="js/xitong/laoren.js"></script>
     <script type="text/javascript">
-        function showModalData(laoren) {
+        function showMyModalData(laoren) {
             <c:forEach var="item" items="${formColumns}">
             if (laoren != null) {
                 $("#${item.columnname}Input").val(laoren.${item.columnname});
@@ -24,6 +24,18 @@
                 $("#JS${item.columnname}Input").val("");
             }
             $("#JS${item.columnname}Input").attr("placeholder", "请输入老人家属的${item.chinese}");
+            </c:forEach>
+        }
+
+        function makeMyModal(modal) {
+            <c:forEach var="item" items="${formColumns}">
+            makeModalForm(modal, "${item.type}",null, "${item.columnname}", "${item.chinese}");
+            </c:forEach>
+        }
+
+        function makeJiashuModal(modal) {
+            <c:forEach var="item" items="${jiashuColumns}">
+            makeModalForm(modal, "${item.type}","JS${item.columnname}", "${item.columnname}", "${item.chinese}");
             </c:forEach>
         }
 
@@ -47,13 +59,11 @@
 
                 <div id="alertA" hidden></div>
 
-
                 <button type="button" class="btn btn-primary" id="zhuce">注册老人信息</button>
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除老人信息</button>
-                <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
-                <button type="button" class="btn btn-primary" id="change">移出低收入老人组</button>
-
+                <button type="button" class="btn btn-primary" id="toYMJ">移入饮马街老人组</button>
+                <button type="button" class="btn btn-primary" id="toOther">移入普通老人组</button>
 
                 <table data-toggle="table" data-url="xitong/dSRLaorens.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
@@ -68,153 +78,19 @@
                     </tr>
                     </thead>
                 </table>
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="laorenForm">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <c:choose>
-                                                <c:when test="${item.type == 'checkbox'}">
-                                                    <c:choose>
-                                                        <c:when test="${item.columnname == 'bingshi'}">
-                                                            <div class="checkbox" id="${item.columnname}Checkbox">
-                                                                <c:forEach var="itemb" items="${bingshi}">
-                                                                    <label>
-                                                                        <input name="${item.columnname}" type="checkbox" value="${itemb.name}">${itemb.name}
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </div>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:when test="${item.type == 'select'}">
-                                                    <c:choose>
-                                                        <c:when test="${item.columnname == 'sex'}">
-                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
-                                                                <c:forEach var="itemb" items="${sex}">
-                                                                    <label>
-                                                                        <option>${itemb.name}</option>
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </c:when>
-                                                        <c:when test="${item.columnname == 'nation'}">
-                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
-                                                                <c:forEach var="itemb" items="${nation}">
-                                                                    <label>
-                                                                        <option>${itemb.name}</option>
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB" hidden>
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB"></span><a
-                                            id="closeB"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="jiashuModal" tabindex="2" role="dialog" aria-labelledby="jiashuModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="jiashuModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="jiashuForm">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${jiashuColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="JS${item.columnname}Label">${item.chinese}</label>
-                                            <c:choose>
-                                                <c:when test="${item.type == 'select'}">
-                                                    <c:choose>
-                                                        <c:when test="${item.columnname == 'guanxi'}">
-                                                            <select class="form-control" name="${item.columnname}" id="JS${item.columnname}Select">
-                                                                <c:forEach var="itemb" items="${guanxi}">
-                                                                    <label>
-                                                                        <option>${itemb.name}</option>
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="${item.type}" class="form-control" id="JS${item.columnname}Input" name="${item.columnname}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertC" hidden>
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageC"></span><a
-                                            id="closeC"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveJiashuData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
             </div>
         </div>
+
     </div>
+
 </div><!--/.row-->
+
+<!-- Modal -->
+<div id="myModal"></div><!-- Modal -->
+
+
+<!-- Modal -->
+<div id="jiashuModal"></div><!-- Modal -->
 
 </body>
 

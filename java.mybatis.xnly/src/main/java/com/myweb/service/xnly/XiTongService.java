@@ -43,7 +43,7 @@ public interface XiTongService {
 
 	public Result deleteLaoren(HttpSession session, String ids);
 
-	public Result changeLaoren(HttpSession session, String ids);
+	public Result changeLaoren(HttpSession session, String ids,int type);
 
 	public Result deleteUser(HttpSession session, String ids);
 }
