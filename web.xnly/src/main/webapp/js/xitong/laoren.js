@@ -15,6 +15,7 @@ $(function () {
     $("#saveData").click(
         function () {
             var test = window.location.href;
+            alert(test.indexOf("yMj"));
             $.ajax({
                 type: "POST",
                 cache: "false",
