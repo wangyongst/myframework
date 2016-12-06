@@ -1,22 +1,6 @@
 /**
  * Created by BHWL on 2016-12-05.
  */
-document.write("<link href='css/bootstrap.min.css' rel='stylesheet'>");
-document.write(" <link href='css/datepicker3.css' rel='stylesheet'>");
-document.write("<link href='css/bootstrap-table.css' rel='stylesheet'>");
-document.write(" <link href='css/styles.css' rel='stylesheet'>");
-
-document.write("<script src='js/html5shiv.min.js'></script>");
-document.write("<script src='js/respond.min.js'></script>");
-
-document.write("<script src='js/jquery-1.11.1.min.js'></script>");
-document.write("<script src='js/bootstrap.min.js'></script>");
-document.write("<script src='js/chart.min.js'></script>");
-document.write("<script src='js/chart-data.js'></script>");
-document.write("<script src='js/easypiechart.js'></script>");
-document.write("<script src='js/easypiechart-data.js'></script>");
-document.write("<script src='js/bootstrap-datepicker.js'></script>");
-document.write("<script src='js/bootstrap-table.js'></script>");
 
 function select() {
     var ids = "";
@@ -68,9 +52,9 @@ function makeAlert(alert) {
         });
 };
 
-function makeModalForm(modal, type, columnname, chinese) {
-    $(modal).find("div div div").eq(1).find("form div").append("<label for='" + columnname + "'class='control-label'id='" + columnname + "Label'>" + chinese + "</label>");
-    $(modal).find("div div div").eq(1).find("form div").append("<input type='" + type + "' class='form-control' id='" + columnname + "Input' name='" + columnname + "'>");
+function makeModalForm(modal,type, columnname, chinese) {
+    $(modal).find(".form-group").append("<label for='" + columnname + "'class='control-label'id='" + columnname + "Label'>" + chinese + "</label>");
+    $(modal).find(".form-group").append("<input type='input' class='form-control' id='" + columnname + "Input' name='" + columnname + "'>");
 };
 
 function makeModal(modal, formId, alertId, saveId) {
@@ -106,11 +90,11 @@ function makeModal(modal, formId, alertId, saveId) {
 
     $(modal).find(".modal-footer").append("<button></button><button></button>");
     $(modal).find(".modal-footer").find("button").eq(0).attr("type", "button");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("type", "button");
     $(modal).find(".modal-footer").find("button").eq(0).attr("class", "btn btn-default");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");
     $(modal).find(".modal-footer").find("button").eq(0).attr("data-dismiss", "modal");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("id", saveId);
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("type", "button");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");
+    $(modal).find(".modal-footer").find("button").eq(1).attr("id", saveId);
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
 };

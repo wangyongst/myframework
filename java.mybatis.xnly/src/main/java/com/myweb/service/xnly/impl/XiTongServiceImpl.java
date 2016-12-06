@@ -237,7 +237,7 @@ public class XiTongServiceImpl implements XiTongService {
                 return result;
             } else {
                 User create = (User) session.getAttribute("user");
-                user.setCreateuserid(create.getId());
+                user.setCreateuser(create.getId());
                 user.setCreateusername(create.getName());
                 user.setCreatetime(DateUtils.getCurrentTimeSecond());
                 count = userMapper.insert(user);
