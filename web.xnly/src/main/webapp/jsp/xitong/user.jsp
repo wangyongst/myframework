@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
+    <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
-        function showModalData(user) {
+        function showMyModalData(user) {
             <c:forEach var="item" items="${formColumns}">
             if (user != null) {
                 $("#${item.columnname}Input").val(user.${item.columnname});
@@ -15,6 +15,13 @@
             $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
             </c:forEach>
         }
+
+        function makeMyModal(modal) {
+            <c:forEach var="item" items="${formColumns}">
+            makeModalForm(modal, "${item.type}", null, "${item.columnname}", "${item.chinese}");
+            </c:forEach>
+        }
+
     </script>
 </head>
 
@@ -54,55 +61,9 @@
                     </thead>
                 </table>
 
+
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="userForm">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <c:choose>
-                                                <c:when test="${item.type == 'select'}">
-                                                    <c:choose>
-                                                        <c:when test="${item.columnname == 'role'}">
-                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
-                                                                <c:forEach var="itemb" items="${role}">
-                                                                    <label>
-                                                                        <option>${itemb.name}</option>
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div id="alertB" hidden></div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
+                <div id="myModal"></div><!-- Modal -->
 
             </div>
         </div>

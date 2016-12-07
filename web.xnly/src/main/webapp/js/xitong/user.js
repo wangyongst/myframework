@@ -3,50 +3,36 @@
  */
 $(function () {
     makeAlert($("#alertA"));
-    makeAlert($("#alertB"));    
-    
+    makeAlert($("#alertB"));
+
+    makeModal($("#myModal"), "userForm", "alertB", "saveData", "1");
+    makeMyModal($("#myModal"));
+
     $("#saveData").click(
         function () {
             $.ajax({
                 type: "POST",
                 cache: "false",
                 url: "xitong/user/edit.do",
-                data: $('#userForm').serialize() + "&id=" + $('#idInput').val(),
+                data: $('#userForm').serialize(),
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertB div div").attr("class", "alert bg-danger");
-                    $("#alertB").show();
-                    $("#messageB").text("操作失败，请检查您的输入，如有问题请联系管理员！");
+                    showAlert($("#alertB"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         $('#myModal').modal('toggle');
-                        $("#alertB").hide();
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "success", result.message);
                         $("button[name='refresh']").click();
-                        //debugger;
                     } else {
-                        $("#alertB").show();
-                        $("#messageB").text(result.message);
+                        showAlert($("#alertB"), "warning", result.message);
                     }
                 }
             });
         });
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
-            }
-        });
-        return ids;
-    }
 
-    function showModal(user, type) {
-        showModalData(user);
+    function showMyModal(user, type) {
+        showMyModalData(user);
         $('#idInput').hide();
         $('#idLabel').hide();
         if (type == 1) {
@@ -67,7 +53,7 @@ $(function () {
 
     $("#zhuce").click(
         function () {
-            showModal(null, 0);
+            showMyModal(null, 0);
         });
     $("#xiugai").click(
         function () {
@@ -78,15 +64,13 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
-                        showModal(result.data, 1);
+                        showMyModal(result.data, 1);
                     } else {
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "warning", result.message);
                     }
 
                 }
@@ -101,15 +85,13 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
-                    $("#alertA").show();
-                    $("#messageA").text(result.message);
+                    showAlert($("#alertA"), "success", result.message);
                     $("button[name='refresh']").click();
                 }
             });
-        });   
+        });
 
 });
