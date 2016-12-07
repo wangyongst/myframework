@@ -23,9 +23,7 @@ public interface XiTongService {
 
 	public List<Jiashu> getAllJiashus(HttpSession session);
 
-	public Result editJiashu(HttpSession session, Jiashu jiashu);
 
-	public Result deleteJiashu(HttpSession session, String ids);
 
 	public Result getJiashu(HttpSession session, String ids, String idType);
 
@@ -33,17 +31,20 @@ public interface XiTongService {
 
 	public Result getUser(HttpSession session, String ids);
 
+	public Result editJiashu(HttpSession session, Jiashu jiashu);
+
+	public Result deleteJiashu(HttpSession session, String ids);
+
+
+
 	public Result editLaoren(HttpSession session, Laoren laoren);
-
-	public Result editDSRLaoren(HttpSession session, Laoren laoren);
-
-	public Result editYMJLaoren(HttpSession session, Laoren laoren);
 
 	public Result editUser(HttpSession session, User user);
 
-	public Result deleteLaoren(HttpSession session, String ids);
 
 	public Result changeLaoren(HttpSession session, String ids,int type);
 
+
+	public Result deleteLaoren(HttpSession session, String ids);
 	public Result deleteUser(HttpSession session, String ids);
 }

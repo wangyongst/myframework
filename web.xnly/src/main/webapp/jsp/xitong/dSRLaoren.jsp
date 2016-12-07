@@ -62,6 +62,7 @@
                 <button type="button" class="btn btn-primary" id="zhuce">注册老人信息</button>
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除老人信息</button>
+                <button type="button" class="btn btn-primary" id="jiashu">添加老人家属</button>
                 <button type="button" class="btn btn-primary" id="toYMJ">移入饮马街老人组</button>
                 <button type="button" class="btn btn-primary" id="toOther">移入普通老人组</button>
 

@@ -150,18 +150,6 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/yMJEdit", method = RequestMethod.POST)
-    public Result yMjLaorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
-        return xiTongService.editYMJLaoren(session, laoren);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/laoren/dSREdit", method = RequestMethod.POST)
-    public Result dSRLaorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
-        return xiTongService.editDSRLaoren(session, laoren);
-    }
-
-    @ResponseBody
     @RequestMapping(value = "/user/get", method = RequestMethod.POST)
     public Result userGet(HttpSession session, String ids) {
         return xiTongService.getUser(session, ids);

@@ -14,13 +14,17 @@ $(function () {
     
     $("#saveData").click(
         function () {
-            var test = window.location.href;
-            alert(test.indexOf("yMj"));
+            var type = 0;
+            if(window.location.href.indexOf("yMJ") != -1){
+                type = 2;
+            }else if(window.location.href.indexOf("dSR") != -1){
+                type = 1;
+            }
             $.ajax({
                 type: "POST",
                 cache: "false",
                 url: "xitong/laoren/edit.do",
-                data: $('#laorenForm').serialize() + "&id=" + $('#idInput').val(),
+                data: $('#laorenForm').serialize() + "&type="+ type,
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
                     showAlert($("#alertB"), "danger");
@@ -158,7 +162,7 @@ $(function () {
                 type: "POST",
                 cache: "false",
                 url: "xitong/laoren/change.do",
-                data: {ids: select()},
+                data: {ids: select(),type:0},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
                     showAlert($("#alertA"), "danger");

@@ -101,6 +101,7 @@ public class XiTongServiceImpl implements XiTongService {
     public List<Laoren> getOtherLaorens(HttpSession session) {
         LaorenExample example = new LaorenExample();
         example.createCriteria().andTypeIsNull();
+        example.or().andTypeEqualTo(0);
         return laorenMapper.selectByExample(example);
     }
 
@@ -161,59 +162,6 @@ public class XiTongServiceImpl implements XiTongService {
         }
         return result;
     }
-
-
-    @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editDSRLaoren(HttpSession session, Laoren laoren) {
-        Result result = new Result();
-        int count = 0;
-        laoren.setType(1);
-        if (laoren.getId() != null && laoren.getId() != 0) {
-            count = laorenMapper.updateByPrimaryKey(laoren);
-        } else {
-            User create = (User) session.getAttribute("user");
-            laoren.setCreateuser(create.getId());
-            laoren.setCreateusername(create.getName());
-            laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
-            count = laorenMapper.insert(laoren);
-        }
-        if (count != 0) {
-            result.setStatus(1);
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
-        return result;
-    }
-
-
-    @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editYMJLaoren(HttpSession session, Laoren laoren) {
-        Result result = new Result();
-        int count = 0;
-        laoren.setType(2);
-        if (laoren.getId() != null && laoren.getId() != 0) {
-            count = laorenMapper.updateByPrimaryKey(laoren);
-        } else {
-            User create = (User) session.getAttribute("user");
-            laoren.setCreateuser(create.getId());
-            laoren.setCreateusername(create.getName());
-            laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
-            count = laorenMapper.insert(laoren);
-        }
-        if (count != 0) {
-            result.setStatus(1);
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
-        return result;
-    }
-
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
