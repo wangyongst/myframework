@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
-    <script src="js/jiankang/shuju.js"></script>
+    <%@ include file="/jsp/base.jsp" %>
+    <script src="js/xitong/laoren.js"></script>
     <script type="text/javascript">
-        function showModalData(caiji) {
+        function showMyModalData(laoren) {
             <c:forEach var="item" items="${formColumns}">
-            if (caiji != null) {
-                $("#${item.columnname}Input").val(caiji.${item.columnname});
+            if (laoren != null) {
+                $("#${item.columnname}Input").val(laoren.${item.columnname});
             } else {
                 $("#${item.columnname}Input").val("");
             }
@@ -16,12 +16,14 @@
             </c:forEach>
         }
 
-        function gotojsp(url) {
-
+        function makeMyModal(modal) {
+            <c:forEach var="item" items="${formColumns}">
+            makeModalForm(modal, "${item.type}",null, "${item.columnname}", "${item.chinese}");
+            </c:forEach>
         }
-
     </script>
 </head>
+
 
 <body style="padding-top:0px">
 
@@ -60,49 +62,7 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="form">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <input type="${item.type}" class="form-control"
-                                                   id="${item.columnname}Input" name="${item.columnname}">
-
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB" hidden>
-                                <div class="col-lg-12">
-                                    <div class="alert bg-warning" role="alert">
-                                        <span class="glyphicon glyphicon-warning-sign"></span> <span
-                                            id="messageB"></span><a
-                                            id="closeB"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
+                <div id="myModal"></div><!-- Modal -->
 
             </div>
         </div>

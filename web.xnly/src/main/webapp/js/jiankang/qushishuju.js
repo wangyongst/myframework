@@ -76,22 +76,9 @@ $(function () {
         return mylineChartData;
     }
 
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
-            }
-        });
-        return ids;
-    }
-
     function isSelect() {
         if (select() == "") {
-            $("#alertA").show();
-            $("#messageA").text("请选择两条以上记录，以形成健康趋势图！");
+            showAlert($("#alertA"), "warning", "请选择两条以上记录，以形成健康趋势图！");
         }
     }
 
@@ -150,11 +137,4 @@ $(function () {
             $("#linechartitle").text("呼吸趋势图");
             myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("呼吸")));
         });
-
-
-    $("#closeA").click(
-        function () {
-            $("#alertA").hide();
-        });
-
 });

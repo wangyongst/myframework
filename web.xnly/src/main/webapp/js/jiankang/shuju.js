@@ -66,15 +66,13 @@ $(function () {
                 data: {ids: select(), idType: "caijiid"},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
                         showModal(result.data, 1);
                     } else {
-                        $("#alertA").show();
-                        $("#messageA").text(result.message);
+                        showAlert($("#alertA"), "warning",result.message);
                     }
 
                 }
@@ -89,24 +87,12 @@ $(function () {
                 data: {ids: select()},
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    $("#alertA").show();
-                    $("#messageA").text("操作失败，请联系管理员！");
+                    showAlert($("#alertA"), "danger");
                 },
                 success: function (result) {
-                    $("#alertA").show();
-                    $("#messageA").text(result.message);
+                    showAlert($("#alertA"), "warning",result.message);
                     $("button[name='refresh']").click();
                 }
             });
         });
-
-    $("#closeA").click(
-        function () {
-            $("#alertA").hide();
-        });
-    $("#closeB").click(
-        function () {
-            $("#alertB").hide();
-        });
-
 });
