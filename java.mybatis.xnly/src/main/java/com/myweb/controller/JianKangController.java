@@ -83,7 +83,7 @@ public class JianKangController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/caiji/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/caiji/delete", method = RequestMethod.DELETE)
     public Result caijiDelete(HttpSession session, String ids) {
         return jianKangService.deleteCaiji(session, ids);
     }

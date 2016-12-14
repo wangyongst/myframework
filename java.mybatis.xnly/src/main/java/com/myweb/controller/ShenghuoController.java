@@ -103,7 +103,7 @@ public class ShenghuoController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/fuwu/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/fuwu/delete", method = RequestMethod.DELETE)
     public Result fuwuDelete(HttpSession session, String ids) {
         return shenghuoService.deleteFuwu(session, ids);
     }
