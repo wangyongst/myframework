@@ -162,19 +162,19 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/delete", method = RequestMethod.DELETE)
     public Result userDelete(HttpSession session, String ids) {
         return xiTongService.deleteUser(session, ids);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/laoren/delete", method = RequestMethod.DELETE)
     public Result laorenDelete(HttpSession session, String ids) {
         return xiTongService.deleteLaoren(session, ids);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/jiashu/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/jiashu/delete", method = RequestMethod.DELETE)
     public Result jiashuDelete(HttpSession session, String ids) {
         return xiTongService.deleteJiashu(session, ids);
     }
