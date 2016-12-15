@@ -1,13 +1,11 @@
 package com.myweb.controller;
 
+import com.myweb.pojo.mybatis.User;
 import com.myweb.service.xnly.UserService;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -22,10 +20,9 @@ public class UserController {
     public UserService userService;
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public Result login(@RequestParam("username") String username,
-                        @RequestParam("password") String password, HttpSession session) {
-        return userService.login(session,username, password);
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Result login(HttpSession session,@ModelAttribute User user) {
+        return userService.login(session,user);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -40,14 +37,6 @@ public class UserController {
         Map map =  userService.getMyMenus(session);
         map = userService.getUserMap(session,map);
         return new ModelAndView("home", map);
-    }
-
-    @RequestMapping(value = "/myhome", method = RequestMethod.GET)
-    public ModelAndView myhome(HttpSession session) {
-        Map map =  new HashMap();
-        map.put("title", "我的首页");
-        map = userService.getMyHome(session,map);
-        return new ModelAndView("default_home", map);
     }
 
     @ResponseBody

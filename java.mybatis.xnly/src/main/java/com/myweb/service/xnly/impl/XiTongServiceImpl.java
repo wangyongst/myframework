@@ -39,8 +39,10 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
-    public List<Laoren> getAllLaorens(HttpSession session) {
-        return laorenMapper.selectByExample(null);
+    public List<Laoren> getAllLaorens(HttpSession session, Laoren laoren) {
+        LaorenExample example = new LaorenExample();
+        if (laoren.getType() != null) example.createCriteria().andTypeEqualTo(laoren.getType());
+        return laorenMapper.selectByExample(example);
     }
 
     @Override
@@ -83,27 +85,6 @@ public class XiTongServiceImpl implements XiTongService {
         return result;
     }
 
-    @Override
-    public List<Laoren> getDSRLaorens(HttpSession session) {
-        LaorenExample example = new LaorenExample();
-        example.createCriteria().andTypeEqualTo(1);
-        return laorenMapper.selectByExample(example);
-    }
-
-    @Override
-    public List<Laoren> getYMJLaorens(HttpSession session) {
-        LaorenExample example = new LaorenExample();
-        example.createCriteria().andTypeEqualTo(2);
-        return laorenMapper.selectByExample(example);
-    }
-
-    @Override
-    public List<Laoren> getOtherLaorens(HttpSession session) {
-        LaorenExample example = new LaorenExample();
-        example.createCriteria().andTypeIsNull();
-        example.or().andTypeEqualTo(0);
-        return laorenMapper.selectByExample(example);
-    }
 
     @Override
     public Result getLaoren(HttpSession session, String ids) {
@@ -207,20 +188,6 @@ public class XiTongServiceImpl implements XiTongService {
         if (ServiceUtils.isLegalIds(result, ids)) {
             result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
             result.setMessage("您删除了一条记录！");
-        }
-        return result;
-    }
-
-
-    @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result changeLaoren(HttpSession session, String ids, int type) {
-        Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            laoren.setType(type);
-            result.setData(laorenMapper.updateByPrimaryKey(laoren));
-            result.setMessage("您移动了一条记录！");
         }
         return result;
     }

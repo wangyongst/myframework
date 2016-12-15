@@ -39,7 +39,7 @@
                 <button type="button" class="btn btn-primary" id="xiugai">修改服务需求</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除服务需求</button>
 
-                <table data-toggle="table" data-url="shenghuo/allFuwuXuqius.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="shenghuo/list/fuwu/xuqius.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
                        data-sort-order="desc">

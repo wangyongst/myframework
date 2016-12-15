@@ -42,7 +42,7 @@
                 <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
 
                 <div>
-                    <table data-toggle="table" data-url="xitong/allLaorens.do" data-show-refresh="true"
+                    <table data-toggle="table" data-url="xitong/list/laorens.do" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true" data-search="true"
                            data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
                            data-sort-order="desc">

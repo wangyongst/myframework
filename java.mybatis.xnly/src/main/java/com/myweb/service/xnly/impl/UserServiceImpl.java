@@ -44,10 +44,10 @@ public class UserServiceImpl implements UserService {
     private FuwuMapper fuwuMapper;
 
     @Override
-    public Result login(HttpSession session, String username, String password) {
+    public Result login(HttpSession session,User user) {
         UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(username)
-                .andPasswordEqualTo(password);
+        example.createCriteria().andUsernameEqualTo(user.getUsername())
+                .andPasswordEqualTo(user.getPassword());
         List<User> userList = userMapper.selectByExample(example);
         Result result = new Result();
         if (userList.size() == 0) {
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             result.setMessage("用户名或密码错误，请重新检查您的输入！");
         } else if (userList.size() > 1) {
             result.setStatus(2);
-            result.setMessage("有多个相同用户，请发送邮件到：331527770@qq.com联系管理员！");
+            result.setMessage("你的账号有异常，请发送邮件到：331527770@qq.com联系管理员处理！");
         } else {
             result.setStatus(0);
             session.setAttribute("user", userList.get(0));
@@ -168,8 +168,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> getTitleMap(HttpSession session, String title, String tableTitle) {
-        Map map = new HashMap<String, String>();
+    public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map,String title, String tableTitle) {
         map.put("title", title);
         map.put("tableName", tableTitle);
         return map;

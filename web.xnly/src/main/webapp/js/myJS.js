@@ -5,7 +5,7 @@
 function select() {
     var ids = "";
     $("input[name=toolbar1]").each(function () {
-        if ($(this).context.checked) {
+        if ($(this).prop('checked')) {
             var index = $("table input:checkbox").index(this);
             val = $("table").find("tr").eq(index).find("td").eq(1).text();
             ids += "," + val;

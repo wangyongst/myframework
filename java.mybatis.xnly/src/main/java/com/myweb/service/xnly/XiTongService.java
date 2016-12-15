@@ -13,13 +13,7 @@ public interface XiTongService {
 
 	public List<User> getAllUsers(HttpSession session);
 
-	public List<Laoren> getDSRLaorens(HttpSession session);
-
-	public List<Laoren> getYMJLaorens(HttpSession session);
-
-	public List<Laoren> getOtherLaorens(HttpSession session);
-
-	public List<Laoren> getAllLaorens(HttpSession session);
+	public List<Laoren> getAllLaorens(HttpSession session,Laoren laoren);
 
 	public List<Jiashu> getAllJiashus(HttpSession session);
 
@@ -40,10 +34,6 @@ public interface XiTongService {
 	public Result editLaoren(HttpSession session, Laoren laoren);
 
 	public Result editUser(HttpSession session, User user);
-
-
-	public Result changeLaoren(HttpSession session, String ids,int type);
-
 
 	public Result deleteLaoren(HttpSession session, String ids);
 	public Result deleteUser(HttpSession session, String ids);

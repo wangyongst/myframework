@@ -25,6 +25,7 @@ public class LoginFilter implements Filter {
     private String[] nofilters;
 
     public void init(FilterConfig filterConfig) throws ServletException {
+        logger.info("LoginFilter create!");
         this.filterConfig = filterConfig;
         if (nofilters == null) {
             Properties prop = new Properties();// 属性集合对象
@@ -41,7 +42,6 @@ public class LoginFilter implements Filter {
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("LoginFilter create!");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(true);
@@ -50,6 +50,7 @@ public class LoginFilter implements Filter {
         for (String nf : nofilters) {
             if (StringUtils.isNotBlank(url) && url.contains(nf)) {
                 filterChain.doFilter(servletRequest, servletResponse);
+                logger.info("LoginFilter unprocessed:"+url);
                 return;
             }
         }

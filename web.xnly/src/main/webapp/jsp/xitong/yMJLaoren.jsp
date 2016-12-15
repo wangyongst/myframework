@@ -66,7 +66,7 @@
                 <button type="button" class="btn btn-primary" id="toDSR">移入低收入老人组</button>
                 <button type="button" class="btn btn-primary" id="toOther">移入普通老人组</button>
 
-                <table data-toggle="table" data-url="xitong/yMJLaorens.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/list/laorens.do?type=2" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
                        data-sort-order="desc">

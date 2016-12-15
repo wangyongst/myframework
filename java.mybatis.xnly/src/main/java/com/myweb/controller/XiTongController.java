@@ -5,6 +5,7 @@ import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
 import com.myweb.service.xnly.UserService;
 import com.myweb.service.xnly.XiTongService;
+import com.myweb.util.Page;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/xitong")
@@ -27,161 +26,86 @@ public class XiTongController {
     @Autowired
     public XiTongService xiTongService;
 
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ModelAndView user(HttpSession session) {
-        Map map = userService.getTitleMap(session, "用户管理", "用户信息表");
-        map = userService.getColumnsNameMap(session, map, "user", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "user", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "role", "role");
-        return new ModelAndView("xitong/user", map);
-    }
+    //查询数据列表
 
     @ResponseBody
-    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
-    public List<User> allUser(HttpSession session) {
+    @RequestMapping(value = "/list/users", method = RequestMethod.GET)
+    public List<User> listUsers(HttpSession session, @ModelAttribute User user, @ModelAttribute Page page) {
         return xiTongService.getAllUsers(session);
     }
 
-    @RequestMapping(value = "/laoren", method = RequestMethod.GET)
-    public ModelAndView laoren(HttpSession session) {
-        Map map = userService.getTitleMap(session, "老人管理", "老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
-        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
-        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
-        return new ModelAndView("xitong/laoren", map);
-    }
-
-
-    @RequestMapping(value = "/jiashu", method = RequestMethod.GET)
-    public ModelAndView jiashu(HttpSession session) {
-        Map map = userService.getTitleMap(session, "老人家属管理", "老人家属信息表");
-        map = userService.getColumnsNameMap(session, map, "jiashu", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
-        return new ModelAndView("xitong/jiashu", map);
-    }
-
     @ResponseBody
-    @RequestMapping(value = "/jiashu/get", method = RequestMethod.POST)
-    public Result jiashuGet(HttpSession session, String ids, String idType) {
-        return xiTongService.getJiashu(session, ids, idType);
-    }
-
-
-    @ResponseBody
-    @RequestMapping(value = "/jiashu/edit", method = RequestMethod.POST)
-    public Result jiashuEdit(HttpSession session, String ids, @ModelAttribute Jiashu jiashu) {
-        return xiTongService.editJiashu(session, jiashu);
-    }
-
-
-    @RequestMapping(value = "/dSRLaoren", method = RequestMethod.GET)
-    public ModelAndView dSRLaoren(HttpSession session) {
-        Map map = userService.getTitleMap(session, "低收入老人管理", "低收入老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
-        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
-        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
-        return new ModelAndView("xitong/dSRLaoren", map);
-    }
-
-    @RequestMapping(value = "/yMJLaoren", method = RequestMethod.GET)
-    public ModelAndView yMjLaoren(HttpSession session) {
-        Map map = userService.getTitleMap(session, "饮马街街道老人管理", "饮马街街道老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
-        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
-        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
-        return new ModelAndView("xitong/yMJLaoren", map);
-    }
-
-
-    @ResponseBody
-    @RequestMapping(value = "/allJiashus", method = RequestMethod.GET)
-    public List<Jiashu> allJiashus(HttpSession session) {
+    @RequestMapping(value = "/list/laoren/jiashus", method = RequestMethod.GET)
+    public List<Jiashu> listLaorenJiashus(HttpSession session, @ModelAttribute Jiashu jiashu, @ModelAttribute Page page) {
         return xiTongService.getAllJiashus(session);
     }
 
+
     @ResponseBody
-    @RequestMapping(value = "/allLaorens", method = RequestMethod.GET)
-    public List<Laoren> allLaorens(HttpSession session) {
-        return xiTongService.getAllLaorens(session);
+    @RequestMapping(value = "/list/laorens", method = RequestMethod.GET)
+    public List<Laoren> listLaorens(HttpSession session, @ModelAttribute Laoren laoren, @ModelAttribute Page page) {
+        return xiTongService.getAllLaorens(session, laoren);
+    }
+
+
+    //查询记录
+
+    @ResponseBody
+    @RequestMapping(value = "/get/laoren/jiashu", method = RequestMethod.GET)
+    public Result getJiashu(HttpSession session, String ids, String idType, @ModelAttribute Jiashu jiashu) {
+        return xiTongService.getJiashu(session, ids, idType);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/dSRLaorens", method = RequestMethod.GET)
-    public List<Laoren> dSRLaorens(HttpSession session) {
-        return xiTongService.getDSRLaorens(session);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/yMJLaorens", method = RequestMethod.GET)
-    public List<Laoren> yMJLaorens(HttpSession session) {
-        return xiTongService.getYMJLaorens(session);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/otherLaorens", method = RequestMethod.GET)
-    public List<Laoren> otherLaorens(HttpSession session) {
-        return xiTongService.getOtherLaorens(session);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-    public Result userEdit(HttpSession session, String ids, @ModelAttribute User user) {
-        return xiTongService.editUser(session, user);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/laoren/edit", method = RequestMethod.POST)
-    public Result laorenEdit(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
-        return xiTongService.editLaoren(session, laoren);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/user/get", method = RequestMethod.POST)
-    public Result userGet(HttpSession session, String ids) {
+    @RequestMapping(value = "/get/user", method = RequestMethod.GET)
+    public Result getUser(HttpSession session, String ids, @ModelAttribute User user) {
         return xiTongService.getUser(session, ids);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/get", method = RequestMethod.POST)
-    public Result laorenGet(HttpSession session, String ids) {
+    @RequestMapping(value = "/get/laoren", method = RequestMethod.GET)
+    public Result getLaoren(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
         return xiTongService.getLaoren(session, ids);
     }
 
+
+    //创建修改记录
+
     @ResponseBody
-    @RequestMapping(value = "/user/delete", method = RequestMethod.DELETE)
-    public Result userDelete(HttpSession session, String ids) {
-        return xiTongService.deleteUser(session, ids);
+    @RequestMapping(value = "/post/laoren/jiashu", method = RequestMethod.POST)
+    public Result postLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
+        return xiTongService.editJiashu(session, jiashu);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/delete", method = RequestMethod.DELETE)
-    public Result laorenDelete(HttpSession session, String ids) {
-        return xiTongService.deleteLaoren(session, ids);
+    @RequestMapping(value = "/post/user", method = RequestMethod.POST)
+    public Result postUser(HttpSession session, @ModelAttribute User user) {
+        return xiTongService.editUser(session, user);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/jiashu/delete", method = RequestMethod.DELETE)
-    public Result jiashuDelete(HttpSession session, String ids) {
+    @RequestMapping(value = "/post/laoren", method = RequestMethod.POST)
+    public Result postLaoren(HttpSession session, @ModelAttribute Laoren laoren) {
+        return xiTongService.editLaoren(session, laoren);
+    }
+
+    //删除记录
+
+    @ResponseBody
+    @RequestMapping(value = "/delete/laoren/jiashu", method = RequestMethod.POST)
+    public Result deleteLaorenJiashu(HttpSession session, String ids, @ModelAttribute Jiashu jiashu) {
         return xiTongService.deleteJiashu(session, ids);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/laoren/change", method = RequestMethod.POST)
-    public Result laorenChange(HttpSession session, String ids,int type) {
-        return xiTongService.changeLaoren(session, ids,type);
+    @RequestMapping(value = "/delete/user", method = RequestMethod.DELETE)
+    public Result deleteUser(HttpSession session, String ids, @ModelAttribute User user) {
+        return xiTongService.deleteUser(session, ids);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete/laoren", method = RequestMethod.POST)
+    public Result deleteLaoren(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
+        return xiTongService.deleteLaoren(session, ids);
     }
 }

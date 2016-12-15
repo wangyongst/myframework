@@ -10,7 +10,7 @@
   <head>
     <base href="<%=basePath%>">
     <title>登陆西宁乐缘综合管理系统</title>
-    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
   	$(document).ready(function() {
   		window.location.href= "<%=basePath%>jsp/login.jsp";

@@ -9,14 +9,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import javax.servlet.Filter;
 import java.util.List;
 
 @Configuration
@@ -26,6 +24,7 @@ import java.util.List;
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	private static final Logger logger = LogManager.getLogger(SpringConfig.class);
+
 	@Bean
 	public ViewResolver viewResolver() {
 		logger.info("ViewResolver create!");
@@ -35,15 +34,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setViewClass(JstlView.class);
 		return viewResolver;
 	}
-	
-	@Bean
-    public Filter characterEncodingFilter() {
-		logger.info("CharacterEncodingFilter create!");
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        return characterEncodingFilter;
-    }
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -51,4 +41,5 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()	.indentOutput(true);
 		converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
 	}
+
 }

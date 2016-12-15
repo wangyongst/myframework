@@ -30,4 +30,22 @@ public class ServiceUtils {
         }
         return false;
     }
+
+    public static boolean isPutOK(Result result,int count){
+            result.setStatus(0);
+            result.setMessage("您修改了" + count + "条记录");
+        return true;
+    }
+
+    public static boolean isPostOK(Result result,int count){
+        result.setStatus(0);
+        result.setMessage("您添加了" + count + "条记录");
+        return true;
+    }
+
+    public static boolean isDeleteOK(Result result,int count){
+        result.setStatus(0);
+        result.setMessage("您删除了" + count + "条记录");
+        return true;
+    }
 }

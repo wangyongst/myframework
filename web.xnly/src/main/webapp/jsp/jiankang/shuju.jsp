@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <script src="js/xitong/laoren.js"></script>
+    <script src="js/jiankang/shuju.js"></script>
     <script type="text/javascript">
         function showMyModalData(laoren) {
             <c:forEach var="item" items="${formColumns}">
@@ -46,7 +46,7 @@
                 <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除数据</button>
 
-                <table data-toggle="table" data-url="jiankang/allCaijis.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="jiankang/list/caijis.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
                        data-sort-order="desc">

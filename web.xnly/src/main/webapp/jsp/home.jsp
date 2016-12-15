@@ -12,7 +12,6 @@
                 var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
                 var height = Math.max(bHeight, dHeight);
                 iframe.height = height;
-                console.log(height);
             } catch (ex) {
             }
         }
@@ -105,7 +104,7 @@
     </ul>
 </div><!--/.sidebar-->
 
-<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="<%=basePath%>user/myhome.do" width="100%"
+<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="<%=basePath%>menu/myhome.do" width="100%"
         frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->
 
