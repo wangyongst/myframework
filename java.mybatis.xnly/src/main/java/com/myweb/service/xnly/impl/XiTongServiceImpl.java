@@ -6,6 +6,7 @@ import com.myweb.dao.mybatis.UserMapper;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
+import com.myweb.util.Page;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -32,21 +33,21 @@ public class XiTongServiceImpl implements XiTongService {
     private JiashuMapper jiashuMapper;
 
     @Override
-    public List<User> getAllUsers(HttpSession session) {
+    public List<User> listUsers(HttpSession session, User user, Page page) {
         UserExample userExapmle = new UserExample();
         userExapmle.createCriteria().andUsernameNotEqualTo("super");
         return userMapper.selectByExample(userExapmle);
     }
 
     @Override
-    public List<Laoren> getAllLaorens(HttpSession session, Laoren laoren) {
+    public List<Laoren> listLaorens(HttpSession session, Laoren laoren) {
         LaorenExample example = new LaorenExample();
         if (laoren.getType() != null) example.createCriteria().andTypeEqualTo(laoren.getType());
         return laorenMapper.selectByExample(example);
     }
 
     @Override
-    public List<Jiashu> getAllJiashus(HttpSession session) {
+    public List<Jiashu> listLaorenJiashus(HttpSession session) {
         return jiashuMapper.selectByExample(null);
     }
 

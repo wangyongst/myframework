@@ -31,20 +31,20 @@ public class XiTongController {
     @ResponseBody
     @RequestMapping(value = "/list/users", method = RequestMethod.GET)
     public List<User> listUsers(HttpSession session, @ModelAttribute User user, @ModelAttribute Page page) {
-        return xiTongService.getAllUsers(session);
+        return xiTongService.listUsers(session, user, page);
     }
 
     @ResponseBody
     @RequestMapping(value = "/list/laoren/jiashus", method = RequestMethod.GET)
     public List<Jiashu> listLaorenJiashus(HttpSession session, @ModelAttribute Jiashu jiashu, @ModelAttribute Page page) {
-        return xiTongService.getAllJiashus(session);
+        return xiTongService.listLaorenJiashus(session);
     }
 
 
     @ResponseBody
     @RequestMapping(value = "/list/laorens", method = RequestMethod.GET)
     public List<Laoren> listLaorens(HttpSession session, @ModelAttribute Laoren laoren, @ModelAttribute Page page) {
-        return xiTongService.getAllLaorens(session, laoren);
+        return xiTongService.listLaorens(session, laoren);
     }
 
 
@@ -69,7 +69,7 @@ public class XiTongController {
     }
 
 
-    //创建修改记录
+    //创建记录
 
     @ResponseBody
     @RequestMapping(value = "/post/laoren/jiashu", method = RequestMethod.POST)
@@ -89,10 +89,31 @@ public class XiTongController {
         return xiTongService.editLaoren(session, laoren);
     }
 
+
+    //修改记录
+
+    @ResponseBody
+    @RequestMapping(value = "/put/laoren/jiashu", method = RequestMethod.PUT)
+    public Result putLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
+        return xiTongService.editJiashu(session, jiashu);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/post/user", method = RequestMethod.PUT)
+    public Result putUser(HttpSession session, @ModelAttribute User user) {
+        return xiTongService.editUser(session, user);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/post/laoren", method = RequestMethod.PUT)
+    public Result putLaoren(HttpSession session, @ModelAttribute Laoren laoren) {
+        return xiTongService.editLaoren(session, laoren);
+    }
+
     //删除记录
 
     @ResponseBody
-    @RequestMapping(value = "/delete/laoren/jiashu", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/laoren/jiashu", method = RequestMethod.DELETE)
     public Result deleteLaorenJiashu(HttpSession session, String ids, @ModelAttribute Jiashu jiashu) {
         return xiTongService.deleteJiashu(session, ids);
     }
@@ -104,7 +125,7 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/delete/laoren", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/laoren", method = RequestMethod.DELETE)
     public Result deleteLaoren(HttpSession session, String ids, @ModelAttribute Laoren laoren) {
         return xiTongService.deleteLaoren(session, ids);
     }
