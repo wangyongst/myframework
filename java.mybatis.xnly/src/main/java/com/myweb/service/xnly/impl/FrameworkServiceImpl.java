@@ -2,7 +2,7 @@ package com.myweb.service.xnly.impl;
 
 import com.myweb.dao.mybatis.*;
 import com.myweb.pojo.mybatis.*;
-import com.myweb.service.xnly.UserService;
+import com.myweb.service.xnly.FrameworkService;
 import com.myweb.util.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service("userService")
+@Service("frameworkService")
 @Transactional(value = "myTM", readOnly = true)
-public class UserServiceImpl implements UserService {
+public class FrameworkServiceImpl implements FrameworkService {
 
     @Autowired
     private UserMapper userMapper;
@@ -44,14 +44,13 @@ public class UserServiceImpl implements UserService {
     private FuwuMapper fuwuMapper;
 
     @Override
-    public Result login(HttpSession session,User user) {
+    public Result login(HttpSession session, User user) {
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(user.getUsername())
                 .andPasswordEqualTo(user.getPassword());
         List<User> userList = userMapper.selectByExample(example);
         Result result = new Result();
         if (userList.size() == 0) {
-            result.setStatus(1);
             result.setMessage("用户名或密码错误，请重新检查您的输入！");
         } else if (userList.size() > 1) {
             result.setStatus(2);
@@ -99,14 +98,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map) {
-        map.put("totalLaoren",laorenMapper.countByExample(null));
-        map.put("totalCaiji",caijiMapper.countByExample(null));
+        map.put("totalLaoren", laorenMapper.countByExample(null));
+        map.put("totalCaiji", caijiMapper.countByExample(null));
         FuwuExample fje = new FuwuExample();
         fje.createCriteria().andFuwutypeEqualTo("服务记录");
-        map.put("totalFuwuJilu",fuwuMapper.countByExample(fje));
+        map.put("totalFuwuJilu", fuwuMapper.countByExample(fje));
         FuwuExample fjx = new FuwuExample();
         fjx.createCriteria().andFuwutypeEqualTo("服务记录");
-        map.put("totalFuwuXuqiu",fuwuMapper.countByExample(fjx));
+        map.put("totalFuwuXuqiu", fuwuMapper.countByExample(fjx));
         return map;
     }
 
@@ -155,20 +154,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result getColumnsShuxingList(HttpSession session,String name) {
+    public Result getShuxing(HttpSession session, String name) {
         Result result = new Result();
         if (StringUtils.isNotBlank(name)) {
             ShuxingExample shuxingExample = new ShuxingExample();
             shuxingExample.createCriteria().andNameEqualTo(name);
             shuxingExample.setOrderByClause("shunxu");
-            result.setStatus(1);
             result.setData(shuxingMapper.selectByExample(shuxingExample));
         }
         return result;
     }
 
     @Override
-    public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map,String title, String tableTitle) {
+    public Result getTableinfo(HttpSession session, String tablename, boolean notTable) {
+        Result result = new Result();
+        TableinfoExample tableinfoExample = new TableinfoExample();
+        if (!notTable) {
+            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andTabledisableIsNull();
+        } else {
+            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andModaldisableIsNull();
+        }
+        tableinfoExample.setOrderByClause("shunxu");
+        result.setData(tableinfoMapper.selectByExample(tableinfoExample));
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map, String title, String tableTitle) {
         map.put("title", title);
         map.put("tableName", tableTitle);
         return map;

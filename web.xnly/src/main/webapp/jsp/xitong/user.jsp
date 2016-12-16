@@ -6,18 +6,6 @@
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
 
-        function makePostUserModal(modal) {
-            <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}", "post${item.columnname}", "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-
-        function makePutUserModal(modal) {
-            <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}", "put${item.columnname}", "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-
         function showPostUserModalData() {
             <c:forEach var="item" items="${formColumns}">
             $("#post${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
@@ -59,7 +47,7 @@
                 <table data-toggle="table" data-url="xitong/list/users.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
-                       data-sort-order="desc">
+                       data-sort-order="desc" id="userTable">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>

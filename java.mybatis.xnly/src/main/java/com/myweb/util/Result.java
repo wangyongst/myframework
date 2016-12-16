@@ -2,31 +2,35 @@ package com.myweb.util;
 
 public class Result {
 
-	private int status;
-	private Object data;
-	private String message;
+    private int status;
+    private Object data;
+    private String message;
 
-	public Object getData() {
-		return data;
-	}
+    public Result() {
+        this.status = 1;
+    }
 
-	public void setData(Object data) {
-		this.data = data;
-	}
+    public Object getData() {
+        return data;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public void setData(Object data) {
+        this.data = data;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

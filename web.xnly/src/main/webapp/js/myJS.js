@@ -79,8 +79,7 @@ function makeModalFormSelect(modal, id, name, chinese) {
     $.ajax({
         type: "GET",
         cache: "true",
-        url: "user/getColumns.do",
-        data: "name=" + name,
+        url: "framework/shuxing/" + name + ".do",
         dataType: "json",
         success: function (result) {
             if (result.status == 1) {
@@ -101,8 +100,7 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
     $.ajax({
         type: "GET",
         cache: "true",
-        url: "user/getColumns.do",
-        data: "name=" + name,
+        url: "framework/shuxing/" + name + ".do",
         dataType: "json",
         success: function (result) {
             if (result.status == 1) {
@@ -113,6 +111,24 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
         }
     });
 };
+
+
+function makeModalColumns(modal, tablename, prefix) {
+    $.ajax({
+        type: "GET",
+        cache: "true",
+        url: "framework/tableinfo/" + tablename + "/true.do",
+        dataType: "json",
+        success: function (result) {
+            if (result.status == 1) {
+                result.data.forEach(function (e) {
+                    makeModalForm(modal, e.type, prefix + e.columnname, e.columnname, e.chinese);
+                })
+            }
+        }
+    });
+};
+
 
 function makeModal(modal, formId, alertId, saveId, index) {
     $(modal).attr("class", "modal fade");

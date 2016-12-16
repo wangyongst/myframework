@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-public interface UserService {
+public interface FrameworkService {
 
     public Result login(HttpSession session, User user);
 
@@ -20,12 +20,14 @@ public interface UserService {
 
     public Map<String, Object> getUserMap(HttpSession session, Map<String, Object> map);
 
-    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean isTable);
+    public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean notTable);
 
     public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map,String title, String tableTitle);
 
     public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName,String name);
 
-    public Result getColumnsShuxingList(HttpSession session, String name);
+    public Result getShuxing(HttpSession session, String name);
+
+    public Result getTableinfo(HttpSession session, String tableName, boolean notTable);
 
 }

@@ -70,7 +70,6 @@ public class JianKangServiceImpl implements JianKangService {
             count = caijiMapper.insert(caiji);
         }
         if (count != 0) {
-            result.setStatus(1);
             result.setMessage("你已成功保存一条记录！");
             return result;
         }

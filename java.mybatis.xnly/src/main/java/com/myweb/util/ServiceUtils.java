@@ -24,7 +24,6 @@ public class ServiceUtils {
                 result.setStatus(3);
                 result.setMessage("您选择了多条记录，请选择一条记录！");
             } else {
-               result.setStatus(1);
                return true;
             }
         }

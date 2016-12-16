@@ -66,7 +66,6 @@ public class XiTongServiceImpl implements XiTongService {
             count = jiashuMapper.insert(jiashu);
         }
         if (count != 0) {
-            result.setStatus(1);
             result.setMessage("你已成功保存一条记录！");
             return result;
         }
@@ -119,7 +118,6 @@ public class XiTongServiceImpl implements XiTongService {
             count = laorenMapper.insert(laoren);
         }
         if (count != 0) {
-            result.setStatus(1);
             result.setMessage("你已成功保存一条记录！");
             return result;
         }
@@ -173,7 +171,6 @@ public class XiTongServiceImpl implements XiTongService {
             }
         }
         if (count != 0) {
-            result.setStatus(1);
             result.setMessage("你已成功保存一条记录！");
             return result;
         }

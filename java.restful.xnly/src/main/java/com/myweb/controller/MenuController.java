@@ -1,7 +1,7 @@
 package com.myweb.controller;
 
 import com.myweb.pojo.mybatis.Laoren;
-import com.myweb.service.xnly.UserService;
+import com.myweb.service.xnly.FrameworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +22,7 @@ import java.util.Map;
 @RequestMapping(value = "/menu")
 public class MenuController {
     @Autowired
-    public UserService userService;
+    public FrameworkService userService;
 
     //生成JSP页面
 

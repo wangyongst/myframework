@@ -11,7 +11,7 @@
                 $.ajax({
                     type: "POST",
                     cache: "false",
-                    url: "user/login.do",
+                    url: "framework/login.do",
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
@@ -21,7 +21,7 @@
                         if (result.status != 0) {
                             showAlert($("#alertA"), "warning", result.message);
                         } else {
-                            window.location.href = "<%=basePath%>user/home.do";
+                            window.location.href = "<%=basePath%>framework/home.do";
                         }
                     }
                 });

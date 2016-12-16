@@ -3,11 +3,14 @@
  */
 $(function () {
 
+
+    makeTableColumns($("#userTable"), "user");
+
     makeModal($("#postUserModal"), "postUserForm", "postUserAlert", "postUserSave", "1");
     makeModal($("#putUserModal"), "putUserForm", "putUserAlert", "putUserSave", "2");
 
-    makePostUserModal($("#postUserModal"));
-    makePutUserModal($("#putUserModal"));
+    makeModalColumns($("#postUserModal"), "user", "post");
+    makeModalColumns($("#putUserModal"), "user", "put");
 
 
     makeAlert($("#postUserAlert"));
@@ -98,7 +101,6 @@ $(function () {
                 } else {
                     showAlert($("#mainAlert"), "warning", result.message);
                 }
-
             }
         });
     });
@@ -114,8 +116,13 @@ $(function () {
                 showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
-                showAlert($("#mainAlert"), "success", result.message);
-                $("button[name='refresh']").click();
+                if (result.status == 1) {
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
+                }
+
             }
         });
     });

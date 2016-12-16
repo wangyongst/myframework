@@ -3,7 +3,7 @@ package com.myweb.controller;
 import com.myweb.pojo.mybatis.Jiashu;
 import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
-import com.myweb.service.xnly.UserService;
+import com.myweb.service.xnly.FrameworkService;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.Page;
 import com.myweb.util.Result;
@@ -22,7 +22,7 @@ import java.util.List;
 public class XiTongController {
 
     @Autowired
-    public UserService userService;
+    public FrameworkService userService;
     @Autowired
     public XiTongService xiTongService;
 

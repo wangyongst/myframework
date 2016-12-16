@@ -22,10 +22,11 @@
         </plugins>
     </build>
 
-    <name>java.restful</name>
+    <name>java.restful.xnly</name>
     <url>http://maven.apache.org</url>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.framework.version>4.3.2.RELEASE</spring.framework.version>
     </properties>
