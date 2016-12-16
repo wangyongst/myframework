@@ -61,6 +61,7 @@ $(function () {
     function showPostUserModal() {
         $('#postUseridInput').hide();
         $('#postUseridLabel').hide();
+        $('#postUserModal').find("input").val("");
         $('#postUserModal').find('.modal-title').text('注册用户信息');
         $('#postUserModal').modal('toggle');
         $("#postUserAlert").hide();
