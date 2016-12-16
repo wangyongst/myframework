@@ -4,29 +4,12 @@
 <head>
     <%@ include file="/jsp/base.jsp"%>
     <script src="js/jiankang/caiji.js"></script>
-    <script type="text/javascript">
-        function showMyModalData(data) {
-            <c:forEach var="item" items="${formColumns}">
-            if (data != null) {
-                $("#${item.columnname}Input").val(data.${item.columnname});
-            } else {
-                $("#${item.columnname}Input").val("");
-            }
-            $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-            </c:forEach>
-        }
-        function makeMyModal(modal) {
-            <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}", "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-    </script>
 </head>
 
 <body style="padding-top:0px">
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a href="${home}"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
 </div><!--/.row-->

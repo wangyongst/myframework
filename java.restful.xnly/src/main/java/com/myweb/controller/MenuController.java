@@ -2,6 +2,7 @@ package com.myweb.controller;
 
 import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.service.xnly.FrameworkService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,37 +81,26 @@ public class MenuController {
         }
     }
 
-    @RequestMapping(value = "/jiankang/caiji", method = RequestMethod.GET)
-    public ModelAndView caiji(HttpSession session) {
+    @RequestMapping(value = "/jiankang/caiji/{type}/{laorenid}", method = RequestMethod.GET)
+    public ModelAndView caiji(HttpSession session, @PathVariable("type") String type, @PathVariable("laorenid") String laorenid) {
         Map map = new HashMap<String, String>();
-        map = userService.getTitleMap(session, map, "健康数据采集", "老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        return new ModelAndView("jiankang/caiji", map);
-    }
-
-    @RequestMapping(value = "/jiankang/caiji/qushi", method = RequestMethod.GET)
-    public ModelAndView caijiQushi(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map = userService.getTitleMap(session, map, "健康趋势", "老人信息表");
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        return new ModelAndView("jiankang/qushi", map);
-    }
-
-
-    @RequestMapping(value = "/jiankang/caiji/shuju", method = RequestMethod.GET)
-    public ModelAndView caijiShuju(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        map = userService.getTitleMap(session, map, "健康数据管理", "健康数据表");
-        map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
-        return new ModelAndView("jiankang/shuju", map);
-    }
-
-    @RequestMapping(value = "/jiankang/caiji/qushi/shuju", method = RequestMethod.GET)
-    public ModelAndView caijiQushiShuju(HttpSession session, String laorenid) {
-        Map map = new HashMap<String, String>();
-        map = userService.getTitleMap(session, map, "健康数据趋势", "健康数据表");
-        map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
-        map.put("laorenid", laorenid);
-        return new ModelAndView("jiankang/qushishuju", map);
+        if (type.equals("1")) {
+            map = userService.getTitleMap(session, map, "健康趋势", "老人信息表");
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+            return new ModelAndView("jiankang/qushi", map);
+        } else if (type.equals("2")) {
+            map = userService.getTitleMap(session, map, "健康数据管理", "健康数据表");
+            map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
+            return new ModelAndView("jiankang/shuju", map);
+        } else if (type.equals("3")) {
+            map = userService.getTitleMap(session, map, "健康数据趋势", "健康数据表");
+            map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
+            map.put("laorenid", laorenid);
+            return new ModelAndView("jiankang/qushishuju", map);
+        } else {
+            map = userService.getTitleMap(session, map, "健康数据采集", "老人信息表");
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+            return new ModelAndView("jiankang/caiji", map);
+        }
     }
 }
