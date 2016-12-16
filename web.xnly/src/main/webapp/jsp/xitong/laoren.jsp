@@ -4,7 +4,6 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/laoren.js"></script>
-
 </head>
 
 <body style="padding-top:0px">
@@ -55,7 +54,6 @@
 <div id="postLaorenModal"></div><!-- Modal -->
 <div id="putLaorenModal"></div><!-- Modal -->
 <div id="postJiashuModal"></div><!-- Modal -->
-<div id="putJiashuModal"></div><!-- Modal -->
 
 </body>
 

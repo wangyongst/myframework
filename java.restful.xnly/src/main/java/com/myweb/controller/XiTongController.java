@@ -32,9 +32,9 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/list/laoren/jiashus", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/jiashus", method = RequestMethod.GET)
     public List<Jiashu> listLaorenJiashus(HttpSession session, @ModelAttribute Jiashu jiashu, @ModelAttribute Page page) {
-        return xiTongService.listLaorenJiashus(session, jiashu, page);
+        return xiTongService.listJiashus(session, jiashu, page);
     }
 
 
@@ -48,7 +48,7 @@ public class XiTongController {
     //查询记录
 
     @ResponseBody
-    @RequestMapping(value = "/get/laoren/jiashu/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/jiashu/{id}", method = RequestMethod.GET)
     public Result getJiashu(HttpSession session, @PathVariable("id") String id) {
         return xiTongService.getJiashu(session, id);
     }
@@ -69,7 +69,7 @@ public class XiTongController {
     //创建记录
 
     @ResponseBody
-    @RequestMapping(value = "/post/laoren/jiashu", method = RequestMethod.POST)
+    @RequestMapping(value = "/post/jiashu", method = RequestMethod.POST)
     public Result postLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
         return xiTongService.saveOrUpdateJiashu(session, jiashu);
     }
@@ -90,7 +90,7 @@ public class XiTongController {
     //修改记录
 
     @ResponseBody
-    @RequestMapping(value = "/put/laoren/jiashu", method = RequestMethod.PUT)
+    @RequestMapping(value = "/put/jiashu", method = RequestMethod.PUT)
     public Result putLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
         return xiTongService.saveOrUpdateJiashu(session, jiashu);
     }
@@ -107,10 +107,16 @@ public class XiTongController {
         return xiTongService.saveOrUpdateLaoren(session, laoren);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/put/laoren/{id}/{type}", method = RequestMethod.PUT)
+    public Result getLaoren(HttpSession session, @PathVariable("id") String id, @PathVariable("type") String type) {
+        return xiTongService.changeLaorenType(session, id, type);
+    }
+
     //删除记录
 
     @ResponseBody
-    @RequestMapping(value = "/delete/laoren/jiashu/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/jiashu/{id}", method = RequestMethod.DELETE)
     public Result deleteLaorenJiashu(HttpSession session, @PathVariable("id") String id) {
         return xiTongService.deleteJiashu(session, id);
     }

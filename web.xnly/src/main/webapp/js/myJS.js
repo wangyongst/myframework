@@ -96,7 +96,7 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
     if (id == null) {
         id = name;
     }
-    $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + name + "Label'>" + chinese + "</label>");
+    $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
     $(modal).find(".form-group").append("<div class='checkbox' id='" + id + "Checkbox'></div >");
     $.ajax({
         type: "GET",

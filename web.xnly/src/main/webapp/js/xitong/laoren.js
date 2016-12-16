@@ -28,19 +28,20 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: url,
-            data: $('#laorenForm').serialize() + "&type=" + type,
+            url: "xitong/post/laoren.do?",
+            data: $('#postLaorenForm').serialize() + "&type=" + type,
+            dataType: "json",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertB"), "danger");
+                showAlert($("#postLaorenAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    $('#myModal').modal('toggle');
-                    showAlert($("#alertA"), "success", result.message);
+                    $('#postLaorenModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertB"), "warning", result.message);
+                    showAlert($("#postLaorenAlert"), "warning", result.message);
                 }
             }
         });
@@ -50,19 +51,19 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: url,
-            data: $('#laorenForm').serialize() + "&type=" + type,
+            url: "xitong/put/laoren.do?_method=PUT",
+            data: $('#putLaorenForm').serialize() + "&type=" + type,
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertB"), "danger");
+                showAlert($("#putLaorenAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    $('#myModal').modal('toggle');
-                    showAlert($("#alertA"), "success", result.message);
+                    $('#putLaorenModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertB"), "warning", result.message);
+                    showAlert($("#putLaorenAlert"), "warning", result.message);
                 }
             }
         });
@@ -72,43 +73,88 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/jiashu/edit.do",
-            data: $('#jiashuForm').serialize(),
+            url: "xitong/post/jiashu.do?",
+            data: $('#postJiashuForm').serialize(),
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertC"), "danger");
+                showAlert($("#postJiashuAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    $('#jiashuModal').modal('toggle');
-                    showAlert($("#alertA"), "success", result.message);
+                    $('#postJiashuModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertC"), "warning", result.message);
+                    showAlert($("#postJiashuAlert"), "warning", result.message);
                 }
             }
         });
     });
 
+    function showPostLaorenModal() {
+        $('#postLaorenidInput').hide();
+        $('#postLaorenidLabel').hide();
+        $('#postLaorenModal').find("input[class=form-control]").val("");
+        $('#postLaorenModal').find("input").prop("checked", false);
+        $('#postLaorenModal').find('.modal-title').text('注册老人信息');
+        $('#postLaorenModal').modal('toggle');
+        $("#postLaorenAlert").hide();
+    }
+
+    function showPostJiashuModal(laoren) {
+        $('#postJiashuidInput').hide();
+        $('#postJiashuidLabel').hide();
+        $('#postLaorenModal').find("input[class=form-control]").val("");
+        $('#postJiashulaorenidInput').attr("readonly", "readonly");
+        $('#postJiashulaorennameInput').attr("readonly", "readonly");
+        $('#postJiashulaorenidInput').val(laoren.id);
+        $('#postJiashulaorennameInput').val(laoren.name);
+        $('#postJiashuModal').find('.modal-title').text('注册老人家属信息');
+        $('#postJiashuModal').modal('toggle');
+        $("#postJiashuAlert").hide();
+    }
+
+
+    function showPutLaorenModal(laoren) {
+        for (name in laoren) {
+            $("#putLaoren" + name + "Input").val(laoren[name]);
+            $("#putLaoren" + name + "Select").val(laoren[name]);
+        }
+        if (laoren.bingshi != null) {
+            var bin = laoren.bingshi.split(",");
+            for (var x in bin) {
+                $("#putLaorenbingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
+                    if ($(this).val() == bin[x]) { //如果被选中
+                        $(this).prop("checked", true);
+                    }
+                });
+            }
+        }
+        $('#putLaorenidInput').attr("readonly", "readonly");
+        $('#putLaorenModal').find('.modal-title').text('修改老人信息');
+        $('#putLaorenModal').modal('toggle');
+        $("#putLaorenAlert").hide();
+    }
+
+
     $("#zhuce").click(function () {
-        showMyModal(null, 0);
+        showPostLaorenModal();
     });
 
     $("#jiashu").click(function () {
         $.ajax({
-            type: "POST",
+            type: "GET",
             cache: "false",
-            url: "xitong/jiashu/get.do",
-            data: {ids: select(), idType: "laorenid"},
+            url: "xitong/get/laoren/" + select() + ".do",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showJiashuModal(result.data, 1);
+                    showPostJiashuModal(result.data);
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
 
             }
@@ -119,17 +165,16 @@ $(function () {
         $.ajax({
             type: "GET",
             cache: "false",
-            url: "xitong/get/laoren.do",
-            data: {ids: select()},
+            url: "xitong/get/laoren/" + select() + ".do",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showMyModal(result.data, 1);
+                    showPutLaorenModal(result.data);
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
 
             }
@@ -140,18 +185,17 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/laoren/delete.do",
-            data: {ids: select()},
+            url: "xitong/delete/laoren/"+select()+".do?_method=DELETE",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showAlert($("#alertA"), "success", result.message);
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
             }
         });
@@ -161,18 +205,17 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/laoren/change.do",
-            data: {ids: select(), type: 2},
+            url: "xitong/put/laoren/" + select() + "/2.do?_method=PUT",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showAlert($("#alertA"), "success", result.message);
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
             }
         });
@@ -181,18 +224,17 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/laoren/change.do",
-            data: {ids: select(), type: 0},
+            url: "xitong/put/laoren/" + select() + "/0.do?_method=PUT",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showAlert($("#alertA"), "success", result.message);
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
             }
         });
@@ -201,64 +243,19 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/laoren/change.do",
-            data: {ids: select(), type: 1},
+            url: "xitong/put/laoren/" + select() + "/1.do?_method=PUT",
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showAlert($("#alertA"), "success", result.message);
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
             }
         });
     });
 });
-
-function showMyModal(laoren, type) {
-    showMyModalData(laoren);
-    $('#idLabel').hide();
-    $('#idInput').hide();
-    $("#bingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
-        $(this).prop("checked", false);
-    })
-    if (type == 1) {
-        $('#idLabel').show();
-        $('#idInput').show();
-        $('#idInput').attr("readonly", "readonly");
-        $('#myModal').find('.modal-title').text('修改信息');
-    } else {
-        $('#myModal').find('.modal-title').text('注册用户信息');
-    }
-    if (laoren != null && laoren.bingshi != null) {
-        var bin = laoren.bingshi.split(",");
-        for (var x in bin) {
-            $("#bingshiCheckbox input[name=bingshi]").each(function () { //遍历table里的全部checkbox
-                if ($(this).val() == bin[x]) { //如果被选中
-                    $(this).prop("checked", true);
-                }
-            });
-        }
-    }
-    if (laoren != null && laoren.sex != null) {
-        $("#sexSelect").val(laoren.sex);
-    }
-    if (laoren != null && laoren.nation != null) {
-        $("#nationSelect").val(laoren.nation);
-    }
-    $('#myModal').modal('toggle');
-}
-
-function showJiashuModal(jiashu, type) {
-    showJiashuModalData(jiashu);
-    $('#JSidInput').hide();
-    $('#JSidLabel').hide();
-    $('#JSlaorenidInput').attr("readonly", "readonly");
-    $('#JSlaorennameInput').attr("readonly", "readonly");
-    $('#jiashuModal').find('.modal-title').text('添加老人家属信息');
-    $('#jiashuModal').modal('toggle');
-}

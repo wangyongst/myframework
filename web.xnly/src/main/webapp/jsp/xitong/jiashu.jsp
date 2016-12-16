@@ -2,20 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
+    <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/jiashu.js"></script>
-    <script type="text/javascript">
-        function showModalData(jiashu) {
-            <c:forEach var="item" items="${formColumns}">
-            if (jiashu != null) {
-                $("#${item.columnname}Input").val(jiashu.${item.columnname});
-            } else {
-                $("#${item.columnname}Input").val("");
-            }
-            $("#${item.columnname}Input").attr("placeholder", "请输入老人家属的${item.chinese}");
-            </c:forEach>
-        }
-    </script>
 </head>
 
 <body style="padding-top:0px">
@@ -33,13 +21,13 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
+                <div id="mainAlert" hidden></div>
 
 
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人家属</button>
                 <button type="button" class="btn btn-primary" id="shanchu">删除老人家属</button>
 
-                <table data-toggle="table" data-url="xitong/list/laoren/jiashus.do" data-show-refresh="true"
+                <table data-toggle="table" data-url="xitong/list/jiashus.do" data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
                        data-sort-order="desc">
@@ -53,65 +41,7 @@
                     </thead>
                 </table>
 
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="form">
-                                    <div class="form-group">
-                                        <c:forEach var="item" items="${formColumns}">
-                                            <label for="${item.columnname}"
-                                                   class="control-label"
-                                                   id="${item.columnname}Label">${item.chinese}</label>
-                                            <c:choose>
-                                                <c:when test="${item.type == 'select'}">
-                                                    <c:choose>
-                                                        <c:when test="${item.columnname == 'guanxi'}">
-                                                            <select class="form-control" name="${item.columnname}" id="${item.columnname}Select">
-                                                                <c:forEach var="itemb" items="${guanxi}">
-                                                                    <label>
-                                                                        <option>${itemb.name}</option>
-                                                                    </label>
-                                                                </c:forEach>
-                                                            </select>
-                                                        </c:when>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="${item.type}" class="form-control" id="${item.columnname}Input" name="${item.columnname}"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="row" id="alertB" hidden>
-                                <div class="col-lg-12">
-                                    <div role="alert">
-                                        <span></span> <span></span><a
-                                            id="closeB"
-                                            class="pull-right"><span
-                                            class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" id="saveData">保存</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- Modal -->
-
+                <div id="putJiashuModal"></div><!-- Modal -->
 
             </div>
         </div>

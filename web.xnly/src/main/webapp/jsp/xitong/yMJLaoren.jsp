@@ -4,42 +4,6 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/laoren.js"></script>
-    <script type="text/javascript">
-        function showMyModalData(laoren) {
-            <c:forEach var="item" items="${formColumns}">
-            if (laoren != null) {
-                $("#${item.columnname}Input").val(laoren.${item.columnname});
-            } else {
-                $("#${item.columnname}Input").val("");
-            }
-            $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-            </c:forEach>
-        }
-
-        function showJiashuModalData(jiashu) {
-            <c:forEach var="item" items="${jiashuColumns}">
-            if (jiashu != null) {
-                $("#JS${item.columnname}Input").val(jiashu.${item.columnname});
-            } else {
-                $("#JS${item.columnname}Input").val("");
-            }
-            $("#JS${item.columnname}Input").attr("placeholder", "请输入老人家属的${item.chinese}");
-            </c:forEach>
-        }
-
-        function makeMyModal(modal) {
-            <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}",null, "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-
-        function makeJiashuModal(modal) {
-            <c:forEach var="item" items="${jiashuColumns}">
-            makeModalForm(modal, "${item.type}","JS${item.columnname}", "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-
-    </script>
 </head>
 
 <body style="padding-top:0px">
@@ -57,7 +21,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
+                <div id="mainAlert" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="zhuce">注册老人信息</button>
                 <button type="button" class="btn btn-primary" id="xiugai">修改老人信息</button>
@@ -87,11 +51,9 @@
 </div><!--/.row-->
 
 <!-- Modal -->
-<div id="myModal"></div><!-- Modal -->
-
-
-<!-- Modal -->
-<div id="jiashuModal"></div><!-- Modal -->
+<div id="postLaorenModal"></div><!-- Modal -->
+<div id="putLaorenModal"></div><!-- Modal -->
+<div id="postJiashuModal"></div><!-- Modal -->
 
 </body>
 

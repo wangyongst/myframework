@@ -37,7 +37,7 @@ public class ShenghuoServiceImpl implements ShenghuoService {
     @Override
     public Result getFuwu(HttpSession session, String ids, String idType) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
+        if (ServiceUtils.isOnlyOneId(result, ids)) {
             Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
             Fuwu fuwu = new Fuwu();
             if (idType.equals("laorenid")) {
@@ -110,7 +110,7 @@ public class ShenghuoServiceImpl implements ShenghuoService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteFuwu(HttpSession session, String ids) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
+        if (ServiceUtils.isOnlyOneId(result, ids)) {
             result.setData(fuwuMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
             result.setMessage("您删除了一条记录！");
         }

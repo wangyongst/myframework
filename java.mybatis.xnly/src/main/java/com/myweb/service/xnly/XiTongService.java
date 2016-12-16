@@ -16,7 +16,7 @@ public interface XiTongService {
 
     public List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page);
 
-    public List<Jiashu> listLaorenJiashus(HttpSession session, Jiashu jiashu, Page page);
+    public List<Jiashu> listJiashus(HttpSession session, Jiashu jiashu, Page page);
 
 
     public Result getJiashu(HttpSession session, String id);
@@ -32,6 +32,7 @@ public interface XiTongService {
 
     public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu);
 
+    public Result changeLaorenType(HttpSession session, String id, String type);
 
     public Result deleteJiashu(HttpSession session, String id);
 

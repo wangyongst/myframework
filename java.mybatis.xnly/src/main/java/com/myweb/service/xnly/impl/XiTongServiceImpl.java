@@ -47,7 +47,7 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
-    public List<Jiashu> listLaorenJiashus(HttpSession session, Jiashu jiashu, Page page) {
+    public List<Jiashu> listJiashus(HttpSession session, Jiashu jiashu, Page page) {
         return jiashuMapper.selectByExample(null);
     }
 
@@ -55,7 +55,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu) {
         Result result = new Result();
-        if (jiashu.getId() != null && jiashu.getId() != 0) {
+        if (jiashu.getId() != null) {
             ServiceUtils.isUpdateOK(result, jiashuMapper.updateByPrimaryKeySelective(jiashu));
         } else {
             User create = (User) session.getAttribute("user");
@@ -69,9 +69,27 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result changeLaorenType(HttpSession session, String id, String type) {
+        Result result = new Result();
+        if (ServiceUtils.isIds(result, id)) {
+            LaorenExample laorenExample = new LaorenExample();
+            List<String> idList = (List) result.getData();
+            for (String ids : idList) {
+                if (StringUtils.isNotBlank(ids)) laorenExample.or(laorenExample.createCriteria().andIdEqualTo(Integer.parseInt(ids)));
+            }
+            Laoren laoren = new Laoren();
+            laoren.setType(Integer.parseInt(type));
+            ServiceUtils.isUpdateOK(result, laorenMapper.updateByExampleSelective(laoren, laorenExample));
+        }
+        return result;
+    }
+
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteJiashu(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
+        if (ServiceUtils.isOnlyOneId(result, id)) {
             ServiceUtils.isDeleteOK(result, jiashuMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
@@ -81,16 +99,26 @@ public class XiTongServiceImpl implements XiTongService {
     @Override
     public Result getLaoren(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
-            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(id)));
+        if (ServiceUtils.isOnlyOneId(result, id)) {
+            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
 
     public Result getUser(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
+        if (ServiceUtils.isOnlyOneId(result, id)) {
             result.setData(userMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
+        }
+        return result;
+    }
+
+
+    @Override
+    public Result getJiashu(HttpSession session, String id) {
+        Result result = new Result();
+        if (ServiceUtils.isOnlyOneId(result, id)) {
+            result.setData(jiashuMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
@@ -99,8 +127,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result saveOrUpdateLaoren(HttpSession session, Laoren laoren) {
         Result result = new Result();
-        int count = 0;
-        if (laoren.getId() != null && laoren.getId() != 0) {
+        if (laoren.getId() != null) {
             ServiceUtils.isUpdateOK(result, laorenMapper.updateByPrimaryKey(laoren));
         } else {
             User create = (User) session.getAttribute("user");
@@ -108,16 +135,6 @@ public class XiTongServiceImpl implements XiTongService {
             laoren.setCreateusername(create.getName());
             laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
             ServiceUtils.isSaveOK(result, laorenMapper.insert(laoren));
-        }
-
-        return result;
-    }
-
-    @Override
-    public Result getJiashu(HttpSession session, String id) {
-        Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
-            result.setData(jiashuMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
@@ -155,7 +172,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteLaoren(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
+        if (ServiceUtils.isOnlyOneId(result, id)) {
             ServiceUtils.isDeleteOK(result, laorenMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
@@ -165,7 +182,7 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteUser(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, id)) {
+        if (ServiceUtils.isOnlyOneId(result, id)) {
             ServiceUtils.isDeleteOK(result, userMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;

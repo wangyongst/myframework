@@ -2,98 +2,87 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    makeAlert($("#alertA"));
-    makeAlert($("#alertB"));
-    
-    $("#saveData").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "xitong/jiashu/edit.do",
-                data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val() + "&id=" + $('#id').val(),
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertB"), "danger");
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        $('#myModal').modal('toggle');
-                        showAlert($("#alertA"), "success",result.message);
-                        $("button[name='refresh']").click();
-                    } else {
-                        showAlert($("#alertB"), "warning",result.message);
-                    }
+
+    makeModal($("#putJiashuModal"), "putJiashu", "1");
+
+    makeModalColumns($("#putJiashuModal"), "jiashu", "putJiashu", "请输入老人家属的");
+
+    makeAlert($("#putJiashuAlert"));
+    makeAlert($("#mainAlert"));
+
+    $("#putJiashuSave").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "xitong/put/jiashu.do?_method=PUT",
+            data: $('#putJiashuForm').serialize(),
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#putJiashuAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $('#putJiashuModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#putJiashuAlert"), "warning", result.message);
                 }
-            });
-        });
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
             }
         });
-        return ids;
-    }
+    });
 
-    function showModal(jiashu, type) {
-        showModalData(jiashu);
-        $('#idInput').hide();
-        $('#idLabel').hide();
-        $('#laorenidInput').attr("readonly", "readonly");
-        $('#laorennameInput').attr("readonly", "readonly");
-        $('#myModal').find('.modal-title').text('管理老人家属信息');
-        if (jiashu != null && jiashu.guanxi != null) {
-            $("#guanxiSelect").val(jiashu.guanxi);
+
+    function showPutJiashuModal(jiashu) {
+        for (name in jiashu) {
+            $("#putJiashu" + name + "Input").val(jiashu[name]);
+            $("#putJiashu" + name + "Select").val(jiashu[name]);
         }
-        $('#myModal').modal('toggle');
-        $("#alertB").hide();
+        $('#putJiashuidInput').attr("readonly", "readonly");
+        $('#putJiashulaorenidInput').attr("readonly", "readonly");
+        $('#putJiashulaorennameInput').attr("readonly", "readonly");
+        $('#putJiashuModal').find('.modal-title').text('修改老人信息');
+        $('#putJiashuModal').modal('toggle');
+        $("#putJiashuAlert").hide();
     }
 
 
-    $("#xiugai").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "xitong/jiashu/get.do",
-                data: {ids: select(), idType: "jiashuid"},
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertA"), "danger");
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        showModal(result.data, 1);
-                    } else {
-                        showAlert($("#alertA"), "warning",result.message);
-                    }
+    $("#xiugai").click(function () {
+        $.ajax({
+            type: "GET",
+            cache: "false",
+            url: "xitong/get/jiashu/" + select() + ".do",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showPutJiashuModal(result.data);
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
+                }
 
-                }
-            });
+            }
         });
-    $("#shanchu").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "xitong/jiashu/delete.do",
-                data: {ids: select()},
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertA"), "success",result.message);
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        showAlert($("#alertA"), "success",result.message);
-                        $("button[name='refresh']").click();
-                    } else {
-                        showAlert($("#alertA"), "warning",result.message);
-                    }
+    });
+    $("#shanchu").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "xitong/delete/jiashu/" + select() + ".do?_method=DELETE",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
-            });
+            }
         });
+    });
 });
