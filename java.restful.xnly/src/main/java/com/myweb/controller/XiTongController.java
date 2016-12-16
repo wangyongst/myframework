@@ -99,13 +99,13 @@ public class XiTongController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/post/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/put/user", method = RequestMethod.PUT)
     public Result putUser(HttpSession session, @ModelAttribute User user) {
         return xiTongService.editUser(session, user);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/post/laoren", method = RequestMethod.PUT)
+    @RequestMapping(value = "/put/laoren", method = RequestMethod.PUT)
     public Result putLaoren(HttpSession session, @ModelAttribute Laoren laoren) {
         return xiTongService.editLaoren(session, laoren);
     }

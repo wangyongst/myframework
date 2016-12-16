@@ -4,16 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.framework</groupId>
-    <artifactId>java.restful</artifactId>
+    <groupId>com.myweb</groupId>
+    <artifactId>java.restful.xnly</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.2.RELEASE</version>
-    </parent>
 
     <build>
         <plugins>
@@ -46,18 +40,14 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.framework.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
+            <groupId>com.myweb</groupId>
+            <artifactId>java.mybatis.xnly</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

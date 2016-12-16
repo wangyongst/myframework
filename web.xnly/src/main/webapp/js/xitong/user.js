@@ -2,58 +2,84 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    makeAlert($("#alertA"));
-    makeAlert($("#alertB"));
 
-    makeModal($("#myModal"), "userForm", "alertB", "saveData", "1");
-    makeMyModal($("#myModal"));
+    makeModal($("#postUserModal"), "postUserForm", "postUserAlert", "postUserSave", "1");
+    makeModal($("#putUserModal"), "putUserForm", "putUserAlert", "putUserSave", "2");
 
-    var mothed;
-    var url;
-    $("#saveData").click(function () {
+    makePostUserModal($("#postUserModal"));
+    makePutUserModal($("#putUserModal"));
+
+
+    makeAlert($("#postUserAlert"));
+    makeAlert($("#putUserAlert"));
+    makeAlert($("#mainAlert"));
+
+    $("#postUserSave").click(function () {
         $.ajax({
             type: "POST",
             cache: "false",
             url: "xitong/post/user.do",
-            data: $('#userForm').serialize(),
+            data: $('#postUserForm').serialize(),
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertB"), "danger");
+                showAlert($("#postUserAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    $('#myModal').modal('toggle');
-                    showAlert($("#alertA"), "success", result.message);
+                    $('#postUserModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
                     $("button[name='refresh']").click();
                 } else {
-                    showAlert($("#alertB"), "warning", result.message);
+                    showAlert($("#postUserAlert"), "warning", result.message);
                 }
             }
         });
     });
 
-    function showMyModal(user, type) {
-        showMyModalData(user);
-        $('#idInput').hide();
-        $('#idLabel').hide();
-        if (type == 1) {
-            $('#idLabel').show();
-            $('#idInput').show();
-            $('#idInput').attr("readonly", "readonly");
-            $('#myModal').find('.modal-title').text('修改用户信息');
-        } else {
-            $('#myModal').find('.modal-title').text('注册用户信息');
-        }
-        if (user != null && user.role != null) {
-            $("#roleSelect").val(user.role);
-        }
-        $('#myModal').modal('toggle');
-        $("#alertB").hide();
+    $("#putUserSave").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "xitong/post/user.do?_method=PUT",
+            data: $('#putUserForm').serialize(),
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#putUserAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $('#putUserModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#putUserAlert"), "warning", result.message);
+                }
+            }
+        });
+    });
+
+    function showPostUserModal() {
+        showPostUserModalData();
+        $('#postidInput').hide();
+        $('#postidLabel').hide();
+        $('#postUserModal').find('.modal-title').text('注册用户信息');
+        $('#postUserModal').modal('toggle');
+        $("#postUserAlert").hide();
+    }
+
+
+    function showPutUserModal(user) {
+        showPutUserModalData(user);
+        $('#putidInput').attr("readonly", "readonly");
+        $('#putUserModal').find('.modal-title').text('修改用户信息');
+        $("#putroleSelect").val(user.role);
+        $('#putUserModal').modal('toggle');
+        $("#putUserAlert").hide();
     }
 
 
     $("#zhuce").click(function () {
-        showMyModal(null, 0);
+        showPostUserModal();
     });
 
     $("#xiugai").click(function () {
@@ -64,13 +90,13 @@ $(function () {
             data: {ids: select()},
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
                 if (result.status == 1) {
-                    showMyModal(result.data, 1);
+                    showPutUserModal(result.data);
                 } else {
-                    showAlert($("#alertA"), "warning", result.message);
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
 
             }
@@ -85,13 +111,12 @@ $(function () {
             data: {ids: select()},
             dataType: "json",
             error: function () {//请求失败时调用函数。
-                showAlert($("#alertA"), "danger");
+                showAlert($("#mainAlert"), "danger");
             },
             success: function (result) {
-                showAlert($("#alertA"), "success", result.message);
+                showAlert($("#mainAlert"), "success", result.message);
                 $("button[name='refresh']").click();
             }
         });
     });
-
 });

@@ -1,4 +1,4 @@
-package com.framework;
+package com.myweb;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

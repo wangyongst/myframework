@@ -5,22 +5,32 @@
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/user.js"></script>
     <script type="text/javascript">
-        function showMyModalData(user) {
+
+        function makePostUserModal(modal) {
             <c:forEach var="item" items="${formColumns}">
-            if (user != null) {
-                $("#${item.columnname}Input").val(user.${item.columnname});
-            } else {
-                $("#${item.columnname}Input").val("");
-            }
-            $("#${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
+            makeModalForm(modal, "${item.type}", "post${item.columnname}", "${item.columnname}", "${item.chinese}");
             </c:forEach>
         }
 
-        function makeMyModal(modal) {
+        function makePutUserModal(modal) {
             <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}", null, "${item.columnname}", "${item.chinese}");
+            makeModalForm(modal, "${item.type}", "put${item.columnname}", "${item.columnname}", "${item.chinese}");
             </c:forEach>
         }
+
+        function showPostUserModalData() {
+            <c:forEach var="item" items="${formColumns}">
+            $("#post${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
+            </c:forEach>
+        }
+
+        function showPutUserModalData(user) {
+            <c:forEach var="item" items="${formColumns}">
+            $("#put${item.columnname}Input").val(user.${item.columnname});
+            $("#put${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
+            </c:forEach>
+        }
+
 
     </script>
 </head>
@@ -39,8 +49,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
-
+                <div id="mainAlert" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="zhuce">注册用户</button>
                 <button type="button" class="btn btn-primary" id="xiugai">修改用户</button>
@@ -63,7 +72,9 @@
 
 
                 <!-- Modal -->
-                <div id="myModal"></div><!-- Modal -->
+                <div id="postUserModal"></div>
+                <div id="putUserModal"></div>
+                <!-- Modal -->
 
             </div>
         </div>
