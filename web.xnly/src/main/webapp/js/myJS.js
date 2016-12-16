@@ -52,22 +52,23 @@ function makeAlert(alert) {
         });
 };
 
-function makeModalForm(modal, type, id, name, chinese) {
+function makeModalForm(modal, type, id, name, chinese, placeholder) {
     if (type == "select") {
         makeModalFormSelect(modal, id, name, chinese)
     } else if (type == "checkbox") {
         makeModalFormCheckbox(modal, id, name, chinese)
     } else {
-        makeModalFormInupt(modal, type, id, name, chinese);
+        makeModalFormInupt(modal, type, id, name, chinese, placeholder);
     }
 };
 
-function makeModalFormInupt(modal, type, id, name, chinese) {
+function makeModalFormInupt(modal, type, id, name, chinese, placeholder) {
     if (id == null) {
         id = name;
     }
     $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
     $(modal).find(".form-group").append("<input type='" + type + "' class='form-control' id='" + id + "Input' name='" + name + "'>");
+    $("#" + id + "Input").attr("placeholder", placeholder)
 };
 
 function makeModalFormSelect(modal, id, name, chinese) {
@@ -113,7 +114,7 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
 };
 
 
-function makeModalColumns(modal, tablename, prefix) {
+function makeModalColumns(modal, tablename, prefix, placeholder) {
     $.ajax({
         type: "GET",
         cache: "true",
@@ -122,7 +123,7 @@ function makeModalColumns(modal, tablename, prefix) {
         success: function (result) {
             if (result.status == 1) {
                 result.data.forEach(function (e) {
-                    makeModalForm(modal, e.type, prefix + e.columnname, e.columnname, e.chinese);
+                    makeModalForm(modal, e.type, prefix + e.columnname, e.columnname, e.chinese, placeholder + e.chinese);
                 })
             }
         }
@@ -130,7 +131,7 @@ function makeModalColumns(modal, tablename, prefix) {
 };
 
 
-function makeModal(modal, formId, alertId, saveId, index) {
+function makeModal(modal, idPrefix, index) {
     $(modal).attr("class", "modal fade");
     $(modal).attr("tabindex", index);
     $(modal).attr("role", "dialog");
@@ -141,7 +142,7 @@ function makeModal(modal, formId, alertId, saveId, index) {
     $(modal).find("div div").attr("class", "modal-content");
     $(modal).find("div div div").eq(0).attr("class", "modal-header");
     $(modal).find("div div div").eq(1).attr("class", "modal-body");
-    $(modal).find("div div div").eq(2).attr("id", alertId);
+    $(modal).find("div div div").eq(2).attr("id", idPrefix + "Alert");
     $(modal).find("div div div").eq(3).attr("class", "modal-footer");
 
     $(modal).find(".modal-header").append("<button><span></span></button>");
@@ -155,11 +156,11 @@ function makeModal(modal, formId, alertId, saveId, index) {
     $(modal).find(".modal-header").find("h4").attr("class", "modal-title");
 
     $(modal).find(".modal-body").append("<form><div></div></form>");
-    $(modal).find(".modal-body").find("form").attr("id", formId);
+    $(modal).find(".modal-body").find("form").attr("id", idPrefix + "Form");
     $(modal).find(".modal-body").find("form div").attr("class", "form-group");
 
-    $("#" + alertId).attr("class", "row");
-    $("#" + alertId).attr("hidden", true);
+    $("#" + idPrefix + "Alert").attr("class", "row");
+    $("#" + idPrefix + "Alert").attr("hidden", true);
 
     $(modal).find(".modal-footer").append("<button></button><button></button>");
     $(modal).find(".modal-footer").find("button").eq(0).attr("type", "button");
@@ -168,6 +169,6 @@ function makeModal(modal, formId, alertId, saveId, index) {
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
     $(modal).find(".modal-footer").find("button").eq(1).attr("type", "button");
     $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");
-    $(modal).find(".modal-footer").find("button").eq(1).attr("id", saveId);
+    $(modal).find(".modal-footer").find("button").eq(1).attr("id", idPrefix + "Save");
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
 };

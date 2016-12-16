@@ -4,29 +4,13 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/xitong/user.js"></script>
-    <script type="text/javascript">
 
-        function showPostUserModalData() {
-            <c:forEach var="item" items="${formColumns}">
-            $("#post${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
-            </c:forEach>
-        }
-
-        function showPutUserModalData(user) {
-            <c:forEach var="item" items="${formColumns}">
-            $("#put${item.columnname}Input").val(user.${item.columnname});
-            $("#put${item.columnname}Input").attr("placeholder", "请输入用户的${item.chinese}");
-            </c:forEach>
-        }
-
-
-    </script>
 </head>
 
 <body style="padding-top:0px">
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="user/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a href="framework/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
 </div><!--/.row-->

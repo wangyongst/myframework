@@ -110,7 +110,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     }
 
     @Override
-    public Map<String, Object> getUserMap(HttpSession session, Map<String, Object> map) {
+    public Map<String, Object> getUserMenuMap(HttpSession session, Map<String, Object> map) {
         Menu profile = new Menu();
         profile.setName("个人信息");
         profile.setUrl("user/profile.do");

@@ -4,13 +4,18 @@
 
 
 $(function () {
-    makeAlert($("#alertA"));
+    makeModal($("#postLaorenModal"), "postLaoren", "1");
+    makeModal($("#putLaorenModal"), "putLaoren", "2");
+    makeModal($("#postJiashuModal"), "postJiashu", "3");
 
-    makeModal($("#myModal"), "laorenForm", "alertB", "saveData", "1");
-    makeMyModal($("#myModal"));
+    makeModalColumns($("#postLaorenModal"), "laoren", "postLaoren", "请输入老人的");
+    makeModalColumns($("#putLaorenModal"), "laoren", "putLaoren", "请输入老人的");
+    makeModalColumns($("#postJiashuModal"), "jiashu", "postJiashu", "请输入老人家属的");
 
-    makeModal($("#jiashuModal"), "jiashuForm", "alertC", "saveJiashuData", "2");
-    makeJiashuModal($("#jiashuModal"));
+    makeAlert($("#postLaorenAlert"));
+    makeAlert($("#putLaorenAlert"));
+    makeAlert($("#postJiashuAlert"));
+    makeAlert($("#mainAlert"));
 
     var type = 0;
     if (window.location.href.indexOf("2") != -1) {
@@ -19,19 +24,9 @@ $(function () {
         type = 1;
     }
 
-    var mothed;
-    var url;
-
-    $("#saveData").click(function () {
-        if ($('#idInput').val() == 0) {
-            mothed = "POST";
-            url = "xitong/post/laoren.do"
-        } else {
-            mothed = "PUT";
-            url = "xitong/put/laoren.do"
-        }
+    $("#postLaorenSave").click(function () {
         $.ajax({
-            type: mothed,
+            type: "POST",
             cache: "false",
             url: url,
             data: $('#laorenForm').serialize() + "&type=" + type,
@@ -51,7 +46,29 @@ $(function () {
         });
     });
 
-    $("#saveJiashuData").click(function () {
+    $("#putLaorenSave").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: url,
+            data: $('#laorenForm').serialize() + "&type=" + type,
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#alertB"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $('#myModal').modal('toggle');
+                    showAlert($("#alertA"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#alertB"), "warning", result.message);
+                }
+            }
+        });
+    });
+
+    $("#postJiashuSave").click(function () {
         $.ajax({
             type: "POST",
             cache: "false",

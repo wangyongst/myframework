@@ -30,8 +30,6 @@ public class MenuController {
     public ModelAndView user(HttpSession session) {
         Map map = new HashMap<String, String>();
         map = userService.getColumnsNameMap(session, map, "user", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "user", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "role", "role");
         map = userService.getTitleMap(session, map, "用户管理", "用户信息表");
         return new ModelAndView("xitong/user", map);
     }
@@ -40,22 +38,12 @@ public class MenuController {
     public ModelAndView laoren(HttpSession session, @ModelAttribute Laoren laoren) {
         Map map = new HashMap<String, String>();
         map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "laoren", "formColumns", false);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "jiashuColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "bingshi", "bingshi");
-        map = userService.getColumnsShuxingMap(session, map, "sex", "sex");
-        map = userService.getColumnsShuxingMap(session, map, "nation", "nation");
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
-
         if (laoren.getType() == 1) {
             map = userService.getTitleMap(session, map, "低收入老人管理", "低收入老人信息表");
             return new ModelAndView("xitong/dSRLaoren", map);
         } else if (laoren.getType() == 2) {
             map = userService.getTitleMap(session, map, "饮马街街道老人管理", "饮马街街道老人信息表");
             return new ModelAndView("xitong/yMJLaoren", map);
-        } else if (laoren.getType() == 0) {
-            map = userService.getTitleMap(session, map, "老人管理", "老人信息表");
-            return new ModelAndView("xitong/laoren", map);
         } else {
             map = userService.getTitleMap(session, map, "老人管理", "老人信息表");
             return new ModelAndView("xitong/laoren", map);
@@ -68,8 +56,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "老人家属管理", "老人家属信息表");
         map = userService.getColumnsNameMap(session, map, "jiashu", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "jiashu", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "guanxi", "guanxi");
         return new ModelAndView("xitong/jiashu", map);
     }
 
@@ -86,9 +72,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "服务记录/需求登记", "老人信息表");
         map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "fuwu", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "xiangmu", "xiangmu");
-        map = userService.getColumnsShuxingMap(session, map, "fuwutype", "fuwutype");
         return new ModelAndView("shenghuo/fuwu", map);
     }
 
@@ -97,9 +80,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "服务记录管理", "服务记录表");
         map = userService.getColumnsNameMap(session, map, "fuwu", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "fuwu", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "xiangmu", "xiangmu");
-        map = userService.getColumnsShuxingMap(session, map, "fuwutype", "fuwutype");
         return new ModelAndView("shenghuo/jilu", map);
     }
 
@@ -108,9 +88,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "服务需求管理", "服务需求表");
         map = userService.getColumnsNameMap(session, map, "fuwu", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "fuwu", "formColumns", false);
-        map = userService.getColumnsShuxingMap(session, map, "xiangmu", "xiangmu");
-        map = userService.getColumnsShuxingMap(session, map, "fuwutype", "fuwutype");
         return new ModelAndView("shenghuo/xuqiu", map);
     }
 
@@ -119,7 +96,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "健康数据采集", "老人信息表");
         map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "caiji", "formColumns", false);
         return new ModelAndView("jiankang/caiji", map);
     }
 
@@ -137,7 +113,6 @@ public class MenuController {
         Map map = new HashMap<String, String>();
         map = userService.getTitleMap(session, map, "健康数据管理", "健康数据表");
         map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
-        map = userService.getColumnsNameMap(session, map, "caiji", "formColumns", false);
         return new ModelAndView("jiankang/shuju", map);
     }
 

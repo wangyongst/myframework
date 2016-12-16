@@ -14,27 +14,28 @@ public interface XiTongService {
 
     public List<User> listUsers(HttpSession session, User user, Page page);
 
-    public List<Laoren> listLaorens(HttpSession session, Laoren laoren);
+    public List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page);
 
-    public List<Jiashu> listLaorenJiashus(HttpSession session);
-
-
-    public Result getJiashu(HttpSession session, String ids, String idType);
-
-    public Result getLaoren(HttpSession session, String ids);
-
-    public Result getUser(HttpSession session, String ids);
-
-    public Result editJiashu(HttpSession session, Jiashu jiashu);
-
-    public Result deleteJiashu(HttpSession session, String ids);
+    public List<Jiashu> listLaorenJiashus(HttpSession session, Jiashu jiashu, Page page);
 
 
-    public Result editLaoren(HttpSession session, Laoren laoren);
+    public Result getJiashu(HttpSession session, String id);
 
-    public Result editUser(HttpSession session, User user);
+    public Result getLaoren(HttpSession session, String id);
 
-    public Result deleteLaoren(HttpSession session, String ids);
+    public Result getUser(HttpSession session, String id);
 
-    public Result deleteUser(HttpSession session, String ids);
+
+    public Result saveOrUpdateLaoren(HttpSession session, Laoren laoren);
+
+    public Result saveOrUpdateUser(HttpSession session, User user);
+
+    public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu);
+
+
+    public Result deleteJiashu(HttpSession session, String id);
+
+    public Result deleteLaoren(HttpSession session, String id);
+
+    public Result deleteUser(HttpSession session, String id);
 }

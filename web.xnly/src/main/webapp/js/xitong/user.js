@@ -3,14 +3,11 @@
  */
 $(function () {
 
+    makeModal($("#postUserModal"), "postUser", "1");
+    makeModal($("#putUserModal"), "putUser", "2");
 
-    makeTableColumns($("#userTable"), "user");
-
-    makeModal($("#postUserModal"), "postUserForm", "postUserAlert", "postUserSave", "1");
-    makeModal($("#putUserModal"), "putUserForm", "putUserAlert", "putUserSave", "2");
-
-    makeModalColumns($("#postUserModal"), "user", "post");
-    makeModalColumns($("#putUserModal"), "user", "put");
+    makeModalColumns($("#postUserModal"), "user", "postUser", "请输入用户的");
+    makeModalColumns($("#putUserModal"), "user", "putUser", "请输入用户的");
 
 
     makeAlert($("#postUserAlert"));
@@ -43,7 +40,7 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/post/user.do?_method=PUT",
+            url: "xitong/put/user.do?_method=PUT",
             data: $('#putUserForm').serialize(),
             dataType: "json",
             error: function () {//请求失败时调用函数。
@@ -62,9 +59,8 @@ $(function () {
     });
 
     function showPostUserModal() {
-        showPostUserModalData();
-        $('#postidInput').hide();
-        $('#postidLabel').hide();
+        $('#postUseridInput').hide();
+        $('#postUseridLabel').hide();
         $('#postUserModal').find('.modal-title').text('注册用户信息');
         $('#postUserModal').modal('toggle');
         $("#postUserAlert").hide();
@@ -72,10 +68,12 @@ $(function () {
 
 
     function showPutUserModal(user) {
-        showPutUserModalData(user);
-        $('#putidInput').attr("readonly", "readonly");
+        for (name in user) {
+            $("#putUser" + name + "Input").val(user[name]);
+            $("#putUser" + name + "Select").val(user[name]);
+        }
+        $('#putUseridInput').attr("readonly", "readonly");
         $('#putUserModal').find('.modal-title').text('修改用户信息');
-        $("#putroleSelect").val(user.role);
         $('#putUserModal').modal('toggle');
         $("#putUserAlert").hide();
     }
@@ -89,8 +87,7 @@ $(function () {
         $.ajax({
             type: "GET",
             cache: "false",
-            url: "xitong/get/user.do",
-            data: {ids: select()},
+            url: "xitong/get/user/" + select() + ".do",
             dataType: "json",
             error: function () {//请求失败时调用函数。
                 showAlert($("#mainAlert"), "danger");
@@ -109,8 +106,7 @@ $(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/delete/user.do?_method=DELETE",
-            data: {ids: select()},
+            url: "xitong/delete/user/" + select() + ".do?_method=DELETE",
             dataType: "json",
             error: function () {//请求失败时调用函数。
                 showAlert($("#mainAlert"), "danger");

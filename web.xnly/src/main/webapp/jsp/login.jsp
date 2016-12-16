@@ -11,7 +11,7 @@
                 $.ajax({
                     type: "POST",
                     cache: "false",
-                    url: "framework/login.do",
+                    url: "framework/login.do?_method=PUT",
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。

@@ -18,7 +18,7 @@ public interface FrameworkService {
 
     public Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map);
 
-    public Map<String, Object> getUserMap(HttpSession session, Map<String, Object> map);
+    public Map<String, Object> getUserMenuMap(HttpSession session, Map<String, Object> map);
 
     public Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean notTable);
 

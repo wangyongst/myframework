@@ -36,7 +36,7 @@ public class FrameworkController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map = frameworkService.getMyMenus(session);
-        map = frameworkService.getUserMap(session, map);
+        map = frameworkService.getUserMenuMap(session, map);
         return new ModelAndView("home", map);
     }
 

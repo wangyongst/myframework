@@ -40,121 +40,99 @@ public class XiTongServiceImpl implements XiTongService {
     }
 
     @Override
-    public List<Laoren> listLaorens(HttpSession session, Laoren laoren) {
+    public List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page) {
         LaorenExample example = new LaorenExample();
         if (laoren.getType() != null) example.createCriteria().andTypeEqualTo(laoren.getType());
         return laorenMapper.selectByExample(example);
     }
 
     @Override
-    public List<Jiashu> listLaorenJiashus(HttpSession session) {
+    public List<Jiashu> listLaorenJiashus(HttpSession session, Jiashu jiashu, Page page) {
         return jiashuMapper.selectByExample(null);
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editJiashu(HttpSession session, Jiashu jiashu) {
+    public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu) {
         Result result = new Result();
-        int count = 0;
         if (jiashu.getId() != null && jiashu.getId() != 0) {
-            count = jiashuMapper.updateByPrimaryKeySelective(jiashu);
+            ServiceUtils.isUpdateOK(result, jiashuMapper.updateByPrimaryKeySelective(jiashu));
         } else {
             User create = (User) session.getAttribute("user");
             jiashu.setCreateuser(create.getId());
             jiashu.setCreateusername(create.getName());
             jiashu.setCreatetime(DateUtils.getCurrentTimeSecond());
-            count = jiashuMapper.insert(jiashu);
-        }
-        if (count != 0) {
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
-        return result;
-    }
-
-    @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result deleteJiashu(HttpSession session, String ids) {
-        Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            result.setData(jiashuMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
-            result.setMessage("您删除了一条记录！");
-        }
-        return result;
-    }
-
-
-    @Override
-    public Result getLaoren(HttpSession session, String ids) {
-        Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
-        }
-        return result;
-    }
-
-    public Result getUser(HttpSession session, String ids) {
-        Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            result.setData(userMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
+            ServiceUtils.isSaveOK(result, jiashuMapper.insert(jiashu));
         }
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editLaoren(HttpSession session, Laoren laoren) {
+    public Result deleteJiashu(HttpSession session, String id) {
+        Result result = new Result();
+        if (ServiceUtils.isLegalIds(result, id)) {
+            ServiceUtils.isDeleteOK(result, jiashuMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
+        }
+        return result;
+    }
+
+
+    @Override
+    public Result getLaoren(HttpSession session, String id) {
+        Result result = new Result();
+        if (ServiceUtils.isLegalIds(result, id)) {
+            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt(id)));
+        }
+        return result;
+    }
+
+    public Result getUser(HttpSession session, String id) {
+        Result result = new Result();
+        if (ServiceUtils.isLegalIds(result, id)) {
+            result.setData(userMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
+        }
+        return result;
+    }
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result saveOrUpdateLaoren(HttpSession session, Laoren laoren) {
         Result result = new Result();
         int count = 0;
         if (laoren.getId() != null && laoren.getId() != 0) {
-            count = laorenMapper.updateByPrimaryKey(laoren);
+            ServiceUtils.isUpdateOK(result, laorenMapper.updateByPrimaryKey(laoren));
         } else {
             User create = (User) session.getAttribute("user");
             laoren.setCreateuser(create.getId());
             laoren.setCreateusername(create.getName());
             laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
-            count = laorenMapper.insert(laoren);
+            ServiceUtils.isSaveOK(result, laorenMapper.insert(laoren));
         }
-        if (count != 0) {
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
+
         return result;
     }
 
     @Override
-    public Result getJiashu(HttpSession session, String ids, String idType) {
+    public Result getJiashu(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            Jiashu jiashu = new Jiashu();
-            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            if (idType.equals("laorenid")) {
-                jiashu.setLaorenid(laoren.getId());
-                jiashu.setLaorenname(laoren.getName());
-            } else if (idType.equals("jiashuid")) {
-                jiashu = jiashuMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            }
-            result.setData(jiashu);
+        if (ServiceUtils.isLegalIds(result, id)) {
+            result.setData(jiashuMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editUser(HttpSession session, User user) {
+    public Result saveOrUpdateUser(HttpSession session, User user) {
         Result result = new Result();
-        int count = 0;
         if (StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
             result.setStatus(3);
             result.setMessage("用户名或密码不能为空！");
             return result;
         }
         if (user.getId() != null && user.getId() != 0) {
-            count = userMapper.updateByPrimaryKeySelective(user);
+            ServiceUtils.isUpdateOK(result, userMapper.updateByPrimaryKeySelective(user));
         } else {
             UserExample example = new UserExample();
             example.createCriteria().andUsernameEqualTo(user.getUsername());
@@ -167,36 +145,28 @@ public class XiTongServiceImpl implements XiTongService {
                 user.setCreateuser(create.getId());
                 user.setCreateusername(create.getName());
                 user.setCreatetime(DateUtils.getCurrentTimeSecond());
-                count = userMapper.insert(user);
+                ServiceUtils.isSaveOK(result, userMapper.insert(user));
             }
         }
-        if (count != 0) {
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result deleteLaoren(HttpSession session, String ids) {
+    public Result deleteLaoren(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            result.setData(laorenMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
-            result.setMessage("您删除了一条记录！");
+        if (ServiceUtils.isLegalIds(result, id)) {
+            ServiceUtils.isDeleteOK(result, laorenMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result deleteUser(HttpSession session, String ids) {
+    public Result deleteUser(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isLegalIds(result, ids)) {
-            result.setData(userMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
-            result.setMessage("您删除了一条记录！");
+        if (ServiceUtils.isLegalIds(result, id)) {
+            ServiceUtils.isDeleteOK(result, userMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
         }
         return result;
     }
