@@ -44,8 +44,11 @@ public class ServiceUtils {
         return false;
     }
 
-    public static boolean isNotUnique(Result result, int size) {
+    public static boolean isNotUnique(Result result, int size, String crud) {
         if (size > 0) {
+            if (size == 1 && StringUtils.isNotBlank(crud) && crud.equals("update")) {
+                return false;
+            }
             result.setStatus(4);
             result.setMessage("必须值不唯一！请重新填写表单的必须项！");
             return true;
