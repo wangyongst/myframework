@@ -27,8 +27,8 @@ public class ShenghuoController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/get/fuwu", method = RequestMethod.GET)
-    public Result getFuwu(HttpSession session, String id) {
+    @RequestMapping(value = "/get/fuwu/{id}", method = RequestMethod.GET)
+    public Result getFuwu(HttpSession session, @PathVariable("id") String id) {
         return shenghuoService.getFuwu(session, id);
     }
 
@@ -47,8 +47,8 @@ public class ShenghuoController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/delete/fuwu", method = RequestMethod.DELETE)
-    public Result deleteFuwu(HttpSession session, String id) {
+    @RequestMapping(value = "/delete/fuwu/{id}", method = RequestMethod.DELETE)
+    public Result deleteFuwu(HttpSession session, @PathVariable("id") String id) {
         return shenghuoService.deleteFuwu(session, id);
     }
 }

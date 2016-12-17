@@ -103,7 +103,7 @@ public class FrameworkServiceImpl implements FrameworkService {
         fje.createCriteria().andFuwutypeEqualTo("服务记录");
         map.put("totalFuwuJilu", fuwuMapper.countByExample(fje));
         FuwuExample fjx = new FuwuExample();
-        fjx.createCriteria().andFuwutypeEqualTo("服务记录");
+        fjx.createCriteria().andFuwutypeEqualTo("服务需求");
         map.put("totalFuwuXuqiu", fuwuMapper.countByExample(fjx));
         return map;
     }

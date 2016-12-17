@@ -26,12 +26,6 @@ import java.util.List;
 public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private LaorenMapper laorenMapper;
-
-    @Autowired
     private CaijiMapper caijiMapper;
 
 

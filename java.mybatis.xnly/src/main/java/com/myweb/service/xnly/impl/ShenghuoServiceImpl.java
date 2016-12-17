@@ -25,12 +25,6 @@ import java.util.List;
 public class ShenghuoServiceImpl implements ShenghuoService {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private LaorenMapper laorenMapper;
-
-    @Autowired
     private FuwuMapper fuwuMapper;
 
 
