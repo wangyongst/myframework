@@ -39,14 +39,16 @@ public class MenuController {
     @RequestMapping(value = "/xitong/laoren/{type}", method = RequestMethod.GET)
     public ModelAndView laoren(HttpSession session, @PathVariable("type") String type) {
         Map map = new HashMap<String, String>();
-        map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
         if (type.equals("1")) {
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
             map = userService.getTitleMap(session, map, "低收入老人管理", "低收入老人信息表");
             return new ModelAndView("xitong/dSRLaoren", map);
         } else if (type.equals("2")) {
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
             map = userService.getTitleMap(session, map, "饮马街街道老人管理", "饮马街街道老人信息表");
             return new ModelAndView("xitong/yMJLaoren", map);
         } else {
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
             map = userService.getTitleMap(session, map, "老人管理", "老人信息表");
             return new ModelAndView("xitong/laoren", map);
         }
@@ -68,16 +70,21 @@ public class MenuController {
         return new ModelAndView("default_home", map);
     }
 
-    @RequestMapping(value = "/shenghuo/fuwu/{fuwutype}", method = RequestMethod.GET)
+    @RequestMapping(value = "/shenghuo/fuwu/{type}", method = RequestMethod.GET)
     public ModelAndView fuwu(HttpSession session, @PathVariable("type") String type) {
         Map map = new HashMap<String, String>();
-        map = userService.getColumnsNameMap(session, map, "fuwu", "tableColumns", true);
         if (type.equals("服务需求")) {
+            map = userService.getColumnsNameMap(session, map, "fuwu", "tableColumns", true);
             map = userService.getTitleMap(session, map, "服务需求管理", "服务需求表");
             return new ModelAndView("shenghuo/xuqiu", map);
-        } else {
+        } else if (type.equals("服务记录")) {
+            map = userService.getColumnsNameMap(session, map, "fuwu", "tableColumns", true);
             map = userService.getTitleMap(session, map, "服务记录管理", "服务记录表");
             return new ModelAndView("shenghuo/jilu", map);
+        } else {
+            map = userService.getTitleMap(session, map, "服务记录/需求登记", "老人信息表");
+            map = userService.getColumnsNameMap(session, map, "laoren", "tableColumns", true);
+            return new ModelAndView("shenghuo/fuwu", map);
         }
     }
 

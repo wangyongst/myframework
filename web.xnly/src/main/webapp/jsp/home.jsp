@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
+    <%@ include file="/jsp/base.jsp" %>
     <script type="text/javascript">
 
         function reinitIframe() {
@@ -20,7 +20,7 @@
         window.setInterval("reinitIframe()", 200);
 
         function getRight(url) {
-            var iframe = document.getElementById("right").src = url;
+            document.getElementById("right").src = url;
         }
         ;
 
@@ -52,7 +52,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="user/home.do"><span>XININGLEYUAN.COM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>西宁乐缘综合养老管理平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后台管理中心</a>
+            <a class="navbar-brand" href="framework/home.do"><span>XININGLEYUAN.COM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>西宁乐缘综合养老管理平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后台管理中心</a>
             <ul class="user-menu">
                 <li class="dropdown pull-right">
                     <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
@@ -78,7 +78,7 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li class="active"><a href="user/home.do"><span class="glyphicon glyphicon-dashboard"></span> 我的首页</a></li>
+        <li class="active"><a href="framework/home.do"><span class="glyphicon glyphicon-dashboard"></span>我的首页</a></li>
         <li class="parent ">
             <c:forEach var="item" items="${parent}">
                 <a data-toggle="collapse" href="#sub-item-${item.id}">
@@ -104,8 +104,7 @@
     </ul>
 </div><!--/.sidebar-->
 
-<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="<%=basePath%>menu/myhome.do" width="100%"
-        frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
+<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="menu/myhome.do" width="100%" frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->
 
 </body>

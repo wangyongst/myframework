@@ -10,7 +10,7 @@
 <body style="padding-top:0px">
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="framework/home.do"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a href="${home}"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
 </div><!--/.row-->

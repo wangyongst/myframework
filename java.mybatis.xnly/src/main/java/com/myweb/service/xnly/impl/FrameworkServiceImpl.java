@@ -183,6 +183,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map, String title, String tableTitle) {
         map.put("title", title);
         map.put("tableName", tableTitle);
+        map.put("home","framework/home.do");
         return map;
     }
 }
