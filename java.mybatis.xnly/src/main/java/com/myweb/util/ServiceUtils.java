@@ -114,20 +114,21 @@ public class ServiceUtils {
     public static boolean isReseachOK(Result result, Object object) {
         if (object == null) {
             return isNotOK(result);
-
         } else {
             for (Field f : object.getClass().getDeclaredFields()) {
                 f.setAccessible(true);
                 try {
-                    if (f.getName().equals("id") && (Integer)f.get(object) == 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
+                    if (f.getName().equals("id") && (Integer) f.get(object) == 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
                         result.setStatus(6);
                         result.setMessage("没有查询到相关记录，请重试！");
+                        return true;
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                     return isNotOK(result);
                 }
             }
+            result.setData(object);
         }
         return true;
     }
