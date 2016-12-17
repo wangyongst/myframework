@@ -2,6 +2,7 @@ package com.myweb.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -15,7 +16,8 @@ public class ServiceUtils {
     //2，系统异常
     //3，选择了多条记录
     //4，保存条件己存在
-    //5,必须值不能为空
+    //5, 必须值不能为空
+    //6, 查询结果为空
 
     public static boolean isOnlyOneId(Result result, String id) {
         if (isIds(result, id)) {
@@ -91,9 +93,8 @@ public class ServiceUtils {
     }
 
     public static boolean isCreateOK(Result result, int count) {
-        result.setMessage("您添加/创建了" + count + "条记录");
         if (count != 0) {
-            result.setMessage("您添加了" + NumberFormatUtils.formatInteger(count) + "条记录");
+            result.setMessage("您添加/创建了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
             return isNotOK(result);
         }
@@ -105,6 +106,28 @@ public class ServiceUtils {
             result.setMessage("您删除了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
             return isNotOK(result);
+        }
+        return true;
+    }
+
+
+    public static boolean isReseachOK(Result result, Object object) {
+        if (object == null) {
+            return isNotOK(result);
+
+        } else {
+            for (Field f : object.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                try {
+                    if (f.getName().equals("id") && (Integer)f.get(object) == 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
+                        result.setStatus(6);
+                        result.setMessage("没有查询到相关记录，请重试！");
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                    return isNotOK(result);
+                }
+            }
         }
         return true;
     }

@@ -102,7 +102,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getLaoren(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(laorenMapper.selectByPrimaryKey((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, laorenMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -110,7 +110,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getUser(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(userMapper.selectByPrimaryKey((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, userMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -120,7 +120,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getJiashu(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(jiashuMapper.selectByPrimaryKey((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, jiashuMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
