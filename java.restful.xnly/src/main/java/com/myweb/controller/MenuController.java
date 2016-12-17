@@ -101,6 +101,7 @@ public class MenuController {
             return new ModelAndView("jiankang/shuju", map);
         } else if (type.equals("3")) {
             map = userService.getTitleMap(session, map, "健康数据趋势", "健康数据表");
+            map.put("laorenid",laorenid);
             map = userService.getColumnsNameMap(session, map, "caiji", "tableColumns", true);
             map.put("laorenid", laorenid);
             return new ModelAndView("jiankang/qushishuju", map);

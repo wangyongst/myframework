@@ -31,7 +31,7 @@
                 <button type="button" class="btn btn-primary" id="bmi">BMI趋势</button>
                 <button type="button" class="btn btn-primary" id="huxi">呼吸趋势</button>
 
-                <table data-toggle="table" data-url="jiankang/allCaijis.do?laorenid=${laorenid}"
+                <table data-toggle="table" data-url="jiankang/list/caijis.do?laorenid=${laorenid}"
                        data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
                        data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"

@@ -7,18 +7,18 @@ $(function () {
     $("#chakan").click(
         function () {
             $.ajax({
-                type: "POST",
+                type: "GET",
                 cache: "false",
                 url: "xitong/get/laoren/" + select() + ".do",
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    showAlert($("#alertA"), "danger");
+                    showAlert($("#mainAlert"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
-                        gotojsp("menu/jiankang/qushi/shuju.do?&laorenid=" + result.data.laorenid);
+                       window.location.href = "menu/jiankang/caiji/3/"+result.data.id+".do";
                     } else {
-                        showAlert($("#alertA"), "warning", result.message);
+                        showAlert($("#mainAlert"), "warning", result.message);
                     }
                 }
             });

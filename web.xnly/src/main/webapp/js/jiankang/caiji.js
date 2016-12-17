@@ -30,12 +30,12 @@ $(function () {
                 }
             }
         });
-        });
+    });
 
     function showPostCaijiModal(laoren) {
         $('#postCaijiidInput').hide();
         $('#postCaijiidLabel').hide();
-        $('#postCaijiidLabel').find("input[class=form-control]").val("");
+        $('#postCaijiModal').find("input[class=form-control]").val("");
         $('#postCaijilaorenidInput').attr("readonly", "readonly");
         $('#postCaijilaorennameInput').attr("readonly", "readonly");
         $('#postCaijilaorenidInput').val(laoren.id);

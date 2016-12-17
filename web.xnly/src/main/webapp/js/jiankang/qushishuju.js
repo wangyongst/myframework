@@ -2,7 +2,7 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    makeAlert($("#alertA"));
+    makeAlert($("#mainAlert"));
 
     function getIndex(column){
         var col = $('table tr:first').find("th").length;
@@ -16,7 +16,7 @@ $(function () {
     function getValues(column){
         var values = [];
         $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
+            if ($(this).prop('checked')) {
                 var index = $("table input:checkbox").index(this);
                 values.push($("table").find("tr").eq(index).find("td").eq(getIndex(column)).text() + "");
             }
@@ -78,7 +78,7 @@ $(function () {
 
     function isSelect() {
         if (select() == "") {
-            showAlert($("#alertA"), "warning", "请选择两条以上记录，以形成健康趋势图！");
+            showAlert($("#mainAlert"), "warning", "请选择两条以上记录，以形成健康趋势图！");
         }
     }
 

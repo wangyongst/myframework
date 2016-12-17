@@ -33,7 +33,7 @@ public class JianKangServiceImpl implements JianKangService {
     public Result getCaiji(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result,caijiMapper.selectByPrimaryKey((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, caijiMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -45,6 +45,9 @@ public class JianKangServiceImpl implements JianKangService {
         caiji.setCreateuser(create.getId());
         caiji.setCreateusername(create.getName());
         caiji.setCreatetime(DateUtils.getCurrentTimeSecond());
+        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
+            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
+        }
         return ServiceUtils.isCRUDOK("create", new Result(), caijiMapper.insert(caiji));
     }
 
@@ -52,6 +55,9 @@ public class JianKangServiceImpl implements JianKangService {
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateCaiji(HttpSession session, Caiji caiji) {
+        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
+            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
+        }
         return ServiceUtils.isCRUDOK("update", new Result(), caijiMapper.updateByPrimaryKeySelective(caiji));
     }
 

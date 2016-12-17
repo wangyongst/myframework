@@ -4,11 +4,6 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/jiankang/qushi.js"></script>
-    <script type="text/javascript">
-        function gotojsp(url) {
-            window.location.href = "<%=basePath%>" + url;
-        }
-    </script>
 </head>
 
 <body style="padding-top:0px">
