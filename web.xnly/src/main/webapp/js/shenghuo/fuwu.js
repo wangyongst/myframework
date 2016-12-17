@@ -2,74 +2,141 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    makeAlert($("#alertA"));
-    makeAlert($("#alertB"));
-    
-    $("#saveData").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "shenghuo/fuwu/edit.do",
-                data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertB"), "danger");
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        $('#myModal').modal('toggle');
-                        showAlert($("#alertA"), "success",result.message);
-                        $("button[name='refresh']").click();
-                        //debugger;
-                    } else {
-                        showAlert($("#alertB"), "warning",result.message);
-                    }
+    makeModal($("#postFuwuModal"), "postFuwu", "1");
+    makeModal($("#putFuwuModal"), "putFuwu", "2");
+
+    makeModalColumns($("#postFuwuModal"), "fuwu", "postFuwu", "请输入老人的需求或服务记录");
+    makeModalColumns($("#putFuwuModal"), "fuwu", "putFuwu", "请输入老人的需求或服务记录");
+
+    makeAlert($("#postFuwuAlert"));
+    makeAlert($("#putFuwuAlert"));
+
+    makeAlert($("#mainAlert"));
+    $("#postFuwuSave").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "shenghuo/post/fuwu.do?",
+            data: $('#postFuwuForm').serialize(),
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#postFuwuAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $('#postFuwuModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#postFuwuAlert"), "warning", result.message);
                 }
-            });
-        });
-    function select() {
-        var ids = "";
-        $("input[name=toolbar1]").each(function () {
-            if ($(this).context.checked) {
-                var index = $("table input:checkbox").index(this);
-                val = $("table").find("tr").eq(index).find("td").eq(1).text();
-                ids += "," + val;
             }
         });
-        return ids;
-    }
+    });
 
-    function showModal(caiji, type) {
-        showModalData(caiji);
-        $('#idInput').hide();
-        $('#idLabel').hide();
-        $('#laorenidInput').attr("readonly", "readonly");
-        $('#laorennameInput').attr("readonly", "readonly");
-        $('#myModal').find('.modal-title').text('记录老人服务/需求数据');    
-        $('#myModal').modal('toggle');
-        $("#alertB").hide();
-    }
-
-
-    $("#fuwu").click(
-        function () {
+    $("#putFuwuSave").click(function () {
             $.ajax({
                 type: "POST",
                 cache: "false",
-                url: "shenghuo/fuwu/get.do",
-                data: {ids: select(), idType: "laorenid"},
+                url: "shenghuo/put/fuwu.do?_method=PUT",
+                data: $('#putFuwuForm').serialize(),
                 dataType: "json",
                 error: function () {//请求失败时调用函数。
-                    showAlert($("#alertA"), "danger");
+                    showAlert($("#putFuwuAlert"), "danger");
                 },
                 success: function (result) {
                     if (result.status == 1) {
-                        showModal(result.data, 1);
+                        $('#putFuwuModal').modal('toggle');
+                        showAlert($("#mainAlert"), "success", result.message);
+                        $("button[name='refresh']").click();
                     } else {
-                        showAlert($("#alertA"), "warning",result.message);
+                        showAlert($("#putFuwuAlert"), "warning", result.message);
                     }
                 }
             });
         });
+
+    function showPutFuwuModal(fuwu) {
+        $('#putFuwuidInput').hide();
+        $('#putFuwuidLabel').hide();
+        for (var name in fuwu) {
+            $("#putFuwu" + name + "Input").val(fuwu[name]);
+        }
+        $('#putFuwulaorenidInput').attr("readonly", "readonly");
+        $('#putFuwulaorennameInput').attr("readonly", "readonly");
+        $('#putFuwulaorenidInput').val(fuwu.laorenid);
+        $('#putFuwulaorennameInput').val(fuwu.laorenname);
+        $('#putFuwuModal').find('.modal-title').text('采集老人健康数据');
+        $('#putFuwuModal').modal('toggle');
+    }
+
+    function showPostFuwuModal(laoren) {
+        $('#postFuwuidInput').hide();
+        $('#postFuwuidLabel').hide();
+        $('#postFuwuModal').find("input[class=form-control]").val("");
+        $('#postFuwulaorenidInput').attr("readonly", "readonly");
+        $('#postFuwulaorennameInput').attr("readonly", "readonly");
+        $('#postFuwulaorenidInput').val(laoren.id);
+        $('#postFuwulaorennameInput').val(laoren.name);
+        $('#postFuwuModal').find('.modal-title').text('采集老人健康数据');
+        $('#postFuwuModal').modal('toggle');
+    }
+
+    $("#fuwu").click(function () {
+        $.ajax({
+            type: "GET",
+            cache: "false",
+            url: "xitong/get/laoren/" + select() + ".do",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showPostFuwuModal(result.data);
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
+                }
+            }
+        });
+    });
+
+    $("#xiugai").click(function () {
+        $.ajax({
+            type: "GET",
+            cache: "false",
+            url: "shenghuo/get/fuwu/" + select() + ".do",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showPutFuwuModal(result.data);
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
+                }
+            }
+        });
+    });
+
+    $("#shanchu").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "shenghuo/delete/fuwu/" + select() + ".do?_method=DELETE",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
+                }
+            }
+        });
+    });
 });

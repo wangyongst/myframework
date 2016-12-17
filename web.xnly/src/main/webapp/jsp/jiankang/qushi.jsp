@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <script src="js/jiankang/qushi.js"></script>
+    <script src="js/jiankang/caiji.js"></script>
 </head>
 
 <body style="padding-top:0px">

@@ -69,7 +69,7 @@ $(function () {
 
 
     function showPutUserModal(user) {
-        for (name in user) {
+        for (var name in user) {
             $("#putUser" + name + "Input").val(user[name]);
             $("#putUser" + name + "Select").val(user[name]);
         }

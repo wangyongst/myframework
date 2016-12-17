@@ -34,7 +34,7 @@ $(function () {
 
 
     function showPutJiashuModal(jiashu) {
-        for (name in jiashu) {
+        for (var name in jiashu) {
             $("#putJiashu" + name + "Input").val(jiashu[name]);
             $("#putJiashu" + name + "Select").val(jiashu[name]);
         }

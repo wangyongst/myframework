@@ -115,7 +115,7 @@ $(function () {
 
 
     function showPutLaorenModal(laoren) {
-        for (name in laoren) {
+        for (var name in laoren) {
             $("#putLaoren" + name + "Input").val(laoren[name]);
             $("#putLaoren" + name + "Select").val(laoren[name]);
         }
