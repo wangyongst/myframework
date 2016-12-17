@@ -15,6 +15,7 @@ public class ServiceUtils {
     //2，系统异常
     //3，选择了多条记录
     //4，保存条件己存在
+    //5,必须值不能为空
 
     public static boolean isOnlyOneId(Result result, String id) {
         if (isIds(result, id)) {
@@ -29,6 +30,25 @@ public class ServiceUtils {
                 result.setData(Integer.parseInt(set.first()));
                 return true;
             }
+        }
+        return false;
+    }
+
+
+    public static boolean isBlankValue(Result result, String value) {
+        if (StringUtils.isBlank(value)) {
+            result.setStatus(5);
+            result.setMessage("必须值不能为空！请重新填写表单的必须项！");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isNotUnique(Result result, int size) {
+        if (size > 0) {
+            result.setStatus(4);
+            result.setMessage("必须值不唯一！请重新填写表单的必须项！");
+            return true;
         }
         return false;
     }

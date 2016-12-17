@@ -37,8 +37,7 @@ function showAlert(alert, level, message) {
 
 function hideAlert(alert) {
     $(alert).parent().parent().parent().hide();
-};
-
+}
 function makeAlert(alert) {
     $(alert).html("<div><div><span></span><span></span><a><span></span></a></div></div>");
     $(alert).find("div").attr("class", "col-lg-12");
@@ -50,8 +49,7 @@ function makeAlert(alert) {
         function () {
             hideAlert($(this))
         });
-};
-
+}
 function makeModalForm(modal, type, id, name, chinese, placeholder) {
     if (type == "select") {
         makeModalFormSelect(modal, id, name, chinese)
@@ -60,8 +58,7 @@ function makeModalForm(modal, type, id, name, chinese, placeholder) {
     } else {
         makeModalFormInupt(modal, type, id, name, chinese, placeholder);
     }
-};
-
+}
 function makeModalFormInupt(modal, type, id, name, chinese, placeholder) {
     if (id == null) {
         id = name;
@@ -69,8 +66,7 @@ function makeModalFormInupt(modal, type, id, name, chinese, placeholder) {
     $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
     $(modal).find(".form-group").append("<input type='" + type + "' class='form-control' id='" + id + "Input' name='" + name + "'>");
     $("#" + id + "Input").attr("placeholder", placeholder)
-};
-
+}
 function makeModalFormSelect(modal, id, name, chinese) {
     if (id == null) {
         id = name;
@@ -90,8 +86,7 @@ function makeModalFormSelect(modal, id, name, chinese) {
             }
         }
     });
-};
-
+}
 function makeModalFormCheckbox(modal, id, name, chinese) {
     if (id == null) {
         id = name;
@@ -111,9 +106,7 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
             }
         }
     });
-};
-
-
+}
 function makeModalColumns(modal, tablename, prefix, placeholder) {
     $.ajax({
         type: "GET",
@@ -128,9 +121,7 @@ function makeModalColumns(modal, tablename, prefix, placeholder) {
             }
         }
     });
-};
-
-
+}
 function makeModal(modal, idPrefix, index) {
     $(modal).attr("class", "modal fade");
     $(modal).attr("tabindex", index);
@@ -171,4 +162,4 @@ function makeModal(modal, idPrefix, index) {
     $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");
     $(modal).find(".modal-footer").find("button").eq(1).attr("id", idPrefix + "Save");
     $(modal).find(".modal-footer").find("button").eq(1).text("保存");
-};
+}

@@ -14,7 +14,7 @@ $(function () {
     }
 
     function getValues(column){
-        var values = new Array();
+        var values = [];
         $("input[name=toolbar1]").each(function () {
             if ($(this).context.checked) {
                 var index = $("table input:checkbox").index(this);
@@ -54,7 +54,7 @@ $(function () {
                     data: datas2
                 }
             ]
-        }
+        };
         return mylineChartData;
     }
 
@@ -72,7 +72,7 @@ $(function () {
                     data: datas
                 }
             ]
-        }
+        };
         return mylineChartData;
     }
 

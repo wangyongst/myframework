@@ -12,40 +12,40 @@ import java.util.List;
 
 public interface XiTongService {
 
-    public List<User> listUsers(HttpSession session, User user, Page page);
+    List<User> listUsers(HttpSession session, User user, Page page);
 
-    public List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page);
+    List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page);
 
-    public List<Jiashu> listJiashus(HttpSession session, Jiashu jiashu, Page page);
-
-
-    public Result getJiashu(HttpSession session, String id);
-
-    public Result getLaoren(HttpSession session, String id);
-
-    public Result getUser(HttpSession session, String id);
+    List<Jiashu> listJiashus(HttpSession session, Jiashu jiashu, Page page);
 
 
-    public Result createLaoren(HttpSession session, Laoren laoren);
+    Result getJiashu(HttpSession session, String id);
 
-    public Result createUser(HttpSession session, User user);
+    Result getLaoren(HttpSession session, String id);
 
-    public Result createJiashu(HttpSession session, Jiashu jiashu);
-
-
-    public Result updateLaoren(HttpSession session, Laoren laoren);
-
-    public Result updateUser(HttpSession session, User user);
-
-    public Result updateJiashu(HttpSession session, Jiashu jiashu);
-
-    public Result updateLaorenTypebyId(HttpSession session, String id, String type);
+    Result getUser(HttpSession session, String id);
 
 
+    Result createLaoren(HttpSession session, Laoren laoren);
 
-    public Result deleteJiashu(HttpSession session, String id);
+    Result createUser(HttpSession session, User user);
 
-    public Result deleteLaoren(HttpSession session, String id);
+    Result createJiashu(HttpSession session, Jiashu jiashu);
 
-    public Result deleteUser(HttpSession session, String id);
+
+    Result updateLaoren(HttpSession session, Laoren laoren);
+
+    Result updateUser(HttpSession session, User user);
+
+    Result updateJiashu(HttpSession session, Jiashu jiashu);
+
+    Result updateLaorenTypebyId(HttpSession session, String id, String type);
+
+
+
+    Result deleteJiashu(HttpSession session, String id);
+
+    Result deleteLaoren(HttpSession session, String id);
+
+    Result deleteUser(HttpSession session, String id);
 }

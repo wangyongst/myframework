@@ -94,11 +94,8 @@ public class DateUtils {
         boolean leapYear = isLeapYear(year);
         // 获得该年该月的最大日期
         int maxD = getMaxDay(year, month);
-        if (day > maxD) {
-            return false;
-        }
+        return day <= maxD;
 
-        return true;
     }
 
     /**

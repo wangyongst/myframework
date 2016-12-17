@@ -15,15 +15,11 @@
             } catch (ex) {
             }
         }
-        ;
-
         window.setInterval("reinitIframe()", 200);
 
         function getRight(url) {
             document.getElementById("right").src = url;
         }
-        ;
-
         !function ($) {
             $(document).on("click", "ul.nav li.parent > a", function () {
                 $(this).find('em:first').toggleClass("glyphicon-minus");
@@ -33,7 +29,7 @@
 
         $(window).on('resize', function () {
             if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        })
+        });
         $(window).on('resize', function () {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })

@@ -145,30 +145,34 @@ public class XiTongServiceImpl implements XiTongService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result createUser(HttpSession session, User user) {
         Result result = new Result();
-        if (StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
-            result.setStatus(3);
-            result.setMessage("用户名或密码不能为空！");
+        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
             return result;
         }
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(user.getUsername());
-        if (userMapper.selectByExample(example).size() > 0) {
-            result.setStatus(4);
-            result.setMessage("用户名已经存在，请使用新的用户名！");
+        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size())) {
             return result;
-        } else {
-            User create = (User) session.getAttribute("user");
-            user.setCreateuser(create.getId());
-            user.setCreateusername(create.getName());
-            user.setCreatetime(DateUtils.getCurrentTimeSecond());
-            ServiceUtils.isCRUDOK("create", result, userMapper.insert(user));
         }
-        return result;
+        User create = (User) session.getAttribute("user");
+        user.setCreateuser(create.getId());
+        user.setCreateusername(create.getName());
+        user.setCreatetime(DateUtils.getCurrentTimeSecond());
+        return ServiceUtils.isCRUDOK("create", new Result(), userMapper.insert(user));
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateUser(HttpSession session, User user) {
+        Result result = new Result();
+        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
+            return result;
+        }
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameEqualTo(user.getUsername());
+        example.or(example.createCriteria().andIdEqualTo(user.getId()));
+        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size())) {
+            return result;
+        }
         return ServiceUtils.isCRUDOK("update", new Result(), userMapper.updateByPrimaryKeySelective(user));
     }
 
