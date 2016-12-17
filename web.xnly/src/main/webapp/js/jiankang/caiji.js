@@ -7,14 +7,14 @@ $(function () {
 
     makeModalColumns($("#postCaijiModal"), "caiji", "postCaiji", "请输入采集老人的");
 
-    makeAlert($("#postCaijiModal"));
+    makeAlert($("#postCaijiAlert"));
     makeAlert($("#mainAlert"));
 
     $("#postCaijiSave").click(function () {
         $.ajax({
             type: "POST",
             cache: "false",
-            url: "xitong/post/caiji.do?",
+            url: "jiankang/post/caiji.do?",
             data: $('#postCaijiForm').serialize(),
             dataType: "json",
             error: function () {//请求失败时调用函数。
@@ -42,7 +42,6 @@ $(function () {
         $('#postCaijilaorennameInput').val(laoren.name);
         $('#postCaijiModal').find('.modal-title').text('采集老人健康数据');
         $('#postCaijiModal').modal('toggle');
-        $("#postCaijiAlert").hide();
     }
 
 
