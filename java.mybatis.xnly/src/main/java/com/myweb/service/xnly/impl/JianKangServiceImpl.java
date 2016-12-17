@@ -36,50 +36,33 @@ public class JianKangServiceImpl implements JianKangService {
 
 
     @Override
-    public Result getCaiji(HttpSession session, String ids, String idType) {
+    public Result getCaiji(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOneId(result, ids)) {
-            Laoren laoren = laorenMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            Caiji caiji = new Caiji();
-            if (idType.equals("laorenid")) {
-                caiji.setLaorenid(laoren.getId());
-                caiji.setLaorenname(laoren.getName());
-            } else if (idType.equals("caijiid")) {
-                caiji = caijiMapper.selectByPrimaryKey(Integer.parseInt(ids.split(",")[1]));
-            }
-            result.setData(caiji);
+        if (ServiceUtils.isOnlyOneId(result, id)) {
+            result.setData(caijiMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result editCaiji(HttpSession session, Caiji caiji) {
-        Result result = new Result();
-        int count = 0;
-        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
-            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
-        }
-        if (caiji.getId() != null && caiji.getId() != 0) {
-            count = caijiMapper.updateByPrimaryKeySelective(caiji);
-        } else {
-            User create = (User) session.getAttribute("user");
-            caiji.setCreateuser(create.getId());
-            caiji.setCreateusername(create.getName());
-            caiji.setCreatetime(DateUtils.getCurrentTimeSecond());
-            count = caijiMapper.insert(caiji);
-        }
-        if (count != 0) {
-            result.setMessage("你已成功保存一条记录！");
-            return result;
-        }
-        result.setStatus(2);
-        result.setMessage("保存失败，请联系管理员！");
-        return result;
+    public Result createCaiji(HttpSession session, Caiji caiji) {
+        User create = (User) session.getAttribute("user");
+        caiji.setCreateuser(create.getId());
+        caiji.setCreateusername(create.getName());
+        caiji.setCreatetime(DateUtils.getCurrentTimeSecond());
+        return ServiceUtils.isCRUDOK("create", new Result(), caijiMapper.insert(caiji));
+    }
+
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result updateCaiji(HttpSession session, Caiji caiji) {
+        return ServiceUtils.isCRUDOK("update", new Result(), caijiMapper.updateByPrimaryKeySelective(caiji));
     }
 
     @Override
-    public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji) {
+    public List<Caiji> listCaijis(HttpSession session, Caiji caiji) {
         CaijiExample example = new CaijiExample();
         CaijiExample.Criteria criteria = example.createCriteria();
         if (caiji.getLaorenid() != null) {
@@ -90,11 +73,10 @@ public class JianKangServiceImpl implements JianKangService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result deleteCaiji(HttpSession session, String ids) {
+    public Result deleteCaiji(HttpSession session, String id) {
         Result result = new Result();
-        if (ServiceUtils.isOnlyOneId(result, ids)) {
-            result.setData(caijiMapper.deleteByPrimaryKey(Integer.parseInt(ids.split(",")[1])));
-            result.setMessage("您删除了一条记录！");
+        if (ServiceUtils.isOnlyOneId(result, id)) {
+            return ServiceUtils.isCRUDOK("delete", result, caijiMapper.deleteByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }

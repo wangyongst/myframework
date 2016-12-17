@@ -20,8 +20,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
-
+                <div id="mainAlert" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="xueya">血压趋势</button>
                 <button type="button" class="btn btn-primary" id="xueyang">血氧趋势</button>

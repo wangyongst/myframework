@@ -2,14 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/jsp/base.jsp"%>
+    <%@ include file="/jsp/base.jsp" %>
     <script src="js/jiankang/qushi.js"></script>
     <script type="text/javascript">
-
         function gotojsp(url) {
             window.location.href = "<%=basePath%>" + url;
         }
-
     </script>
 </head>
 
@@ -28,7 +26,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
+                <div id="mainAlert" hidden></div>
 
 
                 <button type="button" class="btn btn-primary" id="chakan">查看健康趋势</button>

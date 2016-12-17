@@ -2,8 +2,7 @@ package com.myweb.util;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Created by BHWL on 2016-11-30.
@@ -18,16 +17,16 @@ public class ServiceUtils {
     //4，保存条件己存在
 
     public static boolean isOnlyOneId(Result result, String id) {
-        if (StringUtils.isBlank(id)) {
-            result.setStatus(0);
-            result.setMessage("请先至少选择一条记录！");
-        } else {
-            String[] ida = id.split(",");
-            if (ida.length != 2) {
+        if (isIds(result, id)) {
+            TreeSet<String> set = (TreeSet<String>) result.getData();
+            if (set.size() < 1) {
+                result.setStatus(0);
+                result.setMessage("请先至少选择一条记录！");
+            } else if (set.size() > 1) {
                 result.setStatus(3);
                 result.setMessage("本操作只可选择一条记录，您选择了多条记录！");
             } else {
-                result.setData(id.split(",")[1]);
+                result.setData(Integer.parseInt(set.first()));
                 return true;
             }
         }
@@ -37,33 +36,43 @@ public class ServiceUtils {
     public static boolean isIds(Result result, String id) {
         if (StringUtils.isBlank(id)) {
             result.setStatus(0);
-            result.setMessage("请先选择一条记录！");
+            result.setMessage("请先至少选择一条记录！");
         } else {
-            result.setData(Arrays.asList(id.split(",")));
+            TreeSet<String> treeSet = new TreeSet<String>(Arrays.asList(id.split(",")));
+            treeSet.remove("");
+            result.setData(treeSet);
             return true;
         }
         return false;
     }
 
+    public static Result isCRUDOK(String crud, Result result, int count) {
+        if (crud.equals("delete")) {
+            isDeleteOK(result, count);
+        } else if (crud.equals("update")) {
+            isUpdateOK(result, count);
+        } else if (crud.equals("create")) {
+            isCreateOK(result, count);
+        }
+        return result;
+    }
+
+
     public static boolean isUpdateOK(Result result, int count) {
         if (count != 0) {
-            result.setMessage("您修改了" + NumberFormatUtils.formatInteger(count) + "条记录");
+            result.setMessage("您修改/更新了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            result.setStatus(2);
-            result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
-            return false;
+            return isNotOK(result);
         }
         return true;
     }
 
-    public static boolean isSaveOK(Result result, int count) {
-        result.setMessage("您添加了" + count + "条记录");
+    public static boolean isCreateOK(Result result, int count) {
+        result.setMessage("您添加/创建了" + count + "条记录");
         if (count != 0) {
             result.setMessage("您添加了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            result.setStatus(2);
-            result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
-            return false;
+            return isNotOK(result);
         }
         return true;
     }
@@ -72,10 +81,14 @@ public class ServiceUtils {
         if (count != 0) {
             result.setMessage("您删除了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            result.setStatus(2);
-            result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
-            return false;
+            return isNotOK(result);
         }
+        return true;
+    }
+
+    public static boolean isNotOK(Result result) {
+        result.setStatus(2);
+        result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
         return true;
     }
 }

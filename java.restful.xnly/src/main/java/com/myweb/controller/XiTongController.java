@@ -71,19 +71,19 @@ public class XiTongController {
     @ResponseBody
     @RequestMapping(value = "/post/jiashu", method = RequestMethod.POST)
     public Result postLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
-        return xiTongService.saveOrUpdateJiashu(session, jiashu);
+        return xiTongService.createJiashu(session, jiashu);
     }
 
     @ResponseBody
     @RequestMapping(value = "/post/user", method = RequestMethod.POST)
     public Result postUser(HttpSession session, @ModelAttribute User user) {
-        return xiTongService.saveOrUpdateUser(session, user);
+        return xiTongService.createUser(session, user);
     }
 
     @ResponseBody
     @RequestMapping(value = "/post/laoren", method = RequestMethod.POST)
     public Result postLaoren(HttpSession session, @ModelAttribute Laoren laoren) {
-        return xiTongService.saveOrUpdateLaoren(session, laoren);
+        return xiTongService.createLaoren(session, laoren);
     }
 
 
@@ -92,25 +92,25 @@ public class XiTongController {
     @ResponseBody
     @RequestMapping(value = "/put/jiashu", method = RequestMethod.PUT)
     public Result putLaorenJiashu(HttpSession session, @ModelAttribute Jiashu jiashu) {
-        return xiTongService.saveOrUpdateJiashu(session, jiashu);
+        return xiTongService.updateJiashu(session, jiashu);
     }
 
     @ResponseBody
     @RequestMapping(value = "/put/user", method = RequestMethod.PUT)
     public Result putUser(HttpSession session, @ModelAttribute User user) {
-        return xiTongService.saveOrUpdateUser(session, user);
+        return xiTongService.updateUser(session, user);
     }
 
     @ResponseBody
     @RequestMapping(value = "/put/laoren", method = RequestMethod.PUT)
     public Result putLaoren(HttpSession session, @ModelAttribute Laoren laoren) {
-        return xiTongService.saveOrUpdateLaoren(session, laoren);
+        return xiTongService.updateLaoren(session, laoren);
     }
 
     @ResponseBody
     @RequestMapping(value = "/put/laoren/{id}/{type}", method = RequestMethod.PUT)
-    public Result getLaoren(HttpSession session, @PathVariable("id") String id, @PathVariable("type") String type) {
-        return xiTongService.changeLaorenType(session, id, type);
+    public Result putLaoren(HttpSession session, @PathVariable("id") String id, @PathVariable("type") String type) {
+        return xiTongService.updateLaorenTypebyId(session, id, type);
     }
 
     //删除记录

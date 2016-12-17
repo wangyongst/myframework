@@ -9,15 +9,13 @@ import java.util.List;
 
 public interface ShenghuoService {
 
-    public Result getFuwu(HttpSession session, String ids, String idType);
+    public Result getFuwu(HttpSession session, String id);
 
-    public Result editFuwu(HttpSession session, Fuwu fuwu);
+    public Result createFuwu(HttpSession session, Fuwu fuwu);
 
-    public List<Fuwu> getAllFuwus(HttpSession session, Fuwu fuwu);
+    public Result updateFuwu(HttpSession session, Fuwu fuwu);
 
-    public List<Fuwu> getAllFuwuJilus(HttpSession session, Fuwu fuwu);
-
-    public List<Fuwu> getAllFuwuXuqius(HttpSession session, Fuwu fuwu);
+    public List<Fuwu> listFuwus(HttpSession session, Fuwu fuwu);
 
     public Result deleteFuwu(HttpSession session, String ids);
 }

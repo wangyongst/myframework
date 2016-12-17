@@ -31,7 +31,6 @@ $(function () {
             url: "xitong/post/laoren.do?",
             data: $('#postLaorenForm').serialize() + "&type=" + type,
             dataType: "json",
-            dataType: "json",
             error: function () {//请求失败时调用函数。
                 showAlert($("#postLaorenAlert"), "danger");
             },
@@ -104,7 +103,7 @@ $(function () {
     function showPostJiashuModal(laoren) {
         $('#postJiashuidInput').hide();
         $('#postJiashuidLabel').hide();
-        $('#postLaorenModal').find("input[class=form-control]").val("");
+        $('#postJiashuidLabel').find("input[class=form-control]").val("");
         $('#postJiashulaorenidInput').attr("readonly", "readonly");
         $('#postJiashulaorennameInput').attr("readonly", "readonly");
         $('#postJiashulaorenidInput').val(laoren.id);
@@ -156,7 +155,6 @@ $(function () {
                 } else {
                     showAlert($("#mainAlert"), "warning", result.message);
                 }
-
             }
         });
     });

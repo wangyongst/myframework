@@ -26,13 +26,22 @@ public interface XiTongService {
     public Result getUser(HttpSession session, String id);
 
 
-    public Result saveOrUpdateLaoren(HttpSession session, Laoren laoren);
+    public Result createLaoren(HttpSession session, Laoren laoren);
 
-    public Result saveOrUpdateUser(HttpSession session, User user);
+    public Result createUser(HttpSession session, User user);
 
-    public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu);
+    public Result createJiashu(HttpSession session, Jiashu jiashu);
 
-    public Result changeLaorenType(HttpSession session, String id, String type);
+
+    public Result updateLaoren(HttpSession session, Laoren laoren);
+
+    public Result updateUser(HttpSession session, User user);
+
+    public Result updateJiashu(HttpSession session, Jiashu jiashu);
+
+    public Result updateLaorenTypebyId(HttpSession session, String id, String type);
+
+
 
     public Result deleteJiashu(HttpSession session, String id);
 

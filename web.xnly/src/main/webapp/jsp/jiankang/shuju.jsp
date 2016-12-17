@@ -4,24 +4,7 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script src="js/jiankang/shuju.js"></script>
-    <script type="text/javascript">
-        function showMyModalData(laoren) {
-            <c:forEach var="item" items="${formColumns}">
-            if (laoren != null) {
-                $("#${item.columnname}Input").val(laoren.${item.columnname});
-            } else {
-                $("#${item.columnname}Input").val("");
-            }
-            $("#${item.columnname}Input").attr("placeholder", "请输入老人的${item.chinese}");
-            </c:forEach>
-        }
 
-        function makeMyModal(modal) {
-            <c:forEach var="item" items="${formColumns}">
-            makeModalForm(modal, "${item.type}",null, "${item.columnname}", "${item.chinese}");
-            </c:forEach>
-        }
-    </script>
 </head>
 
 
@@ -40,7 +23,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
+                <div id="mainAlert" hidden></div>
 
 
                 <button type="button" class="btn btn-primary" id="xiugai">修改数据</button>
@@ -62,7 +45,7 @@
 
 
                 <!-- Modal -->
-                <div id="myModal"></div><!-- Modal -->
+                <div id="putCaijiModal"></div><!-- Modal -->
 
             </div>
         </div>

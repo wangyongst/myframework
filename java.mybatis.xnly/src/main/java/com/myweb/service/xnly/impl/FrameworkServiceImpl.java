@@ -46,8 +46,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     @Override
     public Result login(HttpSession session, User user) {
         UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(user.getUsername())
-                .andPasswordEqualTo(user.getPassword());
+        example.createCriteria().andUsernameEqualTo(user.getUsername()).andPasswordEqualTo(user.getPassword());
         List<User> userList = userMapper.selectByExample(example);
         Result result = new Result();
         if (userList.size() == 0) {
@@ -183,7 +182,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     public Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map, String title, String tableTitle) {
         map.put("title", title);
         map.put("tableName", tableTitle);
-        map.put("home","framework/home.do");
+        map.put("home", "menu/myhome.do");
         return map;
     }
 }

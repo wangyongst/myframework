@@ -2,67 +2,66 @@
  * Created by wangy on 2016-12-02.
  */
 $(function () {
-    
-    makeAlert($("#alertA"));
-    makeAlert($("#alertB"));
 
-    makeModal($("#myModal"),"form","alertB","saveData");
-    makeMyModal($("#myModal"));
+    makeModal($("#postCaijiModal"), "postCaiji", "1");
 
-    $("#saveData").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "jiankang/caiji/edit.do",
-                data: $('#form').serialize() + "&laorenid=" + $('#laorenid').val() + "&laorennameR=" + $('#laorenname').val(),
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertB"), "danger");
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        $('#myModal').modal('toggle');
-                        $("#alertB").hide();
-                        showAlert($("#alertA"), "success", result.message);
-                        $("button[name='refresh']").click();
-                    } else {
-                        showAlert($("#alertB"), "warning", result.message);
-                    }
+    makeModalColumns($("#postCaijiModal"), "caiji", "postCaiji", "请输入采集老人的");
+
+    makeAlert($("#postCaijiModal"));
+    makeAlert($("#mainAlert"));
+
+    $("#postCaijiSave").click(function () {
+        $.ajax({
+            type: "POST",
+            cache: "false",
+            url: "xitong/post/caiji.do?",
+            data: $('#postCaijiForm').serialize(),
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#postCaijiAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    $('#postCaijiModal').modal('toggle');
+                    showAlert($("#mainAlert"), "success", result.message);
+                    $("button[name='refresh']").click();
+                } else {
+                    showAlert($("#postCaijiAlert"), "warning", result.message);
                 }
-            });
-        });   
+            }
+        });
+        });
 
-    function showModal(caiji, type) {
-        showMyModalData(caiji,"请输入老人的");
-        $('#idInput').hide();
-        $('#idLabel').hide();
-        $('#laorenidInput').attr("readonly", "readonly");
-        $('#laorennameInput').attr("readonly", "readonly");
-        $('#myModal').find('.modal-title').text('采集老人健康数据');
-        $('#myModal').modal('toggle');
-        $("#alertB").hide();
+    function showPostCaijiModal(laoren) {
+        $('#postCaijiidInput').hide();
+        $('#postCaijiidLabel').hide();
+        $('#postCaijiidLabel').find("input[class=form-control]").val("");
+        $('#postCaijilaorenidInput').attr("readonly", "readonly");
+        $('#postCaijilaorennameInput').attr("readonly", "readonly");
+        $('#postCaijilaorenidInput').val(laoren.id);
+        $('#postCaijilaorennameInput').val(laoren.name);
+        $('#postCaijiModal').find('.modal-title').text('采集老人健康数据');
+        $('#postCaijiModal').modal('toggle');
+        $("#postCaijiAlert").hide();
     }
 
 
-    $("#caiji").click(
-        function () {
-            $.ajax({
-                type: "POST",
-                cache: "false",
-                url: "jiankang/caiji/get.do",
-                data: {ids: select(), idType: "laorenid"},
-                dataType: "json",
-                error: function () {//请求失败时调用函数。
-                    showAlert($("#alertA"), "danger");
-                },
-                success: function (result) {
-                    if (result.status == 1) {
-                        showModal(result.data, 1);
-                    } else {
-                        showAlert($("#alertA"), "warning", result.message);
-                    }
+    $("#caiji").click(function () {
+        $.ajax({
+            type: "GET",
+            cache: "false",
+            url: "xitong/get/laoren/" + select() + ".do",
+            dataType: "json",
+            error: function () {//请求失败时调用函数。
+                showAlert($("#mainAlert"), "danger");
+            },
+            success: function (result) {
+                if (result.status == 1) {
+                    showPostCaijiModal(result.data);
+                } else {
+                    showAlert($("#mainAlert"), "warning", result.message);
                 }
-            });
+            }
         });
+    });
 });

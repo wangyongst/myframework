@@ -15,7 +15,7 @@
 
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li><a href="menu/myhome.do"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">${title}</li>
     </ol>
 </div><!--/.row-->

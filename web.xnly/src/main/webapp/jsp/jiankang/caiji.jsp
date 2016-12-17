@@ -20,7 +20,7 @@
             <div class="panel-heading">${tableName}</div>
             <div class="panel-body">
 
-                <div id="alertA" hidden></div>
+                <div id="mainAlert" hidden></div>
 
                 <button type="button" class="btn btn-primary" id="caiji">采集数据</button>
 
@@ -40,7 +40,7 @@
                     </table>
                 </div>
                 <!-- Modal -->
-                <div id="myModal"></div><!-- Modal -->
+                <div id="postCaijiModal"></div><!-- Modal -->
 
             </div>
         </div>

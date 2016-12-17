@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface JianKangService {
 
-    public Result getCaiji(HttpSession session, String ids, String idType);
+    public Result getCaiji(HttpSession session, String id);
 
-    public Result editCaiji(HttpSession session, Caiji caiji);
+    public Result createCaiji(HttpSession session, Caiji caiji);
 
-    public List<Caiji> getAllCaijis(HttpSession session, Caiji caiji);
+    public Result updateCaiji(HttpSession session, Caiji caiji);
+
+    public List<Caiji> listCaijis(HttpSession session, Caiji caiji);
 
     public Result deleteCaiji(HttpSession session, String ids);
 }

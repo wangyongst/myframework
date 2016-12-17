@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.TreeSet;
 
 @Service("xiTongService")
 @Transactional(value = "myTM", readOnly = true)
@@ -53,33 +54,34 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result saveOrUpdateJiashu(HttpSession session, Jiashu jiashu) {
-        Result result = new Result();
-        if (jiashu.getId() != null) {
-            ServiceUtils.isUpdateOK(result, jiashuMapper.updateByPrimaryKeySelective(jiashu));
-        } else {
-            User create = (User) session.getAttribute("user");
-            jiashu.setCreateuser(create.getId());
-            jiashu.setCreateusername(create.getName());
-            jiashu.setCreatetime(DateUtils.getCurrentTimeSecond());
-            ServiceUtils.isSaveOK(result, jiashuMapper.insert(jiashu));
-        }
-        return result;
+    public Result createJiashu(HttpSession session, Jiashu jiashu) {
+        User create = (User) session.getAttribute("user");
+        jiashu.setCreateuser(create.getId());
+        jiashu.setCreateusername(create.getName());
+        jiashu.setCreatetime(DateUtils.getCurrentTimeSecond());
+        return ServiceUtils.isCRUDOK("create", new Result(), jiashuMapper.insert(jiashu));
+    }
+
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result updateJiashu(HttpSession session, Jiashu jiashu) {
+        return ServiceUtils.isCRUDOK("update", new Result(), jiashuMapper.updateByPrimaryKeySelective(jiashu));
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result changeLaorenType(HttpSession session, String id, String type) {
+    public Result updateLaorenTypebyId(HttpSession session, String id, String type) {
         Result result = new Result();
         if (ServiceUtils.isIds(result, id)) {
             LaorenExample laorenExample = new LaorenExample();
-            List<String> idList = (List) result.getData();
-            for (String ids : idList) {
+            TreeSet<String> idSet = (TreeSet<String>) result.getData();
+            for (String ids : idSet) {
                 if (StringUtils.isNotBlank(ids)) laorenExample.or(laorenExample.createCriteria().andIdEqualTo(Integer.parseInt(ids)));
             }
             Laoren laoren = new Laoren();
             laoren.setType(Integer.parseInt(type));
-            ServiceUtils.isUpdateOK(result, laorenMapper.updateByExampleSelective(laoren, laorenExample));
+            ServiceUtils.isCRUDOK("update", result, laorenMapper.updateByExampleSelective(laoren, laorenExample));
         }
         return result;
     }
@@ -90,7 +92,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result deleteJiashu(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isDeleteOK(result, jiashuMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
+            ServiceUtils.isCRUDOK("delete", result, jiashuMapper.deleteByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -100,7 +102,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getLaoren(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(laorenMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
+            result.setData(laorenMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -108,7 +110,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getUser(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(userMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
+            result.setData(userMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -118,54 +120,56 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getJiashu(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            result.setData(jiashuMapper.selectByPrimaryKey(Integer.parseInt((String) result.getData())));
+            result.setData(jiashuMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result saveOrUpdateLaoren(HttpSession session, Laoren laoren) {
-        Result result = new Result();
-        if (laoren.getId() != null) {
-            ServiceUtils.isUpdateOK(result, laorenMapper.updateByPrimaryKey(laoren));
-        } else {
-            User create = (User) session.getAttribute("user");
-            laoren.setCreateuser(create.getId());
-            laoren.setCreateusername(create.getName());
-            laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
-            ServiceUtils.isSaveOK(result, laorenMapper.insert(laoren));
-        }
-        return result;
+    public Result createLaoren(HttpSession session, Laoren laoren) {
+        User create = (User) session.getAttribute("user");
+        laoren.setCreateuser(create.getId());
+        laoren.setCreateusername(create.getName());
+        laoren.setCreatetime(DateUtils.getCurrentTimeSecond());
+        return ServiceUtils.isCRUDOK("create", new Result(), laorenMapper.insert(laoren));
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result saveOrUpdateUser(HttpSession session, User user) {
+    public Result updateLaoren(HttpSession session, Laoren laoren) {
+        return ServiceUtils.isCRUDOK("update", new Result(), laorenMapper.updateByPrimaryKeySelective(laoren));
+    }
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result createUser(HttpSession session, User user) {
         Result result = new Result();
         if (StringUtils.isBlank(user.getUsername()) || StringUtils.isBlank(user.getPassword())) {
             result.setStatus(3);
             result.setMessage("用户名或密码不能为空！");
             return result;
         }
-        if (user.getId() != null && user.getId() != 0) {
-            ServiceUtils.isUpdateOK(result, userMapper.updateByPrimaryKeySelective(user));
+        UserExample example = new UserExample();
+        example.createCriteria().andUsernameEqualTo(user.getUsername());
+        if (userMapper.selectByExample(example).size() > 0) {
+            result.setStatus(4);
+            result.setMessage("用户名已经存在，请使用新的用户名！");
+            return result;
         } else {
-            UserExample example = new UserExample();
-            example.createCriteria().andUsernameEqualTo(user.getUsername());
-            if (userMapper.selectByExample(example).size() > 1) {
-                result.setStatus(4);
-                result.setMessage("用户名已经存在，请使用新的用户名！");
-                return result;
-            } else {
-                User create = (User) session.getAttribute("user");
-                user.setCreateuser(create.getId());
-                user.setCreateusername(create.getName());
-                user.setCreatetime(DateUtils.getCurrentTimeSecond());
-                ServiceUtils.isSaveOK(result, userMapper.insert(user));
-            }
+            User create = (User) session.getAttribute("user");
+            user.setCreateuser(create.getId());
+            user.setCreateusername(create.getName());
+            user.setCreatetime(DateUtils.getCurrentTimeSecond());
+            ServiceUtils.isCRUDOK("create", result, userMapper.insert(user));
         }
         return result;
+    }
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result updateUser(HttpSession session, User user) {
+        return ServiceUtils.isCRUDOK("update", new Result(), userMapper.updateByPrimaryKeySelective(user));
     }
 
     @Override
@@ -173,7 +177,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result deleteLaoren(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isDeleteOK(result, laorenMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
+            return ServiceUtils.isCRUDOK("delete", result, laorenMapper.deleteByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }
@@ -183,7 +187,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result deleteUser(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isDeleteOK(result, userMapper.deleteByPrimaryKey(Integer.parseInt((String) result.getData())));
+            return ServiceUtils.isCRUDOK("delete", result, userMapper.deleteByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }

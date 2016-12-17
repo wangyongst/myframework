@@ -2,15 +2,13 @@ package com.myweb.controller;
 
 
 import com.myweb.pojo.mybatis.Caiji;
+import com.myweb.pojo.mybatis.Jiashu;
 import com.myweb.service.xnly.JianKangService;
 import com.myweb.util.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -19,32 +17,36 @@ import java.util.List;
 @RequestMapping(value = "/jiankang")
 public class JianKangController {
 
-
     @Autowired
     public JianKangService jianKangService;
 
-
     @ResponseBody
     @RequestMapping(value = "/list/caijis", method = RequestMethod.GET)
-    public List<Caiji> allCaijis(HttpSession session, @ModelAttribute Caiji caiji) {
-        return jianKangService.getAllCaijis(session, caiji);
+    public List<Caiji> listCaijis(HttpSession session, @ModelAttribute Caiji caiji) {
+        return jianKangService.listCaijis(session, caiji);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/get/caiji", method = RequestMethod.GET)
-    public Result getCaiji(HttpSession session, String ids, String idType) {
-        return jianKangService.getCaiji(session, ids, idType);
+    @RequestMapping(value = "/get/caiji/{id}", method = RequestMethod.GET)
+    public Result getCaiji(HttpSession session, @PathVariable("id") String id) {
+        return jianKangService.getCaiji(session, id);
     }
 
     @ResponseBody
     @RequestMapping(value = "/post/caiji", method = RequestMethod.POST)
     public Result postCaiji(HttpSession session, @ModelAttribute Caiji caiji) {
-        return jianKangService.editCaiji(session, caiji);
+        return jianKangService.createCaiji(session, caiji);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/delete/caiji", method = RequestMethod.DELETE)
-    public Result deleteCaiji(HttpSession session, String ids) {
-        return jianKangService.deleteCaiji(session, ids);
+    @RequestMapping(value = "/put/caiji", method = RequestMethod.PUT)
+    public Result putCaiji(HttpSession session, @ModelAttribute Caiji caiji) {
+        return jianKangService.updateCaiji(session, caiji);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete/caiji/{id}", method = RequestMethod.DELETE)
+    public Result deleteCaiji(HttpSession session, @PathVariable("id") String id) {
+        return jianKangService.deleteCaiji(session, id);
     }
 }
