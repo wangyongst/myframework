@@ -28,7 +28,7 @@ public class FrameworkController {
     }
 
     //注销
-    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpSession session) {
         frameworkService.logout(session);
         return new ModelAndView("login");

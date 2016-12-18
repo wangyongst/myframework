@@ -109,7 +109,7 @@ public class FrameworkServiceImpl implements FrameworkService {
         map.put("settings", settings);
         Menu logout = new Menu();
         logout.setName("退出登录");
-        logout.setUrl("user/logout.do");
+        logout.setUrl("framework/logout.do");
         map.put("logout", logout);
         return map;
     }
