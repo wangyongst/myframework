@@ -41,7 +41,7 @@ $(function () {
         $('#putJiashuidInput').attr("readonly", "readonly");
         $('#putJiashulaorenidInput').attr("readonly", "readonly");
         $('#putJiashulaorennameInput').attr("readonly", "readonly");
-        $('#putJiashuModal').find('.modal-title').text('修改老人信息');
+        $('#putJiashuModal').find('.modal-title').text('修改老人家属信息');
         $('#putJiashuModal').modal('toggle');
         $("#putJiashuAlert").hide();
     }

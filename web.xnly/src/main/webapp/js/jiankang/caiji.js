@@ -69,7 +69,7 @@ $(function () {
         $('#putCaijiidInput').val(caiji.id);
         $('#putCaijilaorenidInput').val(caiji.laorenid);
         $('#putCaijilaorennameInput').val(caiji.laorenname);
-        $('#putCaijiModal').find('.modal-title').text('采集老人健康数据');
+        $('#putCaijiModal').find('.modal-title').text('修改老人健康数据');
         $('#putCaijiModal').modal('toggle');
     }
 

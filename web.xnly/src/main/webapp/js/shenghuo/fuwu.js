@@ -66,7 +66,7 @@ $(function () {
         $('#putFuwulaorennameInput').attr("readonly", "readonly");
         $('#putFuwulaorenidInput').val(fuwu.laorenid);
         $('#putFuwulaorennameInput').val(fuwu.laorenname);
-        $('#putFuwuModal').find('.modal-title').text('采集老人健康数据');
+        $('#putFuwuModal').find('.modal-title').text('修改老人需求或服务记录');
         $('#putFuwuModal').modal('toggle');
     }
 
@@ -78,7 +78,7 @@ $(function () {
         $('#postFuwulaorennameInput').attr("readonly", "readonly");
         $('#postFuwulaorenidInput').val(laoren.id);
         $('#postFuwulaorennameInput').val(laoren.name);
-        $('#postFuwuModal').find('.modal-title').text('采集老人健康数据');
+        $('#postFuwuModal').find('.modal-title').text('添加老人需求或服务记录');
         $('#postFuwuModal').modal('toggle');
     }
 
