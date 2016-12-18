@@ -6,7 +6,9 @@
     <title>西宁乐缘综合养老管理平台-登录</title>
     <script type="text/javascript">
         $(function () {
+
             makeAlert($("#alertA"));
+
             $("#login").click(function () {
                 $.ajax({
                     type: "POST",
@@ -18,10 +20,10 @@
                         showAlert($("#alertA"), "danger");
                     },
                     success: function (result) {
-                        if (result.status != 0) {
-                            showAlert($("#alertA"), "warning", result.message);
-                        } else {
+                        if (result.status == 1) {
                             window.location.href = "<%=basePath%>framework/home.do";
+                        } else {
+                            showAlert($("#alertA"), "warning", result.message);
                         }
                     }
                 });
@@ -41,7 +43,7 @@
         <div class="login-panel panel panel-default">
             <div class="panel-heading">欢迎登录本系统，请输入您的用户名及密码！</div>
             <div class="panel-body">
-                <form role="form" id = "userForm">
+                <form role="form" id="userForm">
                     <fieldset>
                         <div class="form-group">
                             <input class="form-control" placeholder="用户名" name="username" type="text" autofocus="true">

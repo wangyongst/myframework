@@ -150,7 +150,7 @@ public class XiTongServiceImpl implements XiTongService {
         }
         UserExample example = new UserExample();
         example.createCriteria().andUsernameEqualTo(user.getUsername());
-        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size(), null)) {
+        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size())) {
             return result;
         }
         User create = (User) session.getAttribute("user");
@@ -168,9 +168,8 @@ public class XiTongServiceImpl implements XiTongService {
             return result;
         }
         UserExample example = new UserExample();
-        example.createCriteria().andUsernameEqualTo(user.getUsername());
-        example.or(example.createCriteria().andIdEqualTo(user.getId()));
-        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size(), "update")) {
+        example.createCriteria().andUsernameEqualTo(user.getUsername()).andIdNotEqualTo(user.getId());
+        if (ServiceUtils.isNotUnique(result, userMapper.selectByExample(example).size())) {
             return result;
         }
         return ServiceUtils.isCRUDOK("update", new Result(), userMapper.updateByPrimaryKeySelective(user));

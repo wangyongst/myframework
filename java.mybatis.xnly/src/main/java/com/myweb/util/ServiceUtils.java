@@ -12,22 +12,56 @@ public class ServiceUtils {
 
     //status说明
     //0，未选择
-    //1，正确结果
+    //1，正常结果或对象结果
     //2，系统异常
     //3，选择了多条记录
     //4，保存条件己存在
     //5, 必须值不能为空
     //6, 查询结果为空
+    //7, List结果
+
+    public static void isNotSelect(Result result) {
+        result.setStatus(0);
+        result.setMessage("您未选择记录，请先至少选择一条记录！");
+    }
+
+    public static void isNotOK(Result result) {
+        result.setStatus(2);
+        result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
+    }
+
+    public static void isMultiSelect(Result result) {
+        result.setStatus(3);
+        result.setMessage("本操作只可选择一条记录，您选择了多条记录！");
+    }
+
+    public static void isExist(Result result) {
+        result.setStatus(4);
+        result.setMessage("必须值不唯一！请重新填写表单的必须项！");
+    }
+
+    public static void isBlank(Result result) {
+        result.setStatus(5);
+        result.setMessage("必须值不能为空！请重新填写表单的必须项！");
+    }
+
+    public static void isZero(Result result) {
+        result.setStatus(6);
+        result.setMessage("没有查询到相关记录，请重试！");
+    }
+
+
+    public static void isListResult(Result result) {
+        result.setStatus(6);
+    }
 
     public static boolean isOnlyOneId(Result result, String id) {
         if (isIds(result, id)) {
             TreeSet<String> set = (TreeSet<String>) result.getData();
             if (set.size() < 1) {
-                result.setStatus(0);
-                result.setMessage("请先至少选择一条记录！");
+                isNotSelect(result);
             } else if (set.size() > 1) {
-                result.setStatus(3);
-                result.setMessage("本操作只可选择一条记录，您选择了多条记录！");
+                isMultiSelect(result);
             } else {
                 result.setData(Integer.parseInt(set.first()));
                 return true;
@@ -39,20 +73,15 @@ public class ServiceUtils {
 
     public static boolean isBlankValue(Result result, String value) {
         if (StringUtils.isBlank(value)) {
-            result.setStatus(5);
-            result.setMessage("必须值不能为空！请重新填写表单的必须项！");
+            isBlank(result);
             return true;
         }
         return false;
     }
 
-    public static boolean isNotUnique(Result result, int size, String crud) {
+    public static boolean isNotUnique(Result result, int size) {
         if (size > 0) {
-            if (size == 1 && StringUtils.isNotBlank(crud) && crud.equals("update")) {
-                return false;
-            }
-            result.setStatus(4);
-            result.setMessage("必须值不唯一！请重新填写表单的必须项！");
+            isExist(result);
             return true;
         }
         return false;
@@ -60,13 +89,14 @@ public class ServiceUtils {
 
     public static boolean isIds(Result result, String id) {
         if (StringUtils.isBlank(id)) {
-            result.setStatus(0);
-            result.setMessage("请先至少选择一条记录！");
+            isNotSelect(result);
         } else {
             TreeSet<String> treeSet = new TreeSet<String>(Arrays.asList(id.split(",")));
             treeSet.remove("");
-            result.setData(treeSet);
-            return true;
+            if (treeSet.size() > 0) {
+                result.setData(treeSet);
+                return true;
+            }
         }
         return false;
     }
@@ -78,6 +108,8 @@ public class ServiceUtils {
             isUpdateOK(result, count);
         } else if (crud.equals("create")) {
             isCreateOK(result, count);
+        } else {
+            isNotOK(result);
         }
         return result;
     }
@@ -87,7 +119,8 @@ public class ServiceUtils {
         if (count != 0) {
             result.setMessage("您修改/更新了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            return isNotOK(result);
+            isNotOK(result);
+            return false;
         }
         return true;
     }
@@ -96,7 +129,8 @@ public class ServiceUtils {
         if (count != 0) {
             result.setMessage("您添加/创建了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            return isNotOK(result);
+            isNotOK(result);
+            return false;
         }
         return true;
     }
@@ -105,7 +139,8 @@ public class ServiceUtils {
         if (count != 0) {
             result.setMessage("您删除了" + NumberFormatUtils.formatInteger(count) + "条记录");
         } else {
-            return isNotOK(result);
+            isNotOK(result);
+            return false;
         }
         return true;
     }
@@ -113,29 +148,37 @@ public class ServiceUtils {
 
     public static boolean isReseachOK(Result result, Object object) {
         if (object == null) {
-            return isNotOK(result);
+            isNotOK(result);
         } else {
             for (Field f : object.getClass().getDeclaredFields()) {
                 f.setAccessible(true);
                 try {
-                    if (f.getName().equals("id") && (Integer) f.get(object) == 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
-                        result.setStatus(6);
-                        result.setMessage("没有查询到相关记录，请重试！");
+                    if (f.getName().equals("id") && (int) f.get(object) != 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
+                        result.setData(object);
                         return true;
                     }
                 } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                    return isNotOK(result);
+                    isNotOK(result);
                 }
             }
-            result.setData(object);
+            isZero(result);
         }
-        return true;
+        return false;
     }
 
-    public static boolean isNotOK(Result result) {
-        result.setStatus(2);
-        result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
-        return true;
+
+    public static boolean isReseachListOK(Result result, List list) {
+        if (list == null) {
+            isNotOK(result);
+        } else if (list.size() == 0) {
+            isZero(result);
+        } else if (list.size() == 1) {
+            return isReseachOK(result, list.get(0));
+        } else {
+            result.setData(list);
+            isListResult(result);
+            return true;
+        }
+        return false;
     }
 }

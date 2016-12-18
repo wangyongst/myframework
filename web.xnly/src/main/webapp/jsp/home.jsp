@@ -4,6 +4,39 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "GET",
+                cache: "true",
+                url: "framework/get/menus.do?parent=0",
+                dataType: "json",
+                success: function (result) {
+                    if (result.status == 6) {
+                        result.data.forEach(function (e) {
+                            $("#navmenu").find(".parent").append("<a data-toggle='collapse' href='#sub-item-" + e.id + "'><span class='glyphicon glyphicon-list'></span>" + e.name + "<span data-toggle='collapse' href='#sub-item-" + e.id + "' class= 'icon pull-right'><em class='glyphicon glyphicon-s glyphicon-plus'></em></span></a><ul class='children collapse' id='sub-item-" + e.id + "'></ul>");
+                            createChildren(e.id);
+                        })
+                    }
+                }
+            });
+        });
+
+
+        function createChildren(parentId) {
+            $.ajax({
+                type: "GET",
+                cache: "true",
+                url: "framework/get/menus.do?parent=" + parentId,
+                dataType: "json",
+                success: function (result) {
+                    if (result.status == 6) {
+                        result.data.forEach(function (e) {
+                            $("#sub-item-" + parentId).append("<li><a class=\"\" href=\"javascript:void(0);\" onclick=\"javascript:getRight('" + e.url + "');\"><span class=\"glyphicon glyphicon-share-alt\"></span>" + e.name + "</a></li>");
+                        });
+                    }
+                }
+            });
+        }
 
         function reinitIframe() {
             var iframe = document.getElementById("right");
@@ -15,11 +48,13 @@
             } catch (ex) {
             }
         }
+
         window.setInterval("reinitIframe()", 200);
 
         function getRight(url) {
             document.getElementById("right").src = url;
         }
+
         !function ($) {
             $(document).on("click", "ul.nav li.parent > a", function () {
                 $(this).find('em:first').toggleClass("glyphicon-minus");
@@ -33,6 +68,7 @@
         $(window).on('resize', function () {
             if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
         })
+
     </script>
 
 </head>
@@ -73,29 +109,9 @@
             <input type="text" class="form-control" placeholder="Search">
         </div>
     </form>
-    <ul class="nav menu">
+    <ul class="nav menu" id="navmenu">
         <li class="active"><a href="framework/home.do"><span class="glyphicon glyphicon-dashboard"></span>我的首页</a></li>
-        <li class="parent ">
-            <c:forEach var="item" items="${parent}">
-                <a data-toggle="collapse" href="#sub-item-${item.id}">
-                    <span class="glyphicon glyphicon-list"></span> ${item.name}<span data-toggle="collapse"
-                                                                                     href="#sub-item-${item.id}"
-                                                                                     class="icon pull-right"><em
-                        class="glyphicon glyphicon-s glyphicon-plus"></em></span>
-                </a>
-                <ul class="children collapse" id="sub-item-${item.id}">
-                    <c:forEach var="it" items="${children}">
-                        <c:if test="${it.parent == item.id}">
-                            <li>
-                                <a class="" href="javascript:void(0);" onclick="getRight('${it.url}');">
-                                    <span class="glyphicon glyphicon-share-alt"></span> ${it.name}
-                                </a>
-                            </li>
-                        </c:if>
-                    </c:forEach>
-                </ul>
-            </c:forEach>
-        </li>
+        <li class="parent "></li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div><!--/.sidebar-->

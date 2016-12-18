@@ -1,5 +1,6 @@
 package com.myweb.service.xnly;
 
+import com.myweb.pojo.mybatis.Menu;
 import com.myweb.pojo.mybatis.Shuxing;
 import com.myweb.pojo.mybatis.User;
 import com.myweb.util.Result;
@@ -14,7 +15,7 @@ public interface FrameworkService {
 
     Result logout(HttpSession session);
 
-    Map<String, Object> getMyMenus(HttpSession session);
+    Result getMenus(HttpSession session,Menu menu);
 
     Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map);
 
@@ -24,10 +25,8 @@ public interface FrameworkService {
 
     Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map, String title, String tableTitle);
 
-    Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName, String name);
+    Result getShuxings(HttpSession session, String name);
 
-    Result getShuxing(HttpSession session, String name);
-
-    Result getTableinfo(HttpSession session, String tableName, boolean notTable);
+    Result getTableinfos(HttpSession session, String tableName, boolean notTable);
 
 }

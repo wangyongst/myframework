@@ -4,6 +4,7 @@ import com.myweb.dao.mybatis.*;
 import com.myweb.pojo.mybatis.*;
 import com.myweb.service.xnly.FrameworkService;
 import com.myweb.util.Result;
+import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,13 +50,7 @@ public class FrameworkServiceImpl implements FrameworkService {
         example.createCriteria().andUsernameEqualTo(user.getUsername()).andPasswordEqualTo(user.getPassword());
         List<User> userList = userMapper.selectByExample(example);
         Result result = new Result();
-        if (userList.size() == 0) {
-            result.setMessage("用户名或密码错误，请重新检查您的输入！");
-        } else if (userList.size() > 1) {
-            result.setStatus(2);
-            result.setMessage("你的账号有异常，请发送邮件到：331527770@qq.com联系管理员处理！");
-        } else {
-            result.setStatus(0);
+        if (ServiceUtils.isReseachListOK(result, userList)) {
             session.setAttribute("user", userList.get(0));
         }
         return result;
@@ -64,17 +59,14 @@ public class FrameworkServiceImpl implements FrameworkService {
 
     public Result logout(HttpSession session) {
         session.removeAttribute("user");
-        return null;
+        return new Result();
     }
 
     @Override
-    public Map<String, Object> getMyMenus(HttpSession session) {
-        Map map = new HashMap<String, String>();
-        MenuExample parent = new MenuExample();
-        MenuExample children = new MenuExample();
+    public Result getMenus(HttpSession session,Menu menu) {
+        Result result = new Result();
+        MenuExample example = new MenuExample();
         User user = (User) session.getAttribute("user");
-        MenuExample.Criteria parentCriteria = parent.createCriteria();
-        MenuExample.Criteria childrenCriteria = children.createCriteria();
         if (!user.getUsername().equals("super")) {
             Role2menuExample u2mExapmle = new Role2menuExample();
             u2mExapmle.createCriteria().andRoleEqualTo(user.getRole());
@@ -83,16 +75,13 @@ public class FrameworkServiceImpl implements FrameworkService {
             for (Role2menu u2m : u2mList) {
                 value.add(u2m.getMenuid());
             }
-            parentCriteria.andIdIn(value);
-            childrenCriteria.andIdIn(value);
+            example.createCriteria().andIdIn(value).andParentEqualTo(menu.getParent().intValue());
+        }else {
+            example.createCriteria().andParentEqualTo(menu.getParent().intValue());
         }
-        parentCriteria.andParentEqualTo(0);
-        childrenCriteria.andParentNotEqualTo(0);
-        parent.setOrderByClause("shunxu");
-        children.setOrderByClause("shunxu");
-        map.put("parent", menuMapper.selectByExample(parent));
-        map.put("children", menuMapper.selectByExample(children));
-        return map;
+        example.setOrderByClause("shunxu");
+        ServiceUtils.isReseachListOK(result,menuMapper.selectByExample(example));
+        return result;
     }
 
     @Override
@@ -140,32 +129,20 @@ public class FrameworkServiceImpl implements FrameworkService {
         return map;
     }
 
-
     @Override
-    public Map<String, Object> getColumnsShuxingMap(HttpSession session, Map<String, Object> map, String columnName, String name) {
-        if (StringUtils.isNotBlank(columnName) && StringUtils.isNotBlank(name)) {
-            ShuxingExample shuxingExample = new ShuxingExample();
-            shuxingExample.createCriteria().andNameEqualTo(name);
-            shuxingExample.setOrderByClause("shunxu");
-            map.put(columnName, shuxingMapper.selectByExample(shuxingExample));
-        }
-        return map;
-    }
-
-    @Override
-    public Result getShuxing(HttpSession session, String name) {
+    public Result getShuxings(HttpSession session, String name) {
         Result result = new Result();
         if (StringUtils.isNotBlank(name)) {
             ShuxingExample shuxingExample = new ShuxingExample();
             shuxingExample.createCriteria().andNameEqualTo(name);
             shuxingExample.setOrderByClause("shunxu");
-            result.setData(shuxingMapper.selectByExample(shuxingExample));
+            ServiceUtils.isReseachListOK(result, shuxingMapper.selectByExample(shuxingExample));
         }
         return result;
     }
 
     @Override
-    public Result getTableinfo(HttpSession session, String tablename, boolean notTable) {
+    public Result getTableinfos(HttpSession session, String tablename, boolean notTable) {
         Result result = new Result();
         TableinfoExample tableinfoExample = new TableinfoExample();
         if (!notTable) {
@@ -174,7 +151,7 @@ public class FrameworkServiceImpl implements FrameworkService {
             tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andModaldisableIsNull();
         }
         tableinfoExample.setOrderByClause("shunxu");
-        result.setData(tableinfoMapper.selectByExample(tableinfoExample));
+        ServiceUtils.isReseachListOK(result, tableinfoMapper.selectByExample(tableinfoExample));
         return result;
     }
 
