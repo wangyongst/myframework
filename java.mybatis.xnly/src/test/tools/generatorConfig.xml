@@ -48,7 +48,7 @@
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="com.myweb.dao"
+        <javaClientGenerator targetPackage="com.myweb.dao.mybatis.mapper"
                              targetProject="../../main/java" type="XMLMAPPER">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="false"/>

@@ -1,7 +1,6 @@
 package com.myweb.service.impl;
 
 import com.myweb.dao.ShengHuoDao;
-import com.myweb.dao.jpa.hibernate.FuwuRepository;
 import com.myweb.pojo.Fuwu;
 import com.myweb.pojo.User;
 import com.myweb.service.ShengHuoService;
@@ -9,7 +8,6 @@ import com.myweb.util.DateUtils;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Service("shenghuoService")
+@Service("shengHuoService")
 @Transactional(value = "myTM", readOnly = true)
 public class ShengHuoServiceImpl implements ShengHuoService {
 
