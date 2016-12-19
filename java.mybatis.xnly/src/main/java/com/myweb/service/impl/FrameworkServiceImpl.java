@@ -1,8 +1,8 @@
-package com.myweb.service.xnly.impl;
+package com.myweb.service.impl;
 
 import com.myweb.dao.*;
 import com.myweb.pojo.*;
-import com.myweb.service.xnly.FrameworkService;
+import com.myweb.service.FrameworkService;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;

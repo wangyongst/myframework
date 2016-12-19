@@ -1,10 +1,10 @@
-package com.myweb.service.xnly.impl;
+package com.myweb.service.impl;
 
 import com.myweb.dao.JiashuMapper;
 import com.myweb.dao.LaorenMapper;
 import com.myweb.dao.UserMapper;
 import com.myweb.pojo.*;
-import com.myweb.service.xnly.XiTongService;
+import com.myweb.service.XiTongService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.Page;
 import com.myweb.util.Result;

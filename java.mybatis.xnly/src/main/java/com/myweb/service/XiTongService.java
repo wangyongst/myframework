@@ -1,4 +1,4 @@
-package com.myweb.service.xnly;
+package com.myweb.service;
 
 
 import com.myweb.pojo.Jiashu;

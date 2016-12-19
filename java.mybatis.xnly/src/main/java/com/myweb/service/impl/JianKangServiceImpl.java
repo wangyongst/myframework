@@ -1,4 +1,4 @@
-package com.myweb.service.xnly.impl;
+package com.myweb.service.impl;
 
 import com.myweb.dao.CaijiMapper;
 import com.myweb.dao.LaorenMapper;
@@ -7,7 +7,7 @@ import com.myweb.pojo.Caiji;
 import com.myweb.pojo.CaijiExample;
 import com.myweb.pojo.Laoren;
 import com.myweb.pojo.User;
-import com.myweb.service.xnly.JianKangService;
+import com.myweb.service.JianKangService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.ServiceUtils;
 import com.myweb.util.Result;

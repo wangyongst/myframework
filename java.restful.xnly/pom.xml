@@ -47,7 +47,7 @@
 
         <dependency>
             <groupId>com.myweb</groupId>
-            <artifactId>java.jpa.xnly</artifactId>
+            <artifactId>java.mybatis.xnly</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
