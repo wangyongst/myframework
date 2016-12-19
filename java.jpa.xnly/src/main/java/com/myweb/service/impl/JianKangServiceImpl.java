@@ -30,7 +30,7 @@ public class JianKangServiceImpl implements JianKangService {
     public Result getCaiji(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result, caijiMapper.getOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, caijiMapper.findOne((Integer) result.getData()));
         }
         return result;
     }

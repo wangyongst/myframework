@@ -1,16 +1,13 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class User {
-    private int id;
+    private Integer id;
     private String name;
     private String username;
     private String password;
@@ -20,17 +17,18 @@ public class User {
     private String createtime;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -40,7 +38,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = true, length = 255)
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -50,7 +48,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = true, length = 255)
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -60,7 +58,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "createuser", nullable = true)
+    @Column(name = "createuser")
     public Integer getCreateuser() {
         return createuser;
     }
@@ -70,7 +68,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "createusername", nullable = true, length = 255)
+    @Column(name = "createusername")
     public String getCreateusername() {
         return createusername;
     }
@@ -80,7 +78,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "role", nullable = true, length = 255)
+    @Column(name = "role")
     public String getRole() {
         return role;
     }
@@ -90,7 +88,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "createtime", nullable = true, length = 255)
+    @Column(name = "createtime")
     public String getCreatetime() {
         return createtime;
     }
@@ -106,7 +104,7 @@ public class User {
 
         User user = (User) o;
 
-        if (id != user.id) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
@@ -120,7 +118,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);

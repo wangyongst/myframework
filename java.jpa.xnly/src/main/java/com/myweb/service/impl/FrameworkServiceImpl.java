@@ -8,6 +8,7 @@ import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,9 +104,9 @@ public class FrameworkServiceImpl implements FrameworkService {
             Tableinfo tableinfo = new Tableinfo();
             tableinfo.setTablename(tablename);
             if (isTable) {
-                tableinfo.setTabledisable(1);
+                tableinfo.setTabledisable(0);
             } else {
-                tableinfo.setModaldisable(1);
+                tableinfo.setModaldisable(0);
             }
             map.put(columns, tableinfoMapper.findAll(Example.of(tableinfo), new Sort(Sort.Direction.ASC, "shunxu")));
         }
@@ -130,11 +131,11 @@ public class FrameworkServiceImpl implements FrameworkService {
             Tableinfo tableinfo = new Tableinfo();
             tableinfo.setTablename(tablename);
             if (!notTable) {
-                tableinfo.setTabledisable(1);
+                tableinfo.setTabledisable(0);
             } else {
-                tableinfo.setModaldisable(1);
+                tableinfo.setModaldisable(0);
             }
-            ServiceUtils.isReseachListOK(result, tableinfoMapper.findAll(Example.of(tableinfo), new Sort(Sort.Direction.ASC, "shunxu")));
+            ServiceUtils.isReseachListOK(result, tableinfoMapper.findAll(Example.of(tableinfo, ExampleMatcher.matching().withIgnorePaths("id")), new Sort(Sort.Direction.ASC, "shunxu")));
         } else {
             ServiceUtils.isBlank(result);
         }

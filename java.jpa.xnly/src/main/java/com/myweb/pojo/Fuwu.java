@@ -1,16 +1,13 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Fuwu {
-    private int id;
+    private Integer id;
     private Integer laorenid;
     private String laorenname;
     private String xiangmu;
@@ -22,17 +19,18 @@ public class Fuwu {
     private String createtime;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "laorenid", nullable = true)
+    @Column(name = "laorenid")
     public Integer getLaorenid() {
         return laorenid;
     }
@@ -42,7 +40,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "laorenname", nullable = true, length = 255)
+    @Column(name = "laorenname")
     public String getLaorenname() {
         return laorenname;
     }
@@ -52,7 +50,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "xiangmu", nullable = true, length = 255)
+    @Column(name = "xiangmu")
     public String getXiangmu() {
         return xiangmu;
     }
@@ -62,7 +60,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "shuoming", nullable = true, length = 255)
+    @Column(name = "shuoming")
     public String getShuoming() {
         return shuoming;
     }
@@ -72,7 +70,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "time", nullable = true, length = 255)
+    @Column(name = "time")
     public String getTime() {
         return time;
     }
@@ -82,7 +80,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "fuwutype", nullable = true, length = 255)
+    @Column(name = "fuwutype")
     public String getFuwutype() {
         return fuwutype;
     }
@@ -92,7 +90,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "createuser", nullable = true)
+    @Column(name = "createuser")
     public Integer getCreateuser() {
         return createuser;
     }
@@ -102,7 +100,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "createusername", nullable = true, length = 255)
+    @Column(name = "createusername")
     public String getCreateusername() {
         return createusername;
     }
@@ -112,7 +110,7 @@ public class Fuwu {
     }
 
     @Basic
-    @Column(name = "createtime", nullable = true, length = 255)
+    @Column(name = "createtime")
     public String getCreatetime() {
         return createtime;
     }
@@ -128,7 +126,7 @@ public class Fuwu {
 
         Fuwu fuwu = (Fuwu) o;
 
-        if (id != fuwu.id) return false;
+        if (id != null ? !id.equals(fuwu.id) : fuwu.id != null) return false;
         if (laorenid != null ? !laorenid.equals(fuwu.laorenid) : fuwu.laorenid != null) return false;
         if (laorenname != null ? !laorenname.equals(fuwu.laorenname) : fuwu.laorenname != null) return false;
         if (xiangmu != null ? !xiangmu.equals(fuwu.xiangmu) : fuwu.xiangmu != null) return false;
@@ -144,7 +142,7 @@ public class Fuwu {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (laorenid != null ? laorenid.hashCode() : 0);
         result = 31 * result + (laorenname != null ? laorenname.hashCode() : 0);
         result = 31 * result + (xiangmu != null ? xiangmu.hashCode() : 0);

@@ -1,33 +1,31 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Menu {
-    private int id;
+    private Integer id;
     private String name;
     private String url;
     private Integer parent;
     private Integer shunxu;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -37,7 +35,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "url", nullable = true, length = 255)
+    @Column(name = "url")
     public String getUrl() {
         return url;
     }
@@ -47,7 +45,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "parent", nullable = true)
+    @Column(name = "parent")
     public Integer getParent() {
         return parent;
     }
@@ -57,7 +55,7 @@ public class Menu {
     }
 
     @Basic
-    @Column(name = "shunxu", nullable = true)
+    @Column(name = "shunxu")
     public Integer getShunxu() {
         return shunxu;
     }
@@ -73,7 +71,7 @@ public class Menu {
 
         Menu menu = (Menu) o;
 
-        if (id != menu.id) return false;
+        if (id != null ? !id.equals(menu.id) : menu.id != null) return false;
         if (name != null ? !name.equals(menu.name) : menu.name != null) return false;
         if (url != null ? !url.equals(menu.url) : menu.url != null) return false;
         if (parent != null ? !parent.equals(menu.parent) : menu.parent != null) return false;
@@ -84,7 +82,7 @@ public class Menu {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (parent != null ? parent.hashCode() : 0);

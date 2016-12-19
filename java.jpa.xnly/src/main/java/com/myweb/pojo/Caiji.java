@@ -1,17 +1,14 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Caiji {
-    private int id;
+    private Integer id;
     private Integer laorenid;
     private String laorenname;
     private Integer gaoya;
@@ -29,17 +26,18 @@ public class Caiji {
     private String createtime;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id" )
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "laorenid", nullable = true)
+    @Column(name = "laorenid")
     public Integer getLaorenid() {
         return laorenid;
     }
@@ -49,7 +47,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "laorenname", nullable = true, length = 255)
+    @Column(name = "laorenname")
     public String getLaorenname() {
         return laorenname;
     }
@@ -59,7 +57,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "gaoya", nullable = true)
+    @Column(name = "gaoya")
     public Integer getGaoya() {
         return gaoya;
     }
@@ -69,7 +67,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "diya", nullable = true)
+    @Column(name = "diya")
     public Integer getDiya() {
         return diya;
     }
@@ -79,7 +77,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "xuetang", nullable = true, precision = 2)
+    @Column(name = "xuetang")
     public BigDecimal getXuetang() {
         return xuetang;
     }
@@ -89,7 +87,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "maibo", nullable = true)
+    @Column(name = "maibo")
     public Integer getMaibo() {
         return maibo;
     }
@@ -99,7 +97,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "xueyang", nullable = true)
+    @Column(name = "xueyang")
     public Integer getXueyang() {
         return xueyang;
     }
@@ -109,7 +107,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "tizhong", nullable = true, precision = 2)
+    @Column(name = "tizhong")
     public BigDecimal getTizhong() {
         return tizhong;
     }
@@ -119,7 +117,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "shengao", nullable = true)
+    @Column(name = "shengao")
     public Integer getShengao() {
         return shengao;
     }
@@ -129,7 +127,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "bmi", nullable = true, precision = 2)
+    @Column(name = "bmi")
     public BigDecimal getBmi() {
         return bmi;
     }
@@ -139,7 +137,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "huxi", nullable = true)
+    @Column(name = "huxi")
     public Integer getHuxi() {
         return huxi;
     }
@@ -149,7 +147,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "time", nullable = true, length = 255)
+    @Column(name = "time")
     public String getTime() {
         return time;
     }
@@ -159,7 +157,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createuser", nullable = true)
+    @Column(name = "createuser")
     public Integer getCreateuser() {
         return createuser;
     }
@@ -169,7 +167,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createusername", nullable = true, length = 255)
+    @Column(name = "createusername")
     public String getCreateusername() {
         return createusername;
     }
@@ -179,7 +177,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createtime", nullable = true, length = 255)
+    @Column(name = "createtime")
     public String getCreatetime() {
         return createtime;
     }
@@ -195,7 +193,7 @@ public class Caiji {
 
         Caiji caiji = (Caiji) o;
 
-        if (id != caiji.id) return false;
+        if (id != null ? !id.equals(caiji.id) : caiji.id != null) return false;
         if (laorenid != null ? !laorenid.equals(caiji.laorenid) : caiji.laorenid != null) return false;
         if (laorenname != null ? !laorenname.equals(caiji.laorenname) : caiji.laorenname != null) return false;
         if (gaoya != null ? !gaoya.equals(caiji.gaoya) : caiji.gaoya != null) return false;
@@ -217,7 +215,7 @@ public class Caiji {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (laorenid != null ? laorenid.hashCode() : 0);
         result = 31 * result + (laorenname != null ? laorenname.hashCode() : 0);
         result = 31 * result + (gaoya != null ? gaoya.hashCode() : 0);

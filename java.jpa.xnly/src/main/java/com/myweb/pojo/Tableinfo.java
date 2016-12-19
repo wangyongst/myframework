@@ -1,16 +1,13 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Tableinfo {
-    private int id;
+    private Integer id;
     private String tablename;
     private String columnname;
     private String chinese;
@@ -20,17 +17,18 @@ public class Tableinfo {
     private Integer shunxu;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "tablename", nullable = true, length = 255)
+    @Column(name = "tablename")
     public String getTablename() {
         return tablename;
     }
@@ -40,7 +38,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "columnname", nullable = true, length = 255)
+    @Column(name = "columnname")
     public String getColumnname() {
         return columnname;
     }
@@ -50,7 +48,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "chinese", nullable = true, length = 255)
+    @Column(name = "chinese")
     public String getChinese() {
         return chinese;
     }
@@ -60,7 +58,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "tabledisable", nullable = true)
+    @Column(name = "tabledisable")
     public Integer getTabledisable() {
         return tabledisable;
     }
@@ -70,7 +68,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "modaldisable", nullable = true)
+    @Column(name = "modaldisable")
     public Integer getModaldisable() {
         return modaldisable;
     }
@@ -80,7 +78,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "type", nullable = true, length = 255)
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -90,7 +88,7 @@ public class Tableinfo {
     }
 
     @Basic
-    @Column(name = "shunxu", nullable = true)
+    @Column(name = "shunxu")
     public Integer getShunxu() {
         return shunxu;
     }
@@ -106,7 +104,7 @@ public class Tableinfo {
 
         Tableinfo tableinfo = (Tableinfo) o;
 
-        if (id != tableinfo.id) return false;
+        if (id != null ? !id.equals(tableinfo.id) : tableinfo.id != null) return false;
         if (tablename != null ? !tablename.equals(tableinfo.tablename) : tableinfo.tablename != null) return false;
         if (columnname != null ? !columnname.equals(tableinfo.columnname) : tableinfo.columnname != null) return false;
         if (chinese != null ? !chinese.equals(tableinfo.chinese) : tableinfo.chinese != null) return false;
@@ -120,7 +118,7 @@ public class Tableinfo {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (tablename != null ? tablename.hashCode() : 0);
         result = 31 * result + (columnname != null ? columnname.hashCode() : 0);
         result = 31 * result + (chinese != null ? chinese.hashCode() : 0);

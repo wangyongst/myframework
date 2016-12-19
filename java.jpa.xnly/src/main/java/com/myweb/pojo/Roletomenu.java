@@ -1,31 +1,29 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Roletomenu {
-    private int id;
+    private Integer id;
     private String role;
     private Integer menuid;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "role", nullable = true, length = 255)
+    @Column(name = "role")
     public String getRole() {
         return role;
     }
@@ -35,7 +33,7 @@ public class Roletomenu {
     }
 
     @Basic
-    @Column(name = "menuid", nullable = true)
+    @Column(name = "menuid")
     public Integer getMenuid() {
         return menuid;
     }
@@ -51,7 +49,7 @@ public class Roletomenu {
 
         Roletomenu that = (Roletomenu) o;
 
-        if (id != that.id) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (role != null ? !role.equals(that.role) : that.role != null) return false;
         if (menuid != null ? !menuid.equals(that.menuid) : that.menuid != null) return false;
 
@@ -60,7 +58,7 @@ public class Roletomenu {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (menuid != null ? menuid.hashCode() : 0);
         return result;

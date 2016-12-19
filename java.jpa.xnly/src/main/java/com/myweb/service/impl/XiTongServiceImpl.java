@@ -14,6 +14,7 @@ import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -80,7 +81,10 @@ public class XiTongServiceImpl implements XiTongService {
         if (ServiceUtils.isIds(result, id)) {
             TreeSet<String> idSet = (TreeSet<String>) result.getData();
             for (String ids : idSet) {
-                if (StringUtils.isNotBlank(ids)) laorenMapper.saveAndFlush(laoren);
+                if (StringUtils.isNotBlank(ids)) {
+                    laoren.setId(Integer.parseInt(ids));
+                    laorenMapper.saveAndFlush(laoren);
+                }
                 count++;
             }
             ServiceUtils.isCRUDOK("update", result, count);
@@ -105,7 +109,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getLaoren(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result, laorenMapper.getOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, laorenMapper.findOne((Integer) result.getData()));
         }
         return result;
     }
@@ -113,7 +117,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getUser(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result, userMapper.getOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, userMapper.findOne((Integer) result.getData()));
         }
         return result;
     }
@@ -123,7 +127,7 @@ public class XiTongServiceImpl implements XiTongService {
     public Result getJiashu(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result, jiashuMapper.getOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, jiashuMapper.findOne((Integer) result.getData()));
         }
         return result;
     }
@@ -153,7 +157,7 @@ public class XiTongServiceImpl implements XiTongService {
         if (ServiceUtils.isBlankValue(result, user.getUsername())) {
             return result;
         }
-        if (ServiceUtils.isNotUnique(result, userMapper.findAll(Example.of(user)).size())) {
+        if (ServiceUtils.isNotUnique(result, userMapper.findByUsername(user.getUsername()).size())) {
             return result;
         }
         User create = (User) session.getAttribute("user");

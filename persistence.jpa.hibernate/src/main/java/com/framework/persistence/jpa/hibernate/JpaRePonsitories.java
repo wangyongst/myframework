@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * Created by BHWL on 2016-12-19.
  */
 @Configuration
-@EnableJpaRepositories(basePackages = "com.myweb.repository", repositoryImplementationPostfix = "Impl", entityManagerFactoryRef = "myEMF", transactionManagerRef = "myTM")
+@EnableJpaRepositories(basePackages = "com.myweb.dao", repositoryImplementationPostfix = "Impl", entityManagerFactoryRef = "myEMF", transactionManagerRef = "myTM")
 @Order(3)
 public class JpaReponsitories {
 }

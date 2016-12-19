@@ -1,16 +1,13 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Jiashu {
-    private int id;
+    private Integer id;
     private Integer laorenid;
     private String laorenname;
     private String name;
@@ -22,17 +19,18 @@ public class Jiashu {
     private String createtime;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "laorenid", nullable = true)
+    @Column(name = "laorenid")
     public Integer getLaorenid() {
         return laorenid;
     }
@@ -42,7 +40,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "laorenname", nullable = true, length = 255)
+    @Column(name = "laorenname")
     public String getLaorenname() {
         return laorenname;
     }
@@ -52,7 +50,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -62,7 +60,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "telphone", nullable = true, length = 255)
+    @Column(name = "telphone")
     public String getTelphone() {
         return telphone;
     }
@@ -72,7 +70,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "mobile", nullable = true, length = 255)
+    @Column(name = "mobile")
     public String getMobile() {
         return mobile;
     }
@@ -82,7 +80,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "guanxi", nullable = true, length = 255)
+    @Column(name = "guanxi")
     public String getGuanxi() {
         return guanxi;
     }
@@ -92,7 +90,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "createuser", nullable = true)
+    @Column(name = "createuser")
     public Integer getCreateuser() {
         return createuser;
     }
@@ -102,7 +100,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "createusername", nullable = true, length = 255)
+    @Column(name = "createusername")
     public String getCreateusername() {
         return createusername;
     }
@@ -112,7 +110,7 @@ public class Jiashu {
     }
 
     @Basic
-    @Column(name = "createtime", nullable = true, length = 255)
+    @Column(name = "createtime")
     public String getCreatetime() {
         return createtime;
     }
@@ -128,7 +126,7 @@ public class Jiashu {
 
         Jiashu jiashu = (Jiashu) o;
 
-        if (id != jiashu.id) return false;
+        if (id != null ? !id.equals(jiashu.id) : jiashu.id != null) return false;
         if (laorenid != null ? !laorenid.equals(jiashu.laorenid) : jiashu.laorenid != null) return false;
         if (laorenname != null ? !laorenname.equals(jiashu.laorenname) : jiashu.laorenname != null) return false;
         if (name != null ? !name.equals(jiashu.name) : jiashu.name != null) return false;
@@ -144,7 +142,7 @@ public class Jiashu {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (laorenid != null ? laorenid.hashCode() : 0);
         result = 31 * result + (laorenname != null ? laorenname.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);

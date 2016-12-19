@@ -29,7 +29,7 @@ public class ShenghuoServiceImpl implements ShenghuoService {
     public Result getFuwu(HttpSession session, String ids) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, ids)) {
-            ServiceUtils.isReseachOK(result, fuwuMapper.getOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, fuwuMapper.findOne((Integer) result.getData()));
         }
         return result;
     }

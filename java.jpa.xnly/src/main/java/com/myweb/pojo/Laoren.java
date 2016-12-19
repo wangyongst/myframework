@@ -1,16 +1,13 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Laoren {
-    private int id;
+    private Integer id;
     private String name;
     private String sex;
     private Integer age;
@@ -27,17 +24,18 @@ public class Laoren {
     private String bingshi;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -47,7 +45,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "sex", nullable = true, length = 255)
+    @Column(name = "sex")
     public String getSex() {
         return sex;
     }
@@ -57,7 +55,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "age", nullable = true)
+    @Column(name = "age")
     public Integer getAge() {
         return age;
     }
@@ -67,7 +65,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "nation", nullable = true, length = 255)
+    @Column(name = "nation")
     public String getNation() {
         return nation;
     }
@@ -77,7 +75,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "birthday", nullable = true, length = 255)
+    @Column(name = "birthday")
     public String getBirthday() {
         return birthday;
     }
@@ -87,7 +85,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "idnumber", nullable = true, length = 18)
+    @Column(name = "idnumber")
     public String getIdnumber() {
         return idnumber;
     }
@@ -97,7 +95,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "address", nullable = true, length = 255)
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -107,7 +105,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "phone", nullable = true, length = 11)
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -117,7 +115,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "mobile", nullable = true, length = 11)
+    @Column(name = "mobile")
     public String getMobile() {
         return mobile;
     }
@@ -127,7 +125,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createuser", nullable = true)
+    @Column(name = "createuser")
     public Integer getCreateuser() {
         return createuser;
     }
@@ -137,7 +135,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createtime", nullable = true, length = 255)
+    @Column(name = "createtime")
     public String getCreatetime() {
         return createtime;
     }
@@ -147,7 +145,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createusername", nullable = true, length = 255)
+    @Column(name = "createusername")
     public String getCreateusername() {
         return createusername;
     }
@@ -157,7 +155,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "type", nullable = true)
+    @Column(name = "type")
     public Integer getType() {
         return type;
     }
@@ -167,7 +165,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "bingshi", nullable = true, length = 255)
+    @Column(name = "bingshi")
     public String getBingshi() {
         return bingshi;
     }
@@ -183,7 +181,7 @@ public class Laoren {
 
         Laoren laoren = (Laoren) o;
 
-        if (id != laoren.id) return false;
+        if (id != null ? !id.equals(laoren.id) : laoren.id != null) return false;
         if (name != null ? !name.equals(laoren.name) : laoren.name != null) return false;
         if (sex != null ? !sex.equals(laoren.sex) : laoren.sex != null) return false;
         if (age != null ? !age.equals(laoren.age) : laoren.age != null) return false;
@@ -204,7 +202,7 @@ public class Laoren {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);

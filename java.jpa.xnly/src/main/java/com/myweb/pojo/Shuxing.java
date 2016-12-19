@@ -1,33 +1,42 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2016-12-19.
+ * Created by wangy on 2016-12-19.
  */
 @Entity
 public class Shuxing {
-    private int id;
+    private Integer id;
+    private String chinese;
     private String name;
     private String chinesename;
     private String remark;
     private Integer shunxu;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "chinese")
+    public String getChinese() {
+        return chinese;
+    }
+
+    public void setChinese(String chinese) {
+        this.chinese = chinese;
+    }
+
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -37,7 +46,7 @@ public class Shuxing {
     }
 
     @Basic
-    @Column(name = "chinesename", nullable = true, length = 255)
+    @Column(name = "chinesename")
     public String getChinesename() {
         return chinesename;
     }
@@ -47,7 +56,7 @@ public class Shuxing {
     }
 
     @Basic
-    @Column(name = "remark", nullable = true, length = 255)
+    @Column(name = "remark")
     public String getRemark() {
         return remark;
     }
@@ -57,7 +66,7 @@ public class Shuxing {
     }
 
     @Basic
-    @Column(name = "shunxu", nullable = true)
+    @Column(name = "shunxu")
     public Integer getShunxu() {
         return shunxu;
     }
@@ -73,7 +82,8 @@ public class Shuxing {
 
         Shuxing shuxing = (Shuxing) o;
 
-        if (id != shuxing.id) return false;
+        if (id != null ? !id.equals(shuxing.id) : shuxing.id != null) return false;
+        if (chinese != null ? !chinese.equals(shuxing.chinese) : shuxing.chinese != null) return false;
         if (name != null ? !name.equals(shuxing.name) : shuxing.name != null) return false;
         if (chinesename != null ? !chinesename.equals(shuxing.chinesename) : shuxing.chinesename != null) return false;
         if (remark != null ? !remark.equals(shuxing.remark) : shuxing.remark != null) return false;
@@ -84,7 +94,8 @@ public class Shuxing {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (chinese != null ? chinese.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (chinesename != null ? chinesename.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
