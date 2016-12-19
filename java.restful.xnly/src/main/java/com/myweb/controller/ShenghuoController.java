@@ -1,6 +1,7 @@
 package com.myweb.controller;
 
 
+import com.myweb.pojo.Fuwu;
 import com.myweb.service.ShenghuoService;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;

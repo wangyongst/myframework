@@ -14,7 +14,6 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 
 @Configuration
 @PropertySource({ "classpath:/properties/jpa.properties" })
-@EnableJpaRepositories(basePackages="com.myweb.repository",repositoryImplementationPostfix="Impl",entityManagerFactoryRef="myEMF",transactionManagerRef="myTM")
 @Order(3)
 public class TransactionManager {
 

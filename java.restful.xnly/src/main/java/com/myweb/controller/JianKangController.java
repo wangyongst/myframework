@@ -1,6 +1,7 @@
 package com.myweb.controller;
 
 
+import com.myweb.pojo.Caiji;
 import com.myweb.service.JianKangService;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
