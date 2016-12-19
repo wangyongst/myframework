@@ -1,9 +1,9 @@
 package com.myweb.service.xnly.impl;
 
-import com.myweb.dao.mybatis.JiashuMapper;
-import com.myweb.dao.mybatis.LaorenMapper;
-import com.myweb.dao.mybatis.UserMapper;
-import com.myweb.pojo.mybatis.*;
+import com.myweb.dao.JiashuMapper;
+import com.myweb.dao.LaorenMapper;
+import com.myweb.dao.UserMapper;
+import com.myweb.pojo.*;
 import com.myweb.service.xnly.XiTongService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.Page;

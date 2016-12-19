@@ -1,11 +1,9 @@
 package com.myweb.service.xnly.impl;
 
-import com.myweb.dao.mybatis.CaijiMapper;
-import com.myweb.dao.mybatis.FuwuMapper;
-import com.myweb.dao.mybatis.LaorenMapper;
-import com.myweb.dao.mybatis.UserMapper;
-import com.myweb.pojo.mybatis.*;
-import com.myweb.service.xnly.JianKangService;
+import com.myweb.dao.FuwuMapper;
+import com.myweb.pojo.Fuwu;
+import com.myweb.pojo.FuwuExample;
+import com.myweb.pojo.User;
 import com.myweb.service.xnly.ShenghuoService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.Result;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service("shenghuoService")
@@ -32,7 +29,7 @@ public class ShenghuoServiceImpl implements ShenghuoService {
     public Result getFuwu(HttpSession session, String ids) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, ids)) {
-            ServiceUtils.isReseachOK(result,fuwuMapper.selectByPrimaryKey((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, fuwuMapper.selectByPrimaryKey((Integer) result.getData()));
         }
         return result;
     }

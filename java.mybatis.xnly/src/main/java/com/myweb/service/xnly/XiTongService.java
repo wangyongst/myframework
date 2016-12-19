@@ -1,9 +1,9 @@
 package com.myweb.service.xnly;
 
 
-import com.myweb.pojo.mybatis.Jiashu;
-import com.myweb.pojo.mybatis.Laoren;
-import com.myweb.pojo.mybatis.User;
+import com.myweb.pojo.Jiashu;
+import com.myweb.pojo.Laoren;
+import com.myweb.pojo.User;
 import com.myweb.util.Page;
 import com.myweb.util.Result;
 

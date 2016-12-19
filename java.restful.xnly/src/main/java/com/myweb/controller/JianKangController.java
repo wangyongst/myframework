@@ -1,11 +1,8 @@
 package com.myweb.controller;
 
 
-import com.myweb.pojo.mybatis.Caiji;
-import com.myweb.pojo.mybatis.Jiashu;
-import com.myweb.service.xnly.JianKangService;
+import com.myweb.service.JianKangService;
 import com.myweb.util.Result;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

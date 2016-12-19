@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
@@ -33,7 +34,7 @@ public class EntityManagerFactory {
 	@Qualifier("myJVA")
 	private JpaVendorAdapter jpaVendorAdapter;
 
-	@Value("${emf.packagesToScan}")
+	@Value("${jpa.packagesToScan}")
 	private String packagesToScan;
 	@Value("${hibernate.query.substitutions}")
 	private String substitutions;
@@ -76,6 +77,5 @@ public class EntityManagerFactory {
 		jpaProperties.put("hibernate.dialect", dialect);
 		entityManagerFactory.setJpaPropertyMap(jpaProperties);
 		return entityManagerFactory;
-
 	}
 }

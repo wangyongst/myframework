@@ -1,12 +1,12 @@
 package com.myweb.service.xnly.impl;
 
-import com.myweb.dao.mybatis.CaijiMapper;
-import com.myweb.dao.mybatis.LaorenMapper;
-import com.myweb.dao.mybatis.UserMapper;
-import com.myweb.pojo.mybatis.Caiji;
-import com.myweb.pojo.mybatis.CaijiExample;
-import com.myweb.pojo.mybatis.Laoren;
-import com.myweb.pojo.mybatis.User;
+import com.myweb.dao.CaijiMapper;
+import com.myweb.dao.LaorenMapper;
+import com.myweb.dao.UserMapper;
+import com.myweb.pojo.Caiji;
+import com.myweb.pojo.CaijiExample;
+import com.myweb.pojo.Laoren;
+import com.myweb.pojo.User;
 import com.myweb.service.xnly.JianKangService;
 import com.myweb.util.DateUtils;
 import com.myweb.util.ServiceUtils;

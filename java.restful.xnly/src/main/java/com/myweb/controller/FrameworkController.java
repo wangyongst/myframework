@@ -1,8 +1,6 @@
 package com.myweb.controller;
 
-import com.myweb.pojo.mybatis.Menu;
-import com.myweb.pojo.mybatis.User;
-import com.myweb.service.xnly.FrameworkService;
+import com.myweb.service.FrameworkService;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

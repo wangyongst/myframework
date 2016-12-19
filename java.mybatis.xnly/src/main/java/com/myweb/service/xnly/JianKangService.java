@@ -1,7 +1,7 @@
 package com.myweb.service.xnly;
 
 import com.myweb.util.Result;
-import com.myweb.pojo.mybatis.Caiji;
+import com.myweb.pojo.Caiji;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;

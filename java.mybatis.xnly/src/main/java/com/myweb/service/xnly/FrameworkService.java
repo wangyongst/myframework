@@ -1,8 +1,8 @@
 package com.myweb.service.xnly;
 
-import com.myweb.pojo.mybatis.Menu;
-import com.myweb.pojo.mybatis.Shuxing;
-import com.myweb.pojo.mybatis.User;
+import com.myweb.pojo.Menu;
+import com.myweb.pojo.Shuxing;
+import com.myweb.pojo.User;
 import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;

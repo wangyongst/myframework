@@ -1,10 +1,7 @@
 package com.myweb.controller;
 
-import com.myweb.pojo.mybatis.Jiashu;
-import com.myweb.pojo.mybatis.Laoren;
-import com.myweb.pojo.mybatis.User;
-import com.myweb.service.xnly.FrameworkService;
-import com.myweb.service.xnly.XiTongService;
+import com.myweb.service.FrameworkService;
+import com.myweb.service.XiTongService;
 import com.myweb.util.Page;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;

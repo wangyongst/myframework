@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 
 @Configuration
 @PropertySource({ "classpath:/properties/jpa.properties" })
+@EnableJpaRepositories(basePackages="com.myweb.repository",repositoryImplementationPostfix="Impl",entityManagerFactoryRef="myEMF",transactionManagerRef="myTM")
 @Order(3)
 public class TransactionManager {
 

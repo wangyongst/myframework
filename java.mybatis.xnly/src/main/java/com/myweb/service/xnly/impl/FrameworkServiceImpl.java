@@ -1,7 +1,7 @@
 package com.myweb.service.xnly.impl;
 
-import com.myweb.dao.mybatis.*;
-import com.myweb.pojo.mybatis.*;
+import com.myweb.dao.*;
+import com.myweb.pojo.*;
 import com.myweb.service.xnly.FrameworkService;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +62,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     }
 
     @Override
-    public Result getMenus(HttpSession session,Menu menu) {
+    public Result getMenus(HttpSession session, Menu menu) {
         Result result = new Result();
         MenuExample example = new MenuExample();
         User user = (User) session.getAttribute("user");
@@ -76,11 +75,11 @@ public class FrameworkServiceImpl implements FrameworkService {
                 value.add(u2m.getMenuid());
             }
             example.createCriteria().andIdIn(value).andParentEqualTo(menu.getParent().intValue());
-        }else {
+        } else {
             example.createCriteria().andParentEqualTo(menu.getParent().intValue());
         }
         example.setOrderByClause("shunxu");
-        ServiceUtils.isReseachListOK(result,menuMapper.selectByExample(example));
+        ServiceUtils.isReseachListOK(result, menuMapper.selectByExample(example));
         return result;
     }
 
