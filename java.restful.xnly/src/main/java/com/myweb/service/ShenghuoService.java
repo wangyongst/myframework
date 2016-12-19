@@ -1,12 +1,12 @@
 package com.myweb.service;
 
-import com.myweb.pojo.*;
+import com.myweb.pojo.Fuwu;
 import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public interface ShenghuoService {
+public interface ShengHuoService {
 
     Result getFuwu(HttpSession session, String id);
 

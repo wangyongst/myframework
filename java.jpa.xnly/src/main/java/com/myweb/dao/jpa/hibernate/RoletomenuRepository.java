@@ -1,4 +1,4 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
 import com.myweb.pojo.Laoren;
 import com.myweb.pojo.Roletomenu;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 @RepositoryDefinition(domainClass = Roletomenu.class, idClass = Integer.class)
-public interface RoletomenuMapper extends JpaRepository <Roletomenu,Integer>{
+public interface RoletomenuRepository extends JpaRepository <Roletomenu,Integer>{
 
     public List<Roletomenu>  findByRole(String role);
 }

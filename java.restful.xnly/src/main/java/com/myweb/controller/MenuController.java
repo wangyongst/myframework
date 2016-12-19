@@ -1,6 +1,6 @@
 package com.myweb.controller;
 
-import com.myweb.service.FrameworkService;
+import com.myweb.service.FrameWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping(value = "/menu")
 public class MenuController {
     @Autowired
-    public FrameworkService userService;
+    public FrameWorkService userService;
 
     //生成JSP页面
 

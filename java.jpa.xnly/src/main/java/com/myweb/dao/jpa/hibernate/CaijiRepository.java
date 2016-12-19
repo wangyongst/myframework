@@ -1,4 +1,4 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
 import com.myweb.pojo.Caiji;
 import com.myweb.pojo.Menu;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RepositoryDefinition(domainClass = Caiji.class, idClass = Integer.class)
-public interface CaijiMapper extends JpaRepository <Caiji,Integer> {
+public interface CaijiRepository extends JpaRepository <Caiji,Integer> {
 
 }

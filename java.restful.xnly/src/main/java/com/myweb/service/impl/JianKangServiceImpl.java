@@ -1,6 +1,6 @@
 package com.myweb.service.impl;
 
-import com.myweb.dao.CaijiMapper;
+import com.myweb.dao.JianKangDao;
 import com.myweb.pojo.Caiji;
 import com.myweb.pojo.User;
 import com.myweb.service.JianKangService;
@@ -8,7 +8,6 @@ import com.myweb.util.DateUtils;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,14 +22,14 @@ import java.util.List;
 public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
-    private CaijiMapper caijiMapper;
+    private JianKangDao jianKangDao;
 
 
     @Override
     public Result getCaiji(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            ServiceUtils.isReseachOK(result, caijiMapper.findOne((Integer) result.getData()));
+            ServiceUtils.isReseachOK(result, jianKangDao.getCaijiById((Integer) result.getData()));
         }
         return result;
     }
@@ -45,8 +44,7 @@ public class JianKangServiceImpl implements JianKangService {
         if (caiji.getShengao() != null && caiji.getTizhong() != null) {
             caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
         }
-        caijiMapper.saveAndFlush(caiji);
-        return ServiceUtils.isCRUDOK("create", new Result(), 1);
+        return ServiceUtils.isCRUDOK("create", new Result(), jianKangDao.saveCaiji(caiji));
     }
 
 
@@ -56,13 +54,12 @@ public class JianKangServiceImpl implements JianKangService {
         if (caiji.getShengao() != null && caiji.getTizhong() != null) {
             caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
         }
-        caijiMapper.saveAndFlush(caiji);
-        return ServiceUtils.isCRUDOK("update", new Result(), 1);
+        return ServiceUtils.isCRUDOK("update", new Result(), jianKangDao.updateCaijiById(caiji));
     }
 
     @Override
     public List<Caiji> listCaijis(HttpSession session, Caiji caiji) {
-        return caijiMapper.findAll(Example.of(caiji));
+        return jianKangDao.findCaijis(caiji);
     }
 
     @Override
@@ -70,8 +67,7 @@ public class JianKangServiceImpl implements JianKangService {
     public Result deleteCaiji(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {
-            caijiMapper.delete((Integer) result.getData());
-            return ServiceUtils.isCRUDOK("delete", result, 1);
+            return ServiceUtils.isCRUDOK("delete", result, jianKangDao.deleteCaijiById((Integer) result.getData()));
         }
         return result;
     }

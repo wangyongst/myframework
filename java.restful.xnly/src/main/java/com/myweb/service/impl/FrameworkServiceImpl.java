@@ -1,15 +1,14 @@
 package com.myweb.service.impl;
 
-import com.myweb.dao.*;
-import com.myweb.pojo.*;
-import com.myweb.service.FrameworkService;
+import com.myweb.dao.FrameWorkDao;
+import com.myweb.pojo.Menu;
+import com.myweb.pojo.Tableinfo;
+import com.myweb.pojo.User;
+import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,37 +16,16 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@Service("frameworkService")
+@Service("frameWorkService")
 @Transactional(value = "myTM", readOnly = true)
-public class FrameworkServiceImpl implements FrameworkService {
+public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private MenuMapper menuMapper;
-
-    @Autowired
-    private TableinfoMapper tableinfoMapper;
-
-    @Autowired
-    private ShuxingMapper shuxingMapper;
-
-    @Autowired
-    private RoletomenuMapper roletomenuMapper;
-
-    @Autowired
-    private LaorenMapper laorenMapper;
-
-    @Autowired
-    private CaijiMapper caijiMapper;
-
-    @Autowired
-    private FuwuMapper fuwuMapper;
+    private FrameWorkDao frameWorkDao;
 
     @Override
     public Result login(HttpSession session, User user) {
-        List<User> userList = userMapper.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        List<User> userList = frameWorkDao.findUsersByUsernameAndPassword(user.getUsername(), user.getPassword());
         Result result = new Result();
         if (ServiceUtils.isReseachListOK(result, userList)) {
             session.setAttribute("user", userList.get(0));
@@ -65,19 +43,16 @@ public class FrameworkServiceImpl implements FrameworkService {
     public Result getMenus(HttpSession session, Menu menu) {
         Result result = new Result();
         User user = (User) session.getAttribute("user");
-        ServiceUtils.isReseachListOK(result, menuMapper.queryByParentAndRole(menu.getParent(), user.getRole()));
+        ServiceUtils.isReseachListOK(result, frameWorkDao.findMenusByParentAndRole(menu.getParent(), user.getRole()));
         return result;
     }
 
     @Override
     public Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map) {
-        map.put("totalLaoren", laorenMapper.count());
-        map.put("totalCaiji", caijiMapper.count());
-        Fuwu fuwu = new Fuwu();
-        fuwu.setFuwutype("服务记录");
-        map.put("totalFuwuJilu", fuwuMapper.count(Example.of(fuwu)));
-        fuwu.setFuwutype("服务需求");
-        map.put("totalFuwuJilu", fuwuMapper.count(Example.of(fuwu)));
+        map.put("totalLaoren", frameWorkDao.totalLaoren());
+        map.put("totalCaiji", frameWorkDao.totalCaiji());
+        map.put("totalFuwuJilu", frameWorkDao.totalFuwu("服务记录"));
+        map.put("totalFuwuXuqiu", frameWorkDao.totalFuwu("服务需求"));
         return map;
     }
 
@@ -104,11 +79,10 @@ public class FrameworkServiceImpl implements FrameworkService {
             Tableinfo tableinfo = new Tableinfo();
             tableinfo.setTablename(tablename);
             if (isTable) {
-                tableinfo.setTabledisable(0);
+                map.put(columns, frameWorkDao.findTableinfosByDisable(tablename, 0, null));
             } else {
-                tableinfo.setModaldisable(0);
+                map.put(columns, frameWorkDao.findTableinfosByDisable(tablename, null, 0));
             }
-            map.put(columns, tableinfoMapper.findAll(Example.of(tableinfo), new Sort(Sort.Direction.ASC, "shunxu")));
         }
         return map;
     }
@@ -117,9 +91,7 @@ public class FrameworkServiceImpl implements FrameworkService {
     public Result getShuxings(HttpSession session, String name) {
         Result result = new Result();
         if (StringUtils.isNotBlank(name)) {
-            Shuxing shuxing = new Shuxing();
-            shuxing.setName(name);
-            ServiceUtils.isReseachListOK(result, shuxingMapper.findAll(Example.of(shuxing), new Sort(Sort.Direction.ASC, "shunxu")));
+            ServiceUtils.isReseachListOK(result, frameWorkDao.findShuxingsByName(name));
         }
         return result;
     }
@@ -131,11 +103,10 @@ public class FrameworkServiceImpl implements FrameworkService {
             Tableinfo tableinfo = new Tableinfo();
             tableinfo.setTablename(tablename);
             if (!notTable) {
-                tableinfo.setTabledisable(0);
+                ServiceUtils.isReseachListOK(result, frameWorkDao.findTableinfosByDisable(tablename, 0, null));
             } else {
-                tableinfo.setModaldisable(0);
+                ServiceUtils.isReseachListOK(result, frameWorkDao.findTableinfosByDisable(tablename, null, 0));
             }
-            ServiceUtils.isReseachListOK(result, tableinfoMapper.findAll(Example.of(tableinfo, ExampleMatcher.matching().withIgnorePaths("id")), new Sort(Sort.Direction.ASC, "shunxu")));
         } else {
             ServiceUtils.isBlank(result);
         }

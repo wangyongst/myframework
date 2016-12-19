@@ -1,13 +1,12 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
+import com.myweb.pojo.Fuwu;
 import com.myweb.pojo.Jiashu;
-import com.myweb.pojo.Laoren;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.RepositoryDefinition;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryDefinition(domainClass = Laoren.class, idClass = Integer.class)
-public interface LaorenMapper extends JpaRepository <Laoren,Integer>{
-
+@RepositoryDefinition(domainClass = Jiashu.class, idClass = Integer.class)
+public interface JiashuRepository extends JpaRepository <Jiashu,Integer>{
 }

@@ -1,4 +1,4 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
 import com.myweb.pojo.Shuxing;
 import com.myweb.pojo.Tableinfo;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RepositoryDefinition(domainClass = Tableinfo.class, idClass = Integer.class)
-public interface TableinfoMapper extends JpaRepository <Tableinfo,Integer>{
+public interface TableinfoRepository extends JpaRepository <Tableinfo,Integer>{
 
 }

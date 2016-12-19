@@ -1,4 +1,4 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
 import com.myweb.pojo.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RepositoryDefinition(domainClass = User.class, idClass = Integer.class)
-public interface UserMapper extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
 
     public List<User> findByUsernameAndPassword(String username, String password);
 
@@ -17,5 +17,5 @@ public interface UserMapper extends JpaRepository<User,Integer> {
 
     public List<User> findByUsernameNot(String username);
 
-    public List<User> findByUsername(String username);
+    public List<User> findByUsernameAndUsernameNot(String username,String superUser);
 }

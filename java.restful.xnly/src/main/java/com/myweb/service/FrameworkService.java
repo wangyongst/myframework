@@ -7,13 +7,13 @@ import com.myweb.util.Result;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-public interface FrameworkService {
+public interface FrameWorkService {
 
     Result login(HttpSession session, User user);
 
     Result logout(HttpSession session);
 
-    Result getMenus(HttpSession session,Menu menu);
+    Result getMenus(HttpSession session, Menu menu);
 
     Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map);
 

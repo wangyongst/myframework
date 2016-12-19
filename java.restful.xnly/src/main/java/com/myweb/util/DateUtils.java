@@ -199,7 +199,7 @@ public class DateUtils {
      * @return
      */
     public static String getCurrentDate(String format, Integer count) {
-        java.text.SimpleDateFormat df = new java.text.SimpleDateFormat(format);
+        SimpleDateFormat df = new SimpleDateFormat(format);
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.add(Calendar.DATE, count);//增加或减少的天数
@@ -236,7 +236,7 @@ public class DateUtils {
      * @return
      */
     public static String getNextMonthFirstDay(String format) {
-        java.text.SimpleDateFormat df = new java.text.SimpleDateFormat(format);
+        SimpleDateFormat df = new SimpleDateFormat(format);
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, 1);// 当前月＋1，即下个月
         cal.set(Calendar.DATE, 1);// 将下个月1号作为日期初始值
@@ -251,7 +251,7 @@ public class DateUtils {
      * @return
      */
     public static String getNextMonthLastDay(String format) {
-        java.text.SimpleDateFormat df = new java.text.SimpleDateFormat(format);
+        SimpleDateFormat df = new SimpleDateFormat(format);
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DATE, 1);// 将下2个月1号作为日期初始值
         cal.add(Calendar.MONTH, 2);// 当前月＋2，即下2个月
@@ -297,8 +297,8 @@ public class DateUtils {
         SimpleDateFormat dfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
-            java.util.Date begin = dfs.parse(beginTime);
-            java.util.Date end = dfs.parse(endTime);
+            Date begin = dfs.parse(beginTime);
+            Date end = dfs.parse(endTime);
             long between = (end.getTime() - begin.getTime()) / 1000;// 除以1000是为了转换成秒
             return between;
         } catch (Exception e) {

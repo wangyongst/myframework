@@ -1,4 +1,4 @@
-package com.myweb.dao;
+package com.myweb.dao.jpa.hibernate;
 
 import com.myweb.pojo.Menu;
 import com.myweb.pojo.User;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @RepositoryDefinition(domainClass = Menu.class, idClass = Integer.class)
-public interface MenuMapper extends JpaRepository<Menu,Integer> {
+public interface MenuRepository extends JpaRepository<Menu,Integer> {
 
     @Query("select a from Menu a,Roletomenu b where a.parent = ?1 and a.id = b.menuid and b.role = ?2 order by shunxu")
     public List<Menu> queryByParentAndRole(int parent, String role);

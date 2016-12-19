@@ -3,7 +3,7 @@ package com.myweb.controller;
 import com.myweb.pojo.Jiashu;
 import com.myweb.pojo.Laoren;
 import com.myweb.pojo.User;
-import com.myweb.service.FrameworkService;
+import com.myweb.service.FrameWorkService;
 import com.myweb.service.XiTongService;
 import com.myweb.util.Page;
 import com.myweb.util.Result;
@@ -18,8 +18,6 @@ import java.util.List;
 @RequestMapping(value = "/xitong")
 public class XiTongController {
 
-    @Autowired
-    public FrameworkService userService;
     @Autowired
     public XiTongService xiTongService;
 
