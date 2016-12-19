@@ -12,6 +12,7 @@ $(function () {
 
     makeAlert($("#postUserAlert"));
     makeAlert($("#putUserAlert"));
+    
     makeAlert($("#mainAlert"));
 
     $("#postUserSave").click(function () {
