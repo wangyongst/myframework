@@ -1,28 +1,51 @@
 package com.myweb.service.xnly;
 
 
-import com.myweb.vo.Result;
+import com.myweb.pojo.mybatis.Jiashu;
 import com.myweb.pojo.mybatis.Laoren;
 import com.myweb.pojo.mybatis.User;
+import com.myweb.util.Page;
+import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface XiTongService {
 
-	public List<User> getAllUsers(HttpSession session);
+    List<User> listUsers(HttpSession session, User user, Page page);
 
-	public List<Laoren> getAllLaorens(HttpSession session);
+    List<Laoren> listLaorens(HttpSession session, Laoren laoren, Page page);
 
-	public Result getLaoren(HttpSession session, String ids);
+    List<Jiashu> listJiashus(HttpSession session, Jiashu jiashu, Page page);
 
-	public Result getUser(HttpSession session, String ids);
 
-	public Result editLaoren(HttpSession session, Laoren laoren);
+    Result getJiashu(HttpSession session, String id);
 
-	public Result editUser(HttpSession session, User user);
+    Result getLaoren(HttpSession session, String id);
 
-	public Result deleteLaoren(HttpSession session, String ids);
+    Result getUser(HttpSession session, String id);
 
-	public Result deleteUser(HttpSession session, String ids);
+
+    Result createLaoren(HttpSession session, Laoren laoren);
+
+    Result createUser(HttpSession session, User user);
+
+    Result createJiashu(HttpSession session, Jiashu jiashu);
+
+
+    Result updateLaoren(HttpSession session, Laoren laoren);
+
+    Result updateUser(HttpSession session, User user);
+
+    Result updateJiashu(HttpSession session, Jiashu jiashu);
+
+    Result updateLaorenTypebyId(HttpSession session, String id, String type);
+
+
+
+    Result deleteJiashu(HttpSession session, String id);
+
+    Result deleteLaoren(HttpSession session, String id);
+
+    Result deleteUser(HttpSession session, String id);
 }
