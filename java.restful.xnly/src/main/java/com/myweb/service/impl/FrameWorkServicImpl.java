@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Service("frameWorkService")
 @Transactional(value = "myTM", readOnly = true)
-public class FrameWorkServiceImpl implements FrameWorkService {
+public class FrameWorkServicImpl implements FrameWorkService {
 
     @Autowired
     private FrameWorkDao frameWorkDao;
