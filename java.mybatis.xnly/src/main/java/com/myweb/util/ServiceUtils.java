@@ -52,7 +52,7 @@ public class ServiceUtils {
 
 
     public static void isListResult(Result result) {
-        result.setStatus(6);
+        result.setStatus(7);
     }
 
     public static boolean isOnlyOneId(Result result, String id) {
