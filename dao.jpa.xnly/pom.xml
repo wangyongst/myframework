@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.myweb</groupId>
-    <artifactId>java.jpa.xnly</artifactId>
+    <artifactId>dao.jpa.xnly</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -22,7 +22,7 @@
         </plugins>
     </build>
 
-    <name>java.jpa.xnly</name>
+    <name>dao.jpa.xnly</name>
     <url>http://maven.apache.org</url>
 
     <properties>
