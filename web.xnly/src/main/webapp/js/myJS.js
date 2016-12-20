@@ -79,7 +79,7 @@ function makeModalFormSelect(modal, id, name, chinese) {
         url: "framework/get/shuxings/" + name + ".do",
         dataType: "json",
         success: function (result) {
-            if (result.status == 6) {
+            if (result.status == 7) {
                 result.data.forEach(function (e) {
                     $("#" + id + "Select").append("<option>" + e.chinesename + "</option>");
                 })
@@ -99,7 +99,7 @@ function makeModalFormCheckbox(modal, id, name, chinese) {
         url: "framework/get/shuxings/" + name + ".do",
         dataType: "json",
         success: function (result) {
-            if (result.status == 6) {
+            if (result.status == 7) {
                 result.data.forEach(function (e) {
                     $("#" + id + "Checkbox").append("<label><input name='" + name + "' type='checkbox' value='" + e.chinesename + "'>" + e.chinesename + "</label>");
                 })
@@ -114,7 +114,7 @@ function makeModalColumns(modal, tablename, prefix, placeholder) {
         url: "framework/get/tableinfos/" + tablename + "/true.do",
         dataType: "json",
         success: function (result) {
-            if (result.status == 6) {
+            if (result.status == 7) {
                 result.data.forEach(function (e) {
                     makeModalForm(modal, e.type, prefix + e.columnname, e.columnname, e.chinese, placeholder + e.chinese);
                 })

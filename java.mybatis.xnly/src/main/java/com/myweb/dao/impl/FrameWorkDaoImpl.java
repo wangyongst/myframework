@@ -17,9 +17,6 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     private UserMapper userMapper;
 
     @Autowired
-    private MenuMapper menuMapper;
-
-    @Autowired
     private TableinfoMapper tableinfoMapper;
 
     @Autowired
@@ -35,7 +32,7 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     private FuwuMapper fuwuMapper;
 
     @Autowired
-    private MyFrameWorkMapper frameWorkMapper;
+    private MyFrameWorkMapper myFrameWorkMapper;
 
     @Override
     public List<User> findUsersByUsernameAndPassword(String username, String password) {
@@ -48,7 +45,7 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     public List<Menu> findMenusByParentAndRole(int parent, String role) {
         MenuExample menuExample = new MenuExample();
         menuExample.createCriteria().andParentEqualTo(parent);
-        return frameWorkMapper.queryByParentAndRole(parent, role);
+        return myFrameWorkMapper.queryByParentAndRole(parent, role);
     }
 
     @Override
@@ -77,6 +74,7 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
         }else{
             tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andModaldisableEqualTo(0);
         }
+        tableinfoExample.setOrderByClause("shunxu");
         return tableinfoMapper.selectByExample(tableinfoExample);
     }
 

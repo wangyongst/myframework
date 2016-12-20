@@ -11,7 +11,7 @@
                 url: "framework/get/menus.do?parent=0",
                 dataType: "json",
                 success: function (result) {
-                    if (result.status == 6) {
+                    if (result.status == 7) {
                         result.data.forEach(function (e) {
                             $("#navmenu").find(".parent").append("<a data-toggle='collapse' href='#sub-item-" + e.id + "'><span class='glyphicon glyphicon-list'></span>" + e.name + "<span data-toggle='collapse' href='#sub-item-" + e.id + "' class= 'icon pull-right'><em class='glyphicon glyphicon-s glyphicon-plus'></em></span></a><ul class='children collapse' id='sub-item-" + e.id + "'></ul>");
                             createChildren(e.id);
@@ -29,7 +29,7 @@
                 url: "framework/get/menus.do?parent=" + parentId,
                 dataType: "json",
                 success: function (result) {
-                    if (result.status == 6) {
+                    if (result.status == 7) {
                         result.data.forEach(function (e) {
                             $("#sub-item-" + parentId).append("<li><a class=\"\" href=\"javascript:void(0);\" onclick=\"javascript:getRight('" + e.url + "');\"><span class=\"glyphicon glyphicon-share-alt\"></span>" + e.name + "</a></li>");
                         });
