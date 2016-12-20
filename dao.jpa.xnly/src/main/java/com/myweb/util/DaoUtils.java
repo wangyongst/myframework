@@ -15,6 +15,7 @@ public class DaoUtils {
     public static String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
         Set<String> emptyNames = new HashSet<String>();
         for (java.beans.PropertyDescriptor pd : pds) {
             Object srcValue = src.getPropertyValue(pd.getName());
@@ -24,8 +25,7 @@ public class DaoUtils {
         return emptyNames.toArray(result);
     }
 
-    public static Object copyPropertiesIgnoreNull(Object src, Object target) {
+    public static void copyPropertiesIgnoreNull(Object src, Object target) {
         BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
-        return target;
     }
 }

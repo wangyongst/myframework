@@ -3,6 +3,7 @@ package com.myweb.dao.impl;
 import com.myweb.dao.JianKangDao;
 import com.myweb.dao.jpa.hibernate.CaijiRepository;
 import com.myweb.pojo.Caiji;
+import com.myweb.util.DaoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Repository;
@@ -32,11 +33,12 @@ public class JianKangDaoImpl implements JianKangDao {
     }
 
     public int updateCaijiById(Caiji caiji) {
-        Caiji cj = caijiRepository.getOne(caiji.getId());
+        Caiji cj = caijiRepository.findOne(caiji.getId());
         if (cj == null) {
             return 0;
         }
-        caijiRepository.saveAndFlush(caiji);
+        DaoUtils.copyPropertiesIgnoreNull(caiji,cj);
+        caijiRepository.saveAndFlush(cj);
         return 1;
     }
 

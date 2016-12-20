@@ -3,6 +3,7 @@ package com.myweb.dao.impl;
 import com.myweb.dao.ShengHuoDao;
 import com.myweb.dao.jpa.hibernate.FuwuRepository;
 import com.myweb.pojo.Fuwu;
+import com.myweb.util.DaoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Repository;
@@ -34,11 +35,12 @@ public class ShengHuoDaoImpl implements ShengHuoDao {
 
     @Override
     public int updateFuwuById(Fuwu fuwu) {
-        Fuwu fw = fuwuRepository.getOne(fuwu.getId());
+        Fuwu fw = fuwuRepository.findOne(fuwu.getId());
         if (fw == null) {
             return 0;
         }
-        fuwuRepository.saveAndFlush(fuwu);
+        DaoUtils.copyPropertiesIgnoreNull(fuwu,fw);
+        fuwuRepository.saveAndFlush(fw);
         return 1;
     }
 

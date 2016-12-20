@@ -7,6 +7,7 @@ import com.myweb.dao.jpa.hibernate.UserRepository;
 import com.myweb.pojo.Jiashu;
 import com.myweb.pojo.Laoren;
 import com.myweb.pojo.User;
+import com.myweb.util.DaoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Repository;
@@ -62,11 +63,12 @@ public class XiTongDaoImpl implements XiTongDao {
     @Override
 
     public int updateJiashuById(Jiashu jiashu) {
-        Jiashu js = jiashuRepository.getOne(jiashu.getId());
+        Jiashu js = jiashuRepository.findOne(jiashu.getId());
         if (js == null) {
             return 0;
         }
-        jiashuRepository.saveAndFlush(jiashu);
+        DaoUtils.copyPropertiesIgnoreNull(jiashu,js);
+        jiashuRepository.saveAndFlush(js);
         return 1;
     }
 
@@ -105,21 +107,23 @@ public class XiTongDaoImpl implements XiTongDao {
 
     @Override
     public int updateLaorenById(Laoren laoren) {
-        Laoren lr = laorenRepository.getOne(laoren.getId());
+        Laoren lr = laorenRepository.findOne(laoren.getId());
         if (lr == null) {
             return 0;
         }
-        laorenRepository.saveAndFlush(laoren);
+        DaoUtils.copyPropertiesIgnoreNull(laoren,lr);
+        laorenRepository.saveAndFlush(lr);
         return 1;
     }
 
     @Override
     public int updateLaorenTypeById(int type, int id) {
-        Laoren lr = laorenRepository.getOne(id);
+        Laoren lr = laorenRepository.findOne(id);
         if (lr == null) {
             return 0;
         }
-        return laorenRepository.updateTypeById(type, id);
+        laorenRepository.updateTypeById(type, id);
+        return 1;
     }
 
     @Override
@@ -135,11 +139,12 @@ public class XiTongDaoImpl implements XiTongDao {
     @Override
 
     public int updateUserById(User user) {
-        User ur = userRepository.getOne(user.getId());
+        User ur = userRepository.findOne(user.getId());
         if (ur == null) {
             return 0;
         }
-        userRepository.saveAndFlush(user);
+        DaoUtils.copyPropertiesIgnoreNull(user,ur);
+        userRepository.saveAndFlush(ur);
         return 1;
     }
 
