@@ -4,16 +4,16 @@
 $(function () {
     makeAlert($("#mainAlert"));
 
-    function getIndex(column){
+    function getIndex(column) {
         var col = $('table tr:first').find("th").length;
-        for(var i = 0; i < col ; i++){
-            if( $('table tr:first').find("th").eq(i).text().indexOf(column) != -1) {
+        for (var i = 0; i < col; i++) {
+            if ($('table tr:first').find("th").eq(i).text().indexOf(column) != -1) {
                 return i;
             }
         }
     }
 
-    function getValues(column){
+    function getValues(column) {
         var values = [];
         $("input[name=toolbar1]").each(function () {
             if ($(this).prop('checked')) {
@@ -25,6 +25,7 @@ $(function () {
     }
 
     function myLineChart(mychartid, mylineChartData) {
+        document.getElementById(mychartid)
         var chart1 = document.getElementById(mychartid).getContext("2d");
         window.myLine = new Chart(chart1).Line(mylineChartData, {
             responsive: true
@@ -126,7 +127,7 @@ $(function () {
 
     $("#bmi").click(
         function () {
-            isSelect();            
+            isSelect();
             $("#linechartitle").text("BMI趋势图");
             myLineChart("line-chart", create1LineChartData(getValues("测量时间"), getValues("BMI")));
         });

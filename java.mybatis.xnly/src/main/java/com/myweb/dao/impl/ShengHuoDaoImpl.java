@@ -3,6 +3,7 @@ package com.myweb.dao.impl;
 import com.myweb.dao.ShengHuoDao;
 import com.myweb.dao.mybatis.mapper.FuwuMapper;
 import com.myweb.pojo.Fuwu;
+import com.myweb.pojo.FuwuExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,14 +29,19 @@ public class ShengHuoDaoImpl implements ShengHuoDao {
 
     @Override
     public int updateFuwuById(Fuwu fuwu) {
-
-        return fuwuMapper.updateByPrimaryKey(fuwu);
+        return fuwuMapper.updateByPrimaryKeySelective(fuwu);
 
     }
 
     @Override
     public List<Fuwu> findFuwus(Fuwu fuwu) {
-        return fuwuMapper.selectByExample(null);
+        FuwuExample fuwuExample = new FuwuExample();
+        FuwuExample.Criteria criteria = fuwuExample.createCriteria();
+        if(fuwu.getFuwutype() != null){
+            criteria.andFuwutypeEqualTo(fuwu.getFuwutype());
+        }
+
+        return fuwuMapper.selectByExample(fuwuExample);
     }
 
     @Override

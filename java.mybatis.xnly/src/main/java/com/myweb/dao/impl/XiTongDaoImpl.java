@@ -1,17 +1,12 @@
 package com.myweb.dao.impl;
 
 import com.myweb.dao.XiTongDao;
-
 import com.myweb.dao.mybatis.mapper.JiashuMapper;
 import com.myweb.dao.mybatis.mapper.LaorenMapper;
 import com.myweb.dao.mybatis.mapper.UserMapper;
-import com.myweb.pojo.Jiashu;
-import com.myweb.pojo.Laoren;
-import com.myweb.pojo.User;
-import com.myweb.pojo.UserExample;
+import com.myweb.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 
 import java.util.List;
 
@@ -49,7 +44,12 @@ public class XiTongDaoImpl implements XiTongDao {
 
     @Override
     public List<Laoren> findLaorens(Laoren laoren) {
-        return laorenMapper.selectByExample(null);
+        LaorenExample laorenExample = new LaorenExample();
+        LaorenExample.Criteria criteria = laorenExample.createCriteria();
+        if(laoren.getType() != null){
+            criteria.andTypeEqualTo(laoren.getType());
+        }
+        return laorenMapper.selectByExample(laorenExample);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class XiTongDaoImpl implements XiTongDao {
     @Override
 
     public int updateJiashuById(Jiashu jiashu) {
-        return jiashuMapper.updateByPrimaryKey(jiashu);
+        return jiashuMapper.updateByPrimaryKeySelective(jiashu);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class XiTongDaoImpl implements XiTongDao {
 
     @Override
     public int updateLaorenById(Laoren laoren) {
-        return laorenMapper.updateByPrimaryKey(laoren);
+        return laorenMapper.updateByPrimaryKeySelective(laoren);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class XiTongDaoImpl implements XiTongDao {
         Laoren laoren = new Laoren();
         laoren.setId(id);
         laoren.setType(type);
-        return laorenMapper.updateByPrimaryKey(laoren);
+        return laorenMapper.updateByPrimaryKeySelective(laoren);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class XiTongDaoImpl implements XiTongDao {
     @Override
 
     public int updateUserById(User user) {
-        return userMapper.updateByPrimaryKey(user);
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override

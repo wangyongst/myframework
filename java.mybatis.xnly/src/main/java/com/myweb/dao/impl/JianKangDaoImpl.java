@@ -3,6 +3,7 @@ package com.myweb.dao.impl;
 import com.myweb.dao.JianKangDao;
 import com.myweb.dao.mybatis.mapper.CaijiMapper;
 import com.myweb.pojo.Caiji;
+import com.myweb.pojo.CaijiExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,13 +28,17 @@ public class JianKangDaoImpl implements JianKangDao {
     }
 
     public int updateCaijiById(Caiji caiji) {
-
-        return caijiMapper.updateByPrimaryKey(caiji);
+        return caijiMapper.updateByPrimaryKeySelective(caiji);
     }
 
     @Override
     public List<Caiji> findCaijis(Caiji caiji) {
-        return caijiMapper.selectByExample(null);
+        CaijiExample caijiExample = new CaijiExample();
+        CaijiExample.Criteria criteria = caijiExample.createCriteria();
+        if(caiji.getLaorenid() != null){
+            criteria.andLaorenidEqualTo(caiji.getLaorenid());
+        }
+        return caijiMapper.selectByExample(caijiExample);
     }
 
     @Override

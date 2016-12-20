@@ -34,8 +34,8 @@
                 <table data-toggle="table" data-url="jiankang/list/caijis.do?laorenid=${laorenid}"
                        data-show-refresh="true"
                        data-show-toggle="true" data-show-columns="true" data-search="true"
-                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="id"
-                       data-sort-order="desc">
+                       data-select-item-name="toolbar1" data-pagination="true" data-sort-name="time"
+                       data-sort-order="asc">
                     <thead>
                     <tr>
                         <th data-field="state" data-checkbox="true"></th>
