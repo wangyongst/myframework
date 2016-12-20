@@ -25,7 +25,7 @@ public class Laoren {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
     }
@@ -35,7 +35,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = true, length = 255)
     public String getName() {
         return name;
     }
@@ -45,7 +45,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "sex")
+    @Column(name = "sex", nullable = true, length = 255)
     public String getSex() {
         return sex;
     }
@@ -55,7 +55,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "age")
+    @Column(name = "age", nullable = true)
     public Integer getAge() {
         return age;
     }
@@ -65,7 +65,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "nation")
+    @Column(name = "nation", nullable = true, length = 255)
     public String getNation() {
         return nation;
     }
@@ -75,7 +75,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "birthday")
+    @Column(name = "birthday", nullable = true, length = 255)
     public String getBirthday() {
         return birthday;
     }
@@ -85,7 +85,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "idnumber")
+    @Column(name = "idnumber", nullable = true, length = 18)
     public String getIdnumber() {
         return idnumber;
     }
@@ -95,7 +95,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "address")
+    @Column(name = "address", nullable = true, length = 255)
     public String getAddress() {
         return address;
     }
@@ -105,7 +105,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = true, length = 11)
     public String getPhone() {
         return phone;
     }
@@ -115,7 +115,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "mobile")
+    @Column(name = "mobile", nullable = true, length = 11)
     public String getMobile() {
         return mobile;
     }
@@ -125,7 +125,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createuser")
+    @Column(name = "createuser", nullable = true)
     public Integer getCreateuser() {
         return createuser;
     }
@@ -135,7 +135,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createtime")
+    @Column(name = "createtime", nullable = true, length = 255)
     public String getCreatetime() {
         return createtime;
     }
@@ -145,7 +145,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "createusername")
+    @Column(name = "createusername", nullable = true, length = 255)
     public String getCreateusername() {
         return createusername;
     }
@@ -155,7 +155,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "type")
+    @Column(name = "type", nullable = true)
     public Integer getType() {
         return type;
     }
@@ -165,7 +165,7 @@ public class Laoren {
     }
 
     @Basic
-    @Column(name = "bingshi")
+    @Column(name = "bingshi", nullable = true, length = 255)
     public String getBingshi() {
         return bingshi;
     }

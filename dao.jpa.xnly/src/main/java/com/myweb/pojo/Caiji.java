@@ -27,7 +27,7 @@ public class Caiji {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "id" )
+    @Column(name = "id", nullable = false)
     public Integer getId() {
         return id;
     }
@@ -37,7 +37,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "laorenid")
+    @Column(name = "laorenid", nullable = true)
     public Integer getLaorenid() {
         return laorenid;
     }
@@ -47,7 +47,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "laorenname")
+    @Column(name = "laorenname", nullable = true, length = 255)
     public String getLaorenname() {
         return laorenname;
     }
@@ -57,7 +57,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "gaoya")
+    @Column(name = "gaoya", nullable = true)
     public Integer getGaoya() {
         return gaoya;
     }
@@ -67,7 +67,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "diya")
+    @Column(name = "diya", nullable = true)
     public Integer getDiya() {
         return diya;
     }
@@ -77,7 +77,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "xuetang")
+    @Column(name = "xuetang", nullable = true, precision = 2)
     public BigDecimal getXuetang() {
         return xuetang;
     }
@@ -87,7 +87,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "maibo")
+    @Column(name = "maibo", nullable = true)
     public Integer getMaibo() {
         return maibo;
     }
@@ -97,7 +97,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "xueyang")
+    @Column(name = "xueyang", nullable = true)
     public Integer getXueyang() {
         return xueyang;
     }
@@ -107,7 +107,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "tizhong")
+    @Column(name = "tizhong", nullable = true, precision = 2)
     public BigDecimal getTizhong() {
         return tizhong;
     }
@@ -117,7 +117,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "shengao")
+    @Column(name = "shengao", nullable = true)
     public Integer getShengao() {
         return shengao;
     }
@@ -127,7 +127,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "bmi")
+    @Column(name = "bmi", nullable = true, precision = 2)
     public BigDecimal getBmi() {
         return bmi;
     }
@@ -137,7 +137,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "huxi")
+    @Column(name = "huxi", nullable = true)
     public Integer getHuxi() {
         return huxi;
     }
@@ -147,7 +147,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "time")
+    @Column(name = "time", nullable = true, length = 255)
     public String getTime() {
         return time;
     }
@@ -157,7 +157,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createuser")
+    @Column(name = "createuser", nullable = true)
     public Integer getCreateuser() {
         return createuser;
     }
@@ -167,7 +167,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createusername")
+    @Column(name = "createusername", nullable = true, length = 255)
     public String getCreateusername() {
         return createusername;
     }
@@ -177,7 +177,7 @@ public class Caiji {
     }
 
     @Basic
-    @Column(name = "createtime")
+    @Column(name = "createtime", nullable = true, length = 255)
     public String getCreatetime() {
         return createtime;
     }
