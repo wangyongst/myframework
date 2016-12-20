@@ -4,7 +4,7 @@ import com.myweb.dao.FrameWorkDao;
 import com.myweb.pojo.Menu;
 import com.myweb.pojo.Tableinfo;
 import com.myweb.pojo.User;
-import com.myweb.service.FrameWorkService;
+import com.myweb.service.FrameWorkServic;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Service("frameWorkService")
 @Transactional(value = "myTM", readOnly = true)
-public class FrameWorkServicImpl implements FrameWorkService {
+public class FrameWorkServiceImpl implements FrameWorkServic {
 
     @Autowired
     private FrameWorkDao frameWorkDao;

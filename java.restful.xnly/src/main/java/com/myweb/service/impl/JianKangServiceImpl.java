@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service("jianKangService")
 @Transactional(value = "myTM", readOnly = true)
-public class JianKangServicImpl implements JianKangService {
+public class JianKangServiceImpl implements JianKangService {
 
     @Autowired
     private JianKangDao jianKangDao;

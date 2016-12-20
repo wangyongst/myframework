@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service("shengHuoService")
 @Transactional(value = "myTM", readOnly = true)
-public class ShengHuoServicImpl implements ShengHuoService {
+public class ShengHuoServiceImpl implements ShengHuoService {
 
     @Autowired
     private ShengHuoDao shengHuoDao;

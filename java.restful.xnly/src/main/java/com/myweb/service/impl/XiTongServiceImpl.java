@@ -22,7 +22,7 @@ import java.util.TreeSet;
 
 @Service("xiTongService")
 @Transactional(value = "myTM", readOnly = true)
-public class XiTongServicImpl implements XiTongService {
+public class XiTongServiceImpl implements XiTongService {
 
     @Autowired
     private XiTongDao xiTongDao;
