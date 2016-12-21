@@ -8,6 +8,15 @@
     <artifactId>dao.jpa.xnly</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <name>dao.jpa.xnly</name>
+    <url>http://maven.apache.org</url>
+
+    <parent>
+        <groupId>io.spring.platform</groupId>
+        <artifactId>platform-bom</artifactId>
+        <version>2.0.8.RELEASE</version>
+        <relativePath/>
+    </parent>
 
     <build>
         <plugins>
@@ -22,19 +31,17 @@
         </plugins>
     </build>
 
-    <name>dao.jpa.xnly</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.framework.version>4.3.2.RELEASE</spring.framework.version>
     </properties>
 
+
     <dependencies>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
 
@@ -47,14 +54,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0-b01</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.3</version>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations-java5</artifactId>
@@ -62,5 +68,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>

@@ -46,11 +46,11 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(true);
         String url = request.getRequestURI();
-        logger.info("LoginFilter URL is:"+url);
+        logger.info("LoginFilter URL is:" + url);
         for (String nf : nofilters) {
             if (StringUtils.isNotBlank(url) && url.contains(nf)) {
                 filterChain.doFilter(servletRequest, servletResponse);
-                logger.info("LoginFilter unprocessed:"+url);
+                logger.info("LoginFilter unprocessed:" + url);
                 return;
             }
         }
@@ -59,6 +59,11 @@ public class LoginFilter implements Filter {
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
+    }
+
+    @Override
+    public void destroy() {
+        logger.info("LoginFilter destroy!");
     }
 
 }
