@@ -15,6 +15,5 @@ public interface LaorenRepository extends JpaRepository<Laoren, Integer> {
     @Modifying(clearAutomatically = true)
     @Transactional
     @Query("update Laoren l set l.type =?1 where l.id = ?2")
-    public void updateTypeById(int type, int id);
-
+    public int updateTypeById(int type, int id);
 }

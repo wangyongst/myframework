@@ -122,8 +122,7 @@ public class XiTongDaoImpl implements XiTongDao {
         if (lr == null) {
             return 0;
         }
-        laorenRepository.updateTypeById(type, id);
-        return 1;
+        return laorenRepository.updateTypeById(type, id);
     }
 
     @Override
