@@ -315,9 +315,6 @@ public class DateUtils {
         return getCurrentDate("yyyy-MM-dd", 0) + " 00:00:00";
     }
 
-    public static void main(String args[]) {
-    }
-
 
     /**
      * 昨天的起始终止

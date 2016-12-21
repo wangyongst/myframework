@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3.mybatis;
+package com.framework.boot.servlet3;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

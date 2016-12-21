@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3.mybatis;
+package com.framework.boot.servlet3;
 
 
 import org.apache.commons.lang3.StringUtils;

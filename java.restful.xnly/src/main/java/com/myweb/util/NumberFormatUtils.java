@@ -11,21 +11,6 @@ public class NumberFormatUtils {
             "十亿", "百亿", "千亿", "万亿"};
     static char[] numArray = {'零', '一', '二', '三', '四', '五', '六', '七', '八', '九'};
 
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        int num = 1;
-        String numStr = formatInteger(num);
-        print("num= " + num + ", convert result: " + numStr);
-        double decimal = 1;
-        print("============================================================");
-        String decStr = formatDecimal(decimal);
-        print("decimal= " + decimal + ", decStr: " + decStr);
-    }
-
-
     @NotNull
     public static String formatInteger(int num) {
         char[] val = String.valueOf(num).toCharArray();

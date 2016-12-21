@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3.mybatis;
+package com.framework.boot.servlet3;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
