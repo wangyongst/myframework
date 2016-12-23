@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by BHWL on 2016-12-23.
  */
 @Entity
+@Table(name = "password")
 public class Password {
     private Integer id;
     private String password;

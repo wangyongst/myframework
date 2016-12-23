@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by BHWL on 2016-12-23.
  */
 @Entity
+@Table(name = "video")
 public class Video {
     private Integer id;
     private String url;
