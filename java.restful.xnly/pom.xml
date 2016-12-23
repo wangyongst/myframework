@@ -58,8 +58,14 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.myweb</groupId>
-            <artifactId>dao.jpa.xnly</artifactId>
+            <artifactId>dao.mybatis.xnly</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

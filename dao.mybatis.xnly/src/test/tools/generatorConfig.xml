@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <!-- 设置mysql驱动路径 -->
-    <classPathEntry location="./mysql-connector-java-5.1.38.jar"/>
+    <classPathEntry location="./mysql-connector-java-5.1.40.jar"/>
     <!-- 此处指定生成针对MyBatis3的DAO -->
     <context id="mysqlTables" targetRuntime="MyBatis3">
 

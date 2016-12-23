@@ -1,7 +1,5 @@
 package com.myweb.util;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Created by BHWL on 2016-12-16.
  */
@@ -11,7 +9,6 @@ public class NumberFormatUtils {
             "十亿", "百亿", "千亿", "万亿"};
     static char[] numArray = {'零', '一', '二', '三', '四', '五', '六', '七', '八', '九'};
 
-    @NotNull
     public static String formatInteger(int num) {
         char[] val = String.valueOf(num).toCharArray();
         int len = val.length;
@@ -46,7 +43,6 @@ public class NumberFormatUtils {
     }
 
 
-    @NotNull
     public static String formatFractionalPart(int decimal) {
         char[] val = String.valueOf(decimal).toCharArray();
         int len = val.length;
