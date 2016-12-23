@@ -74,7 +74,7 @@
 
         <dependency>
             <groupId>com.myweb</groupId>
-            <artifactId>java.restful.xnly</artifactId>
+            <artifactId>java.restful.video</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

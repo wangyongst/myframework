@@ -6,6 +6,30 @@
 
     <script type="text/javascript">
 
+        $(function () {
+            makeAlert($("#mainAlert"));
+
+            $("#watch").click(function () {
+                $.ajax({
+                    type: "GET",
+                    cache: "false",
+                    url: "video/get/video/" + $("#url").val() + "/" + $("#password").val() + ".do",
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#postUserAlert"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 1) {
+                            $("#videoIfame").prop(src, result.getData());
+                        } else {
+                            showAlert($("#mainAlert"), "warning", result.message);
+                        }
+                    }
+                });
+            });
+        });
+
+
         function reinitIframe() {
             var iframe = document.getElementById("right");
             try {
@@ -48,9 +72,12 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>视频地址（请先从您要观看的视频网络获取地址）</label>
-                                <input class="form-control" name="url" placeholder="如：http://www.iqiyi.com/v_19rra0fgdw.html?fc=8b62d5327a54411b#vfrm=19-9-0-1">
+                                <input class="form-control" id="url" name="url" placeholder="如：http://www.iqiyi.com/v_19rra0fgdw.html?fc=8b62d5327a54411b#vfrm=19-9-0-1">
                                 <label>观看密码</label>
-                                <input type="password" class="form-control" name="url" placeholder="请联系331527770@qq.com获取密码">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="请联系331527770@qq.com获取密码">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="watch">确定搜索观看</button>
                             </div>
                         </form>
                     </div>
@@ -59,6 +86,11 @@
         </div><!-- /.col-->
     </div><!-- /.row -->
 
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="mainAlert" hidden></div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-lg-12">
@@ -68,7 +100,7 @@
                     <div class="col-md-6">
                         <div>
                             <iframe src="http://jx.71ki.com/?url=http://v.youku.com/v_show/id_XMTg3MjIxNTc4OA==.html?f=28841819&amp;spm=a2hmv.20024595.yk-slide-236952.5~5~5~5!2~A&amp;from=y1.3-movie-index-11791-24595.236952.1-1"
-                                    width="100%" frameborder="0" scrolling="no" onload="this.height=500"></iframe>
+                                    width="100%" frameborder="0" scrolling="no" onload="this.height=500" id="videoIfame"></iframe>
                         </div>
                     </div>
                 </div>

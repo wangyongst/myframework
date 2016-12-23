@@ -1,6 +1,7 @@
 package com.myweb.service.impl;
 
 import com.myweb.dao.FrameWorkDao;
+import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
