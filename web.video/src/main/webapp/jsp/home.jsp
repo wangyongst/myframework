@@ -11,16 +11,17 @@
 
             $("#watch").click(function () {
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     cache: "false",
-                    url: "video/get/video/" + $("#url").val() + "/" + $("#password").val() + ".do",
+                    url: "video/get/video/" + $("#password").val() + ".do",
+                    data: {url: $("#url").val()},
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         showAlert($("#postUserAlert"), "danger");
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            $("#videoIfame").prop(src, result.getData());
+                            $("#videoIfame").prop("src", result.data);
                         } else {
                             showAlert($("#mainAlert"), "warning", result.message);
                         }
