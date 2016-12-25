@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by wangy on 2016-12-19.
  */
 @Entity
+@Table(name = "roletomenu")
 public class Roletomenu {
     private Integer id;
     private String role;

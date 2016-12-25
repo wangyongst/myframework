@@ -7,6 +7,7 @@ import java.math.BigDecimal;
  * Created by wangy on 2016-12-19.
  */
 @Entity
+@Table(name = "caiji")
 public class Caiji {
     private Integer id;
     private Integer laorenid;
