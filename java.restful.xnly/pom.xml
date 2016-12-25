@@ -65,10 +65,9 @@
 
         <dependency>
             <groupId>com.myweb</groupId>
-            <artifactId>dao.mybatis.xnly</artifactId>
+            <artifactId>dao.jpa.xnly</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 
 </project>
