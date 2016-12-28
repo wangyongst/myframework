@@ -62,11 +62,10 @@
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
-
         <dependency>
-            <groupId>com.myweb</groupId>
-            <artifactId>dao.jpa.video</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>8.0.33</version>
         </dependency>
     </dependencies>
 
