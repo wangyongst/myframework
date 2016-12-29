@@ -1,15 +1,10 @@
 package com.myweb;
 
-import com.sun.deploy.net.URLEncoder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Created by BHWL on 2016-12-28.
@@ -35,16 +30,10 @@ public class SqlMangZhu {
     public static boolean isTrue(String url) {
         time++;
         System.out.println("Times is " + time);
-        try {
-            url = URLEncoder.encode(url,"utf-8");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         System.out.println(url);
         RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<String> response = (ResponseEntity<String>)restTemplate.getForObject(url, String.class);
-            if (response.getStatusCode().value() == 200) return true;
+            restTemplate.getForObject(url, String.class);
         } catch (HttpClientErrorException e) {
             return false;
         }
