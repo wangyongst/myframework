@@ -1,9 +1,6 @@
 package com.myweb.util;
 
 
-import javafx.util.Pair;
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -315,71 +312,6 @@ public class DateUtils {
         return getCurrentDate("yyyy-MM-dd", 0) + " 00:00:00";
     }
 
-
-    /**
-     * 昨天的起始终止
-     * &gt;=起始 &lt;终止
-     *
-     * @param nowTime
-     * @return
-     */
-    public static Pair<Long, Long> getLastDay(long nowTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-            String s = sdf.format(new Date(nowTime));
-            Date yesdEnd = sdf.parse(s);
-
-            return new Pair<Long, Long>(yesdEnd.getTime() - daySpan, yesdEnd.getTime());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 取得上一个自然周起始（返回最近的周日0点为结束，之前一个周日0点为开始）
-     * &gt;=起始 &lt;终止
-     *
-     * @param nowTime
-     * @return
-     */
-    public static Pair<Long, Long> getLastNativeWeek(long nowTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-            String s = sdf.format(new Date(nowTime));
-            Date yesdEnd = sdf.parse(s);    // 今天0点
-
-            Calendar c = Calendar.getInstance();
-            c.setTime(yesdEnd);
-            c.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-            long weekEnd = c.getTimeInMillis();
-            return new Pair<Long, Long>(weekEnd - daySpan * 7, weekEnd);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * 取得上一个月的起始
-     * &gt;=起始 &lt;终止
-     *
-     * @param nowTime
-     * @return
-     */
-    public static Pair<Long, Long> getLastMonth(long nowTime) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-01 00:00:00");
-            String s = sdf.format(new Date(nowTime));
-            Date lmEnd = sdf.parse(s);  // 本月1号0点
-
-            Calendar c = Calendar.getInstance();
-            c.setTime(lmEnd);
-            c.add(Calendar.MONTH, -1);
-
-            return new Pair<Long, Long>(c.getTimeInMillis(), lmEnd.getTime());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * 计算两个日期之间相差的月数
