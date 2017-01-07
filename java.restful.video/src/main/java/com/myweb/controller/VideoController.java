@@ -1,6 +1,5 @@
 package com.myweb.controller;
 
-import com.myweb.service.VideoService;
 import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,8 @@ public class VideoController {
     public VideoService videoService;
 
     @ResponseBody
-    @RequestMapping(value = "/get/video/{password}", method = RequestMethod.POST)
-    public Result getJiashu(HttpSession session, String url, @PathVariable("password") String password) {
-        return videoService.playVideo(url, password);
+    @RequestMapping(value = "/video/{platformid}/{password}", method = RequestMethod.POST)
+    public Result getJiashu(HttpSession session, String url,@PathVariable("platformid") String platformid, @PathVariable("password") String password) {
+        return videoService.playVideo(platformid,url, password);
     }
 }

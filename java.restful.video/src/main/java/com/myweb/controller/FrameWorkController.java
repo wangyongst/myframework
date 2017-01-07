@@ -1,10 +1,15 @@
 package com.myweb.controller;
 
 import com.myweb.pojo.User;
+import com.myweb.pojo.Video;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
+import com.myweb.util.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +26,8 @@ public class FrameWorkController {
 
     @Autowired
     public FrameWorkService frameWorkService;
+
+
 
     //登录
     @ResponseBody
