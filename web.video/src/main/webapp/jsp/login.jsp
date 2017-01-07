@@ -13,7 +13,7 @@
                 $.ajax({
                     type: "POST",
                     cache: "false",
-                    url: "framework/login.do?_method=PUT",
+                    url: "login.do?_method=PUT",
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
@@ -21,7 +21,7 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            window.location.href = "<%=basePath%>framework/home.do";
+                            window.location.href = "<%=basePath%>home.do";
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
                         }

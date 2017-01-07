@@ -44,8 +44,18 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     }
 
     @Override
+    public List<Video> findVideoByHome(Integer home) {
+        return videoRepository.findByHome(1);
+    }
+
+    @Override
     public List<Password> findPasswordByPassword(String password) {
         return passwordRepository.findByPassword(password);
+    }
+
+    @Override
+    public List<Platform> findPlatformByUseNot(Integer use) {
+        return platformRepository.findByUseNot(use);
     }
 
     @Override

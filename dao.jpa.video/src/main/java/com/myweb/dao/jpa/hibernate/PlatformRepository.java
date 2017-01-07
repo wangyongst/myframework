@@ -13,4 +13,6 @@ import java.util.List;
 public interface PlatformRepository extends JpaRepository<Platform, Integer> {
 
     public List<Platform> findByUse(Integer use);
+
+    public List<Platform> findByUseNot(Integer use);
 }

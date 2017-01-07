@@ -7,7 +7,11 @@ import javax.servlet.http.HttpSession;
 
 public interface FrameWorkService {
 
-    Result login(HttpSession session, User user);
-    public Result playVideo(String platformid ,String url,String password);
+    public Result login(HttpSession session, User user);
 
+    public Result playVideo(String platformid, String url, String password);
+
+    public Result listPlatform(HttpSession session);
+
+    public Result playDefaultVideo();
 }

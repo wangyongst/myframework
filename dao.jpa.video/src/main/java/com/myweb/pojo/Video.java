@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Video {
     private Integer id;
     private String url;
+    private Integer home;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -50,5 +51,15 @@ public class Video {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "home")
+    public Integer getHome() {
+        return home;
+    }
+
+    public void setHome(Integer home) {
+        this.home = home;
     }
 }

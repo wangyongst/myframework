@@ -15,9 +15,13 @@ public interface FrameWorkDao {
 
     public List<Video> findVideoByUrl(String url);
 
+    public List<Video> findVideoByHome(Integer home);
+
     public List<Password> findPasswordByPassword(String password);
 
     public List<Platform> findPlatformByUse(Integer use);
+
+    public List<Platform> findPlatformByUseNot(Integer use);
 
     public Platform findPlatformById(Integer id);
 

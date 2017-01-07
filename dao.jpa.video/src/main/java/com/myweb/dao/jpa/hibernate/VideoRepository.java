@@ -12,4 +12,6 @@ import java.util.List;
 public interface VideoRepository extends JpaRepository<Video,Integer> {
 
     public List<Video> findByUrl(String url);
+
+    public List<Video> findByHome(Integer home);
 }
