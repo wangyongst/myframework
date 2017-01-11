@@ -96,6 +96,11 @@
         });
 
 
+        function iFrameHeight() {
+            var ifm = document.getElementById("videoIfame");
+            ifm.height = ifm.clientWidth / 16 * 9;
+        }
+
     </script>
 </head>
 
@@ -121,7 +126,7 @@
                 <div class="panel-body">
                     <div class="col-md-12">
                         <iframe src="${homevideo}"
-                                width="100%" frameborder="0" scrolling="no" onload="this.height=600"
+                                width="100%" frameborder="0" scrolling="no" onload="iFrameHeight()"
                                 id="videoIfame"></iframe>
                     </div>
                 </div>
