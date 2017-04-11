@@ -23,26 +23,35 @@ public class WebInitializer implements WebApplicationInitializer {
 
         servletContext.setInitParameter("log4jConfigLocation", "classpath:properties/log4j.properties");
 
+        //加载Spring配置
         AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
         webContext.register(SpringConfig.class);
-        Dynamic dynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(webContext));
-        dynamic.addMapping("*.do");
-        dynamic.setLoadOnStartup(1);
+        Dynamic dispatcherDynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(webContext));
+        dispatcherDynamic.addMapping("*.do");
+        dispatcherDynamic.setLoadOnStartup(1);
 
+        //LoginFilter
         LoginFilter loginFilter = new LoginFilter();
         FilterRegistration.Dynamic loginFilterRegistration = servletContext.addFilter("loginFilter", loginFilter);
         loginFilterRegistration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "*.do", "*.jsp");
 
+        //HiddenHttpMethodFilter
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
         FilterRegistration.Dynamic hiddenHttpMethodFilterRegistration = servletContext.addFilter("hiddenHttpMethodFilter", hiddenHttpMethodFilter);
         hiddenHttpMethodFilterRegistration.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "dispatcher");
 
+        //CharacterEncodingFilter
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("utf-8");
         encodingFilter.setForceEncoding(true);
         FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", encodingFilter);
         encodingFilterRegistration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "/*");
 
+        //Log4jConfigListener
         servletContext.addListener(Log4jConfigListener.class);
+
+        //AuthImageServlet
+        Dynamic authImageDynamic = servletContext.addServlet("AuthImageServlet",new AuthImageServlet());
+        authImageDynamic.addMapping("/authImage");
     }
 }
