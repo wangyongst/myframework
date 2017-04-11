@@ -52,6 +52,6 @@ public class WebInitializer implements WebApplicationInitializer {
 
         //AuthImageServlet
         Dynamic authImageDynamic = servletContext.addServlet("AuthImageServlet",new AuthImageServlet());
-        authImageDynamic.addMapping("/authImage");
+        authImageDynamic.addMapping("/authImage.do");
     }
 }
