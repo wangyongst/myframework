@@ -13,7 +13,7 @@ import org.springframework.core.annotation.Order;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@PropertySource({ "classpath:/properties/bonecp.properties" })
+@PropertySource({"classpath:/properties/bonecp.properties.template"})
 @Order(2)
 public class BONECPDataSource {
 	private static final Logger logger = LogManager.getLogger(BONECPDataSource.class);
