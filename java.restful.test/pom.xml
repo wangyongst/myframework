@@ -68,9 +68,8 @@
             <version>8.0.33</version>
         </dependency>
         <dependency>
-            <groupId>com.myweb</groupId>
-            <artifactId>dao.jpa.test</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
 

@@ -30,7 +30,7 @@
                     <server>tomcat8</server>
                     <username>admin</username>
                     <password>admin</password>
-                    <path>/test</path>
+                    <path>/web</path>
                     <charset>utf8</charset>
                     <update>true</update>
                 </configuration>
