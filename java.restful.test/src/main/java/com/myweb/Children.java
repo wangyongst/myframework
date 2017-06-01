@@ -3,7 +3,7 @@ package com.myweb;
 /**
  * Created by BHWL on 2017-01-13.
  */
-public class Children extends Father{
+public class  Children extends Father{
     public String getCname() {
         return getFname();
     }
