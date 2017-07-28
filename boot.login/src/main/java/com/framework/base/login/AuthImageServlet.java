@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3;
+package com.framework.base.login;
 
 /**
  * Created by BHWL on 2017-04-11.

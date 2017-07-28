@@ -148,7 +148,7 @@ public class Zhongjiang {
         num.setR3(reds.get(2));
         num.setR4(reds.get(3));
         num.setR5(reds.get(4));
-        num.setR6(reds.get(5));
+        num.setR6(reds.get(5));                                                                                                                                                                                        
         return num;
     }
 

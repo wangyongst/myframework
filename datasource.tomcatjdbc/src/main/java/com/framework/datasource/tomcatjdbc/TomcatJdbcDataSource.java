@@ -1,4 +1,4 @@
-package com.framework.spring.datasource.tomcatjdbc;
+package com.framework.datasource.tomcatjdbc;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
