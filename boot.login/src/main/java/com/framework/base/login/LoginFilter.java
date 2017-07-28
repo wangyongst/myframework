@@ -23,9 +23,11 @@ public class LoginFilter implements Filter {
     private FilterConfig filterConfig;
 
     private String[] nofilters;
+    private String[] filters;
+    private String redirect;
 
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.info("LoginFilter create!");
+        logger.debug("LoginFilter create!");
         this.filterConfig = filterConfig;
         if (nofilters == null) {
             Properties prop = new Properties();// 属性集合对象
@@ -37,7 +39,10 @@ public class LoginFilter implements Filter {
                 e.printStackTrace();
             }
             String nofilter = prop.getProperty("springmvc.nofilter");
+            String filter = prop.getProperty("springmvc.filter");
+            redirect = prop.getProperty("springmvc.redirect");
             nofilters = nofilter.split(",");
+            filters = filter.split(",");
         }
     }
 
@@ -46,24 +51,44 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(true);
         String url = request.getRequestURI();
-        logger.info("LoginFilter URL is:" + url);
-        for (String nf : nofilters) {
-            if (StringUtils.isNotBlank(url) && url.contains(nf)) {
+        boolean is = this.isProcesssed(url);
+        boolean not = this.isUnprocesssed(url);
+        if (is && !not) {
+            logger.info("LoginFilter processed:" + url);
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect(request.getContextPath() + redirect);
+            } else {
                 filterChain.doFilter(servletRequest, servletResponse);
-                logger.info("LoginFilter unprocessed:" + url);
-                return;
             }
-        }
-        if (session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+            return;
         } else {
+            logger.debug("LoginFilter unprocessed:" + url);
             filterChain.doFilter(servletRequest, servletResponse);
+            return;
         }
     }
 
     @Override
     public void destroy() {
-        logger.info("LoginFilter destroy!");
+        logger.debug("LoginFilter destroy!");
+    }
+
+    public boolean isUnprocesssed(String url) {
+        for (String nf : nofilters) {
+            if (StringUtils.isNotBlank(url) && url.contains(nf)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isProcesssed(String url) {
+        for (String f : filters) {
+            if (StringUtils.isNotBlank(url) && url.contains(f)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
