@@ -31,16 +31,16 @@ public class LoginFilter implements Filter {
         this.filterConfig = filterConfig;
         if (nofilters == null) {
             Properties prop = new Properties();// 属性集合对象
-            InputStream fis = this.getClass().getResourceAsStream("/properties/loginfilter.properties");// 属性文件输入流
+            InputStream fis = this.getClass().getResourceAsStream("/properties/base.login.properties");// 属性文件输入流
             try {
                 prop.load(fis);// 将属性文件流装载到Properties对象中
                 fis.close();// 关闭流
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            String nofilter = prop.getProperty("springmvc.nofilter");
-            String filter = prop.getProperty("springmvc.filter");
-            redirect = prop.getProperty("springmvc.redirect");
+            String nofilter = prop.getProperty("loginFilter.nofilter");
+            String filter = prop.getProperty("loginFilter.filter");
+            redirect = prop.getProperty("loginFilter.redirect");
             nofilters = nofilter.split(",");
             filters = filter.split(",");
         }
