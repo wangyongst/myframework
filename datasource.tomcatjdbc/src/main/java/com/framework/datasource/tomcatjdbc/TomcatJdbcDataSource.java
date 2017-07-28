@@ -13,7 +13,7 @@ import org.springframework.core.annotation.Order;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@PropertySource({"classpath:/properties/tomcat-jdbc.properties"})
+@PropertySource({"classpath:/tomcat-jdbc.properties"})
 @Order(2)
 public class TomcatJdbcDataSource {
     private static final Logger logger = LogManager.getLogger(TomcatJdbcDataSource.class);
@@ -56,9 +56,6 @@ public class TomcatJdbcDataSource {
     private boolean logAbandoned;
     @Value("${datasource.removeAbandoned}")
     private boolean removeAbandoned;
-    @Value("${datasource.jdbcInterceptors}")
-    private String jdbcInterceptors;
-
 
     /**
      * 描述 : <负责解析资源文件>. <br>
@@ -97,7 +94,6 @@ public class TomcatJdbcDataSource {
         dataSource.setMinIdle(minIdle);
         dataSource.setLogAbandoned(logAbandoned);
         dataSource.setRemoveAbandoned(removeAbandoned);
-        dataSource.setJdbcInterceptors(jdbcInterceptors);
         return dataSource;
     }
 }
