@@ -36,6 +36,7 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         String width = prop.getProperty("authImage.width");
         String height = prop.getProperty("authImage.height");
         String size = prop.getProperty("authImage.size");
+        String yawpRate = prop.getProperty("authImage.yawpRate");
 
         //生成随机字串
         String verifyCode = VerifyCodeUtils.generateVerifyCode(Integer.parseInt(size));
@@ -46,7 +47,7 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         session.setAttribute("verCode", verifyCode.toLowerCase());
         //生成图片
         int w = Integer.parseInt(width), h = Integer.parseInt(height);
-        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
+        VerifyCodeUtils.outputImage(Float.parseFloat(yawpRate),w, h, response.getOutputStream(), verifyCode);
 
     }
 }

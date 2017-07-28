@@ -65,9 +65,9 @@ public class VerifyCodeUtils{
      * @return
      * @throws IOException
      */
-    public static String outputVerifyImage(int w, int h, File outputFile, int verifySize) throws IOException{
+    public static String outputVerifyImage(float yawpRateint,int w, int h, File outputFile, int verifySize) throws IOException{
         String verifyCode = generateVerifyCode(verifySize);
-        outputImage(w, h, outputFile, verifyCode);
+        outputImage(yawpRateint,w, h, outputFile, verifyCode);
         return verifyCode;
     }
 
@@ -80,9 +80,9 @@ public class VerifyCodeUtils{
      * @return
      * @throws IOException
      */
-    public static String outputVerifyImage(int w, int h, OutputStream os, int verifySize) throws IOException{
+    public static String outputVerifyImage(float yawpRateint,int w, int h, OutputStream os, int verifySize) throws IOException{
         String verifyCode = generateVerifyCode(verifySize);
-        outputImage(w, h, os, verifyCode);
+        outputImage(yawpRateint,w, h, os, verifyCode);
         return verifyCode;
     }
 
@@ -94,7 +94,7 @@ public class VerifyCodeUtils{
      * @param code
      * @throws IOException
      */
-    public static void outputImage(int w, int h, File outputFile, String code) throws IOException{
+    public static void outputImage(float yawpRateint,int w, int h, File outputFile, String code) throws IOException{
         if(outputFile == null){
             return;
         }
@@ -105,7 +105,7 @@ public class VerifyCodeUtils{
         try{
             outputFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(outputFile);
-            outputImage(w, h, fos, code);
+            outputImage(yawpRateint,w, h, fos, code);
             fos.close();
         } catch(IOException e){
             throw e;
@@ -120,7 +120,7 @@ public class VerifyCodeUtils{
      * @param code
      * @throws IOException
      */
-    public static void outputImage(int w, int h, OutputStream os, String code) throws IOException{
+    public static void outputImage(float yawpRate,int w, int h, OutputStream os, String code) throws IOException{
         int verifySize = code.length();
         BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Random rand = new Random();
@@ -156,7 +156,7 @@ public class VerifyCodeUtils{
         }
 
         // 添加噪点
-        float yawpRate = 0.05f;// 噪声率
+        //float yawpRate = 0.01f;// 噪声率
         int area = (int) (yawpRate * w * h);
         for (int i = 0; i < area; i++) {
             int x = random.nextInt(w);
@@ -263,12 +263,12 @@ public class VerifyCodeUtils{
 
     }
     public static void main(String[] args) throws IOException{
-        File dir = new File("F:/verifies");
+        File dir = new File("E://verifies");
         int w = 200, h = 80;
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i <= 100; i++){
             String verifyCode = generateVerifyCode(4);
-            File file = new File(dir, verifyCode + ".jpg");
-            outputImage(w, h, file, verifyCode);
+            File file = new File(dir, i/100f+".."+verifyCode + ".jpg");
+            outputImage(i/100f,w, h, file, verifyCode);
         }
     }
 }
