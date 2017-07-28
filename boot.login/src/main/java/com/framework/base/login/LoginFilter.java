@@ -54,7 +54,7 @@ public class LoginFilter implements Filter {
         boolean is = this.isProcesssed(url);
         boolean not = this.isUnprocesssed(url);
         if (is && !not) {
-            logger.info("LoginFilter processed:" + url);
+            logger.debug("LoginFilter processed:" + url);
             if (session.getAttribute("user") == null) {
                 response.sendRedirect(request.getContextPath() + redirect);
             } else {
@@ -62,7 +62,7 @@ public class LoginFilter implements Filter {
             }
             return;
         } else {
-            logger.debug("LoginFilter unprocessed:" + url);
+            logger.info("LoginFilter unprocessed:" + url);
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
