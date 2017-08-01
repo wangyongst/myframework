@@ -1,0 +1,67 @@
+group 'com.framework'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+    }
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
+
+dependencies {
+
+    testCompile("junit:junit")
+
+    compile('log4j:log4j')
+
+    compile('org.apache.logging.log4j:log4j-api')
+
+    compile('org.apache.commons:commons-lang3')
+
+    compile('commons-httpclient:commons-httpclient')
+
+    compile('org.springframework:spring-beans')
+
+    compile("javax.servlet:javax.servlet-api")
+
+    compile("org.apache.velocity:velocity")
+
+    compile("org.slf4j:slf4j-api")
+
+    compile("org.json:json")
+
+    compile("org.mongodb:mongo-java-driver")
+
+    compile("com.alibaba:druid:1.0.16")
+
+    compile("it.sauronsoftware.cron4j:cron4j:2.2.5")
+}
