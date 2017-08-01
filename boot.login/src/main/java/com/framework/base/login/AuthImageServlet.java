@@ -26,7 +26,7 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         response.setContentType("image/jpeg");
 
         Properties prop = new Properties();// 属性集合对象
-        InputStream fis = this.getClass().getResourceAsStream("/properties/base.login.properties");// 属性文件输入流
+        InputStream fis = this.getClass().getResourceAsStream("/properties/boot.login.properties");// 属性文件输入流
         try {
             prop.load(fis);// 将属性文件流装载到Properties对象中
             fis.close();// 关闭流
