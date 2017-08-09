@@ -1,4 +1,4 @@
-package com.framework.base.login;
+package com.framework.boot.login.authimg;
 
 /**
  * Created by BHWL on 2017-04-11.

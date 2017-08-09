@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3;
+package com.framework.boot.spring;
 
 import com.framework.base.login.AuthImageServlet;
 import com.framework.base.login.LoginFilter;
@@ -32,11 +32,6 @@ public class WebInitializer implements WebApplicationInitializer {
         dispatcherDynamic.addMapping("*.do");
         dispatcherDynamic.setLoadOnStartup(1);
 
-        //LoginFilter
-        LoginFilter loginFilter = new LoginFilter();
-        FilterRegistration.Dynamic loginFilterRegistration = servletContext.addFilter("loginFilter", loginFilter);
-        loginFilterRegistration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "*.do", "*.jsp");
-
         //HiddenHttpMethodFilter
         HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
         FilterRegistration.Dynamic hiddenHttpMethodFilterRegistration = servletContext.addFilter("hiddenHttpMethodFilter", hiddenHttpMethodFilter);
@@ -51,9 +46,5 @@ public class WebInitializer implements WebApplicationInitializer {
 
         //Log4jConfigListener
         servletContext.addListener(Log4jConfigListener.class);
-
-        //AuthImageServlet
-        Dynamic authImageDynamic = servletContext.addServlet("AuthImageServlet",new AuthImageServlet());
-        authImageDynamic.addMapping("/authImage.do");
     }
 }

@@ -1,16 +1,16 @@
-package com.framework.base.login;
+package com.framework.boot.login.authimg;
 
 /**
  * Created by BHWL on 2017-04-11.
  */
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+
+import com.framework.utils.Props;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * <p><b>AuthImageServlet Description:</b> (验证码)</p>
@@ -25,29 +25,22 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         response.setDateHeader("Expires", 0);
         response.setContentType("image/jpeg");
 
-        Properties prop = new Properties();// 属性集合对象
-        InputStream fis = this.getClass().getResourceAsStream("/properties/boot.login.properties");// 属性文件输入流
-        try {
-            prop.load(fis);// 将属性文件流装载到Properties对象中
-            fis.close();// 关闭流
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String width = prop.getProperty("authImage.width");
-        String height = prop.getProperty("authImage.height");
-        String size = prop.getProperty("authImage.size");
-        String yawpRate = prop.getProperty("authImage.yawpRate");
+        Props props = new Props("/properties/boot.login.properties");
+        Integer width = props.getInt("authImage.width");
+        Integer height = props.getInt("authImage.height");
+        Integer size = props.getInt("authImage.size");
+        String yawpRate = props.getStr("authImage.yawpRate");
 
         //生成随机字串
-        String verifyCode = VerifyCodeUtils.generateVerifyCode(Integer.parseInt(size));
+        String verifyCode = VerifyCodeUtils.generateVerifyCode(size);
         //存入会话session
         HttpSession session = request.getSession(true);
         //删除以前的
         session.removeAttribute("verCode");
         session.setAttribute("verCode", verifyCode.toLowerCase());
         //生成图片
-        int w = Integer.parseInt(width), h = Integer.parseInt(height);
-        VerifyCodeUtils.outputImage(Float.parseFloat(yawpRate),w, h, response.getOutputStream(), verifyCode);
+        int w = width, h = height;
+        VerifyCodeUtils.outputImage(Float.parseFloat(yawpRate), w, h, response.getOutputStream(), verifyCode);
 
     }
 }

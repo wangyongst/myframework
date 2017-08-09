@@ -1,4 +1,4 @@
-package com.framework.boot.servlet3;
+package com.framework.boot.spring;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

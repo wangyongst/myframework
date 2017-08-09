@@ -44,8 +44,6 @@ dependencies {
     compile('org.springframework.security:spring-security-web')
 
     compile('com.fasterxml.jackson.core:jackson-databind', 'com.fasterxml.jackson.core:jackson-core')
-
-    compile('com.framework:boot.login:1.0-SNAPSHOT')
 }
 
 

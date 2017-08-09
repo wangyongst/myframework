@@ -39,7 +39,11 @@ dependencies {
 
     compile('log4j:log4j')
 
+    compile("com.framework:base.utils:1.0-SNAPSHOT")
+
     compile('org.apache.commons:commons-lang3')
 
     compile("javax.servlet:javax.servlet-api")
+
+    compile('org.springframework:spring-webmvc')
 }

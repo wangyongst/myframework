@@ -1,6 +1,7 @@
-package com.framework.base.login;
+package com.framework.boot.login.filter;
 
 
+import com.framework.utils.Props;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 /**
  * Created by BHWL on 2016-04-27.
@@ -30,17 +29,10 @@ public class LoginFilter implements Filter {
         logger.debug("LoginFilter create!");
         this.filterConfig = filterConfig;
         if (nofilters == null) {
-            Properties prop = new Properties();// 属性集合对象
-            InputStream fis = this.getClass().getResourceAsStream("/properties/base.login.properties");// 属性文件输入流
-            try {
-                prop.load(fis);// 将属性文件流装载到Properties对象中
-                fis.close();// 关闭流
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            String nofilter = prop.getProperty("loginFilter.nofilter");
-            String filter = prop.getProperty("loginFilter.filter");
-            redirect = prop.getProperty("loginFilter.redirect");
+            Props props = new Props("/properties/boot.login.properties");
+            String nofilter = props.getStr("loginFilter.nofilter");
+            String filter = props.getStr("loginFilter.filter");
+            redirect = props.getStr("loginFilter.redirect");
             nofilters = nofilter.split(",");
             filters = filter.split(",");
         }
