@@ -1,7 +1,5 @@
 package com.framework.boot.spring;
 
-import com.framework.base.login.AuthImageServlet;
-import com.framework.base.login.LoginFilter;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

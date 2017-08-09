@@ -39,9 +39,15 @@ targetCompatibility = 1.8
 
 dependencies {
 
+    testCompile("junit:junit")
+
+    compile('log4j:log4j')
+
     compile('org.springframework:spring-webmvc')
 
     compile('org.springframework.security:spring-security-web')
+
+    compile("javax.servlet:javax.servlet-api")
 
     compile('com.fasterxml.jackson.core:jackson-databind', 'com.fasterxml.jackson.core:jackson-core')
 }
