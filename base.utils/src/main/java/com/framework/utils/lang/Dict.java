@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import com.framework.utils.Conver;
 import com.framework.utils.InjectUtil;
@@ -132,7 +132,7 @@ public class Dict extends HashMap<String, Object>{
 			withoutSet.add(name);
 		}
 		
-		for(Map.Entry<String, Object> entry : dict.entrySet()) {
+		for(Entry<String, Object> entry : dict.entrySet()) {
 			if(withoutSet.contains(entry.getKey())) {
 				continue;
 			}

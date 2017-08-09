@@ -3,6 +3,7 @@ package com.framework.utils.bloomFilter.filter;
 
 import com.framework.utils.HashUtil;
 
+
 public class FNVFilter extends AbstractFilter {
 
 	public FNVFilter(long maxValue, int machineNum) {

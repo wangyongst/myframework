@@ -1,7 +1,8 @@
 package com.framework.utils.bloomFilter.filter;
 
-
 import com.framework.utils.HashUtil;
+
+
 
 /**
  * 默认Bloom过滤器，使用Java自带的Hash算法

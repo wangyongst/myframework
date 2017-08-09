@@ -21,14 +21,14 @@ public class IntMap implements BitMap {
 	private int[] ints = null;
 
 	public void add(long i) {
-		int r = (int) (i / MACHINE32);
-		int c = (int) (i % MACHINE32);
+		int r = (int) (i / BitMap.MACHINE32);
+		int c = (int) (i % BitMap.MACHINE32);
 		ints[r] = (int) (ints[r] | (1 << c));
 	}
 
 	public boolean contains(long i) {
-		int r = (int) (i / MACHINE32);
-		int c = (int) (i % MACHINE32);
+		int r = (int) (i / BitMap.MACHINE32);
+		int c = (int) (i % BitMap.MACHINE32);
 		if (((int) ((ints[r] >>> c)) & 1) == 1) {
 			return true;
 		}
@@ -36,8 +36,8 @@ public class IntMap implements BitMap {
 	}
 
 	public void remove(long i) {
-		int r = (int) (i / MACHINE32);
-		int c = (int) (i % MACHINE32);
+		int r = (int) (i / BitMap.MACHINE32);
+		int c = (int) (i % BitMap.MACHINE32);
 		ints[r] = (int) (ints[r] & (((1 << (c + 1)) - 1) ^ MAX));
 	}
 

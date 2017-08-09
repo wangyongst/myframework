@@ -3,6 +3,7 @@ package com.framework.utils.bloomFilter.filter;
 
 import com.framework.utils.HashUtil;
 
+
 public class SDBMFilter extends AbstractFilter {
 
 	public SDBMFilter(long maxValue, int machineNum) {

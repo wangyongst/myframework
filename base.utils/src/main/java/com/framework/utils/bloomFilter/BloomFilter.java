@@ -1,8 +1,13 @@
 package com.framework.utils.bloomFilter;
 
+import com.framework.utils.bloomFilter.filter.DefaultFilter;
+import com.framework.utils.bloomFilter.filter.ELFFilter;
+import com.framework.utils.bloomFilter.filter.Filter;
+import com.framework.utils.bloomFilter.filter.JSFilter;
+import com.framework.utils.bloomFilter.filter.PJWFilter;
+import com.framework.utils.bloomFilter.filter.SDBMFilter;
 
-import com.framework.utils.bloomFilter.filter.*;
-import com.framework.utils.bloomFilter.filter.*;
+
 
 /**
  * BlommFilter 实现 <br>

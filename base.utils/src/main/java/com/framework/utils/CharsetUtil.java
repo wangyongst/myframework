@@ -1,11 +1,12 @@
 package com.framework.utils;
 
 
-import com.framework.utils.exceptions.UtilException;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+
+import com.framework.utils.exceptions.UtilException;
+
 
 /**
  * 字符集工具类

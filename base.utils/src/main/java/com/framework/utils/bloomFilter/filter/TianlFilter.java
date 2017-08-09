@@ -3,6 +3,8 @@ package com.framework.utils.bloomFilter.filter;
 
 import com.framework.utils.HashUtil;
 
+
+
 public class TianlFilter extends AbstractFilter {
 
 	public TianlFilter(long maxValue, int machineNum) {

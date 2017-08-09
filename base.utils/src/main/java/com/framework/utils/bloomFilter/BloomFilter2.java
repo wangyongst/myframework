@@ -1,9 +1,6 @@
 package com.framework.utils.bloomFilter;
 
 
-import com.framework.utils.FileUtil;
-import com.framework.utils.HashUtil;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +8,8 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 
+import com.framework.utils.FileUtil;
+import com.framework.utils.HashUtil;
 
 
 /**

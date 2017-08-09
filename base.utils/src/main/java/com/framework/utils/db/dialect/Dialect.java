@@ -1,13 +1,13 @@
 package com.framework.utils.db.dialect;
 
 
-import com.framework.utils.db.Entity;
-import com.framework.utils.db.Page;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
+
+import com.framework.utils.db.Entity;
+import com.framework.utils.db.Page;
 
 
 /**
