@@ -1,8 +1,9 @@
-package com.framework.boot.spring;
+package com.boot.spring.boot;
 
+import com.framework.boot.spring.SpringConfig;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -18,7 +19,7 @@ import java.util.EnumSet;
 
 @Configuration
 @Order(4)
-public class WebInitializer implements WebApplicationInitializer {
+public class WebInitializerBoot implements ServletContextInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext)

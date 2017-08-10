@@ -1,10 +1,10 @@
-package com.framework.boot.login;
+package com.boot.spring.boot;
 
 import com.framework.boot.login.authimg.AuthImageServlet;
 import com.framework.boot.login.filter.LoginFilter;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.web.WebApplicationInitializer;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -15,7 +15,7 @@ import java.util.EnumSet;
 
 @Configuration
 @Order(5)
-public class WebInitializerLogin implements WebApplicationInitializer {
+public class WebInitializerLoginBoot implements ServletContextInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext)

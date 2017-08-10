@@ -32,14 +32,18 @@ dependencyManagement {
     }
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
 
 dependencies {
 
     compile("org.aspectj:aspectjweaver")
+
+    compile("com.framework:boot.spring:1.0-SNAPSHOT")
+
+    compile("com.framework:boot.login:1.0-SNAPSHOT")
 
     compile("org.springframework.boot:spring-boot-starter-web")
 

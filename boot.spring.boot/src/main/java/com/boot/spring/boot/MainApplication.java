@@ -1,20 +1,29 @@
 package com.boot.spring.boot;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.annotation.Order;
 
 /**
  * Created by BHWL on 2017-08-09.
  */
 @SpringBootApplication(exclude = MongoAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.framework"})
-@Order(6)
 public class MainApplication extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MainApplication.class, args);
+        configureApplication(new SpringApplicationBuilder()).run(args);
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return configureApplication(builder);
+    }
+
+    private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {
+        return builder.sources(WebInitializerBoot.class, WebInitializerLoginBoot.class, MainApplication.class).bannerMode(Banner.Mode.OFF);
+    }
+
 }
