@@ -28,7 +28,7 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
     }
 }
 
@@ -41,9 +41,8 @@ dependencies {
 
     testCompile("junit:junit")
 
-    compile('log4j:log4j')
-
-    compile('org.apache.logging.log4j:log4j-api')
+    compile('ch.qos.logback:logback-classic',
+            'ch.qos.logback:logback-access')
 
     compile('org.apache.commons:commons-lang3')
 

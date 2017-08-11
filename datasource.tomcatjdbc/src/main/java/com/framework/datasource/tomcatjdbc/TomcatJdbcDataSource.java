@@ -71,7 +71,7 @@ public class TomcatJdbcDataSource {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean
+    @Bean(name = "dataSource")
     public DataSource dataSource() throws PropertyVetoException {
         logger.info("TomcatJdbcDataSource create!");
         DataSource dataSource = new DataSource();

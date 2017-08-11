@@ -37,7 +37,8 @@ targetCompatibility = 1.8
 dependencies {
     testCompile("junit:junit")
 
-    compile('ch.qos.logback:logback-classic')
+    compile('ch.qos.logback:logback-classic',
+            'ch.qos.logback:logback-access')
 
     compile("com.framework:base.utils:1.0-SNAPSHOT")
 
