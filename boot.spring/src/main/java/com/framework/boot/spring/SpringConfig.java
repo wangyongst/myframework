@@ -18,7 +18,6 @@ import org.springframework.web.servlet.view.JstlView;
 import java.util.List;
 
 @Configuration
-@SuppressWarnings("ALL")
 @ComponentScan(basePackages = { "com.framework", "com.myweb" })
 @EnableWebMvc
 @Order(4)
