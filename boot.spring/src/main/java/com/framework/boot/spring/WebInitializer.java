@@ -24,8 +24,6 @@ public class WebInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext)
             throws ServletException {
 
-        servletContext.setInitParameter("log4jConfigLocation", "classpath:properties/log4j.properties");
-
         //加载Spring配置
         AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
         webContext.register(SpringConfig.class);
@@ -45,7 +43,5 @@ public class WebInitializer implements WebApplicationInitializer {
         FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", encodingFilter);
         encodingFilterRegistration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE), false, "/*");
 
-        //Log4jConfigListener
-        servletContext.addListener(Log4jConfigListener.class);
     }
 }

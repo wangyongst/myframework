@@ -1,7 +1,8 @@
 package com.framework.persistence.jpa.hibernate;
 
-import org.apache.log4j.Logger;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,43 +19,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@PropertySource({"classpath:/properties/jpa.properties"})
+@PropertySource({"classpath:/application.properties"})
 @Order(3)
 public class EntityManagerFactory {
 
-    private static final Logger logger = Logger.getLogger(EntityManagerFactory.class);
+    private static final Logger logger = LoggerFactory.getLogger(EntityManagerFactory.class);
 
     @Autowired
-    @Qualifier("myDS")
     private DataSource dataSource;
+
     @Autowired
-    @Qualifier("myJVA")
     private JpaVendorAdapter jpaVendorAdapter;
 
     @Value("${jpa.packagesToScan}")
     private String packagesToScan;
     @Value("${jpa.persistenceUnitName}")
     private String persistenceUnitName;
-    @Value("${hibernate.query.substitutions}")
+    @Value("${spring.jpa.properties.query.substitutions}")
     private String substitutions;
-    @Value("${hibernate.default_batch_fetch_size}")
+    @Value("${spring.jpa.properties.default_batch_fetch_size}")
     private String default_batch_fetch_size;
-    @Value("${hibernate.max_fetch_depth}")
+    @Value("${spring.jpa.properties.max_fetch_depth}")
     private String max_fetch_depth;
-    @Value("${hibernate.generate_statistics}")
+    @Value("${spring.jpa.properties.generate_statistics}")
     private String generate_statistics;
-    @Value("${hibernate.bytecode.use_reflection_optimizer}")
+    @Value("${spring.jpa.properties.bytecode.use_reflection_optimizer}")
     private String use_reflection_optimizer;
-    @Value("${hibernate.cache.use_second_level_cache}")
+    @Value("${spring.jpa.properties.cache.use_second_level_cache}")
     private String use_second_level_cache;
-    @Value("${hibernate.cache.use_query_cache}")
+    @Value("${spring.jpa.properties.cache.use_query_cache}")
     private String use_query_cache;
-    @Value("${hibernate.dialect}")
+    @Value("${spring.jpa.properties.dialect}")
     private String dialect;
 
-    @Bean(name = "myEMF")
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
-        logger.info("EntityManagerFactory create!");
+        logger.info("LocalContainerEntityManagerFactoryBean create!");
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setPackagesToScan(packagesToScan);

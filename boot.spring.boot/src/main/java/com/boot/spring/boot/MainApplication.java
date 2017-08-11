@@ -3,6 +3,7 @@ package com.boot.spring.boot;
 import com.framework.boot.login.authimg.AuthImageServlet;
 import com.framework.boot.login.filter.LoginFilter;
 import org.springframework.boot.Banner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -28,22 +29,13 @@ import java.util.*;
 @EntityScan(basePackages = {"com.myweb.pojo"})
 public class MainApplication extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
-        configureApplication(new SpringApplicationBuilder()).run(args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return configureApplication(builder);
-    }
-
-    private static SpringApplicationBuilder configureApplication(SpringApplicationBuilder builder) {
-        return builder.sources(MainApplication.class).bannerMode(Banner.Mode.OFF);
+        SpringApplication.run(MainApplication.class,args);
     }
 
     @Bean
     public FilterRegistrationBean loginFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        //LoginFilter
+
         LoginFilter loginFilter = new LoginFilter();
         registrationBean.setFilter(loginFilter);
         List<String> urlPatterns = new ArrayList<String>();

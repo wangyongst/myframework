@@ -28,7 +28,7 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
     }
 }
 
@@ -41,7 +41,7 @@ dependencies {
 
     testCompile("junit:junit")
 
-    compile('log4j:log4j')
+    compile('ch.qos.logback:logback-classic')
 
     compile('org.springframework:spring-webmvc')
 

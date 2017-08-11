@@ -1,8 +1,8 @@
 package com.framework.datasource.tomcatjdbc;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import java.beans.PropertyVetoException;
 @PropertySource({"classpath:/application.properties"})
 @Order(2)
 public class TomcatJdbcDataSource {
-    private static final Logger logger = LogManager.getLogger(TomcatJdbcDataSource.class);
+    private static final Logger logger = LoggerFactory.getLogger(TomcatJdbcDataSource.class);
 
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;

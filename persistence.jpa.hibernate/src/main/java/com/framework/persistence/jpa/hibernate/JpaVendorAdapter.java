@@ -1,6 +1,7 @@
 package com.framework.persistence.jpa.hibernate;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,23 +10,23 @@ import org.springframework.core.annotation.Order;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@PropertySource({"classpath:/properties/jpa.properties"})
+@PropertySource({"classpath:/application.properties"})
 @Order(3)
 public class JpaVendorAdapter {
 
-    private static final Logger logger = Logger.getLogger(JpaVendorAdapter.class);
+    private static final Logger logger = LoggerFactory.getLogger(JpaVendorAdapter.class);
 
-    @Value("${jpa.generateDdl}")
+    @Value("${spring.jpa.generate-ddl}")
     private boolean generateDdl;
-    @Value("${jpa.databasePlatform}")
+    @Value("${spring.jpa.database-platform}")
     private String databasePlatform;
-    @Value("${jpa.showSql}")
+    @Value("${spring.jpa.show-sql}")
     private boolean showSql;
 
 
-    @Bean(name = "myJVA")
+    @Bean
     public HibernateJpaVendorAdapter jpaVendorAdapter() throws Exception {
-        logger.info("JpaVendorAdapter create!");
+        logger.info("HibernateJpaVendorAdapter create!");
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setGenerateDdl(generateDdl);
         jpaVendorAdapter.setDatabasePlatform(databasePlatform);
