@@ -1,7 +1,7 @@
 package com.framework.persistence.jpa.hibernate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @Order(3)
 public class JpaVendorAdapter {
 
-    private static final Logger logger = LoggerFactory.getLogger(JpaVendorAdapter.class);
+    private static final Logger logger = LogManager.getLogger(JpaVendorAdapter.class);
 
     @Value("${spring.jpa.generate-ddl}")
     private boolean generateDdl;
@@ -24,7 +24,7 @@ public class JpaVendorAdapter {
     private boolean showSql;
 
 
-    @Bean
+    @Bean(name = "myJVA")
     public HibernateJpaVendorAdapter jpaVendorAdapter() throws Exception {
         logger.info("HibernateJpaVendorAdapter create!");
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();

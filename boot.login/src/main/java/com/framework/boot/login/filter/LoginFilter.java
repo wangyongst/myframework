@@ -3,6 +3,9 @@ package com.framework.boot.login.filter;
 
 import com.framework.utils.Props;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +29,10 @@ public class LoginFilter implements Filter {
         logger.debug("LoginFilter create!");
         this.filterConfig = filterConfig;
         if (nofilters == null) {
-            Props props = new Props("properties/boot.login.properties");
-            String nofilter = props.getStr("loginFilter.nofilter");
-            String filter = props.getStr("loginFilter.filter");
-            redirect = props.getStr("loginFilter.redirect");
+            Props props = new Props("application.properties");
+            String nofilter = props.getStr("custom.loginFilter.nofilter");
+            String filter = props.getStr("custom.loginFilter.filter");
+            redirect = props.getStr("custom.loginFilter.redirect");
             nofilters = nofilter.split(",");
             filters = filter.split(",");
         }

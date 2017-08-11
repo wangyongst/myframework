@@ -25,11 +25,11 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         response.setDateHeader("Expires", 0);
         response.setContentType("image/jpeg");
 
-        Props props = new Props("properties/boot.login.properties");
-        Integer width = props.getInt("authImage.width");
-        Integer height = props.getInt("authImage.height");
-        Integer size = props.getInt("authImage.size");
-        String yawpRate = props.getStr("authImage.yawpRate");
+        Props props = new Props("application.properties");
+        Integer width = props.getInt("custom.authImage.width");
+        Integer height = props.getInt("custom.authImage.height");
+        Integer size = props.getInt("custom.authImage.size");
+        String yawpRate = props.getStr("custom.authImage.yawpRate");
 
         //生成随机字串
         String verifyCode = VerifyCodeUtils.generateVerifyCode(size);

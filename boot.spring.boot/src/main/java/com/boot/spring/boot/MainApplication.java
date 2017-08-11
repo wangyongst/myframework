@@ -35,7 +35,7 @@ public class MainApplication extends SpringBootServletInitializer {
     @Bean
     public FilterRegistrationBean loginFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-
+        //LoginFilter
         LoginFilter loginFilter = new LoginFilter();
         registrationBean.setFilter(loginFilter);
         List<String> urlPatterns = new ArrayList<String>();
@@ -45,16 +45,16 @@ public class MainApplication extends SpringBootServletInitializer {
         return registrationBean;
     }
 
-    @Bean
+   // @Bean
     public FilterRegistrationBean hiddenHttpMethodFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-
-        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
-        registrationBean.setFilter(hiddenHttpMethodFilter);
-        List<String> urlPatterns = new ArrayList<String>();
-        urlPatterns.add("*.do");
-        urlPatterns.add("*.jsp");
-        //registrationBean.set
+//
+//        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+//        registrationBean.setFilter(hiddenHttpMethodFilter);
+//        List<String> urlPatterns = new ArrayList<String>();
+//        urlPatterns.add("*.do");
+//        urlPatterns.add("*.jsp");
+//        registrationBean.set
         return registrationBean;
     }
 
@@ -71,13 +71,13 @@ public class MainApplication extends SpringBootServletInitializer {
     }
 
 
-    @Bean
+    //@Bean
     public ServletListenerRegistrationBean<EventListener> getDemoListener() {
         ServletListenerRegistrationBean<EventListener> registrationBean = new ServletListenerRegistrationBean<>();
-        registrationBean.setListener(new Log4jConfigListener());
-        Map parameters = new HashMap<String, String>();
-        parameters.put("log4jConfigLocation", "classpath:properties/log4j.properties");
-        registrationBean.setInitParameters(parameters);
+//        registrationBean.setListener(new Log4jConfigListener());
+//        Map parameters = new HashMap<String, String>();
+//        parameters.put("log4jConfigLocation", "classpath:properties/log4j.properties");
+//        registrationBean.setInitParameters(parameters);
         return registrationBean;
     }
 }
