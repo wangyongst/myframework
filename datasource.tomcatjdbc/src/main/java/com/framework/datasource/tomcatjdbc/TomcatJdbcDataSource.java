@@ -13,48 +13,48 @@ import org.springframework.core.annotation.Order;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@PropertySource({"classpath:/properties/tomcat-jdbc.properties"})
+@PropertySource({"classpath:/application.properties"})
 @Order(2)
 public class TomcatJdbcDataSource {
     private static final Logger logger = LogManager.getLogger(TomcatJdbcDataSource.class);
 
-    @Value("${datasource.driverClassName}")
+    @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
-    @Value("${datasource.url}")
+    @Value("${spring.datasource.url}")
     private String url;
-    @Value("${datasource.username}")
+    @Value("${spring.datasource.username}")
     private String username;
-    @Value("${datasource.password}")
+    @Value("${spring.datasource.password}")
     private String password;
-    @Value("${datasource.jmxEnabled}")
+    @Value("${spring.datasource.tomcat.jmx-enabled}")
     private boolean jmxEnabled;
-    @Value("${datasource.testWhileIdle}")
+    @Value("${spring.datasource.tomcat.test-while-idle}")
     private boolean testWhileIdle;
-    @Value("${datasource.testOnBorrow}")
+    @Value("${spring.datasource.tomcat.test-on-borrow}")
     private boolean testOnBorrow;
-    @Value("${datasource.validationInterval}")
+    @Value("${spring.datasource.tomcat.validation-interval}")
     private long validationInterval;
-    @Value("${datasource.testOnReturn}")
+    @Value("${spring.datasource.tomcat.test-on-return}")
     private boolean testOnReturn;
-    @Value("${datasource.validationQuery}")
+    @Value("${spring.datasource.tomcat.validation-query}")
     private String validationQuery;
-    @Value("${datasource.timeBetweenEvictionRunsMillis}")
+    @Value("${spring.datasource.tomcat.time-between-eviction-runs-millis}")
     private int timeBetweenEvictionRunsMillis;
-    @Value("${datasource.maxActive}")
+    @Value("${spring.datasource.tomcat.max-active}")
     private int maxActive;
-    @Value("${datasource.initialSize}")
+    @Value("${spring.datasource.tomcat.initial-size}")
     private int initialSize;
-    @Value("${datasource.maxWait}")
+    @Value("${spring.datasource.tomcat.max-wait}")
     private int maxWait;
-    @Value("${datasource.removeAbandonedTimeout}")
+    @Value("${spring.datasource.tomcat.remove-abandoned-timeout}")
     private int removeAbandonedTimeout;
-    @Value("${datasource.minEvictableIdleTimeMillis}")
+    @Value("${spring.datasource.tomcat.min-evictable-idle-time-millis}")
     private int minEvictableIdleTimeMillis;
-    @Value("${datasource.minIdle}")
+    @Value("${spring.datasource.tomcat.min-idle}")
     private int minIdle;
-    @Value("${datasource.logAbandoned}")
+    @Value("${spring.datasource.tomcat.log-abandoned}")
     private boolean logAbandoned;
-    @Value("${datasource.removeAbandoned}")
+    @Value("${spring.datasource.tomcat.remove-abandoned}")
     private boolean removeAbandoned;
 
     /**
@@ -71,9 +71,9 @@ public class TomcatJdbcDataSource {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(name = "myDS")
+    @Bean
     public DataSource dataSource() throws PropertyVetoException {
-        logger.info("DataSource create!");
+        logger.info("TomcatJdbcDataSource create!");
         DataSource dataSource = new DataSource();
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
