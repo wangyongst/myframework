@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 import java.util.EnumSet;
 
+@Configuration
 @Order(5)
 public class WebInitializerLogin implements WebApplicationInitializer {
 
