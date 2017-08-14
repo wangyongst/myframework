@@ -1,5 +1,6 @@
 package com.framework.persistence.jpa.hibernate;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.logging.log4j.LogManager;
 
 
 @Configuration
@@ -31,7 +30,7 @@ public class EntityManagerFactory {
     private DataSource dataSource;
     @Autowired
     @Qualifier("myJVA")
-    private JpaVendorAdapter jpaVendorAdapter;
+    private org.springframework.orm.jpa.JpaVendorAdapter jpaVendorAdapter;
 
     @Value("${custom.jpa.packagesToScan}")
     private String packagesToScan;
