@@ -7,21 +7,25 @@ apply plugin: 'maven'
 
 
 repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
     mavenLocal()
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
 }
 
 buildscript {
     repositories {
         mavenLocal()
-        //maven { url 'http://repo.spring.io/snapshot' }
-        maven { url 'http://repo.spring.io/milestone' }
         mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M3"
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M3'
     }
 }
 
@@ -48,11 +52,14 @@ dependencies {
     }
     compile("org.springframework.boot:spring-boot-starter-log4j2")
 
+    compile("org.springframework.boot:spring-boot-devtools")
+
     compile("org.apache.tomcat.embed:tomcat-embed-jasper")
 
     compile("org.aspectj:aspectjweaver")
 
     compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT") {
         exclude module: "boot.spring"
+        exclude module: "boot.login"
     }
 }

@@ -1,24 +1,12 @@
 package com.boot.spring.boot;
 
-import com.framework.boot.login.authimg.AuthImageServlet;
-import com.framework.boot.login.filter.LoginFilter;
-import org.springframework.boot.Banner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.util.Log4jConfigListener;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EventListener;
+import java.util.List;
 
 /**
  * Created by BHWL on 2017-08-09.
