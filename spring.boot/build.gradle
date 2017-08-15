@@ -7,21 +7,20 @@ apply plugin: 'maven'
 
 
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
     mavenLocal()
-    mavenCentral()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "http://repo.spring.io/snapshot" }
     maven { url "http://repo.spring.io/milestone" }
+    mavenCentral()
 }
 
 buildscript {
     repositories {
         mavenLocal()
-        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "http://repo.spring.io/snapshot" }
         maven { url "http://repo.spring.io/milestone" }
+        mavenCentral()
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
@@ -60,6 +59,6 @@ dependencies {
 
     compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT") {
         exclude module: "boot.spring"
-        exclude module: "boot.login"
+        //exclude module: "boot.login"
     }
 }
