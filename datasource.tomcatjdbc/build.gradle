@@ -28,12 +28,12 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR7'
     }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
 
