@@ -48,6 +48,7 @@ dependencies {
 	'org.mybatis:mybatis-ehcache:1.0.0',)
 
     compile('com.framework:datasource.tomcatjdbc:1.0-SNAPSHOT')
+
 }
 
 
