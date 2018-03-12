@@ -25,7 +25,7 @@ public class AuthImageServlet extends javax.servlet.http.HttpServlet implements 
         response.setDateHeader("Expires", 0);
         response.setContentType("image/jpeg");
 
-        Props props = new Props("application.properties");
+        Props props = new Props("/properties/application.properties");
         Integer width = props.getInt("custom.authImage.width");
         Integer height = props.getInt("custom.authImage.height");
         Integer size = props.getInt("custom.authImage.size");

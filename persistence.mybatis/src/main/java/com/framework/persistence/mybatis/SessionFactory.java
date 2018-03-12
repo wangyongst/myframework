@@ -17,7 +17,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource({ "classpath:/properties/mybatis.properties" })
+@PropertySource({ "classpath:/properties/application.properties" })
 @Order(3)
 public class SessionFactory {
 
@@ -27,10 +27,10 @@ public class SessionFactory {
 	@Qualifier("myDS")
 	private DataSource dataSource;
 
-	@Value("${mybatis.mapperLocations}")
+	@Value("${custom.mybatis.mapperLocations}")
 	private String mapperLocations;
 
-	@Value("${mybatis.configLocation}")
+	@Value("${custom.mybatis.configLocation}")
 	private String configLocation;
 
 	@Bean

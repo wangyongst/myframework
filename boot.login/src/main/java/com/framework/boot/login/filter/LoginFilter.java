@@ -29,7 +29,7 @@ public class LoginFilter implements Filter {
         logger.debug("LoginFilter create!");
         this.filterConfig = filterConfig;
         if (nofilters == null) {
-            Props props = new Props("application.properties");
+            Props props = new Props("/properties/application.properties");
             String nofilter = props.getStr("custom.loginFilter.nofilter");
             String filter = props.getStr("custom.loginFilter.filter");
             redirect = props.getStr("custom.loginFilter.redirect");
