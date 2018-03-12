@@ -1,6 +1,7 @@
 package com.framework.persistence.mybatis;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
@@ -13,7 +14,7 @@ import org.springframework.core.annotation.Order;
 //@EnableCaching//<!-- 启用缓存注解 --> <cache:annotation-driven cache-manager="cacheManager" />
 @Order(3)
 public class CachingConfig {
-    private static final Logger logger = Logger.getLogger(CachingConfig.class);
+    private static final Logger logger = LogManager.getLogger(CachingConfig.class);
 
 //    @Bean
 //    public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() {
