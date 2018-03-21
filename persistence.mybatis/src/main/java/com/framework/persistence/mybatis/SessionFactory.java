@@ -17,7 +17,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource({ "classpath:/properties/application.properties" })
+@PropertySource({ "classpath:properties/application.properties" })
 @Order(3)
 public class SessionFactory {
 

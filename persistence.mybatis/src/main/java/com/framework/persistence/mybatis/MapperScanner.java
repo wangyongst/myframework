@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@PropertySource({ "classpath:/properties/application.properties" })
+@PropertySource({ "classpath:properties/application.properties" })
 @Order(3)
 public class MapperScanner {
 

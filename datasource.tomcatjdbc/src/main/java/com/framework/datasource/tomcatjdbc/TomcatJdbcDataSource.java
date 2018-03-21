@@ -13,7 +13,7 @@ import org.springframework.core.annotation.Order;
 import java.beans.PropertyVetoException;
 
 @Configuration
-@PropertySource({"classpath:/properties/application.properties"})
+@PropertySource({"classpath:properties/application.properties"})
 @Order(2)
 public class TomcatJdbcDataSource {
     private static final Logger logger = LogManager.getLogger(TomcatJdbcDataSource.class);
